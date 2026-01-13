@@ -1,0 +1,54 @@
+## Problem Context
+{problem_description}
+
+
+## Function to Evolve
+Name of the function to optimize: `{function_to_evolve}`.
+The goal is to {obj_type} the `score` of `{function_to_evolve}` evaluation result.
+
+
+## Evaluation Method Description
+{evaluation_description}
+
+
+## Function Requirements
+{function_description}
+
+
+## Parent Solutions Analysis
+Below are existing solutions you can learn from, ordered from lowest to highest performing:
+{parent_solutions}
+
+
+## Long-term Research Reflection
+{long_term_reflection}
+
+
+## Idea to Implement
+{idea}
+
+
+## Task
+Implement the above idea as a complete Python function and try to optimize its score.
+
+### Requirements
+1. **Maintain Exact Function Signature**: Keep the same function name, arguments, and return types
+2. **Include Implementation Considerations in Docstring**: Add the implementation idea in the docstring before the Args section
+3. **Build on Parent Solutions**: Incorporate successful elements from existing solutions
+4. **Address Research Insights**: Consider the long-term research reflection in your implementation
+
+### Implementation Guidelines
+- Write clean, well-documented Python code
+- Include necessary imports within the function
+- Add comprehensive comments for complex logic
+- Handle edge cases and potential errors
+- Follow PEP 8 style guidelines
+- Optimize for computational efficiency
+
+### Output Format
+Provide ONLY the complete Python function code in a markdown code block like:
+```python
+# Your code here
+```
+Do not include any explanatory text outside the code block.
+Now generate your response:

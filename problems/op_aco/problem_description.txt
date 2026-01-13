@@ -1,0 +1,4 @@
+The Orienteering Problem (OP) is a combinatorial optimization challenge where a traveler must visit nodes to collect prizes while respecting a maximum tour length constraint, starting and ending at a depot. 
+Each node has a prize value, and the goal is to maximize total collected prize within the distance budget. 
+We use Ant Colony Optimization (ACO) to solve this problem, where artificial ants probabilistically construct tours guided by pheromone trails and heuristic information. Each ant builds a solution by sequentially selecting nodes based on a probability distribution that combines pheromone intensity and heuristic desirability. 
+Your task is to evolve a `heuristics` function that generates an n×n heuristic matrix to guide ant movement, where n is the number of nodes. The heuristic matrix should help ants to make better routing decisions, with the goal of maximizing total prize collected across all instances (called "score" or "objective" of solution).

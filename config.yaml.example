@@ -1,0 +1,144 @@
+# config.yaml
+# Configuration file for OR-Agent.
+
+# ===== OR-Agent Config File Loading Priority =====
+# Configuration files are loaded in the following order (first found wins):
+#   1. Explicit config file path provided via command line `--config` option
+#   2. `config.yaml` file in the current working directory
+#   3. Built-in default configuration file `src/oragent/config.yaml`
+# PS: 
+# - Run `python cli.py --init-config` to generate a template config file at working directory, namely this built-in default config will be copied to the working directory.
+# - Use `--algorithm <algorithm> --problem <problem>` command line options to override `algorithm` and `problem` settings in config file.
+
+
+# =====Built-in Experiments=====
+# Each problem directory `problems/<your_problem>` must contains a `settings.yaml` that specifies the `function_to_evolve` and `obj_type` for the problem; directory name is the problem name.
+# The following table shows the built-in experiments and their corresponding problem, function_to_evolve, obj_type, description, and approximate execution time.
+# ------------------------------------------------------------------------------
+# <problem>, <function_to_evolve>, <obj_type>, <description>, <execution_time>
+# ------------------------------------------------------------------------------
+# driving, driving_actions, max, cooperative driving problem on road segment, 60s
+# tsp_constructive, select_next_node, min, traveling salesman problem solved using constructive heuristics, 12s
+# tsp_aco, heuristics, min, traveling salesman problem solved using ACO, 150s
+# tsp_gls, heuristics, min, traveling salesman problem solved using GLS, 37s
+# tsp_pomo, heuristics, min, traveling salesman problem solved using POMO, 40s
+# tsp_lehd, heuristics, min, traveling salesman problem solved using LEHD, 200s
+# cvrp_aco, heuristics, min, capacitated vehicle routing problem solved using ACO, 170s
+# cvrp_pomo, heuristics, min, capacitated vehicle routing problem solved using POMO, 40
+# cvrp_lehd, heuristics, min, capacitated vehicle routing problem solved using LEHD, 206s
+# bpp_online, priority, min, online bin-packing problem solved by constructive heuristics, 7s
+# bpp_offline_aco, heuristics, min, offline bin-packing problem solved using ACO, 125s
+# op_aco, heuristics, max, orienteering problem solved using ACO, 180s
+# mkp_aco, heuristics, max, multiple knapsack problem solved using ACO, 44s
+# dpp_ga, crossover, max, decap placement problem solved using GA, 50s
+# ------------------------------------------------------------------------------
+# PS: OR-Agent may adopt following algorithm frameworks (called `skeleton` in FunSearch) to solve the problems and evolve core part of the algorithm components (called `function_to_evolve` in FunSearch).
+# Supported algorithm frameworks (skeletons):
+# - "aco": Ant Colony Optimization
+# - "constructive": Constructive heuristics
+# - "gls": Guided Local Search
+# - "ga": Genetic Algorithm
+# - "pomo": Policy Optimization with Multiple Optima
+# - "lehd": Neural Combinatorial Optimization with Light Encoder, Heavy Decoder
+
+
+# =====General Settings=====
+algorithm: "oragent"  # Options: "oragent", "reevo", "eoh", "ael", "funsearch"
+problem: "cvrp_pomo"  # problem to solve
+init_pop_size: 20  # initial population size; default: 10
+num_parents: 2  # number of parents to start research (ORAgent) or for crossover (ReEvo, EoH, AEL, FunSearch); default: 2
+autosave_interval_minutes: 120  # autosaving interval
+max_evolutions: 500  # maximum number of "evolutions"; termination condition; the exact meaning of "evolution" can be freely defined by users; in the current version of OR-Agent, we terminate only if total number LLM responses and function evaluations > `max_evolutions`;
+verbose: true  # whether to print out detailed experiment information; default: false
+# -----Settings for OR-Agent-----
+num_lead_agents: 1  # number of lead agents work in parallel; if > 1, multiprocessing will be used; default: 1
+max_research_rounds: 10000  # maximum number of research rounds; default: 1000
+num_children: 2  # number of children to generate for one solution node in the research tree; default: 4
+max_tree_depth: 5  # maximum depth of the research tree; root node has depth 0; None means no constraint; default: null
+max_debug_rounds: 1  # maximum number of attempts to debug code (ExperimentAgent of oragent); default: 5
+max_experiment_repeats: 3  # maximum number of times to repeat the experiment for a solution node; default: 16
+elitist_as_root_period: 3  # the research rounds period for re-using elitist as root; "0" means never directly use elitist as root; default: 3
+elitist_enlargement_factor: 2.0  # the enlargement factor for elitist when used as root; int(elitist_enlargement * num_children) many children will be generated for elitist; default: 1.0
+reflection_compression: null  # the limit (number of words) on long-term memory compression between research rounds; null means no compression; default: null
+reflection_period: 8  # the batch size of experiment reflections used to update long-term memory; default: 5
+reflection_clearance_period: null  # the research rounds period for clearing long-term memory; null means no clearance; default: null
+reflection_disabled_for_crossover: false  # whether to disable using long-term reflection when doing crossover; default: false
+# -----Settings for ReEvo, EoH, AEL, and FunSearch-----
+pop_size: 10  # population size (ReEvo, EoH, AEL)
+mutation_rate: 0.5  # mutation rate (AEL)
+
+
+# =====LLM Model Settings=====
+# Built-in LLM models:
+# -----------------------------
+# <llm_provider>, <model_name>
+# -----------------------------
+# openai, gpt-5.1
+# qwen, qwen3-max
+# qwen, qwen3-coder-plus
+# deepseek, deepseek-reasoner
+# deepseek, eepseek-chat
+# -----------------------------
+# PS: 1) `llm_provider` is used for creating LLM clients; `model_name` is used for creating chat completions; we wrap the llm client by `utils.LLMClient` class.
+# 2) To instantiate `LLMClient` of above models, you can call by:
+# ```LLMClient(llm_provider="qwen", model_name="qwen3-coder-plus", **kwargs)```
+# If you want to use LLM not listed above, you can instantiating `LLMClient` by specifying `api_key` and `base_url`, example:
+# ```LLMClient(api_key=os.getenv("DEEPSEEK_API_KEY"), base_url="https://api.deepseek.com", model_name="deepseek-chat", **kwargs)```
+model:
+    max_retries: 10  # maximum number of retries; default: 5
+    # -----Default-----
+    # (EoH, AEL, FunSearch)
+    llm_provider: "qwen"  # default llm provider
+    model_name: "qwen3-coder-plus"  # default llm model
+    temperature: 1.0  # default llm temperature; default: 1.0
+    # -----OR-Agent-----
+    lead_agent_llm_provider: "qwen"
+    lead_agent_model_name: "qwen3-max"
+    idea_agent_llm_provider: "qwen"
+    idea_agent_model_name: "qwen3-max"
+    idea_agent_temperature: 1.0  # for idea generation, you may want higher temperature
+    code_agent_llm_provider: "qwen"
+    code_agent_model_name: "qwen3-coder-plus"
+    experiment_agent_reflect_llm_provider: "qwen"
+    experiment_agent_reflect_model_name: "qwen3-coder-plus"
+    experiment_agent_summarize_llm_provider: "qwen"
+    experiment_agent_summarize_model_name: "qwen3-max"
+    # -----ReEvo-----
+    reevo_generator_llm_provider: "qwen"
+    reevo_generator_model_name: "qwen3-coder-plus"
+    reevo_generator_temperature: 1.0
+    reevo_long_reflector_llm_provider: "qwen"
+    reevo_long_reflector_model_name: "qwen3-coder-plus"
+    reevo_short_reflector_llm_provider: "qwen"
+    reevo_short_reflector_model_name: "qwen3-coder-plus"
+    reevo_crossover_llm_provider: "qwen"
+    reevo_crossover_model_name: "qwen3-coder-plus"
+    reevo_mutation_llm_provider: "qwen"
+    reevo_mutation_model_name: "qwen3-coder-plus"
+
+
+# =====Solution database settings=====
+# (FunSearch, ORAgent)
+database:
+    num_islands: 5  # number of islands; default: 10
+    reset_period_minutes: 180  # reset period for the weaker half islands; default: 240
+    cluster_sampling_temperature_init: 1.0  # temperature for the cluster sampling; default: 1.0
+    cluster_sampling_temperature_period: 50  # period of linear decay of the cluster sampling temperature; Unit: solution count; original FunSearch uses 30_000; default: 100
+    # temperature starts at init (likely 1.0), decreases linearly to near 0 over `period` solutions, then resets to init and repeats. 
+    # This creates a cyclic annealing schedule for cluster sampling.
+
+
+# =====Evaluation Settings=====
+evaluation:
+    timeout_seconds: 300  # timeout for evaluation script execution; default: 60
+    python_path: # python path on the local machine; conda env recommended; you can set for multiple machines at a time; 
+        # Recommended key format: <username>@<hostname>; but on HPC the <hostname> is not known in advance, in this case you may just use <username> for key
+        "liuqi": "/opt/anaconda3/envs/sumo/bin/python"  
+        "u23310103": "/share/home/u23310103/.conda/envs/sumo/bin/python"
+    eval_env_vars:  null # environment variables for python env
+    #    SUMO_HOME: "/opt/homebrew/opt/sumo/share/sumo"
+    #    XERCESC_PATH: "/opt/anaconda3/envs/sumo/lib"
+    #    DYLD_LIBRARY_PATH: "/opt/anaconda3/envs/sumo/lib"
+    #    PATH: "/opt/homebrew/bin:/opt/anaconda3/envs/sumo/bin:"
+    #    CONDA_DEFAULT_ENV: "sumo"
+    #    CONDA_PREFIX: "/opt/anaconda3/envs/sumo"

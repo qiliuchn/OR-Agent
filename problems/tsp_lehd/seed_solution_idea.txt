@@ -1,0 +1,5 @@
+Create heuristic attention bias by Formula: 
+heu_ij = - log(dis_ij) if j is the top-K nearest neighbor of i, else - dis_ij
+
+This creates a bias that encourages the model to attend to nearby nodes,
+mimicking human intuition in TSP solving.

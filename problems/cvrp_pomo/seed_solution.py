@@ -1,0 +1,5 @@
+import torch
+
+def heuristics(distance_matrix: torch.Tensor, demands: torch.Tensor) -> torch.Tensor:
+    """A trivial implementation to improve upon."""
+    return torch.zeros_like(distance_matrix)

@@ -1,0 +1,56 @@
+### Overview
+Callbacks are executed at the end of each simulation step in the SUMO traffic simulation environment. They provide a mechanism to monitor, analyze, and potentially influence the simulation behavior.
+
+### Implementation Requirements
+- Define a `Callback` class with an `on_step_end` method
+- The method receives `step`, `edge_info` and `vehicles_info` as keyword arguments
+- You can invoke SUMO `traci` API within the callback for additional information
+- **Focus only on vehicles on the target edge** for analysis
+
+### Data Structures
+**`step` Integer**
+The current simulation step.
+
+**`edge_info` Dictionary**
+Contains information about the target road segment:
+- `edge_id`: Target edge identifier (e.g., "E_0")
+- `lane_count`: Number of lanes on the edge
+- `length`: Length of the road segment to analyze (meters)
+- `max_speed`: Maximum allowed speed on the edge (m/s)
+
+**`vehicles_info` List**
+A list of dictionaries, each representing a vehicle on the target road segment:
+- `veh_id`: Vehicle identifier (e.g., 'veh_5_3_0')
+- `veh_type`: Vehicle type ('passenger', 'bus', 'truck', 'emergency')
+- `position`: Vehicle position on the road segment (meters)
+- `speed`: Current vehicle speed (m/s)
+- `current_lane`: Current lane identifier (e.g., "E5_0")
+  - **Note**: In SUMO, lane indexing starts from 0 and counts from rightmost to leftmost
+- `wants_left`: Boolean indicating if vehicle wants to change to left lane
+- `wants_right`: Boolean indicating if vehicle wants to change to right lane
+- `potential_target_lanes`: Information about potential target lanes for lane changing
+
+### Callback Example
+```python
+class Callbacks:
+    def on_step_end(self, **kwargs):
+        """Monitor vehicles with very low speeds on the target edge."""
+
+        step = kwargs["step"]
+        print(f"Step {step}: Monitoring vehicles with low speeds")
+
+        if step in [0, 100, 200, 300, 400, 500]:
+            vehicles_info = kwargs["vehicles_info"]
+            
+            for vehicle in vehicles_info:
+                if vehicle["speed"] < 1.0:
+                    print(f"Vehicle {vehicle['veh_id']} is on lane {vehicle['current_lane']} with speed {vehicle['speed']:.2f} m/s")
+```
+
+### Analysis Focus Areas
+When designing callbacks, consider monitoring:
+- Traffic congestion patterns
+- Lane changing behavior
+- Speed variations and bottlenecks
+- Vehicle type-specific behaviors
+- Safety-critical situations (near-collisions, sudden stops)

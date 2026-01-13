@@ -1,0 +1,6 @@
+The Bin Packing Problem (BPP) is a combinatorial optimization challenge where items of varying sizes must be packed into bins of fixed capacity, minimizing the number of bins used while respecting capacity constraints. 
+In the offline version, all item sizes are known in advance, allowing for more sophisticated packing strategies. 
+We use Ant Colony Optimization (ACO) to solve this problem, where artificial ants probabilistically construct packing solutions guided by pheromone trails and heuristic information.
+Each ant builds a solution by sequentially assigning items to bins based on a probability distribution that combines pheromone intensity and heuristic desirability. 
+Your task is to evolve a `heuristics` function that generates an n×n heuristic matrix to guide ant movement, where n is the number of items. 
+The goal of minimizing the average number of bins used across all instances (called "score" or "objective" of solution).

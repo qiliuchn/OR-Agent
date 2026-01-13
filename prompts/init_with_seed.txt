@@ -1,0 +1,21 @@
+## Problem Description
+{problem_description}
+
+
+## Description of Function to Evolve 
+{function_description}
+
+
+## Seed Function
+A seed solution is provided below:
+{seed_solution}
+
+
+## Task
+Refer to the seed function above. Be very creative and give your version of `{function_to_evolve}` that improves the seed function.
+Output code only and enclose your code with Python code block like this: 
+```python
+# your code here
+```
+
+Now generate your code:

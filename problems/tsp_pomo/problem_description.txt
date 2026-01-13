@@ -1,0 +1,4 @@
+The Traveling Salesman Problem (TSP) is a classic optimization challenge that seeks the shortest possible route for a salesman to visit each city in a list exactly once and return to the origin city. 
+We will use the POMO (Policy Optimization with Multiple Optima) reinforcement learning algorithm to solve this problem. 
+Your task is to find a `heuristics` function for the POMO algorithm. This function will generate the attention bias matrix for the POMO algorithm's neural network. 
+Your goal is to minimize the objective, which is the average test tour distances for the salesman (called "score" or "objective" of solution).

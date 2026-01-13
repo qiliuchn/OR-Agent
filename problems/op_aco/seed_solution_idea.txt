@@ -1,0 +1,1 @@
+This prioritizes nodes with higher prizes that are closer to the current location, creating a greedy preference for high-reward, low-cost moves.

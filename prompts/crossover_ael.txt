@@ -1,0 +1,26 @@
+## Problem Description
+{problem_description}
+
+
+## Description of Function to Evolve
+{function_description}
+
+
+## Previous Versions of Solution Function
+Two previous versions of `{function_to_evolve}` are provided below.
+
+### Solution #1
+{solution1}
+
+### Solution #2
+{solution2}
+
+
+## Task
+Now you need to create a new `{function_to_evolve}` that motivated by the given algorithms.
+Output code only and enclose your code with Python code block like this: 
+```python
+# your code here
+```
+
+Now generate your code:

@@ -1,0 +1,1 @@
+This is the standard ACO heuristic for TSP where shorter edges are more attractive. The heuristic matrix guides ants toward closer cities during probabilistic selection.

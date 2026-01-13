@@ -1,0 +1,6 @@
+Suppose `n` represents the number of nodes in the problem, with the depot being the first node. The `heuristics` function takes as input a `prize` array of shape (n,), a `distance` matrix of shape (n,n), and a `max_len` float which is the constraint to total travel distance, and it returns `heuristics` of shape (n, n), where `heuristics[i][j]` indicates the promise of including the edge from node #i to node #j in the solution.
+
+### Solution Function Signature
+```python
+def heuristics(prize: np.ndarray, distance: np.ndarray, maxlen: float) -> np.ndarray:
+```

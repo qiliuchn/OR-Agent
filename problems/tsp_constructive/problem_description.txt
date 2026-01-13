@@ -1,0 +1,3 @@
+The Traveling Salesman Problem (TSP) is a classic optimization challenge that seeks the shortest possible route for a salesman to visit each city in a list exactly once and return to the origin city.
+For this problem, you task is to find a constructive heuristic function `select_next_node` that can generate next node to visit for the salesman.
+Your goal is to minimize the objective, which is the average test tour distances for the salesman (called "score" or "objective" of solution).

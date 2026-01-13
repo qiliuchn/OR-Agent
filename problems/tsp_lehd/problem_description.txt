@@ -1,0 +1,5 @@
+The Traveling Salesman Problem (TSP) is a classic optimization challenge that seeks the shortest possible route for a salesman to visit each city in a list exactly once and return to the origin city. 
+We will use the LEHD (Learning with Heavy Decoder) neural combinatorial optimization algorithm to solve this problem. LEHD employs a transformer-based architecture with a light encoder (1 layer) and a heavy decoder (6 layers) to sequentially construct tours. 
+Your task is to design a `heuristics` function for the LEHD algorithm. This function will generate an attention bias matrix that guides the decoder's attention mechanism during node selection. 
+The bias matrix should encode spatial relationships between cities to help the model make better routing decisions. 
+Your goal is to minimize the objective, which is the average distance traveled by the salesman (called "score" or "objective" of solution).

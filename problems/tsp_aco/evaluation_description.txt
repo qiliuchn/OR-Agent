@@ -1,0 +1,338 @@
+The evaluation script is described below.
+
+```python
+# Evaluation script for TSP-ACO problem
+import os
+import sys
+import numpy as np
+from scipy.spatial import distance_matrix
+import logging
+import inspect
+import argparse
+from typing import Dict, List, Tuple, Any
+import torch
+from torch.distributions import Categorical
+import seed_solution as solution_module  # Note: solution module script is generated and saved on the fly
+
+
+# =====Load function to evolve=====
+problem = "tsp_aco"
+heuristics = getattr(solution_module, "heuristics")  # Get function to evolve
+
+
+# ======Define ACO class=====
+class ACO():
+    def __init__(self,
+                 distances,
+                 heuristic,
+                 n_ants=30,
+                 decay=0.9,
+                 alpha=1,
+                 beta=1,
+                 device='cpu'
+                 ):
+        """
+        Ant Colony Optimization (ACO) for Traveling Salesman Problem (TSP)
+
+        Args:
+            distances: Distance matrix between cities (n x n)
+            heuristic: Heuristic matrix (usually 1/distance) for attractiveness
+            n_ants: Number of ants (agents) per iteration
+            decay: Pheromone evaporation rate (0-1)
+            alpha: Pheromone importance weight
+            beta: Heuristic importance weight
+            device: 'cpu' or 'cuda' for PyTorch tensors
+        """
+        self.problem_size = len(distances)
+        self.distances  = torch.tensor(distances, device=device) if not isinstance(distances, torch.Tensor) else distances
+        self.n_ants = n_ants
+        self.decay = decay  # Pheromone evaporation rate
+        self.alpha = alpha  # Pheromone importance
+        self.beta = beta    # Heuristic importance
+
+        # Initialize pheromone matrix with equal values on all edges
+        self.pheromone = torch.ones_like(self.distances)  # Pheromone level on each edge between cities; shape (n, n)
+        self.heuristic = torch.tensor(heuristic, device=device) if not isinstance(heuristic, torch.Tensor) else heuristic  # Attractiveness of each edge; shape (n, n)
+
+        # Track best solution found
+        self.shortest_path = None
+        self.lowest_cost = float('inf')
+
+        self.device = device
+
+    @torch.no_grad()
+    def run(self, n_iterations):
+        """
+        Main ACO loop: run for n_iterations
+
+        Returns:
+            Best tour cost found
+        """
+        for _ in range(n_iterations):
+            # 1. Tour construction: all ants build tours
+            # `paths: Shape (problem_size, n_ants)
+            # Each column is one ant's complete tour (sequence of city indices); paths[:, i] = tour of ant i
+            paths = self.gen_path(require_prob=False)
+            
+            # 2. Evaluate tour costs
+            # `costs``: Shape (n_ants,); costs[i] = cost of ant i's tour
+            costs = self.gen_path_costs(paths)
+
+            # 3. Update global best solution
+            best_cost, best_idx = costs.min(dim=0)
+            if best_cost < self.lowest_cost:
+                self.shortest_path = paths[:, best_idx]
+                self.lowest_cost = best_cost
+
+            # 4. Pheromone update (evaporation + deposition)
+            self.update_pheronome(paths, costs)
+
+        return self.lowest_cost  # The method returns the lowest cost found across all N_ITERATIONS.
+       
+    @torch.no_grad()
+    def update_pheronome(self, paths, costs):
+        '''
+        Update pheromone matrix: evaporation + ant deposition
+
+        Args:
+            paths: torch tensor with shape (problem_size, n_ants)
+            costs: torch tensor with shape (n_ants,)
+        '''
+        # 1. Evaporation: reduce all pheromone values
+        self.pheromone = self.pheromone * self.decay
+
+        # 2. Deposition: each ant deposits pheromone on edges it used
+        for i in range(self.n_ants):
+            path = paths[:, i]
+            cost = costs[i]
+            # Deposit pheromone proportional to 1/cost (better tours deposit more)
+            self.pheromone[path, torch.roll(path, shifts=1)] += 1.0/cost
+            self.pheromone[torch.roll(path, shifts=1), path] += 1.0/cost  # Symmetric for undirected graph
+
+    @torch.no_grad()
+    def gen_path_costs(self, paths):
+        '''
+        Calculate total distance for each ant's tour
+
+        Args:
+            paths: torch tensor with shape (problem_size, n_ants)
+        Returns:
+            Lengths of paths: torch tensor with shape (n_ants,)
+        '''
+        assert paths.shape == (self.problem_size, self.n_ants)
+        u = paths.T  # shape: (n_ants, problem_size) - current cities
+        v = torch.roll(u, shifts=1, dims=1)  # shape: (n_ants, problem_size) - next cities (wraps around)
+        assert (self.distances[u, v] > 0).all()
+        # Sum distances along each ant's tour
+        return torch.sum(self.distances[u, v], dim=1)
+
+    def gen_path(self, require_prob=False):
+        '''
+        Tour construction for all ants (parallel construction)
+
+        Returns:
+            paths: torch tensor with shape (problem_size, n_ants), paths[:, i] is the constructed tour of the ith ant
+            log_probs: torch tensor with shape (problem_size, n_ants), log_probs[i, j] is the log_prob of the ith action of the jth ant
+        '''
+        # Random starting cities for each ant
+        start = torch.randint(low=0, high=self.problem_size, size=(self.n_ants,), device=self.device)
+        # Mask to track visited cities (0 = visited, 1 = available)
+        mask = torch.ones(size=(self.n_ants, self.problem_size), device=self.device)
+        mask[torch.arange(self.n_ants, device=self.device), start] = 0
+
+        paths_list = []  # paths_list[i] is the ith move (tensor) for all ants
+        paths_list.append(start)
+
+        log_probs_list = []  # log_probs_list[i] is the ith log_prob (tensor) for all ants' actions
+
+        prev = start
+        for _ in range(self.problem_size-1):
+            # Each ant chooses next city based on pheromone and heuristic
+            actions, log_probs = self.pick_move(prev, mask, require_prob)
+            paths_list.append(actions)
+            if require_prob:
+                log_probs_list.append(log_probs)
+                mask = mask.clone()  # Clone mask when tracking probabilities
+            prev = actions
+            mask[torch.arange(self.n_ants, device=self.device), actions] = 0  # Mark new city as visited
+
+        if require_prob:
+            return torch.stack(paths_list), torch.stack(log_probs_list)
+        else:
+            return torch.stack(paths_list)
+        
+    def pick_move(self, prev, mask, require_prob):
+        '''
+        Probabilistic selection of next city for each ant
+
+        Args:
+            prev: tensor with shape (n_ants,), previous nodes for all ants
+            mask: bool tensor with shape (n_ants, p_size), masks (0) for the visited cities
+        '''
+        # Get pheromone and heuristic values for edges from current cities
+        pheromone = self.pheromone[prev]  # shape: (n_ants, p_size)
+        heuristic = self.heuristic[prev]  # shape: (n_ants, p_size)
+
+        # Probability distribution: P(i,j) ∝ [τ(i,j)^α] * [η(i,j)^β]
+        dist = ((pheromone ** self.alpha) * (heuristic ** self.beta) * mask)  # shape: (n_ants, p_size)
+        dist = Categorical(dist)
+
+        # Sample next city for each ant
+        actions = dist.sample()  # shape: (n_ants,)
+        log_probs = dist.log_prob(actions) if require_prob else None  # shape: (n_ants,)
+        return actions, log_probs
+
+
+# =======Define evaluation function=====
+N_ITERATIONS = 80  # number of iterations to run; the lowest cost of all iterations is returned
+N_ANTS = 30  # number of ants to use
+
+def eval_heuristic(node_pos: np.ndarray) -> float:
+    dist_mat = distance_matrix(node_pos, node_pos)
+    dist_mat[np.diag_indices_from(dist_mat)] = 1 # set diagonal to a large number
+    heu = heuristics(dist_mat.copy()) + 1e-9
+    heu[heu < 1e-9] = 1e-9
+    aco = ACO(dist_mat, heu, n_ants=N_ANTS)
+    obj = aco.run(N_ITERATIONS)
+    return obj
+
+
+# =====Helper functions=====
+def get_feature(metrics: Dict[int, float]) -> Tuple[int, ...]:
+    """
+    Convert the metrics dict to a feature vector
+
+    Args:
+        metrics (dict): A mapping of test problem size (int) to a score (float).
+
+    Returns:
+        (tuple): a tuple of discretized scores sorted by problem size
+    """
+    scores = metrics.values()
+    features = tuple([int(x) for x in scores])
+    return features
+    
+def get_score(metrics: Dict[int, float]) -> float:
+    """
+    Convert the metrics dict to a score
+
+    Args:
+        metrics (dict): A mapping of test problem size (int) to a score (float).
+
+    Returns:
+        (float): a score
+    """
+    return sum(metrics.values()) / len(metrics)
+
+
+# =====Main Function=====
+if __name__ == '__main__':
+    # -----Parse command line arguments (same for all problems)-----
+    parser = argparse.ArgumentParser(description='Evaluation script.')
+    parser.add_argument(
+        '--root_dir',
+        type=str,
+        default=os.getcwd(),
+        help='Project root directory for loading data (default: current working directory)'
+    )
+    parser.add_argument(
+        '--file_output_prefix',
+        type=str,
+        default='',
+        help='Output file prefix for saving evaluation results. '
+             'Absolute path recommended. Files saved as {prefix}filename '
+             '(default: empty string, saves to current directory)')
+    parser.add_argument(
+        '--mode',
+        type=str,
+        default='val',
+        choices=['train', 'val'],
+        help='Execution mode: train or val (default: val)'
+    )
+    parser.add_argument(
+        '--problem_size',
+        type=int,
+        default=50,  # Customize this to your needs
+        help='Problem size parameter'
+    )
+    # Parse arguments
+    args = parser.parse_args()
+    root_dir = args.root_dir
+    file_output_prefix = args.file_output_prefix
+    mode = args.mode
+    problem_size = args.problem_size
+    # Print parsed arguments for verification
+    print(f"root_dir: {root_dir}")
+    print(f"file_output_prefix: {file_output_prefix}")
+    print(f"mode: {mode}")
+    #print(f"problem_size: {problem_size}")
+    
+    # -----Run the evaluation-----
+    # Run instances 20, 50, 100; execution time: 150s
+    try:
+        basepath = os.path.join(root_dir, "problems", problem , "dataset")
+        # Initialize performance and feature variables
+        metrics = {}
+        # ---Train mode---
+        if mode == 'train':
+            # Load dataset
+            dataset_path = os.path.join(basepath, f"train{problem_size}_dataset.npy")
+            node_positions = np.load(dataset_path)
+            n_instances = node_positions.shape[0]  # data shape: (n_instances, problem_size, 2)
+            print(f"[*] Dataset loaded: {dataset_path} with {n_instances} instances.")
+            
+            objs = []
+            for i in range(n_instances):
+                # Invoke evaluation function
+                obj = eval_heuristic(node_positions[i])
+                print(f"[*] Instance {i}: {obj}")
+                objs.append(obj)
+            
+            print("[*] Average:")
+            print(np.mean(objs))
+            metrics[problem_size] = np.mean(objs)
+        # ---Val mode---
+        else:
+            for problem_size in [20, 50, 100]:  # options: 20, 50, 100
+                dataset_path = os.path.join(basepath, f"val{problem_size}_dataset.npy")
+                logging.info(f"[*] Evaluating {dataset_path}")
+                node_positions = np.load(dataset_path)
+                n_instances = node_positions.shape[0]
+                objs = []
+                for i in range(n_instances):
+                    obj = eval_heuristic(node_positions[i])
+                    objs.append(obj)
+                print(f"[*] Average for {problem_size} cities: {np.mean(objs)}")
+                metrics[problem_size] = np.mean(objs)
+                
+        if metrics:
+            features = get_feature(metrics)
+            score = get_score(metrics)
+        else:
+            features = None
+            score = None
+
+        # -----Print results to stdout (same for all problems)-----
+        print('__SANDBOX_RESULT__')        
+        print('__METRICS_START__')
+        print(repr(metrics))
+        print('__METRICS_END__')
+        
+        print('__FEATURES_START__')
+        print(repr(features))
+        print('__FEATURES_END__')
+        
+        print('__SCORE_START__')
+        print(repr(score))
+        print('__SCORE_END__')
+        
+        print('__SANDBOX_SUCCESS__')
+        
+    except Exception as e:
+        import traceback
+        print('__SANDBOX_ERROR__:')
+        print(f'Error type: {type(e).__name__}')
+        print(f'Error message: {str(e)}')
+        print('Full traceback:')
+        traceback.print_exc()
+```

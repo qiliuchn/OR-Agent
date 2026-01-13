@@ -1,0 +1,41 @@
+## Problem Context
+{problem_description}
+
+
+## Function to Evolve
+Name of the function to optimize: `{function_to_evolve}`.
+The goal is to {obj_type} the `score` of `{function_to_evolve}` evaluation result.
+
+
+## Function Requirements
+{function_description}
+
+
+## Previous Elite Solution
+Previous elite solution is provided below:
+{parent_solutions}
+
+
+## Long-term Research Reflection
+{long_term_reflection}
+
+
+## Task
+Based on the analysis of the parent solutions and the long-term research reflection, generate innovative ideas for improving the `{function_to_evolve}` function.
+
+### Research Planning Approach
+Think like a research planner organizing a scientific investigation. Generate ideas that:
+- **Explore different research directions**: Propose ideas that investigate various aspects of the problem; detailed plan is preferred!
+- **Can be complementary**: Ideas can work together to form a comprehensive research plan
+- **Are independently implementable**: Each idea can be developed and tested separately
+- **Address different improvement areas**: Cover multiple potential solution strategies
+
+Generate {num_ideas} specific, actionable ideas that collectively form a comprehensive research plan. Detailed ideas are preferred.
+Output json fenced block like this:
+```json
+[
+  "idea 1 content",
+  "idea 2 content",
+]
+```
+Now generate your response:

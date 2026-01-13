@@ -1,0 +1,5 @@
+The Decap Placement Problem (DPP) is a hardware design optimization challenge where decoupling capacitors must be strategically placed within a power distribution network to minimize impedance and ensure stable power delivery to integrated circuits. 
+The problem involves selecting optimal positions for a fixed number of decaps on an n×m grid while avoiding prohibited zones and the probing port location. 
+We use a Genetic Algorithm (GA) to solve this problem, evolving populations of candidate placement solutions through selection, crossover, and mutation operations. 
+Your task is to evolve a `crossover` function that generates new offspring solutions by combining genetic material from selected parent placements. 
+The crossover function should explore the solution space with the goal of maximizing impedance reduction rewards across multiple frequency points and test instances (called "score" or "objective" of solution).

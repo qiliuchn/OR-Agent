@@ -1,0 +1,21 @@
+## Problem Description
+{problem_description}
+
+
+## Description of Function to Evolve
+{function_description}
+
+
+## Previous Version of Solution
+I have an algorithm for this task. The code is provided below.
+{solution}
+
+
+## Task
+Now you need to write a mutated version of function `{function_to_evolve}`. 
+Output code only and enclose your code with Python code block like this: 
+```python
+# Your code here
+```
+
+Start writing your code:

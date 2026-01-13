@@ -1,0 +1,34 @@
+## Problem Context
+{problem_description}
+
+
+## Function to Optimize
+Function name: `{function_to_evolve}`
+Objective: {obj_type} the `score` from `{function_to_evolve}` evaluation results
+
+
+## Solution Requirements
+{function_description}
+
+
+## Current Long-term Reflection
+{long_term_reflection}
+
+
+## Task
+Compress the long-term research reflection to at most {word_count} words while preserving:
+- Core research direction and strategic approach
+- Key insights and learnings
+- Essential decision rationale
+- Actionable research trajectory
+
+
+## Output Format
+Provide your response as a JSON object:
+```json
+{{
+  "reflection": "Compressed long-term reflection (max {word_count} words)"
+}}
+```
+
+Now generate your response:

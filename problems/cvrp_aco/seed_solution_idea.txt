@@ -1,0 +1,2 @@
+This heuristic implementation uses a simple inverse distance approach: heuristics = 1 / distance_matrix. 
+This creates a heuristic matrix where closer nodes have higher heuristic values, guiding ants to prefer shorter edges during path construction.

@@ -1,0 +1,22 @@
+Below is your prior long-term reflection on designing solution function `{function_to_evolve}` for the following problem.
+
+## Problem Description
+{problem_description}
+
+
+## Solution Function Description
+{function_description}
+
+
+## Prior Reflection
+Below are long term reflections on designing solution function `{function_to_evolve}` for the problem (empty if no prior reflection exists):
+{prior_reflection}
+
+
+## New Insights
+Below are some insights you newly gained by comparing two solution functions:
+{new_reflection}
+
+
+## Task
+Now you need to write constructive hints for designing better solution function in the future, based on prior reflections and new insights and using less than 50 words.

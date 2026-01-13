@@ -1,0 +1,3 @@
+The Online Bin Packing Problem (BPP) is a combinatorial optimization challenge where items of varying sizes arrive sequentially and must be packed into bins of fixed capacity, with the goal of minimizing the total number of bins used while respecting capacity constraints. 
+Items must be assigned to bins immediately upon arrival without knowledge of future items, making it an online decision problem. 
+We use evolutionary search to develop a `priority` heuristic function that give priority scores to available bins based on the current item size and remaining bin capacities, with the goal of minimizing the average number of bins needed across instances (called "score" or "objective" of solution) while approaching the theoretical lower bound.

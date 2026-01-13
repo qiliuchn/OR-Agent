@@ -1,0 +1,67 @@
+## Problem Context
+{problem_description}
+
+
+## Function to Evolve
+Name of the function to optimize: `{function_to_evolve}`.
+The goal is to {obj_type} the `score` of `{function_to_evolve}` evaluation result.
+
+
+## Function Requirements
+{function_description}
+
+
+## Long-Term Reflection
+{long_term_reflection}
+
+
+## Solution idea
+{idea}
+
+
+## Original Solution Code
+```python
+{original_code}
+```
+
+
+## Complete Experiment History
+All experiments conducted and their results are provided below. Original solution code is revised according to the experiment history.
+{experiment_history}
+
+
+## Latest Solution Performance
+The performance of the solution code after all the experiments and changes:
+{latest_experiment_result}
+
+
+## Task
+Write a comprehensive experiment report that synthesizes the complete experiment history.
+The experiment process is iterative refinement. While all results are provided for context, later findings and insights are more relevant as they may override earlier thoughts.
+
+### Analysis Requirements
+1. **Holistic Assessment**: Analyze all experiment results to identify overarching patterns, with emphasis on later findings
+2. **Performance Evolution**: Track how solution performance and insights evolved across the refinement process
+3. **Parameter Impact**: Identify which parameter adjustments had the most significant effects
+4. **Persistent Challenges**: Note issues that couldn't be resolved through parameter tuning
+5. **Success Factors**: Identify strategies and approaches that consistently improved performance
+
+### Summary Content
+Your experiment report should include:
+- **Key Findings**: Most important discoveries from the experiment series
+- **Performance Trends**: Patterns in performance metrics across the refinement process
+- **Parameter Insights**: Understanding of how different parameters affect performance
+- **Documented Failures**: Approaches that didn't work and lessons learned
+- **Useful Techniques**: Successful strategies and methods discovered
+- **Unresolved Issues**: Problems that require fundamental algorithmic changes
+- **Actionable Recommendations**: Specific directions for future research rounds and solution improvements
+
+### Output Format
+Provide a JSON response like:
+```json
+{{
+  "summary": "Comprehensive analysis synthesizing all experiment results, including key findings, persistent issues, successful strategies, and actionable recommendations for future improvements"
+}}
+```
+Focus on extracting meaningful patterns and providing concrete recommendations that can guide the next phase of research and development.
+Now generate your response:

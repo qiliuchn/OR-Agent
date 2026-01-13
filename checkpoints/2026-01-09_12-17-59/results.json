@@ -1,0 +1,44 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 74.69046401977539,
+        "metrics": {
+            "200": 22.36349868774414,
+            "500": 50.988258361816406,
+            "1000": 150.71963500976562
+        },
+        "code_filepath": "/Users/liuqi/Desktop/or_agent/outputs/oragent/cvrp_pomo/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "/Users/liuqi/Desktop/or_agent/outputs/oragent/cvrp_pomo/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 6,
+        "total_function_evals": 6,
+        "total_valid_responses": 5,
+        "best_obj_overall": 73.07470575968425,
+        "metrics": {
+            "200": 22.37970733642578,
+            "500": 52.25014114379883,
+            "1000": 144.59426879882812
+        },
+        "code_filepath": "/Users/liuqi/Desktop/or_agent/outputs/oragent/cvrp_pomo/details/lead1_round0_count1_id1_solution.py",
+        "output_filepath": "/Users/liuqi/Desktop/or_agent/outputs/oragent/cvrp_pomo/details/lead1_round0_count1_id1_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 11,
+        "total_function_evals": 8,
+        "total_valid_responses": 10,
+        "best_obj_overall": 72.92536926269531,
+        "metrics": {
+            "200": 22.265106201171875,
+            "500": 52.18267822265625,
+            "1000": 144.3283233642578
+        },
+        "code_filepath": "/Users/liuqi/Desktop/or_agent/outputs/oragent/cvrp_pomo/details/lead1_round1_count5_id5_solution.py",
+        "output_filepath": "/Users/liuqi/Desktop/or_agent/outputs/oragent/cvrp_pomo/details/lead1_round1_count5_id5_stdout.txt"
+    }
+]

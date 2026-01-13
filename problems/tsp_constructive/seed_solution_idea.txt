@@ -1,0 +1,3 @@
+The nearest neighbor heuristic. At each step, simply choose the closest unvisited city from your current location.
+This is greedy and myopic (doesn't look ahead), but it's fast and intuitive.
+Typically produces tours that are 20-30% longer than optimal, but takes O(n^2) time.

@@ -1,0 +1,4 @@
+For each city i:
+- For top-K nearest neighbors j: heu_ij = -log(distance_ij)  (stronger signal for closer cities)
+- For other cities: heu_ij = -distance_ij  (weaker negative signal)
+This encourages the model to pay more attention to nearby cities.

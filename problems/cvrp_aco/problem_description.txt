@@ -1,0 +1,3 @@
+The Capacitated Vehicle Routing Problem (CVRP) is a combinatorial optimization challenge where vehicles with limited capacity must deliver goods from a central depot to multiple customer locations, minimizing total travel distance while respecting vehicle capacity constraints. 
+We use Ant Colony Optimization (ACO) to solve this problem, where artificial ants probabilistically construct routes guided by pheromone trails and heuristic information. 
+Your task is to evolve a `heuristics` function that generates a heuristic matrix to guide ant movement, with the goal of minimizing the total distance traveled across all vehicle routes (called "score" or "objective" of solution).

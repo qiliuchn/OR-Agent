@@ -1,0 +1,4 @@
+This priority function implements a complex heuristic that combines multiple terms to score bins. 
+The core idea is to favor bins with capacities close to the maximum available capacity. 
+The function also incorporates higher-order terms that give different weights based on item size.
+It also try to create a sequential dependency between adjacent bins, potentially encouraging more balanced packing patterns across the bin array.

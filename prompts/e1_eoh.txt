@@ -1,0 +1,21 @@
+## Problem Description
+{problem_description}
+
+
+## Solution Function Description
+{function_description}
+
+
+## Previous Solution(s)
+Some previous version(s) of the solution function are provided below:
+{parents_description}
+
+
+## Task
+You need to create a new `{function_to_evolve}` that is as much different as possible from previous solutions. 
+Output code only and enclose your code with Python code block like this: 
+```python
+# your code here
+```
+
+Now generate your code:

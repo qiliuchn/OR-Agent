@@ -1,0 +1,20 @@
+## Problem Description
+{problem_description}
+
+
+## Solution Function Description
+{function_description}
+
+
+## Previous Solution(s)
+{parents_description}
+
+
+## Task
+Identify common ideas behind previous solutions; and create a new `{function_to_evolve}` that is based on the common ideas but are as much different as possible.
+Output code only and enclose your code with Python code block like this: 
+```python
+# your code here
+```
+
+Now generate your code:

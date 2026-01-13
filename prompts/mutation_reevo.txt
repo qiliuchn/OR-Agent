@@ -1,0 +1,25 @@
+## Problem Description
+{problem_description}
+
+
+## Solution Function Description
+{function_description}
+
+
+## Prior Reflection
+{reflection}
+
+
+## Previous Elite Solution
+Previous elite solution is provided below:
+{elitist_solution}
+
+
+## Task
+Now you need to write a mutated version of function `{function_to_evolve}`, according to the reflection. 
+Output code only and enclose your code with Python code block like this: 
+```python
+# Your code here
+```
+
+Start writing your code:

@@ -1,0 +1,10 @@
+Suppose `n` is number of the items, and `m` is the number of constraints. The constraint of each dimension is fixed to 1.
+Weight matrix shape: weight has shape [n, m]. weight[i, j] = weight of item i in knapsack constraint dimension j.
+Prize vector shape: prize has shape [n,] where n is number of items.
+The `heuristics` function takes as input a `prize` of shape (n,), a `weight` of shape (n, m), and returns `heuristics` of shape (n,). 
+`heuristics[i]` indicates how promising it is to include item i in the solution.
+
+### Solution Function Signature
+```python
+def heuristics(prize: np.ndarray, weight: np.ndarray) -> np.ndarray:
+```

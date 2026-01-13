@@ -1,0 +1,58 @@
+## Problem Context
+{problem_description}
+
+
+## Function to Evolve
+Name of the function to optimize: `{function_to_evolve}`.
+The goal is to {obj_type} the `score` of `{function_to_evolve}` evaluation result.
+
+
+## Solution Function Requirements
+{function_description}
+
+
+## Prior Long-term Reflection
+Your current long-term reflection on this research problem:
+{prior_reflection}
+
+
+## Recent Experiment Summaries
+Several experiments have been conducted; their summaries are provided below:
+{experiment_summaries_str}
+
+
+## Task
+Update your long-term research reflection by synthesizing the insights from past experiments with your existing knowledge.
+
+### Analysis Requirements
+1. **Knowledge Integration**: Combine insights from the new solution with your prior reflection
+2. **Pattern Recognition**: Identify any new patterns or confirm existing ones
+3. **Research Progress**: Assess how this solution advances the overall research goals
+4. **Methodological Insights**: Extract learnings about effective approaches and techniques
+5. **Future Directions**: Update research priorities based on new evidence and identify the directions for improvement!
+
+### Reflection Update Guidelines
+- **Build Cumulative Knowledge**: Don't just replace - integrate and evolve your understanding
+- **Focus on Principles**: Extract generalizable principles rather than solution-specific details
+- **Identify Gaps**: Note areas where understanding is still incomplete
+- **Update Priorities**: Adjust research directions based on empirical evidence
+- **Maintain Coherence**: Ensure the reflection tells a coherent story of research progress
+
+### Key Questions to Address
+- What new insights does this solution provide about the problem domain?
+- How does this solution confirm or challenge existing assumptions?
+- What successful strategies can be generalized to future research?
+- What persistent challenges remain unresolved?
+- What promising research directions emerge from this analysis?
+
+### Other Requirements
+{other_context}
+
+### Output Format
+Output json fenced block like this:
+```json
+{{
+  "reflection": An updated long-term reflection that synthesizes prior knowledge with new insights, maintaining a cumulative understanding of the research progress and guiding future investigations.
+}}
+```
+Now generate your response:

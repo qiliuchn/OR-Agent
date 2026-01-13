@@ -1,0 +1,2 @@
+The crossover heuristic implements a two-point crossover strategy that splits each parent's decap placement vector into left and right halves. 
+It randomly pairs parent solutions and creates offspring by combining the left half from one parent with the right half from another.

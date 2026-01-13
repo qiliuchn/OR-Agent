@@ -1,0 +1,1 @@
+Edge length heuristic: Since it's bad to include long edges in the solution, this guide matrix uses edge distances directly.

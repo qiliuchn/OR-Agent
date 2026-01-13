@@ -1,0 +1,68 @@
+## Problem Context
+{problem_description}
+
+
+## Function to Debug
+Name of the function to debug: `{function_to_evolve}`.
+Debug `{function_to_evolve}` so that the evaluation script introduced below is able to generate metrics, features, and score successfully.
+
+
+## Evaluation Method Description
+{evaluation_description}
+
+
+## Function Requirements
+{function_description}
+
+
+## Current Solution Idea
+The idea of the function is:
+{idea}
+
+
+## Current Solution Code with Issues
+Current implementation of  `{function_to_evolve}`:
+```python
+{code}
+```
+
+
+## Error Information
+Evaluating current solution code generate the following output:
+{raw_output}
+
+
+## Task
+Debug and fix the above code to resolve the issues. Your debugging should:
+
+### Requirements
+1. **Maintain Exact Function Signature**: Keep the same function name, arguments, and return types
+2. **Fix All Issues**: Resolve all bugs, errors, and inefficiencies in the provided code
+
+### Debugging Guidelines
+- Analyze the code for logical errors, syntax issues, and performance problems
+- Preserve the intended algorithm logic while fixing bugs
+- Optimize for computational efficiency; ensure algorithm completes without timeout issues
+- Write clean, well-documented Python code
+- Include necessary imports within the function
+- Add comprehensive comments for complex logic
+- Handle edge cases and potential errors
+- Follow PEP 8 style guidelines
+
+### Output Format
+Your response must be a string containing your thoughts on how to revise the code, and a fenced block of code modifications using conflict markers style:
+```diff
+<<<<<<< SEARCH
+...original code to replace...
+=======
+...new replacement code...
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+...another original code to replace...
+=======
+...another new replacement code...
+>>>>>>> REPLACE
+```
+
+Note you MUST return both thought and code diff blocks in the response!
+Now generate your response:

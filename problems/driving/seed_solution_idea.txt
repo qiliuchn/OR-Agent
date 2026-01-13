@@ -1,0 +1,15 @@
+Combines IDM (Intelligent Driver Model) for longitudinal control with traffic-aware lane changing that considers both route continuation and current traffic occupation levels for better cooperative driving.
+- **Conservative Entry Behavior**: New vehicles wait briefly before changing lanes
+- **Target Lane Stability**: Vehicles stay in target lane once reached with strong preference
+- **Progressive Lane Changes**: Multi-lane changes done step-by-step with verification
+- **Active Gap Creation**: Vehicles accelerate/decelerate to create lane change opportunities
+- **Swap Deadlock Detection**: Identify vehicles wanting to swap lanes and coordinate resolution
+- **Safe Swap Coordination**: Create sufficient offset BEFORE allowing lane changes
+- **Flexible Platoon Formation**: Vehicles with same target form platoons bidirectionally
+- **Bidirectional Platoon**: Leader can be ahead OR behind, coordination adapts accordingly
+- **Vehicle-Specific Lengths**: Use actual vehicle lengths for accurate gap calculations
+- **Dynamic Platoon Offset**: Use vehicle lengths plus buffer for safe platoon merging
+- **Relaxed Gap for Safe Speed**: If follower is slower/equal, only vehicle length gap needed
+- **Speed-Based Swap Resolution**: Faster vehicle accelerates, slower decelerates to create offset
+- **Smart Urgency**: Urgency starts early but increases gradually to enable proactive changes
+- **Swap Commit Only When Safe**: Both vehicles must have safe gaps before either changes lanes

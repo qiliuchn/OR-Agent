@@ -1,0 +1,5 @@
+The Multiple Knapsack Problem (MKP) is a combinatorial optimization challenge where items with given prizes and multi-dimensional weights must be assigned to multiple knapsacks with capacity constraints, maximizing total prize without exceeding any knapsack's capacity. 
+We use Ant Colony Optimization (ACO) to solve this problem, where artificial ants probabilistically construct solutions guided by pheromone trails and heuristic information. 
+Each ant builds a solution by sequentially selecting items based on a probability distribution that combines pheromone intensity and heuristic desirability. 
+Your task is to evolve a `heuristics` function that generates an n-dimensional heuristic vector to guide ant movement, where n is the number of items. 
+The heuristic vector should capture item desirability to help ants make better selection decisions, with the goal of maximizing total prize across all instances (called "score" or "objective" of solution).

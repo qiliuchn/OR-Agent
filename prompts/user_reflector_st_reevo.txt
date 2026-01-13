@@ -1,0 +1,22 @@
+A problem and two previous versions of solution functions to solve the problem will be introduced below. And you will be asked to reflect on previous code versions.
+
+## Problem Description
+{problem_description}
+
+
+## Solution Function Description
+{function_description}
+
+
+## Previous Versions of Solution
+You are provided with two solution versions below, where the second version performs better than the first one. Metrics are appended as comments.
+
+### Worse Solution
+{worse_solution}
+
+### Better Solution
+{better_solution}
+
+
+## Task
+Now you need to respond with some hints for designing better solution function, based on the two code versions and using less than 20 words.

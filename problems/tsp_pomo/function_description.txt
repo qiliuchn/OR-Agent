@@ -1,0 +1,6 @@
+The `heuristics` function computes an attention bias matrix for the Traveling Salesman Problem (TSP) by transforming pairwise city distances into attention biases.
+
+### Solution Function Signature
+```python
+def heuristics(distance_matrix: torch.Tensor) -> torch.Tensor:
+```

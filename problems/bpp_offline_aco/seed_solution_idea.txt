@@ -1,0 +1,1 @@
+This simple heuristic prioritizes larger items by giving them higher heuristic values, encouraging ants to pack larger items together first.
