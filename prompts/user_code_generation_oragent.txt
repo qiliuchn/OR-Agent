@@ -15,7 +15,7 @@ The goal is to {obj_type} the `score` of `{function_to_evolve}` evaluation resul
 {function_description}
 
 
-## Parent Solutions Analysis
+## Parent Solution(s) Analysis
 Below are existing solutions you can learn from, ordered from lowest to highest performing:
 {parent_solutions}
 

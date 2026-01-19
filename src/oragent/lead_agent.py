@@ -92,6 +92,25 @@ Lead agent output json fenced block for long-term reflection update like this:
 }
 ```
 
+### Reflection-elitist synchronization
+The usual way to update long-term reflection is to update every `reflect_period` solutions (with summaries) are obtained;
+`reflect_period` is the reflection period.
+Here we provide an alternative mode:
+reflection and elitist usage are synchronized in this way:
+periodic reflection is disabled;
+ - when elitist is not root, update every `reflect_period` solutions (with summaries) are obtained; 
+   if `reflect_period` is set to a very large number, that means just no reflection when elitist is not root;
+ - when using elitist is root, do long-term reflection at the start and end of the research round.
+this is similar to ReEvo reflection mechanism.
+
+
+
+
+## Elitist as root
+`elitist_as_root_period` determines how often solution database elitist is used as the root node of a research round
+when set to None, elitist is never used explicitly as root; it still can be sampled from the solution database.
+this period reflect the exploitation vs exploration tradeoff
+
 
 
 
@@ -108,6 +127,7 @@ Here's a simple example:
 
 config['max_tree_depth'] is used to constrain the maximum depth of the research tree.
 if None, then there is no depth constraint.
+
 
 
 
@@ -183,13 +203,15 @@ class LeadAgent:
         self.num_parents = self.config['num_parents']  # number of parents used to start a round of research
         self.num_children = self.config['num_children']  # number of children to generate for each parent node in the tree
         self.max_tree_depth = self.config['max_tree_depth']  # maximum depth of the research tree
+        self.fast_exploration_for_crossover = self.config['fast_exploration_for_crossover']  # whether to use fast exploration for crossover
         self.num_islands = self.config['database']['num_islands']  # number of islands in database; used in population initialization for even distribution
         self.elitist_as_root_period = self.config['elitist_as_root_period']  # the research rounds period for re-using elitist as root; "0" means never directly use elitist as root
         self.elitist_enlargement_factor = self.config['elitist_enlargement_factor']  # the enlargement factor for elitist when used as root; int(elitist_enlargement * num_children) many children will be generated for elitist
         self.reflection_compression = self.config['reflection_compression']  # the limit (number of words) to compress long-term memory between research rounds; None means no compression
         self.reflection_period = self.config['reflection_period']  # the batch size of experiment reflections used to update long-term memory
         self.reflection_clearance_period = self.config['reflection_clearance_period']  # the research rounds period for clearing long-term memory; None means no clearance
-
+        self.reflection_elitist_synchro = self.config['reflection_elitist_synchro']  # whether reflection update should be synchronized with elitist as root
+        
         # =====Create LLM client=====
         self.llm_provider = self.config['model']['lead_agent_llm_provider']
         self.model_name = self.config['model']['lead_agent_model_name']
@@ -219,8 +241,10 @@ class LeadAgent:
             self.function_evals = 0  # Number of function evaluations; this is also an important metric for complexity, especially for the case when evaluation is the bottleneck
             self.valid_responses = 0 # Number of valid responses, namely responses that were successfully executed
             self.elitist = None   # Best individual so far
+            self.elitist_as_root = False  # whether elitist is used as root for the research round
             self.flow_graph = None
-        
+            self.experiment_summaries = []  # store experiment summaries for long-term reflection update
+            
         # =====Load problem data and prompts=====
         # Problem and prompt directory
         self.problem_dir = f"{self.project_root}/problems/{self.problem}"
@@ -245,9 +269,8 @@ class LeadAgent:
         # if no checkpoint specified, we set long-term reflection to be external knowledge at initialization.
         if not checkpoint:
             self.long_term_reflection = self.external_knowledge  # long term reflection; re-initialized at the start of each research round
-            self.experiment_summaries = []  # store experiment summaries for long-term reflection update
-            
-            # Log long_term_reflection
+
+            # Log long_term_reflection for webui real-time visualization
             with open(f"{self.output_dir}/long_term_reflection.txt", 'w') as file:
                 file.write(self.long_term_reflection)
         
@@ -265,7 +288,7 @@ class LeadAgent:
         self.idea_agent.reset()
         self.code_agent.reset()
         self.experiment_agent.reset()
-        print(f"\n>>>[LeadAgent] lead agent {self.id} reset finished.")
+        print(f"\n>>>[LeadAgent] lead agent {self.id} reset.")
 
 
     def init_population(self, seed_solution: Solution=None) -> List[Solution]:
@@ -297,14 +320,14 @@ class LeadAgent:
             seed_solution.lead_agent_id = self.id
             seed_solution.research_round = tmp_research_round
             seed_solution.solution_count = tmp_solution_count
-            seed_solution.island_id = None
+            seed_solution.island_id = 0  # here we add seed soln to island 0 instead of all islands as in FunSearch
             tmp_solution_count += 1
             # If the seed solution does not contain code, complete it
             if seed_solution.code is None:
                 seed_solution = self.code_agent.run(parent_solutions=None, 
                                                     long_term_reflection=self.long_term_reflection, 
                                                     solution=seed_solution,
-                                                    elitist_as_root=True,  # to make use of long-term reflection
+                                                    elitist_parent=True,  # make use of long-term reflection, which is external knowledge if exists
                                                     )
                 # Note: code will be generated; and metrics, features, score will also be generated
             else:
@@ -336,6 +359,10 @@ class LeadAgent:
             }  # entry to add to results file
             utils.append_json_list(f"{self.output_dir}/results_detailed.json", result_entry)
             utils.append_json_list(f"{self.output_dir}/results.json", result_entry)
+            
+            # Log progress to progress.txt for webui real-time visualization
+            with open(f"{self.output_dir}/progress.txt", 'w') as file:
+                self.print_progress(file=file)
         
         # =====Generate `self.init_pop_size` many new solutions=====
         # Create new ideas
@@ -343,7 +370,7 @@ class LeadAgent:
         ideas = self.idea_agent.run(parent_solutions=seed_solution,  # may be None if there is no seed solution
                                     long_term_reflection=self.long_term_reflection, 
                                     num_ideas=self.init_pop_size,
-                                    elitist_as_root=True,  # must make use of long-term reflection
+                                    elitist_parent=True,
                                     )
         
         # Convert new ideas to solution instances
@@ -353,16 +380,16 @@ class LeadAgent:
         # TODO: 
         # there are `self.num_islands` many islands in database; and there are `self.init_pop_size` many solutions;
         # we evenly distribute initial solutions to islands in a round-robin fashion
-        # "how to distribute solutions over islands at database initialization" - we leave it for the user to decide and mark with a TODO flag
+        # "how to distribute solutions over islands at database initialization" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         solutions = []
         for i, idea in enumerate(ideas):
             island_id = i % self.num_islands  # Round-robin distribution
             solutions.append(Solution(
-            lead_agent_id=self.id,
-            research_round=tmp_research_round,
-            solution_count=tmp_solution_count,
-            idea=idea,
-            island_id=island_id,
+                lead_agent_id=self.id,
+                research_round=tmp_research_round,
+                solution_count=tmp_solution_count,
+                idea=idea,
+                island_id=island_id,
             ))
             tmp_solution_count += 1 
         
@@ -373,7 +400,7 @@ class LeadAgent:
             sol = self.code_agent.run(parent_solutions=seed_solution,  # maybe None if there is no seed solution
                                     long_term_reflection=self.long_term_reflection, 
                                     solution=sol,
-                                    elitist_as_root=True,  # must make use of long-term reflection
+                                    elitist_parent=True,
                                     )
             children_solutions.append(sol)
         
@@ -426,8 +453,13 @@ class LeadAgent:
         if elitist_updated:
             utils.append_json_list(f"{self.output_dir}/results.json", result_entry)
         
-        print(f"\n>>>[LeadAgent] Initial population generation finished.")
+        # Log progress to progress.txt for webui real-time visualization
+        with open(f"{self.output_dir}/progress.txt", 'w') as file:
+            self.print_progress(file=file)
+            
+        print(f"\n>>>[LeadAgent] Initial population generation finished; init_pop size: {len(init_pop)}")        
         return init_pop
+
 
     def update_iter(self) -> None:
         """Update iteration."""
@@ -437,7 +469,7 @@ class LeadAgent:
         # Clear long-term reflection if needed
         # We clear the long-term reflection accumulated during the previous research round so starting a research round is like hiring a new scientist to do the job
         # TODO: Optionally, we can also keep the long-term reflection accumulated during the previous research rounds
-        # "should long-term reflection lasts over research rounds? should we compress it?" - we leave it for the user to decide and mark with a TODO flag
+        # "should long-term reflection lasts over research rounds? should we compress it?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         if self.reflection_clearance_period is not None and self.research_round % self.reflection_clearance_period == 0:
             print(f"\n>>>[LeadAgent] Clearing long-term reflection as per reflection clearance period setting (every {self.reflection_clearance_period} rounds)...")
             self.long_term_reflection = self.external_knowledge  # clear long term reflection; set to be the external knowledge
@@ -568,44 +600,60 @@ class LeadAgent:
         print(f"Current best objective value: {self.elitist.score}", file=file)
         print(f"Current flow graph:", file=file)
         if self.flow_graph:
-            self.flow_graph.visualize(file=file)
+            self.flow_graph.visualize(file=file, show_details=True)
         else:
             print(f"None", file=file)
             
     
-    def update_long_term_reflection(self, solution: Solution) -> None:
+    def update_long_term_reflection(self, 
+                                    solution: Solution=None,
+                                    force_update: bool=False,
+                                    ) -> None:
         """
-        Update long-term reflection when enough experiment summaries are collected.
+        Update long-term reflection.
         
         Args:
             solution (Solution): A complete solution
+            force_update (bool): whether to force update long-term reflection
             
         Returns:
             None. self.long_term_reflection is updated. 
         """
-        # Append the experiment summary to the buffer
-        if solution.summary:
+        # =====Append the experiment summary to the buffer=====
+        if solution and solution.summary:
             # Should we add more contest info? use which one?
             # - solution.summary: summary only
             # - solution.performance_summary(): performance metrics + summary
             # - solution.idea_performance_summary(): idea + performance metrics + summary
-            # TODO: "add solution details for long-term reflection update?" - we leave it for the user to decide and mark with a TODO flag
-            self.experiment_summaries.append(solution.performance_summary_str())
+            # TODO: "add solution details for long-term reflection update?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
+            self.experiment_summaries.append(solution.idea_performance_summary_str())
         else:
-            print(f"\n>>>[LeadAgent] Warning: solution {solution.id_str(self.algorithm)} has no experiment summary; cannot be used for long-term reflection update.")
-            return
+            print(f"\n>>>[LeadAgent] Warning: no valid experiment summary added")
         
-        # Update long term reflection if enough experiment summaries are collected
-        if len(self.experiment_summaries) >= self.reflection_period:
-            print(f"\n>>>[LeadAgent] After solution {solution.id_str(self.algorithm)}, updating long-term reflection since {self.reflection_period} solutions have been collected...")
+        # =====Check synchro requirement=====
+        # the usual way is to do long-term reflection regularly
+        # if we need to synchronize long-term reflection and elitist as root duration, 
+        # then set reflection_period to be a large number
+        # lead agent will manually update reflection with force_update=True
+        if self.elitist_as_root and self.reflection_elitist_synchro:
+            reflection_period = 10000000
+        else:
+            reflection_period = self.reflection_period
             
+        # =====Update long term reflection=====
+        if (reflection_period and reflection_period > 0 and len(self.experiment_summaries) >= reflection_period) or (force_update and len(self.experiment_summaries) > 0):
+            if len(self.experiment_summaries) >= reflection_period:
+                print(f"\n>>>[LeadAgent] After solution {solution.id_str(self.algorithm)}, update long-term reflection since {reflection_period} solution summaries have been collected...")
+            else:
+                print(f"\n>>>[LeadAgent] Force update long-term reflection; currently there are {len(self.experiment_summaries)} solution summaries...")
+                
             # Concatenate experiment summaries
             experiment_summaries_str = ''
             for i, summary in enumerate(self.experiment_summaries):
                 experiment_summaries_str += f"{'-'*40}\nExperiment #{i + 1}:\n{'-'*40}\n{summary}\n\n"
             experiment_summaries_str = experiment_summaries_str.strip()
             
-            # Word limit            
+            # Word limit
             if self.reflection_compression is None:
                 other_context = ""  # no compression; no other context needed
             else:
@@ -632,17 +680,20 @@ class LeadAgent:
                 new_reflection = response_extracted['reflection']
                 self.long_term_reflection = new_reflection
                 self.valid_responses += 1
-                print(f"\n>>>[LeadAgent] After solution {solution.id_str(self.algorithm)}, long-term reflection updated to:\n{self.long_term_reflection}")
+                print(f"\n>>>[LeadAgent] Long-term reflection updated to:\n{self.long_term_reflection}")
                 
-                # Log long_term_reflection for webui
+                # Log long_term_reflection for webui real-time visualization
                 with open(f"{self.output_dir}/long_term_reflection.txt", 'w') as file:
                     file.write(self.long_term_reflection)
             else:
                 # invalid response; long-term reflection is not updated
-                print(f"\n>>>[LeadAgent] Failed to update long-term reflection for solution {solution.id_str(self.algorithm)};\nResponse: {response}")
+                print(f"\n>>>[LeadAgent] Failed to update long-term reflection;\nResponse: {response}")
         
             # Log long-term reflections
-            file_name = f"{self.output_dir}/details/long_term_reflection_{solution.id_str(self.algorithm)}.txt"
+            if solution:
+                file_name = f"{self.output_dir}/details/long_term_reflection_{solution.id_str(self.algorithm)}.txt"
+            else:
+                file_name = f"{self.output_dir}/details/long_term_reflection_lead_{self.id}_round_{self.research_round}_{datetime.now().strftime('%b-%d-%H%M%S')}.txt"
             with open(file_name, 'w') as file:
                 file.write(self.long_term_reflection)
 
@@ -657,7 +708,6 @@ class LeadAgent:
         Args:
             solution_database (SolutionDatabase): Solution database to sample solutions from
             
-        
         Returns:
             solutions (List[Solution]): list of new solutions generated.
         """
@@ -673,30 +723,33 @@ class LeadAgent:
         # -----Sample root solutions-----
         # Exploitation vs exploration tradeoff
         # How to make use of elitist?
-        # For the first round of research, we use elitist for fast exploitation at the beginning of research
-        # for later stages, we just invoke solution_database.sample()
-        # TODO: should we exploit elitist more? say use elitist as root_solution every `elitist_adopt_cycle` rounds?
-        # note one round of research takes hours and generate tens of solutions
-        # "how to exploit elitist?" - we leave it for the user to decide and mark with a TODO flag
-        # use elitist to start research every so many rounds
-        # lead agent starts with round 1; so we test with (self.research_round - 1); 
+        # TODO: here we use elitist as root_solution every `elitist_adopt_cycle` rounds
+        # note when max_tree_depth and num_children are large (>= 3), one round of research takes hours and generate tens of solutions
+        # "how to exploit elitist?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
+        # lead agent starts with round 1; we test with (self.research_round - 1)
         # hence the first round will always exploit elitist unless `elitist_as_root_period` is set to 0
         if self.elitist_as_root_period > 0 and (self.research_round - 1) % self.elitist_as_root_period == 0:
-            elitist_as_root = True
+            self.elitist_as_root = True  # flag whether elitist is used as root for this round
             # self.config['elitist_as_root_period'] == 0 means never use elitist as root
             # here when we use elitist to start the research round
             # optionally, we can use elitist + (num_parents - 1) many other solutions
             # so that we can still have diversity at the root node
-            # TODO: "should we always use elitist + other solutions as root?" - we leave it for the user to decide and mark with a TODO flag
+            # TODO: "should we always use elitist + other solutions as root?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
             root_solutions = [self.elitist]
             # Alternative
             #root_solutions= []
             #root_solutions.extend(solution_database.sample(num_parents=self.num_parents - 1))
             #root_solutions.append(self.elitist)
+            
+            # if we need synchronize long-term reflection update and elitist as root event
+            # we will force long-term reflection before any elitist child generated
+            if self.reflection_elitist_synchro:
+                self.update_long_term_reflection(solution=None, force_update=True)
             print(f"\n>>>[LeadAgent] Lead agent {self.id} using elitist to start research round {self.research_round}...")
         else:
-            elitist_as_root = False
+            self.elitist_as_root = False
             root_solutions = solution_database.sample(num_parents=self.num_parents)
+            print(f"\n>>>[LeadAgent] Lead agent {self.id} using random samples to start research round {self.research_round}...")
         
         if isinstance(root_solutions, Solution):
             root_solutions = [root_solutions]
@@ -727,68 +780,75 @@ class LeadAgent:
         with open(file_name, 'w') as file:
             self.flow_graph.visualize(file=file)
             
-        # Log progress to progress.txt for webui
+        # Log progress to progress.txt for webui real-time visualization
         with open(f"{self.output_dir}/progress.txt", 'w') as file:
             self.print_progress(file=file)
                 
         
         # =====1. Research Start Process=====
         # While loop to generate child nodes for root node are generated; at least one valid child node should be generated for root node 
-        attempt = 0          
+        attempt = 0
         while True:
             attempt += 1
             # -----Generate ideas-----
             # altogether, ideas can form a comprehensive research plan, investigating different directions
-            print(f"\n>>>[LeadAgent] Generating ideas at research round {self.research_round} start...")
-            if elitist_as_root:
+            print(f"\n>>>[LeadAgent] Generating ideas at research round {self.research_round} starting stage...")
+            # TODO: "how many child ideas to generate at the start of research?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
+            if self.elitist_as_root:
                 # when elitist is used as root solution, we may generate more ideas to explore around elitist
                 num_ideas = int(self.num_children * self.elitist_enlargement_factor)
-                # This is what ReEvo does - do not use long-term reflection when doing short-term reflection and cross-overing on random parent pairs
-                # long-term reflection is only used for extending elitist
-                # TODO: "should we use long-term reflection when doing crossovering" - we leave it for the user to decide and mark with a TODO flag
+            elif not self.elitist_as_root and self.fast_exploration_for_crossover:
+                # if we want fast exploration for crossover, we may only generate one idea
+                num_ideas = 1
             else:
+                # otherwise, we generate ideas as normal
                 num_ideas = self.num_children
+            
             
             print(f"\n>>>[LeadAgent] Generating {num_ideas} ideas...")
             ideas = self.idea_agent.run(parent_solutions=root_solutions, 
                                         long_term_reflection=self.long_term_reflection, 
                                         num_ideas=num_ideas,
-                                        elitist_as_root=elitist_as_root)
+                                        elitist_parent=self.elitist_as_root
+                                        )
             
             # Check number of ideas returned
             if len(ideas) != num_ideas:
                 print(f"\n>>>[LeadAgent] Warning: idea agent returned {len(ideas)} ideas; expected {num_ideas} ideas.")
             num_ideas_valid = min(len(ideas), num_ideas)
-            ideas = ideas[:num_ideas_valid]  # trim ideas if more than needed
+            ideas = ideas[:num_ideas_valid]  # trim ideas if more than needed; sometimes it happens
             
             # Convert ideas to `Solution` instances
             solutions = []
             for idea in ideas:
                 solutions.append(Solution(
-                lead_agent_id=self.id,
-                research_round=self.research_round,
-                solution_count=self.solution_count,
-                idea=idea,
-                island_id=island_id  # Note: need to set island id
+                    lead_agent_id=self.id,
+                    research_round=self.research_round,
+                    solution_count=self.solution_count,
+                    idea=idea,
+                    island_id=island_id  # Note: need to set island id
                 ))
                 self.solution_count += 1
             
             # -----Generate code-----
-            print(f"\n>>>[LeadAgent] Generating child nodes for root at research round {self.research_round} start...")
+            print(f"\n>>>[LeadAgent] Generating child nodes for root at research round {self.research_round} starting stage...")
             # iterate over ideas that have been generated, generate code for each idea
             solutions_updated = []
             for sol in solutions:
                 sol = self.code_agent.run(parent_solutions=root_solutions, 
                                         long_term_reflection=self.long_term_reflection, 
-                                        solution=sol)
+                                        solution=sol,
+                                        elitist_parent=self.elitist_as_root)
                 solutions_updated.append(sol)
                 
             # -----Conduct experiments on each child node-----
             print(f"\n>>>[LeadAgent] Conducting experiments at research round {self.research_round} starting stage...")
             children_solutions = []
             for sol in solutions_updated:
-                sol = self.experiment_agent.run(solution=sol, 
-                                                long_term_reflection=self.long_term_reflection)
+                sol = self.experiment_agent.run(parent_solutions=root_solutions,
+                                                solution=sol, 
+                                                long_term_reflection=self.long_term_reflection,
+                                                elitist_parent=self.elitist_as_root)
 
                 # Here we add an additional solution debugging step
                 if not sol.score:
@@ -807,13 +867,14 @@ class LeadAgent:
                     # - research round start
                     # - research round loop running)
                     # there are many options;
-                    # "do failed experiments matter?" - we leave it for the user to decide and mark with a TODO flag
+                    # "do failed experiments matter?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
                 else:
                     print(f"\n>>>[LeadAgent] Invalid solution generated at population initialization: {sol.id_str(self.algorithm)}")
             
             # -----Update elitist if a new best solution is found for performance tracking purpose-----
-            best_child = max(children_solutions, key=lambda sol: sol.score, default=None) if self.obj_type == 'max' else min(children_solutions, key=lambda sol: sol.score, default=None)
-            if best_child:
+            if children_solutions:
+                best_child = max(children_solutions, key=lambda sol: sol.score, default=None) if self.obj_type == 'max' else min(children_solutions, key=lambda sol: sol.score, default=None)
+            
                 # Update elitist
                 elitist_updated = False
                 if (self.obj_type == 'max' and best_child.score > self.elitist.score) or (self.obj_type == 'min' and best_child.score < self.elitist.score):
@@ -836,6 +897,10 @@ class LeadAgent:
                 utils.append_json_list(f"{self.output_dir}/results_detailed.json", result_entry)
                 if elitist_updated:
                     utils.append_json_list(f"{self.output_dir}/results.json", result_entry)
+                    
+                # Log progress to progress.txt for webui real-time visualization
+                with open(f"{self.output_dir}/progress.txt", 'w') as file:
+                    self.print_progress(file=file)
             
             # -----Add children nodes to flow_graph as root's children-----
             # Convert `Solution`s to `Node`s
@@ -844,20 +909,33 @@ class LeadAgent:
             # Note that those children nodes are not guaranteed to have performances better than the root node(s)!
             # we intended so because when we explore a new research direction, we allow temporary performance downgrades
             # TODO: of course, there are alternatives like controlling how bad the children could be at most
-            # "how to define promising directions?" - we leave it for the user to decide and mark with a TODO flag
+            # "how to define promising directions?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
             if len(children_nodes) > 0:
+                # Add to flow graph
                 self.flow_graph.add(self.flow_graph.root, children_nodes)
-                print(f"\n>>>[LeadAgent] lead agent {self.id} constructed flow graph; number of children of root: {len(children_nodes)}")
+                print(f"\n>>>[LeadAgent] Lead agent {self.id} constructed flow graph; number of children for root: {len(children_nodes)}")
                 break  # if at least one valid child is generated, then break out of loop; otherwise, retry
             else:
                 if attempt >= 5:
-                    raise RuntimeError(f">>>[LeadAgent] Max attempts reached for research start process")
-                print(f"\n>>>[LeadAgent] lead agent {self.id} failed to generate valid children at research start; retrying...")
+                    raise RuntimeError(f">>>[LeadAgent] Max attempts reached for research starting stage")
+                print(f"\n>>>[LeadAgent] Lead agent {self.id} failed to generate valid children at research starting stage; retrying...")
         
         
         # =====2. Research Loop=====
         while True:
             print(f"\n>>>[LeadAgent] Lead agent {self.id} research round {self.research_round} loop starts...")
+            
+            # -----Check fast exploration mode for crossover-----
+            # if elitist is not parent, and fast_exploration_for_crossover=True, then max_tree_depth reduced to one
+            # here we just need to mark all leaves of roots to be done; then self.flow_graph.check_research_finished() will return true at next round
+            # TODO: alternatively, we could set "fast exploration mode" to have `lambda * max_tree_depth` tree depth where lambda is discounting factor
+            # or just set max_tree_depth to be a small fixed number under "fast exploration mode"
+            # "how to fast explore?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
+            if not self.elitist_as_root and self.fast_exploration_for_crossover:
+                print(f"\n>>>[LeadAgent] Fast exploration mode for crossover enabled; max tree depth reduced to one")
+                leaves = self.flow_graph.get_leaves()
+                for leaf in leaves:
+                    leaf.is_done = True
             
             # -----Research finishing test-----
             if self.flow_graph.check_research_finished():
@@ -867,6 +945,8 @@ class LeadAgent:
             # -----Find the best leaf to extend-----
             # best leaf represent the most promising research direction; we will extend this leaf first
             # at the start of research, best_leaf is the root
+            # TODO: there are alternatives on how to search a tree, like PUCB algorithm (see AlphaGo paper)
+            # "how to search tree?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
             best_leaf = self.flow_graph.get_best_undone_leaf()
             
             # if there is constraint on max tree depth, and best leaf already reaches max depth, we stop extending this leaf
@@ -878,7 +958,7 @@ class LeadAgent:
             # if there is a best undone leaf that has depth less than max depth, we extend it
             print(f"\n>>>[LeadAgent] Lead agent {self.id} research round {self.research_round} extends research tree | current best leaf: {best_leaf.solution.id_str(self.algorithm)} | score: {best_leaf.solution.score}")
             
-            # -----Visualize current flow graph-----
+            # -----Log current flow graph-----
             print("\n>>>[LeadAgent] Current flow graph:\n")
             self.flow_graph.visualize()
             # Log flow graph after best leaf obtained
@@ -887,16 +967,22 @@ class LeadAgent:
             with open(file_name, 'w') as file:
                 self.flow_graph.visualize(file=file)
                 
-            # Log progress to progress.txt for webui
+            # Log progress to progress.txt for webui real-time visualization
             with open(f"{self.output_dir}/progress.txt", 'w') as file:
                 self.print_progress(file=file)
             
             # -----Generate children for the best leaf-----
-            # altogether, ideas can form a comprehensive research plan, investigating different directions
             print(f"\n>>>[LeadAgent] Generating new ideas to extend the best leaf...")
+            # for coordinated crossover in research loop, pass current research flow graph
+            # should we also use `self.elitist_enlargement_factor` here? namely,
+            # num_ideas = int(self.num_children * self.elitist_enlargement_factor)
+            # the tree could be large if `self.elitist_enlargement_factor` large
+            # TODO: "how to control the size of the research tree?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
             ideas = self.idea_agent.run(parent_solutions=best_leaf.solution, 
                                         long_term_reflection=self.long_term_reflection, 
-                                        num_ideas=self.num_children)
+                                        num_ideas=self.num_children,
+                                        current_research_flow_graph=self.flow_graph.visualize_str(show_details=True),
+                                        )
             
             # Convert ideas to `Solution` instances
             solutions = []
@@ -916,15 +1002,18 @@ class LeadAgent:
             for sol in solutions:
                 sol = self.code_agent.run(parent_solutions=best_leaf.solution, 
                                         long_term_reflection=self.long_term_reflection,
-                                        solution=sol)
+                                        solution=sol
+                                        )
                 solutions_updated.append(sol)
                 
             # -----Conduct experiments for each child solution-----
             children_solutions = []
             for i, sol in enumerate(solutions_updated):
                 print(f"\n>>>[LeadAgent] Conducting experiment for {i}-th solution ({sol.id_str(self.algorithm)})...")
-                sol = self.experiment_agent.run(solution=sol, 
-                                                long_term_reflection=self.long_term_reflection)
+                sol = self.experiment_agent.run(parent_solutions=best_leaf.solution, 
+                                                solution=sol, 
+                                                long_term_reflection=self.long_term_reflection
+                                                )
                 
                 # Check solution validness
                 if utils.is_valid(sol):
@@ -938,7 +1027,7 @@ class LeadAgent:
             # these remaining children represent the performance ascending directions; 
             # we will add these nodes to research tree so that we can explore these directions later
             # TODO: there are other options like keeping only the top N best solutions
-            # "what kind of child solutions are kept for later extension?" - we leave it for the user to decide and mark with a TODO flag            
+            # "what kind of child solutions are kept for later extension?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag            
             if self.obj_type == 'max':
                 children_solutions = [sol for sol in children_solutions if sol.score > best_leaf.solution.score]
             else:
@@ -970,6 +1059,10 @@ class LeadAgent:
                 if elitist_updated:
                     utils.append_json_list(f"{self.output_dir}/results.json", result_entry)
                     
+                # Log progress to progress.txt for webui real-time visualization
+                with open(f"{self.output_dir}/progress.txt", 'w') as file:
+                    self.print_progress(file=file)
+                    
             # -----Check whether the leaf node is done-----
             if not children_solutions:
                 # If all children are worse than `best_leaf`, mark `best_leaf` as done - approximate local optimum has been reached
@@ -989,14 +1082,24 @@ class LeadAgent:
         # return them so that they will be added to the solution database
         leaves = self.flow_graph.get_leaves()
         # contract out `Solution` instances
-        solutions = [leaf.solution for leaf in leaves]  
+        solutions = [leaf.solution for leaf in leaves]
         # TODO: filtering mechanism could be added here
         # like, should we filter solutions inferior to root node's solutions here?
         # we didn't apply any filtering here
-        # "what kind of child solutions are 'good' enough to be added to database?" - we leave it for the user to decide and mark with a TODO flag
+        # "what kind of child solutions are 'good' enough to be added to database?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         
-        print(f"\n>>>[LeadAgent] Lead agent {self.id} research round finished | number of solutions to return: {len(solutions)} (IDs: {', '.join([str(sol.id) for sol in solutions])})")
+        # if we need synchronize long-term reflection update and elitist as root event
+        # force long-term reflection at the end of research round if elitist as root
+        # (this is an additional reflection compared to ReEvo algorithm)
+        # or don't reflect at all - just clear self.experiment_summaries
+        # TODO: "additional reflection?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
+        print(f"\n>>>[LeadAgent] elitist_as_root: {self.elitist_as_root}")
+        if self.elitist_as_root:
+            print(f"\n>>>[LeadAgent] Force long-term reflection at the end of research round {self.research_round}")
+            self.update_long_term_reflection(solution=None, force_update=True)
+            self.elitist_as_root = False
         
+        print(f"\n>>>[LeadAgent] Lead agent {self.id} research round {self.research_round} finished | number of solutions to return: {len(solutions)} (IDs: {', '.join([str(sol.id) for sol in solutions])})")
         print(f"\n>>>[LeadAgent] Final flow graph:")
         self.flow_graph.visualize()
         # Log flow graph
@@ -1004,7 +1107,7 @@ class LeadAgent:
         with open(file_name, 'w') as file:
             self.flow_graph.visualize(file=file)
             
-        # Log progress to progress.txt for webui
+        # Log progress to progress.txt for webui real-time visualization
         with open(f"{self.output_dir}/progress.txt", 'w') as file:
             self.print_progress(file=file)
                 

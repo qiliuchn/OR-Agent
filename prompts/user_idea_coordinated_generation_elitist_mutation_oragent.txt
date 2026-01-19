@@ -30,12 +30,12 @@ Think like a research planner organizing a scientific investigation. Generate id
 - **Are independently implementable**: Each idea can be developed and tested separately
 - **Address different improvement areas**: Cover multiple potential solution strategies
 
-Generate {num_ideas} specific, actionable ideas that collectively form a comprehensive research plan. Detailed ideas are preferred.
+You may generate up to {num_ideas} specific, actionable ideas that collectively form a comprehensive research plan. Detailed ideas are preferred.
 Output json fenced block like this:
 ```json
 [
   "idea 1 content",
-  "idea 2 content",
+  "idea 2 content"
 ]
 ```
 Now generate your response:

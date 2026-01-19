@@ -126,6 +126,18 @@ def main():
         help="Maximum number of evolutions"
     )
     parser.add_argument(
+        "--init-pop-size",
+        type=int,
+        default=None,
+        help="Initial population size"
+    )
+    parser.add_argument(
+        "--pop-size",
+        type=int,
+        default=None,
+        help="Population size (for ReEvo, EoH, AEL)"
+    )
+    parser.add_argument(
         "--num-children",
         type=int,
         default=None,
@@ -136,6 +148,11 @@ def main():
         type=int,
         default=None,
         help="Timeout seconds for each solution evaluation"
+    )
+    parser.add_argument(
+        "--fast-exploration-for-crossover",
+        action="store_true",
+        help="Use fast exploration mode for crossover"
     )
     parser.add_argument(
         "--max-debug-rounds",
@@ -185,6 +202,21 @@ def main():
         help="Disable long-term reflection when doing crossover"
     )
     parser.add_argument(
+        "--reflection-elitist-synchro",
+        action="store_true",
+        help="Synchronize long-term reflection update and elitist-as-root event"
+    )
+    parser.add_argument(
+        "--evaluation-description-disabled",
+        action="store_true",
+        help="Disable using eval description"
+    )
+    parser.add_argument(
+        "--ideas-coordinated-generation-disabled",
+        action="store_true",
+        help="Disable coordinated idea generation"
+    )
+    parser.add_argument(
         "--timeout-seconds",
         type=int,
         default=None,
@@ -199,7 +231,7 @@ def main():
     parser.add_argument(
         "--web",
         action="store_true",
-        help="Create a default config.yaml in current directory"
+        help="Output for WebUI"
     )
     args = parser.parse_args()
     
@@ -243,16 +275,25 @@ def main():
             with open(f"{Path.cwd()}/problems/{args.problem}/settings.yaml", 'r') as f:
                 experiment_config = yaml.safe_load(f)
             config['experiment'] = experiment_config
-            
+        
         if args.max_evolutions != None:
             config['max_evolutions'] = args.max_evolutions
-            
+        
+        if args.init_pop_size != None:
+            config['init_pop_size'] = args.init_pop_size
+        
+        if args.pop_size != None:
+            config['pop_size'] = args.pop_size
+        
         if args.num_children != None:
             config['num_children'] = args.num_children
             
         if args.max_tree_depth != None:
             config['max_tree_depth'] = args.max_tree_depth
-            
+        
+        if args.fast_exploration_for_crossover:
+            config['fast_exploration_for_crossover'] = True
+        
         if args.max_debug_rounds != None:
             config['max_debug_rounds'] = args.max_debug_rounds
         
@@ -276,6 +317,15 @@ def main():
         
         if args.reflection_disabled_for_crossover:
             config['reflection_disabled_for_crossover'] = True
+            
+        if args.reflection_elitist_synchro:
+            config['reflection_elitist_synchro'] = True
+        
+        if args.evaluation_description_disabled:
+            config['evaluation_description_disabled'] = True
+        
+        if args.ideas_coordinated_generation_disabled:
+            config['ideas_coordinated_generation_disabled'] = True
         
         if args.timeout_seconds != None:
             config['evaluation']['timeout_seconds'] = args.timeout_seconds
@@ -314,10 +364,12 @@ def main():
     print(f"\n>>>[OR-Agent] Settings:")
     output_dir = config['output_dir'] or f"{Path.cwd()}/outputs/{config['algorithm']}/{config['problem']}"
     print(f">>>[OR-Agent] Output directory: {output_dir}")
-    print(f">>>[OR-Agent] init_pop_size: {config['init_pop_size']}")
     print(f">>>[OR-Agent] max_evolutions: {config['max_evolutions']}")
+    print(f">>>[OR-Agent] init_pop_size: {config['init_pop_size']}")
+    print(f">>>[OR-Agent] pop_size: {config['pop_size']}")
     print(f">>>[OR-Agent] num_children: {config['num_children']}")
     print(f">>>[OR-Agent] max_tree_depth: {config['max_tree_depth']}")
+    print(f">>>[OR-Agent] fast_exploration_for_crossover: {config['fast_exploration_for_crossover']}")
     print(f">>>[OR-Agent] max_debug_rounds: {config['max_debug_rounds']}")
     print(f">>>[OR-Agent] max_experiment_repeats: {config['max_experiment_repeats']}")
     print(f">>>[OR-Agent] elitist_as_root_period: {config['elitist_as_root_period']}")
@@ -326,6 +378,9 @@ def main():
     print(f">>>[OR-Agent] reflection_period: {config['reflection_period']}")
     print(f">>>[OR-Agent] reflection_clearance_period: {config['reflection_clearance_period']}")
     print(f">>>[OR-Agent] reflection_disabled_for_crossover: {config['reflection_disabled_for_crossover']}")
+    print(f">>>[OR-Agent] reflection_elitist_synchro: {config['reflection_elitist_synchro']}")
+    print(f">>>[OR-Agent] evaluation_description_disabled: {config['evaluation_description_disabled']}")
+    print(f">>>[OR-Agent] ideas_coordinated_generation_disabled: {config['ideas_coordinated_generation_disabled']}")
     print(f">>>[OR-Agent] llm_provider: {config['model']['llm_provider']}")
     print(f">>>[OR-Agent] timeout_seconds: {config['evaluation']['timeout_seconds']}")
     print(f">>>[OR-Agent] autosave_interval_minutes: {config['autosave_interval_minutes']}")

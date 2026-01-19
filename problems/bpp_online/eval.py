@@ -94,7 +94,7 @@ def evaluate(instances: dict) -> float:
         _, bins_packed = online_binpack(items.astype(float), bins)
         # If remaining capacity in a bin is equal to initial capacity, then it is unused. Count number of used bins.
         num_bins.append((bins_packed != capacity).sum())
-        metrics[name] = num_bins[-1]
+        metrics[name] = float(num_bins[-1])
     # return negative of average number of bins used across instances (as we want to minimize number of bins).
     return np.mean(num_bins), metrics
 

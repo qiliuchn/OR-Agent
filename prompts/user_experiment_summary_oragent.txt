@@ -30,9 +30,14 @@ All experiments conducted and their results are provided below. Original solutio
 {experiment_history}
 
 
-## Latest Solution Performance
-The performance of the solution code after all the experiments and changes:
-{latest_experiment_result}
+## Best Experimental Solution Found
+The best solution code found during the experiments is provided below:
+```python
+{current_code}
+```
+
+Experiment output of the best solution:
+{current_code_output}
 
 
 ## Task

@@ -11,8 +11,13 @@ The goal is to {obj_type} the `score` of `{function_to_evolve}` evaluation resul
 {function_description}
 
 
+## Current Research Flow Graph
+Below is the current research flow graph:
+{current_research_flow_graph}
+
+
 ## Parent Solutions
-Below are existing solution(s) you can learn from, ordered from lowest to highest performing:
+Below are parent solution(s) you're trying to expand:
 {parent_solutions}
 
 
@@ -21,21 +26,22 @@ Below are existing solution(s) you can learn from, ordered from lowest to highes
 
 
 ## Task
-Based on the analysis of the parent solutions and the long-term research reflection (if available), generate innovative ideas for improving the `{function_to_evolve}` function.
+Based on the analysis of the parent solutions, the current research flow graph, and the long-term research reflection (if available), generate innovative ideas for improving the `{function_to_evolve}` function.
 
 ### Research Planning Approach
 Think like a research planner organizing a scientific investigation. Generate ideas that:
 - **Explore different research directions**: Propose ideas that investigate various aspects of the problem; detailed plan is preferred!
+- **Consider the research flow graph**: Use the current research flow graph to identify gaps and complement ongoing investigations
 - **Can be complementary**: Ideas can work together to form a comprehensive research plan
 - **Are independently implementable**: Each idea can be developed and tested separately
 - **Address different improvement areas**: Cover multiple potential solution strategies
 
-Generate {num_ideas} specific, actionable ideas that collectively form a comprehensive research plan. Detailed ideas are preferred.
+You may generate up to {num_ideas} specific, actionable ideas that collectively form a comprehensive research plan. Detailed ideas are preferred.
 Output json fenced block like this:
 ```json
 [
   "idea 1 content",
-  "idea 2 content",
+  "idea 2 content"
 ]
 ```
 Now generate your response:

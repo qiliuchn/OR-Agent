@@ -321,7 +321,7 @@ class Evaluator:
         # TODO: solution code and eval script are written to output directory in this version of OR-Agent
         # this makes it easier to debug; but indeed takes much storage
         # For space efficiency, users may rewrite the same file(s)
-        # "devise storage saving technique" - we leave it for the user to decide and mark with a TODO flag
+        # "devise storage saving technique" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         
         # =====2. Run local scripts=====
         # customize the running env for your machine

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=imitate_reevo
+#SBATCH --job-name=imitate_reevo2
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
@@ -11,17 +11,18 @@
                                             # Current: 1 algorithms × 5 problem = 5 tasks (0-4)
 
 # =====================
-# imitate_reevo
+# imitate_reevo2
 # =====================
 # num_children=1
 # max_tree_depth=1
 # max_debug_rounds=0
 # max_experiment_repeats=0
-# elitist_as_root_period=8
-# elitist_enlargement_factor=8.0
+# elitist_as_root_period=11
+# elitist_enlargement_factor=5.0
 # reflection_period=8
-# reflection_compression=100
+# reflection_compression=50
 # reflection_disabled_for_crossover=True
+# reflection_elitist_synchro=True
 
 # Algorithms and problems for all combinations TODO: change
 ALGORITHMS=("oragent")
@@ -46,7 +47,7 @@ PROBLEM=${PROBLEMS[$PROB_INDEX]}
 
 # Output directory
 # TODO: carefully set output dir so that tasks don't overwrite each other!
-OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/imitate_reevo"
+OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/imitate_reevo2"
 mkdir -p "$OUTPUT_DIR"
 
 # Print out info
@@ -73,11 +74,14 @@ python -u src/oragent/cli.py \
     --max-tree-depth 1 \
     --max-debug-rounds 0 \
     --max-experiment-repeats 0 \
-    --elitist-as-root-period 10 \
-    --elitist-enlargement-factor 10.0 \
-    --reflection-compression 100 \
+    --elitist-as-root-period 11 \
+    --elitist-enlargement-factor 5.0 \
+    --reflection-compression 50 \
     --reflection-period 10 \
     --reflection-disabled-for-crossover \
+    --reflection-elitist-synchro \
+    --evaluation-description-disabled \
+    --ideas-coordinated-generation-disabled \
     --timeout-seconds 300 \
     --output-dir "$OUTPUT_DIR" \
     > "$OUTPUT_DIR/output.txt" 2>&1

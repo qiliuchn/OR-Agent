@@ -433,7 +433,7 @@ if __name__ == '__main__':
             
             print("[*] Average:")
             print(np.mean(objs))
-            metrics[problem_size] = np.mean(objs)
+            metrics[problem_size] = float(np.mean(objs))
         # ---Val mode---
         else:
             for problem_size in [20, 50, 100]:
@@ -447,7 +447,7 @@ if __name__ == '__main__':
                     obj = eval_heuristic(inst)
                     objs.append(obj)
                 print(f"[*] Average for {problem_size} cities: {np.mean(objs)}")
-                metrics[problem_size] = np.mean(objs)
+                metrics[problem_size] = float(np.mean(objs))
                 
         if metrics:
             features = get_feature(metrics)

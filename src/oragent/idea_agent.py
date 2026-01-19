@@ -6,6 +6,16 @@
 Idea agent generate ideas based on existing solution(s) ("parent solution(s)") and research thought ("long-term reflection") of lead agent.
 
 
+
+## Idea generation modes
+There are two modes to generate ideas:
+# 1) generate ideas as a comprehensive research plan, investigating different directions
+# 2) generate ideas independently (increase LLM temperature recommended)
+Mode 1 is choose by default;
+Set `ideas_coordinated_generation_disabled=True` to disable coordinated idea generated
+
+
+
 ## LLM API
 For generating a list of ideas, LLM should return a json array of ideas.
 Example format:
@@ -16,11 +26,12 @@ Example format:
 ]
 
 
+
 ## Notes
 Online scholarly search engines (e.g., Google Scholar, Semantic Scholar, OpenAlex) are not utilized in the current version of idea agent. 
 Future work could enhance the idea generation process by incorporating a survey agent equipped with these scholarly search engines, 
 enabling iterative refinement and improvement of generated ideas through real-time literature retrieval.
-TODO: "survey studies during ideation" - we leave it for the user to decide and mark with a TODO flag
+TODO: "survey studies during ideation" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
 """
 import sys
 import os
@@ -82,6 +93,8 @@ class IdeaAgent:
         # =====IdeaAgent settings=====
         self.num_children = self.config['num_children']  # number of children to generate for each parent node in the tree
         self.reflection_disabled_for_crossover = self.config['reflection_disabled_for_crossover']  # whether long-term reflection is disabled  when doing crossover
+        self.idea_agent_temperature = self.config['model']['idea_agent_temperature']
+        self.ideas_coordinated_generation_disabled = self.config['ideas_coordinated_generation_disabled']
         self.verbose = self.config['verbose']
         
         # =====Load problem data and prompts=====
@@ -92,9 +105,12 @@ class IdeaAgent:
         os.makedirs(self.output_dir, exist_ok=True)
         os.makedirs(f"{self.output_dir}/details", exist_ok=True)  # folder to store details
         # Load common prompts
-        self.system_idea_generation_prompt = utils.file_to_string(f'{self.prompt_dir}/system_idea_generation_oragent.txt')  # system role prompt for idea generation
-        self.user_idea_generation_crossover_prompt = utils.file_to_string(f'{self.prompt_dir}/user_idea_generation_crossover_oragent.txt')  # user role prompt for idea generation (crossover case)
-        self.user_idea_generation_elitist_mutation_prompt = utils.file_to_string(f'{self.prompt_dir}/user_idea_generation_elitist_mutation_oragent.txt')  # user role prompt for idea generation (elitist mutation case)
+        self.system_idea_coordinated_generation_prompt = utils.file_to_string(f'{self.prompt_dir}/system_idea_coordinated_generation_oragent.txt')  # system role prompt for idea generation
+        self.system_idea_independent_generation_prompt = utils.file_to_string(f'{self.prompt_dir}/system_idea_independent_generation_oragent.txt')  # system role prompt for idea generation
+        self.user_idea_coordinated_generation_crossover_prompt = utils.file_to_string(f'{self.prompt_dir}/user_idea_coordinated_generation_crossover_oragent.txt')  # user role prompt for idea generation (crossover case)
+        self.user_idea_independent_generation_crossover_prompt = utils.file_to_string(f'{self.prompt_dir}/user_idea_independent_generation_crossover_oragent.txt')  # user role prompt for idea generation (crossover case)
+        self.user_idea_coordinated_generation_elitist_mutation_prompt = utils.file_to_string(f'{self.prompt_dir}/user_idea_coordinated_generation_elitist_mutation_oragent.txt')  # user role prompt for idea generation (elitist mutation case)
+        self.user_idea_independent_generation_elitist_mutation_prompt = utils.file_to_string(f'{self.prompt_dir}/user_idea_independent_generation_elitist_mutation_oragent.txt')  # user role prompt for idea generation (elitist mutation case)
         # Load problem-specific prompts
         self.problem_description = utils.file_to_string(f'{self.problem_dir}/problem_description.txt')
         self.function_description = utils.file_to_string(f'{self.problem_dir}/function_description.txt')
@@ -106,7 +122,7 @@ class IdeaAgent:
         self.total_responses = 0  # Number of total responses; this can be used to track the number of LLM calls
         self.function_evals = 0  # Number of function evaluations; this is also an important metric for complexity, especially for the case when evaluation is the bottleneck
         self.valid_responses = 0 # Number of valid responses, namely responses that were successfully executed
-        print(f"\n>>>[IdeaAgent] Idea Agent reset finished.")
+        print(f"\n>>>[IdeaAgent] Idea Agent reset.")
     
     
     def save(self, checkpoint: str):
@@ -165,7 +181,8 @@ class IdeaAgent:
             parent_solutions: Union[Solution, List[Solution], None]=None, 
             long_term_reflection: str="", 
             num_ideas: Union[int, None]=None,
-            elitist_as_root: bool=False,
+            elitist_parent: bool=False,
+            current_research_flow_graph: str="",
             ):
         """
         Generate ideas for improving ideas.
@@ -174,7 +191,7 @@ class IdeaAgent:
             parent_solutions (Union[Dict, List[Dict]): parent solution(s).
             long_term_reflection (Str): long term reflection of the lead agent.
             num_ideas (int): number of ideas to generate; default None, meaning using self.num_children.
-            elitist_as_root (bool): whether elitist is used as root solution; default False.
+            elitist_parent (bool): whether parent is elitist; default False.
             
         Returns:
             ideas (list[str]): list of ideas.
@@ -186,25 +203,27 @@ class IdeaAgent:
         
         ideas = []  # ideas to generate
         
-        # Parent solutions to string
-        if elitist_as_root:
-            if isinstance(parent_solutions, list):
-                parent_solutions_str = str(parent_solutions[0])
-            else:
-                parent_solutions_str = str(parent_solutions)
+        # -----Prepare Parent solutions string-----
+        if elitist_parent:
+            # if elitist is parent, there is just one solution; just convert it to string
+            parent_solutions_str = str(parent_solutions[0])
+            # else, we will add numbering to solution strings
         else:
             parent_solutions_str = utils.parents_to_str(parent_solutions)
         
-        # Handle long-term reflection for crossover
+        # -----Handle long-term reflection-----
         # for mutation on elitist, we always use long-term reflection
         # for crossover, we may not want to provide long-term reflection
-        if not elitist_as_root and self.reflection_disabled_for_crossover:
+        # this is ReEvo style reflection - no use long-term reflection when doing short-term reflection on random sampled parents
+        # long-term reflection is only used for extending elitist
+        # TODO: "should we use long-term reflection when doing crossovering" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
+        if not elitist_parent and self.reflection_disabled_for_crossover:
             long_term_reflection = "None"
-            print("\n>>>[IdeaAgent] long-term reflection is not used.")
+            print("\n>>>[IdeaAgent] Long-term reflection is not used for this generation.")
         else:
-            print("\n>>>[IdeaAgent] long-term reflection is used.")
+            print("\n>>>[IdeaAgent] Long-term reflection is used for this generation.")
         
-        # Construct prompt
+        '''deprecated
         user = self.user_idea_generation_crossover_prompt.format(
                 problem_description = self.problem_description,  # common
                 function_to_evolve = self.function_to_evolve,  # common
@@ -214,50 +233,111 @@ class IdeaAgent:
                 long_term_reflection = long_term_reflection if long_term_reflection else "(empty)",  # common
                 num_ideas = num_ideas,  # number of ideas to generate; ideas combined can form a comprehensive research plan
             )
-        '''deprecated
-        if elitist_as_root:
-            user = self.user_idea_generation_elitist_mutation_prompt.format(
-                problem_description = self.problem_description,  # common
-                function_to_evolve = self.function_to_evolve,  # common
-                obj_type = self.obj_type,  # common
-                function_description = self.function_description,  # common
-                parent_solutions = parent_solutions_str if parent_solutions_str else "(empty)",  # parent solutions are provided to help idea agent to produce crossover and mutated research ideas
-                long_term_reflection = long_term_reflection if long_term_reflection else "(empty)",  # common
-                num_ideas = num_ideas,  # number of ideas to generate; ideas combined can form a comprehensive research plan
-            )
-        else:
-            user = self.user_idea_generation_crossover_prompt.format(
-                problem_description = self.problem_description,  # common
-                function_to_evolve = self.function_to_evolve,  # common
-                obj_type = self.obj_type,  # common
-                function_description = self.function_description,  # common
-                parent_solutions = parent_solutions_str if parent_solutions_str else "(empty)",  # parent solutions are provided to help idea agent to produce crossover and mutated research ideas
-                long_term_reflection = long_term_reflection if long_term_reflection else "(empty)",  # common
-                num_ideas = num_ideas,  # number of ideas to generate; ideas combined can form a comprehensive research plan
-            )
         '''
-        messages = [{"role": "system", "content": self.system_idea_generation_prompt}, {"role": "user", "content": user}]
-        
-        attempt = 0
-        while True:
-            attempt += 1
-            # Invoke LLM to generate ideas
-            response = self.llm_client.chat(messages)
-            self.total_responses += 1
-            
-            # Parse response into ideas
-            ideas = utils.extract_json(response)
-            
-            if not ideas:
-                # if cannot parse ideas
-                print(f"\n>>>[IdeaAgent] Warning: LLM response could not be parsed as JSON (attempt {attempt}):\n{response}.")
-                if attempt >= 5:
-                    raise RuntimeError("\n>>>[IdeaAgent] Max attempts reached for generating ideas")
+        if not self.ideas_coordinated_generation_disabled:
+            # -----Coordinated generation-----
+            print(f"\n>>>[IdeaAgent] Idea generations are coordinated.")
+            if elitist_parent:
+                # elitist mutation
+                user = self.user_idea_coordinated_generation_elitist_mutation_prompt.format(
+                    problem_description = self.problem_description,  # common
+                    function_to_evolve = self.function_to_evolve,  # common
+                    obj_type = self.obj_type,  # common
+                    function_description = self.function_description,  # common
+                    parent_solutions = parent_solutions_str if parent_solutions_str else "(empty)",  # parent solutions are provided to help idea agent to produce crossover and mutated research ideas
+                    long_term_reflection = long_term_reflection if long_term_reflection else "(empty)",  # common
+                    num_ideas = num_ideas,  # number of ideas to generate; ideas combined can form a comprehensive research plan
+                )
             else:
-                self.valid_responses += 1
-                break
+                # crossover
+                print("\n>>>[IdeaAgent] For coordinated crossover, flow graph is provided")
+                user = self.user_idea_coordinated_generation_crossover_prompt.format(
+                    problem_description = self.problem_description,  # common
+                    function_to_evolve = self.function_to_evolve,  # common
+                    obj_type = self.obj_type,  # common
+                    function_description = self.function_description,  # common
+                    current_research_flow_graph = current_research_flow_graph if current_research_flow_graph else "(empty)",
+                    parent_solutions = parent_solutions_str if parent_solutions_str else "(empty)",  # parent solutions are provided to help idea agent to produce crossover and mutated research ideas
+                    long_term_reflection = long_term_reflection if long_term_reflection else "(empty)",  # common
+                    num_ideas = num_ideas,  # number of ideas to generate; ideas combined can form a comprehensive research plan
+                )
+                
+            messages = [{"role": "system", "content": self.system_idea_coordinated_generation_prompt}, {"role": "user", "content": user}]
+            
+            attempt = 0
+            while True:
+                attempt += 1
+                # Invoke LLM to generate ideas
+                response = self.llm_client.chat(messages, temperature=self.idea_agent_temperature)
+                self.total_responses += 1
+                
+                # Parse response into ideas
+                ideas = utils.extract_json(response)
+                
+                if not ideas:
+                    # if cannot parse ideas
+                    print(f"\n>>>[IdeaAgent] Warning: LLM response could not be parsed as JSON (attempt {attempt}):\n{response}.")
+                    if attempt >= 5:
+                        raise RuntimeError("\n>>>[IdeaAgent] Max attempts reached for generating ideas")
+                else:
+                    self.valid_responses += 1
+                    break
         
-        # If verbose, print ideas
+        else:
+            # -----Independent generation-----
+            print(f"\n>>>[IdeaAgent] Idea generations are independent.")
+            if elitist_parent:
+                # elitist mutation
+                user = self.user_idea_independent_generation_elitist_mutation_prompt.format(
+                    problem_description = self.problem_description,  # common
+                    function_to_evolve = self.function_to_evolve,  # common
+                    obj_type = self.obj_type,  # common
+                    function_description = self.function_description,  # common
+                    parent_solutions = parent_solutions_str if parent_solutions_str else "(empty)",  # parent solutions are provided to help idea agent to produce crossover and mutated research ideas
+                    long_term_reflection = long_term_reflection if long_term_reflection else "(empty)",  # common
+                    num_ideas = 1,  # number of ideas to generate; ideas combined can form a comprehensive research plan
+                )
+            else:
+                # crossover
+                user = self.user_idea_independent_generation_crossover_prompt.format(
+                    problem_description = self.problem_description,  # common
+                    function_to_evolve = self.function_to_evolve,  # common
+                    obj_type = self.obj_type,  # common
+                    function_description = self.function_description,  # common
+                    parent_solutions = parent_solutions_str if parent_solutions_str else "(empty)",  # parent solutions are provided to help idea agent to produce crossover and mutated research ideas
+                    long_term_reflection = long_term_reflection if long_term_reflection else "(empty)",  # common
+                    num_ideas = 1,  # number of ideas to generate; ideas combined can form a comprehensive research plan
+            )
+            messages = [{"role": "system", "content": self.system_idea_independent_generation_prompt}, {"role": "user", "content": user}]
+            
+            attempt = 0
+            while True:
+                attempt += 1
+                # Invoke LLM to generate idea
+                response = self.llm_client.chat(messages, temperature=self.idea_agent_temperature)
+                self.total_responses += 1
+                
+                # Parse response into ideas
+                idea = utils.extract_json(response)
+                
+                if not idea:
+                    # if cannot parse ideas
+                    print(f"\n>>>[IdeaAgent] Warning: LLM response could not be parsed as JSON (attempt {attempt}):\n{response}.")
+                    if attempt >= 100:
+                        raise RuntimeError("\n>>>[IdeaAgent] Max attempts reached for generating ideas")
+                    continue
+                    
+                ideas.append(idea['idea'])
+                self.valid_responses += 1
+                
+                # if enough ideas generated
+                if len(ideas) == num_ideas:
+                    break
+        
+        if len(ideas) != num_ideas:
+            print(f"\n>>>[IdeaAgent] Warn: len(ideas) = {len(ideas)}, but {num_ideas} required")
+            
+        # If verbose, print ideas before return
         if self.verbose:
             print(f"\n>>>[IdeaAgent] {len(ideas)} ideas generated:")
             for i, idea in enumerate(ideas):

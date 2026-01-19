@@ -1433,7 +1433,7 @@ if __name__ == '__main__':
                 os.chdir(basepath)
                 avg_obj = eval_heuristic()
                 print(f"[*] Average for {problem_size}: {avg_obj}")
-                metrics[problem_size] = np.mean(avg_obj)
+                metrics[problem_size] = float(np.mean(avg_obj))
                 
         if metrics:
             features = get_feature(metrics)

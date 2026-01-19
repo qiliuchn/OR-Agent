@@ -203,12 +203,13 @@ class ORAgent:
         self.solution_database.add(init_pop)
         
         # Visualize database
+        print(f"\n>>>[ORAgent] Database initialized:")
         self.solution_database.visualize()
         # Log database
         file_name = f"{self.output_dir}/database_init.txt"
         with open(file_name, 'w') as file:
             self.solution_database.visualize(file=file)
-        # Save database for webui visualization
+        # Save database for webui real-time visualization
         with open(f"{self.output_dir}/database.txt", 'w') as file:
             self.solution_database.visualize(file=file)
     
@@ -283,29 +284,33 @@ class ORAgent:
               
         # Run research rounds
         while self.lead_agent.get_total_responses() <= self.max_evolutions or self.lead_agent.get_function_evals() <= self.max_evolutions:
-            print(f"\n>>>[ORAgent] Researcher {self.lead_agent.id} run round {self.lead_agent.research_round}...")
+            print(f"\n>>>[ORAgent] **Researcher {self.lead_agent.id} round {self.lead_agent.research_round} starts**")
             
             # =====Lead agent conduct one round of research=====
             # Previous, we let ORAgent to sample from solution database and pass parent solutions (`Union(List[Solution])`) to LeadAgent.run().
-            # Since ORAgent.run() is a single-threaded, we changed to pass program database (`SolutionDatabase`) to LeadAgent.run() instead to better track the performance vs computation cost relationship.
+            # vs here we pass database directly; previous practice support multi-processing
+            # but since ORAgent.run() is a single-threaded, it does matters much;
+            # current practice gives lead agent more freedom to decide on itself how to sample from the database
             child_solutions = self.lead_agent.run(self.solution_database)
-                        
+            
             # =====Add newly generated solutions to the database=====
             self.solution_database.add(child_solutions)
             
             # =====Log and visualize database=====
+            print(f"\n>>>[ORAgent] Database updated:")
             # Visualize database
             self.solution_database.visualize()
             # Log database
             file_name = f"{self.output_dir}/details/database_lead{self.lead_agent.id}_round{self.lead_agent.research_round}.txt"
             with open(file_name, 'w') as file:
                 self.solution_database.visualize(file=file)
-            # Save database for webui visualization
+                
+            # Save database for webui real-time visualization
             with open(f"{self.output_dir}/database.txt", 'w') as file:
                 self.solution_database.visualize(file=file)
             
             # =====Lead agent update iter=====
-            print(f"\n>>>[ORAgent] Researcher {self.lead_agent.id} round {self.lead_agent.research_round} completed.")
+            print(f"\n>>> [ORAgent] **Researcher {self.lead_agent.id} round {self.lead_agent.research_round} completed**")
             self.lead_agent.update_iter()  # lead agent number of research rounds is tracked internally; will increment automatically
             
             # =====Autosaving=====

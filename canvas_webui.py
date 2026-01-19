@@ -910,7 +910,7 @@ if st.button("Submit Feedback"):
 
 # TODO: we intended to let user to able to interact with OR-Agent in real-time
 # we leave this for future updates
-# "real-time user feedback" - we leave it for the user to decide and mark with a TODO flag
+# "real-time user feedback" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
 
 st.markdown("---")
 

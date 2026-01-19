@@ -34,7 +34,7 @@ If modifications are needed, provide a fenced diff block using conflict marker s
 ```
 
 3. Callback Updates (Optional)
-If callback modifications are needed, provide a fenced Python block:
+If callback is supported and callback modifications are needed, provide a fenced Python block:
 ```python
 class Callbacks:
     def on_step_end(self, step, metrics):
@@ -57,7 +57,6 @@ Note: The termination field must be either "yes" or "no".
 - No further performance improvements can be achieved through parameter tuning or code minor updates
 - Issues have been identified through callback exploration but require fundamental algorithmic changes
 - The solution has reached a local optimum where small adjustments no longer yield improvements
-- You may want to use diff block to revert back to previous working versions or parameter configurations
 
 2. **Set termination to "no" and include a diff block** when:
 - Further improvements are possible
@@ -75,6 +74,7 @@ Note: The termination field must be either "yes" or "no".
 ## Analysis Guidelines
 - Identify patterns across multiple experiments
 - Base decisions on empirical evidence from experiment results
+- When parent solutions are provided, analyze how the current solution compares to them and identify what can be learned from higher-performing parent solutions
 - When designing callbacks, keep output concise and focused to prevent context window overflow. If output becomes too verbose, reduce it in subsequent iterations.
 - For minor changes, include diff blocks; for major algorithm logic modifications that involve function complete reconstruction, document the issues in your reflection and set termination to "yes" - these will generate ideas for future research directions.
-- Try your best to identify the problem and improve the solution performance; don't termination too early! If you indeed find the current idea not promising and intend to terminate, you should specify the reason clearly in the `reflection` field of JSON block.
+- Try your best to identify the problem and improve the solution performance; don't termination too early! If you indeed find the current idea not promising and intend to terminate, you should specify the reason clearly in your analysis.

@@ -103,10 +103,9 @@ class CodeAgent:
 
         # =====Vars updated during agent running=====
         if not checkpoint:
-            #self.iteration = 0  # number of evolution rounds
             self.total_responses = 0  # Number of total responses; this can be used to track the number of LLM calls
             self.function_evals = 0  # Number of function evaluations; this is also an important metric for complexity, especially for the case when evaluation is the bottleneck
-            self.valid_responses = 0 # Number of valid responses, namely responses that were successfully executed
+            self.valid_responses = 0  # Number of valid responses, namely responses that were successfully executed
         
         # =====Create evaluator=====
         self.evaluator = Evaluator(config=self.config)
@@ -114,6 +113,7 @@ class CodeAgent:
         # =====CodeAgent settings=====
         self.max_debug_rounds = self.config['max_debug_rounds']
         self.reflection_disabled_for_crossover = self.config['reflection_disabled_for_crossover']  # whether long-term reflection is disabled  when doing crossover
+        self.evaluation_description_disabled = self.config['evaluation_description_disabled']
         self.verbose = self.config['verbose']
         
         # =====Load problem data and prompts=====
@@ -130,7 +130,8 @@ class CodeAgent:
         self.user_code_debugging_prompt = utils.file_to_string(f'{self.prompt_dir}/user_code_debugging_oragent.txt')  # user role prompt for code debugging
         # Load problem-specific prompts
         self.problem_description = utils.file_to_string(f'{self.problem_dir}/problem_description.txt')
-        if os.path.exists(f'{self.problem_dir}/evaluation_description.txt'):
+        # `self.evaluation_description_disabled` decides whether eval description is used as context
+        if os.path.exists(f'{self.problem_dir}/evaluation_description.txt') and not self.evaluation_description_disabled:
             self.evaluation_description = utils.file_to_string(f'{self.problem_dir}/evaluation_description.txt')
         else:
             self.evaluation_description = None
@@ -142,7 +143,7 @@ class CodeAgent:
         self.total_responses = 0  # Number of total responses; this can be used to track the number of LLM calls
         self.function_evals = 0  # Number of function evaluations; this is also an important metric for complexity, especially for the case when evaluation is the bottleneck
         self.valid_responses = 0 # Number of valid responses, namely responses that were successfully executed
-        print(f"\n>>>[CodeAgent] Code Agent reset finished.")
+        print(f"\n>>>[CodeAgent] Code Agent reset.")
     
     def save(self, checkpoint: str):
         """
@@ -200,7 +201,7 @@ class CodeAgent:
             parent_solutions: Union[Solution, List[Solution]], 
             long_term_reflection: str, 
             solution: Solution,
-            elitist_as_root: bool=False,
+            elitist_parent: bool=False,
             ):
         """
         Generate ideas for improving ideas.
@@ -209,11 +210,13 @@ class CodeAgent:
             parent_solutions (Union[Solution, List[Solution]): parent solution(s).
             long_term_reflection (Str): long term reflection of the lead agent.
             solution (Solution): currently solution that only contains the idea.
-            elitist_as_root (bool): whether elitist is used as root solution; default False.
+            elitist_parent (bool): whether elitist is used as root solution; default False.
             
         Returns:
             solution (Solution): solution with code, metrics, features, score updated
         """
+        print(f"\n>>>[CodeAgent] Starts to work on solution {solution.id_str(algorithm=self.algorithm)}...")
+        
         if not isinstance(parent_solutions, List):
             parent_solutions = [parent_solutions]
         
@@ -224,11 +227,11 @@ class CodeAgent:
         # Handle long-term reflection for crossover
         # for mutation on elitist, we always use long-term reflection
         # for crossover, we may not want to provide long-term reflection
-        if not elitist_as_root and self.reflection_disabled_for_crossover:
+        if not elitist_parent and self.reflection_disabled_for_crossover:
             long_term_reflection = "None"
-            print("\n>>>[CodeAgent] long-term reflection is not used.")
+            print("\n>>>[CodeAgent] Long-term reflection is not used for this generation.")
         else:
-            print("\n>>>[CodeAgent] long-term reflection is used.")
+            print("\n>>>[CodeAgent] Long-term reflection is used for this generation.")
         
         # Construct prompt
         user = self.user_code_generation_prompt.format(

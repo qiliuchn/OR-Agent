@@ -90,7 +90,7 @@ class FlowGraph:
                 
         # =====Vars updated during agent running=====
         if not checkpoint:
-            self._root = Node(solution=root_solution, is_done=True)  # root node of the tree; Note: root node is_done is true
+            self._root = Node(solution=root_solution)  # root node of the tree
             self._nodes = [self._root]  # a list of all nodes in the tree
         
         
@@ -315,20 +315,47 @@ class FlowGraph:
         return all([node.is_done for node in self.get_leaves()])
     
     
-    def visualize(self, file=sys.stdout):
+    def visualize(self, show_details=False, file=sys.stdout):
         """Visualize the tree structure to stdout.
-        
+
+        Args:
+            show_details (bool): whether to show details like idea
+            file: the file to redirect stdout
+
+        Returns:
+            None
+
         Example:
+Format: Node <ID> (<score>): '<idea>'
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
 ========================================
-✓ Node 0 (0.80)
-    ├──   Node 1 (0.90)
-    │       └──   Node 3 (0.85)
-    └──   Node 2 (0.70)
-            └──   Node 4 (0.75)
+⊕ Node 0 (0.80): First solution idea
+    ├── ⊕ Node 1 (0.90): Second solution idea
+    │       └── ✓ Node 3 (0.85): Fourth solution idea
+    └── ⊕ Node 2 (0.70): Third solution idea
+            └── ✓ Node 4 (0.75): Fifth solution idea
 ========================================
-✓ = done, empty = not done
+
+Total nodes: 5 | Total expanded solutions: 3 | Total pending leaves: 0 | Total terminal leaves: 2
+
+PS: ideas will not show unless `show_details=True`
         """
-        def _visualize_node(node, prefix="", is_last=True, file=sys.stdout):
+        output = self.visualize_str(show_details)
+        print(output, file=file)
+
+    def visualize_str(self, show_details=False):
+        """Return the tree visualization as a string.
+
+        Args:
+            show_details (bool): whether to show details like idea
+
+        Returns:
+            str: The visualization string
+        """
+        def _visualize_node(node, prefix="", is_last=True):
             """Recursive helper function to visualize a node and its children."""
             is_root = True if node.parent is None else False
             # Determine the connector symbol
@@ -343,15 +370,30 @@ class FlowGraph:
                 # For root node with multiple solutions
                 tmp = ', '.join(f"{str(s.id)} ({s.score:.2f})" for s in node.solution)
                 node_id = f"[{tmp}]"
+                
+                # appended idea if show_details is true
+                if show_details:
+                    tmp = ', '.join(f"\"{s.idea}\"" for s in node.solution)
+                    node_id += f": [{tmp}]"
+                    
             else:
                 # Single solution
                 node_id = f"{str(node.solution.id)} ({node.solution.score:.2f})"
 
-            # Add done status indicator
-            status = "✓" if node.is_done else " "
+                # appended idea if show_details is true
+                if show_details:
+                    node_id += f": \"{node.solution.idea}\""
 
-            # Print current node
-            print(f"{prefix}{connector}{status} Node {node_id}", file=file)
+            # Add done status indicator
+            if node.is_done:
+                status = "✓"  # done leaf
+            elif len(node.children) == 0:
+                status = "○"  # undone leaf
+            else:
+                status = "⊕"  # internal node
+
+            # Build current node line
+            lines = [f"{prefix}{connector}{status} Node {node_id}"]
 
             # Update prefix for children
             prefix_update = "        " if is_last else "    │   "
@@ -362,13 +404,25 @@ class FlowGraph:
             # Recursively visualize children
             for i, child in enumerate(node.children):
                 is_last_child = (i == len(node.children) - 1)
-                _visualize_node(child, child_prefix, is_last_child, file=file)
+                lines.extend(_visualize_node(child, child_prefix, is_last_child))
 
-        print("=" * 40, file=file)
-        _visualize_node(self._root, file=file)
-        print("=" * 40, file=file)
-        print(f"✓ = done, empty = not done; (score)", file=file)
-        print(f"Total nodes: {len(self._nodes)}  Total done leaves: {len(self.get_done_leaves())}", file=file)
+            return lines
+
+        lines = []
+        legend = """Format: Node <ID> (<score>): \"<idea>\"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions."""
+        lines.append(legend)
+        lines.append("=" * 40)
+        lines.extend(_visualize_node(self._root))
+        lines.append("=" * 40)
+
+        lines.append(f"Total nodes: {len(self._nodes)} | Total expanded solutions: {len(self._nodes) - len(self.get_leaves())} | Total pending leaves: {len(self.get_leaves()) - len(self.get_done_leaves())} | Total terminal leaves: {len(self.get_done_leaves())}")
+
+        return "\n".join(lines)
     
     
     
@@ -503,7 +557,7 @@ if __name__ == '__main__':
 
     # Visualize loaded tree
     print(f"\n=== Loaded Tree ===")
-    loaded_flow_graph.visualize()
+    loaded_flow_graph.visualize(show_details=True)
 
     # Verify tree structure matches original
     print(f"\n=== Verification ===")

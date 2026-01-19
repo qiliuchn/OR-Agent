@@ -623,7 +623,7 @@ class Island:
         # as study goes on, the differences between good solutions get smaller and smaller
         # TODO: you may want to use strategies to sample good solution more as study goes on?
         # although island reset may alleviate this
-        # "elitist are sampled less and how to do?" - we leave it for the user to decide and mark with a TODO flag
+        # "elitist are sampled less and how to do?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         
         if len(features_list) == 0:
             raise ValueError('No clusters found.')
@@ -634,7 +634,7 @@ class Island:
         # When sampling a cluster, we favour those with better score values.
         # Note: temperature cool down linearly from init to 0 over the specified period.
         # TODO: there are many alternatives
-        # "about temperature setting, first exploit or first explore? what's the pattern?" - we leave it for the user to decide and mark with a TODO flag
+        # "about temperature setting, first exploit or first explore? what's the pattern?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         period = self.cluster_sampling_temperature_period
         # temperature: decrease from 1 to 0, then set to 1, so on so forth
         temperature = self.cluster_sampling_temperature_init * (1 - (self._num_programs % period) / period)
@@ -665,7 +665,7 @@ class Island:
         # Handle the edge case: there are not enough clusters hence not enough parents; we sample with replacement
         # TODO: there could be a better way to handle this edge case; say manually adjust the features generation method in `eval.py`.
         # Here we implement a simpler solution
-        # "when not enough clusters in an island, how to sample?" - we leave it for the user to decide and mark with a TODO flag
+        # "when not enough clusters in an island, how to sample?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         count = 0
         while len(parents) < num_parents:
             count += 1
@@ -715,7 +715,7 @@ class Cluster:
         # Update score
         # Here we changed the score to be the average score
         # TODO: there are alternative ways to define cluster score
-        # "how to define score of cluster?" - we leave it for the user to decide and mark with a TODO flag
+        # "how to define score of cluster?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         self._score = (self._score * (len(self._solutions) - 1) + solution.score) / len(self._solutions)
         
     def sample(self) -> Solution:

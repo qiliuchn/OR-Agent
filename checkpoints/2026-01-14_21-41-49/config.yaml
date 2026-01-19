@@ -1,0 +1,66 @@
+algorithm: oragent
+autosave_interval_minutes: 100
+database:
+  cluster_sampling_temperature_init: 1.0
+  cluster_sampling_temperature_period: 10
+  num_islands: 2
+  reset_period_minutes: 240
+elitist_as_root_period: 5
+elitist_enlargement_factor: 2.0
+evaluation:
+  eval_env_vars: null
+  python_path:
+    liuqi: /opt/anaconda3/envs/sumo/bin/python
+    u23310103: /share/home/u23310103/.conda/envs/sumo/bin/python
+  timeout_seconds: 300
+evaluation_description_disabled: true
+experiment:
+  function_to_evolve: select_next_node
+  obj_type: min
+ideas_coordinated_generation_disabled: true
+init_pop_size: 4
+max_debug_rounds: 0
+max_evolutions: 300
+max_experiment_repeats: 0
+max_research_rounds: 10000
+max_tree_depth: 1
+model:
+  code_agent_llm_provider: qwen
+  code_agent_model_name: qwen3-coder-plus
+  experiment_agent_reflect_llm_provider: qwen
+  experiment_agent_reflect_model_name: qwen3-coder-plus
+  experiment_agent_summarize_llm_provider: qwen
+  experiment_agent_summarize_model_name: qwen3-max
+  idea_agent_llm_provider: qwen
+  idea_agent_model_name: qwen3-max
+  idea_agent_temperature: 1.3
+  lead_agent_llm_provider: qwen
+  lead_agent_model_name: qwen3-max
+  llm_provider: qwen
+  max_retries: 5
+  model_name: qwen3-coder-plus
+  reevo_crossover_llm_provider: qwen
+  reevo_crossover_model_name: qwen3-coder-plus
+  reevo_generator_llm_provider: qwen
+  reevo_generator_model_name: qwen3-coder-plus
+  reevo_generator_temperature: 1.0
+  reevo_long_reflector_llm_provider: qwen
+  reevo_long_reflector_model_name: qwen3-max
+  reevo_mutation_llm_provider: qwen
+  reevo_mutation_model_name: qwen3-coder-plus
+  reevo_short_reflector_llm_provider: qwen
+  reevo_short_reflector_model_name: qwen3-max
+  temperature: 1.0
+mutation_rate: 0.5
+num_children: 1
+num_lead_agents: 1
+num_parents: 2
+output_dir: null
+pop_size: 4
+problem: tsp_constructive
+reflection_clearance_period: null
+reflection_compression: 50
+reflection_disabled_for_crossover: true
+reflection_elitist_synchro: true
+reflection_period: 1000
+verbose: true

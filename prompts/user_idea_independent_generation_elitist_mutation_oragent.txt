@@ -1,0 +1,31 @@
+## Problem Context
+{problem_description}
+
+
+## Function to Evolve
+Name of the function to optimize: `{function_to_evolve}`.
+The goal is to {obj_type} the `score` of `{function_to_evolve}` evaluation result.
+
+
+## Function Requirements
+{function_description}
+
+
+## Previous Elite Solution
+Previous elite solution is provided below:
+{parent_solutions}
+
+
+## Long-term Research Reflection
+{long_term_reflection}
+
+
+## Task
+Based on the analysis of the elitist solution and the long-term research reflection (if available), generate one innovative and actionable idea for improving the `{function_to_evolve}` function. Each idea should be self-contained enough for separate development and evaluation.
+Output json fenced block like this:
+```json
+{{
+  "idea": "your idea here"
+}}
+```
+Now generate your response:

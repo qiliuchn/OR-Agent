@@ -138,6 +138,9 @@ Score: 0.85
 Summary: Good solution with high accuracy...
 """
         solution_str = f"""
+**ID**
+{self.id}
+
 **Idea**: 
 {self.idea}
 
@@ -165,7 +168,7 @@ Summary: Good solution with high accuracy...
         """Get a string for the solution identity.
         PS: fields like iteration, response_id are added for better inspection.
         TODO: Revise it to display only `id` if you prefer more concise naming.
-        # "customize visualization techniques" - we leave it for the user to decide and mark with a TODO flag
+        # "customize visualization techniques" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         """
         if algorithm == "oragent":
             return f"lead{self.lead_agent_id}_round{self.research_round}_count{self.solution_count}_id{self.id}"
@@ -357,11 +360,12 @@ class LLMClient:
                     # otherwise, sometimes it returns None, and you will regard this as a successful generation
                     break
             except Exception as e:
-                print(f"\n>>>[LLMClient] Attempt {attempt + 1} failed with error: {e}")
-                time.sleep(random.randint(3, 60))  
+                sleep_time = random.randint(3, 60)
+                print(f"\n>>>[LLMClient] Attempt {attempt + 1} failed with error: {e}; sleep for {sleep_time} seconds")
+                time.sleep(sleep_time)
                 # Note: add random sleep time to avoid too frequent LLM call
                 # TODO: this is a simple trick; could be made better
-                # "devise technique to avoid LLM calls flooding" - we leave it for the user to decide and mark with a TODO flag
+                # "devise technique to avoid LLM calls flooding" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         
         if choices is None:
             print("\n>>>[LLMClient] All retry attempts failed!")
@@ -626,7 +630,7 @@ def extract_json(response: str) -> Union[List[Any], Dict[str, Any], None]:
         #
         # In this function, we only repair the first issue manually
         # TODO: there are other ways to handle those issues, like using LLM call for remedy
-        # "remedy LLM response format error" - we leave it for the user to decide and mark with a TODO flag
+        # "remedy LLM response format error" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         # 
         # Examples:
         # s = '{"hello": "world"}'        # VALID
@@ -794,7 +798,7 @@ def truncate(raw_output: str, max_lines=100) -> str:
     
     # TODO: this represents a simple logic to shorten verbose environment output
     # there are alternatives; like you can extract important info, invoke LLM to compress to provide a summary, etc.
-    # "how to manage and compress context?" - we leave it for the user to decide and mark with a TODO flag
+    # "how to manage and compress context?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
     return truncated
 
 

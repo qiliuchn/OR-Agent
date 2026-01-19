@@ -2,8 +2,8 @@
 #SBATCH --job-name=oragent_combinatorial_tasks_cvrp_pomo
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=16G
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
 #SBATCH --output=%x_%A_%a.out
 #SBATCH --error=%x_%A_%a.err
 #SBATCH --time=120:00:00
@@ -11,8 +11,8 @@
                                             # Current: 5 algorithms × 1 problem = 5 tasks (0-4)
 
 # Algorithms and problems for all combinations TODO: change
-ALGORITHMS=("oragent" "reevo" "eoh" "ael" "funsearch")
-PROBLEMS=("cvrp_pomo")
+ALGORITHMS=("reevo" "eoh" "ael" "funsearch")
+PROBLEMS=("bpp_offline_aco")
 
 # Calculate total tasks for array range
 NUM_ALGORITHMS=${#ALGORITHMS[@]}

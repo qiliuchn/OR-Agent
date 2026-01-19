@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=standard_mode1_4
+#SBATCH --job-name=standard_mode12
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
@@ -11,11 +11,15 @@
                                             # Current: 1 algorithms × 5 problem = 5 tasks (0-4)
 
 # =====================
-# standard_mode1_4
+# standard_mode12
 # =====================
-# deeper tree
-# less children
-# smaller elitist-enlargement-factor
+# inherited from standard_mode11
+# experiment prompt updated
+# fast exploration for crossover
+# 
+# no lt-reflection compression
+# use eval description
+# more experiment repeats
 
 # tradeoffs:
 # 1) thinking breadth vs depth
@@ -32,7 +36,7 @@
 
 # Algorithms and problems for all combinations TODO: change
 ALGORITHMS=("oragent")
-PROBLEMS=("tsp_constructive" "cvrp_pomo" "dpp_ga" "mkp_aco" "op_aco")
+PROBLEMS=("cvrp_pomo" "dpp_ga" "mkp_aco" "op_aco" "tsp_constructive")
 
 # Calculate total tasks for array range
 NUM_ALGORITHMS=${#ALGORITHMS[@]}
@@ -53,7 +57,7 @@ PROBLEM=${PROBLEMS[$PROB_INDEX]}
 
 # Output directory
 # TODO: carefully set output dir so that tasks don't overwrite each other!
-OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/standard_mode1_4"
+OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/standard_mode12"
 mkdir -p "$OUTPUT_DIR"
 
 # Print out info
@@ -76,14 +80,17 @@ python -u src/oragent/cli.py \
     --algorithm "$ALGORITHM" \
     --problem "$PROBLEM" \
     --max-evolutions 500 \
-    --num-children 2 \
-    --max-tree-depth 4 \
+    --init-pop-size 20 \
+    --num-children 1 \
+    --max-tree-depth 2 \
+    --fast-exploration-for-crossover \
     --max-debug-rounds 2 \
-    --max-experiment-repeats 3 \
-    --elitist-as-root-period 3 \
-    --elitist-enlargement-factor 2.0 \
-    --reflection-compression 100 \
-    --reflection-period 8 \
+    --max-experiment-repeats 4 \
+    --elitist-as-root-period 9 \
+    --elitist-enlargement-factor 3.0 \
+    --reflection-period 0 \
+    --reflection-disabled-for-crossover \
+    --reflection-elitist-synchro \
     --timeout-seconds 300 \
     --output-dir "$OUTPUT_DIR" \
     > "$OUTPUT_DIR/output.txt" 2>&1

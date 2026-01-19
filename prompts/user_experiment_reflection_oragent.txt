@@ -23,11 +23,16 @@ The goal is to {obj_type} the `score` of `{function_to_evolve}` evaluation resul
 {long_term_reflection}
 
 
-## Current Solution Idea
+## Parent Solution(s)
+Below are existing solutions that the current solution get inspirations from, ordered from lowest to highest performing:
+{parent_solutions}
+
+
+## Current Solution
+**Idea**
 {idea}
 
-
-## Current Solution Code
+**Current Solution Code**
 ```python
 {code}
 ```
@@ -42,21 +47,18 @@ Previous experiments, their reflections and actions are provided below. Current 
 {latest_experiment_result}
 
 
-## Other Context Information
-{other_context}
-
-
 ## Task
 Analyze the latest experiment result in the context of previous experiments and determine the next course of action.
 
 ### Analysis Requirements
 1. **Pattern Identification**: Look for recurring issues or trends across multiple experiments
-2. **Improvement Opportunities**: Identify specific areas where performance could be enhanced
-3. **Action Decision**: Determine whether to continue experimentation or terminate (if this is not the last attempt)
+2. **Parent Solution Analysis**: When parent solutions are provided, analyze how the current solution compares to them and identify what can be learned from higher-performing parent solutions
+3. **Improvement Opportunities**: Identify specific areas where performance could be enhanced
+4. **Action Decision**: Determine whether to continue experimentation or terminate (if this is not the last attempt)
 
 ### Action Options
-- **Set "termination" in a JSON block to "yes" and (optionally) include a diff block**: If the current idea has been sufficiently investigated and no further improvements can be made through parameter tuning or code updates; or you may want to use diff block to revert back to previous working versions or parameter configurations
-- **Set "termination" in a JSON block to "no" and include a diff block**: If further improvements are possible; code changes are needed to improve performance or fixing small issues (use conflict markers style); or if you want to revert back to previous versions
+- **Set "termination" in a JSON block to "yes" and (optionally) include a diff block**: If the current idea has been sufficiently investigated and no further improvements can be made through parameter tuning or code updates
+- **Set "termination" in a JSON block to "no" and include a diff block**: If further improvements are possible; code changes are needed to improve performance, update parameters or fixing small issues (use conflict markers style)
 - **Set "termination" in a JSON block to "no" and include a python block**: If better environment exploration is needed to understand problems
 
 ### Output Format
@@ -84,7 +86,7 @@ If modifications are needed, provide a fenced diff block using conflict marker s
 ```
 
 3. Callback Updates (Optional)
-If callback modifications are needed, provide a fenced Python block:
+If callback is supported and callback modifications are needed, provide a fenced Python block:
 ```python
 class Callbacks:
     def on_step_end(self, step, metrics):
@@ -92,7 +94,7 @@ class Callbacks:
 ```
 
 4. Experiment Termination Decision (Required)
-Finally, provide a JSON block with your termination decision:
+Finally, you must provide a JSON block with termination decision:
 ```json
 {{
     "termination": "yes" or "no"
@@ -101,5 +103,6 @@ Finally, provide a JSON block with your termination decision:
 Note: The termination field must be either "yes" or "no".
 
 Focus on empirical evidence and provide specific, actionable recommendations.
-Try your best to identify the problem and improve the solution performance; don't termination too early! If you indeed find the current idea not promising and intend to terminate, you should specify the reason clearly in the thinking part of the response.
+When parent solutions are available, analyze what makes higher-performing solutions successful and consider incorporating those insights.
+Try your best to identify the problem and improve the solution performance; don't terminate too early! If you indeed find the current idea not promising and intend to terminate, you should specify the reason clearly in the thinking part of your response.
 Now generate your response:

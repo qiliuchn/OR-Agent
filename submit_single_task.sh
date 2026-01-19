@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=oragent_single_task_tsp_constructive2
+#SBATCH --job-name=oragent_single_task_funsearch_cvrp_pomo
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
@@ -15,8 +15,8 @@
 # cvrp_aco, cvrp_pomo, cvrp_lehd, bpp_online, bpp_offline_aco
 # op_aco, mkp_aco, dpp_ga, driving
 # TODO: change algorithm and problem settings
-ALGORITHM="oragent"
-PROBLEM="tsp_constructive"
+ALGORITHM="funsearch"
+PROBLEM="cvrp_pomo"
 
 
 # =====Load env on Tongji HPC=====

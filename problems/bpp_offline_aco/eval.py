@@ -17,7 +17,7 @@ heuristics = getattr(solution_module, "heuristics")  # Get function to evolve
 
 # =====Configuration and Parameters=====
 IntArray = npt.NDArray[np.int_]
-FloatArray = npt.NDArray[np.float_]
+FloatArray = npt.NDArray[np.float64]
 
 class BPPInstance(NamedTuple):
     n: int
@@ -359,8 +359,8 @@ if __name__ == "__main__":
                     obj = evaluate_heuristic(instance, mode=method)
                     objs.append(obj)
                 
-                print(f"[*] Average for {problem_size}: {np.mean(objs)}")
-                metrics[problem_size] = np.mean(objs)
+                print(f"[*] Average for problem size {problem_size}: {np.mean(objs)}")
+                metrics[problem_size] = float(np.mean(objs))
                 
         if metrics:
             features = get_feature(metrics)

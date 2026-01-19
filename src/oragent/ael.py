@@ -547,7 +547,7 @@ class AEL:
             self.population_management()  # `self.population` size change: 5 * self.pop_size -> self.pop_size
             # Population size is controlled this way
             
-            # Log progress to progress.txt for webui
+            # Log progress to progress.txt for webui real-time visualization
             with open(f"{self.output_dir}/progress.txt", 'w') as file:
                 self.print_progress(file=file)
                 print(f"Just finished one round of evolution", file=file)

@@ -385,7 +385,7 @@ class FunSearch:
         # Note: if len(messages_lst) is too large, LLM api may support unless we handle it in multi_chat()
         responses_lst = self.client.multi_chat(messages_lst)  
         # TODO: here we only generate one child for a pair of parents; we could generate multiple children for a pair of parents
-        # "funsearch crossover generates multiple children" - we leave it for the user to decide and mark with a TODO flag
+        # "funsearch crossover generates multiple children" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         crossed_population = utils.responses_to_population(responses_lst, self.iteration, self.output_dir)
         self.total_responses += len(crossed_population)
 
@@ -427,7 +427,7 @@ class FunSearch:
                 self.database.add(population)
                 self.update_iter()
             
-            # Log progress to progress.txt for webui
+            # Log progress to progress.txt for webui real-time visualization
             with open(f"{self.output_dir}/progress.txt", 'w') as file:
                 self.print_progress(file=file)
                 print(f"Just finished one round of evolution", file=file)

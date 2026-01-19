@@ -372,7 +372,7 @@ def evaluate_heuristic(n_pop: int, n_iter: int, n_inst: int, elite_rate: float, 
         print(f"[Instance {j}] Best solution:", best_solution)
         print(f"[Instance {j}] Best reward:", best_reward)
         print(f"[Instance {j}] %s seconds" % (time.time() - start_time))
-        metrics[j] = best_reward
+        metrics[j] = float(best_reward)
         
     # result = plot_result.plot(raw_pdn, probe, guide_action, n, m, j)
     print("Average reward:", sum_reward / n_inst)

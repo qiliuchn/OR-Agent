@@ -355,7 +355,7 @@ agent.run()
 ### Discussions
 This project represents our initial attempt to build a research agent. Many questions remain open for exploration, including those related to agent workflows, solution database design, visualization techniques, and efficiency optimizations.
 
-To facilitate further development, we have added markers throughout the codebase to highlight key decision points. We have also included brief discussions at these locations. To identify all such locations, search for the text `we leave it for the user to decide and mark with a TODO flag` in your IDE:
+To facilitate further development, we have added markers throughout the codebase to highlight key decision points. We have also included brief discussions at these locations. To identify all such locations, search for the text `This requires further exploration, analysis, and validation, and is marked with a TODO flag` in your IDE (VSCode with the TODO highlight extension is recommended):
 
 - "manually revert code back at the end of experiment"
 - “additional debugging stage before experiment return”
@@ -370,6 +370,10 @@ To facilitate further development, we have added markers throughout the codebase
 - "what kind of child solutions are kept for later extension?"
 - "what kind of child solutions are 'good' enough to be added to database?"
 - "elitist are sampled less and how to do?"
+- "how to fast explore?"
+- "how many child ideas to generate at the start of research?"
+- "how to search tree?"
+- "how to control the size of the research tree?"
 - "add solution details for long-term reflection update?"
 - "about temperature setting, first exploit or first explore? what's the pattern?"
 - "when not enough clusters in an island, how to sample?" 

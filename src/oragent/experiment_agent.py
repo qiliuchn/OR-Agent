@@ -192,7 +192,7 @@ import yaml
 import json
 from datetime import datetime
 import dataclasses
-from typing import Union
+from typing import Union, List
 from oragent.evaluator import Evaluator
 import oragent.utils as utils
 from oragent.utils import Solution
@@ -252,6 +252,7 @@ class ExperimentAgent:
         # =====ExperimentAgent settings=====
         self.max_experiment_repeats = self.config['max_experiment_repeats']  # max number of times to repeat experiments for a solution
         self.reflection_disabled_for_crossover = self.config['reflection_disabled_for_crossover']  # whether long-term reflection is disabled  when doing crossover
+        self.evaluation_description_disabled = self.config['evaluation_description_disabled']
         self.verbose = self.config['verbose']
         
         # =====Load problem data and prompts=====
@@ -268,7 +269,8 @@ class ExperimentAgent:
         self.user_experiment_summary_prompt = utils.file_to_string(f'{self.prompt_dir}/user_experiment_summary_oragent.txt')  # user role prompt for experiment summary
         # Load problem-specific prompts
         self.problem_description = utils.file_to_string(f'{self.problem_dir}/problem_description.txt')
-        if os.path.exists(f'{self.problem_dir}/evaluation_description.txt'):
+        # `self.evaluation_description_disabled` decides whether eval description is used as context
+        if os.path.exists(f'{self.problem_dir}/evaluation_description.txt') and not self.evaluation_description_disabled:
             self.evaluation_description = utils.file_to_string(f'{self.problem_dir}/evaluation_description.txt')
         else:
             self.evaluation_description = None
@@ -285,7 +287,7 @@ class ExperimentAgent:
         self.total_responses = 0  # Number of total responses; this can be used to track the number of LLM calls
         self.function_evals = 0  # Number of function evaluations; this is also an important metric for complexity, especially for the case when evaluation is the bottleneck
         self.valid_responses = 0 # Number of valid responses, namely responses that were successfully executed
-        print(f"\n>>>[ExperimentAgent] ExperimentAgent reset finished.")
+        print(f"\n>>>[ExperimentAgent] ExperimentAgent reset.")
     
     
     def save(self, checkpoint: str):
@@ -341,9 +343,10 @@ class ExperimentAgent:
     
     
     def reflect(self, 
+                parent_solutions: Union[Solution, List[Solution]], 
                 solution: Solution, 
                 long_term_reflection,
-                other_context=None
+                #other_context=None,
                 ):
         """
         Reflect on the most recent experiment result and determine the next action.
@@ -351,6 +354,7 @@ class ExperimentAgent:
         Based on this analysis, determines whether to continue experimentation or terminate the optimization loop.
         
         Args:
+            parent_solutions (Union[Solution, List[Solution]): parent solution(s).
             solution (Solution): The solution object.
             other_context (str): other context to add; like this is the last experiment.
         
@@ -362,6 +366,9 @@ class ExperimentAgent:
                 - callbacks (str): Callback class definitions as a python code string.
                 - termination_dict (dict): Dictionary with 'termination' field indicating whether to terminate the experiment.
         """
+        # convert parent solutions to string
+        parent_solutions_str = utils.parents_to_str(parent_solutions)
+        
         # Generate experiment history string by concatenating intermediate experiment (excluding the latest experiment) results and reflections
         experiment_history = solution.experiment_history()
                     
@@ -374,11 +381,12 @@ class ExperimentAgent:
             function_description = self.function_description,  # common
             callbacks_description = self.callbacks_description if self.callbacks_description else "(callbacks NOT supported)",  # callbacks description for env exploration
             long_term_reflection = long_term_reflection,  # common
+            parent_solutions = parent_solutions_str if parent_solutions_str else "(empty)", 
             idea = solution.idea,  # current idea
             code = solution.code,  # current solution code
             experiment_history = experiment_history if experiment_history else "(empty)",  # experiment history
             latest_experiment_result = solution.output,  # latest experiment result (errors will be included; metrics, features, and score will also be included; truncated if too long)
-            other_context = other_context if other_context else "(empty)",  # other things you may want to remind agent of; like this is the last experiment
+            #other_context = other_context if other_context else "(empty)",  # other things you may want to remind agent of; like this is the last experiment
         ) # Note: current callbacks is included in the `experiment_history`
         messages = [{"role": "system", "content": self.system_experiment_reflection_prompt}, {"role": "user", "content": user}]
         
@@ -428,9 +436,10 @@ class ExperimentAgent:
             function_description = self.function_description,  # common
             long_term_reflection = long_term_reflection,  # common
             idea = solution.idea,  # current solution idea
-            original_code = solution.intermediate_codes[0],  # original code
-            experiment_history = experiment_history,  # all experiments
-            latest_experiment_result = solution.output,  # latest performance
+            original_code = solution.intermediate_codes[0] if self.max_experiment_repeats > 0 else solution.code,  # original code
+            experiment_history = experiment_history if self.max_experiment_repeats > 0 else 'None',  # all experiments
+            current_code = solution.code,  # current code
+            current_code_output = solution.output,  # current code output
         )
         messages = [{"role": "system", "content": self.system_experiment_summary_prompt}, {"role": "user", "content": user}]
         
@@ -455,10 +464,11 @@ class ExperimentAgent:
         return reflection
     
 
-    def run(self, 
+    def run(self,
+            parent_solutions: Union[Solution, List[Solution]], 
             solution: Solution, 
             long_term_reflection: Union[str, None]=None,
-            elitist_as_root: bool=False,
+            elitist_parent: bool=False,
             ):
         """
         Conducts experiments on candidate solutions to evaluate their performance. 
@@ -466,9 +476,10 @@ class ExperimentAgent:
         Both intermediate reflections and a final summary are generated through LLM client invocations.
 
         Args:
+            parent_solutions (Union[Solution, List[Solution]): parent solution(s).
             solution (Solution): solution that only contains the idea and code yet
             long_term_reflection (str): long term reflection from previous experiments
-            elitist_as_root (bool): whether elitist is used as root solution; default False.
+            elitist_parent (bool): whether elitist is used as root solution; default False.
             
         Returns:
             solution (Solution): the updated solution; updated fields include:
@@ -480,17 +491,20 @@ class ExperimentAgent:
              - score is added (generated by `evaluator.run()`);
              - summary is added (generated by `summarize()`).
         """
+        print(f"\n>>>[ExperimentAgent] Starts to work on solution {solution.id_str(algorithm=self.algorithm)}...")
+        
         # =====0. Experiment Preparation=====
         # Handle long-term reflection for crossover
         # for mutation on elitist, we always use long-term reflection
         # for crossover, we may not want to provide long-term reflection
-        if not elitist_as_root and self.reflection_disabled_for_crossover:
+        if not elitist_parent and self.reflection_disabled_for_crossover:
             long_term_reflection = "None"
-            print("\n>>>[ExperimentAgent] long-term reflection is not used.")
+            print("\n>>>[ExperimentAgent] Long-term reflection is not used.")
         else:
-            print("\n>>>[ExperimentAgent] long-term reflection is used.")
+            print("\n>>>[ExperimentAgent] Long-term reflection is used.")
         
         long_term_reflection = long_term_reflection if long_term_reflection else "(empty)"
+        
         # Clear intermediate results in solution
         solution.intermediate_codes = []  # code
         solution.intermediate_outputs = []  # eval std output (including error info)
@@ -503,13 +517,14 @@ class ExperimentAgent:
         # =====1. Experiment loop=====
         # Variables to be updated during experiment loop
         curr_callbacks = None
+        raw_output = None
         metrics = None
         features = None
         score = None
-        experiment_count = 0
         termination = 'no'
         code_diff = None
         
+        experiment_count = 0
         while experiment_count < self.max_experiment_repeats:  # when self.max_experiment_repeats is 0, no experiment is conducted, directly go to summarization step
             experiment_count += 1
             
@@ -532,6 +547,7 @@ class ExperimentAgent:
             
             # -----1.2. Reflect on the evaluator output and invoke LLM client to generate the next action-----
             # Prepare `other_context`
+            '''deprecated
             last_try = (experiment_count == self.max_experiment_repeats)
             if not last_try:
                 other_context = f"Currently we're conducting experiment #{experiment_count}, namely the 'latest experiment' is experiment #{experiment_count}."
@@ -539,38 +555,43 @@ class ExperimentAgent:
                 other_context = f"""Important: this is the final attempt (experiment #{experiment_count}) to improve the solution!
 You may want to revert back to the previous version of the solution code or parameter configurations if you are not satisfied with the latest attempt.
 Give it your best shot and make sure that the last solution code is executable."""
+            '''
+            
             # Reflect
-            response, thinking, code_diff, callbacks, termination_dict = self.reflect(solution, 
-                                                                    long_term_reflection=long_term_reflection, 
-                                                                    other_context=other_context) 
+            response, thinking, code_diff, callbacks, termination_dict = self.reflect(
+                                                                        parent_solutions=parent_solutions,
+                                                                        solution=solution, 
+                                                                        long_term_reflection=long_term_reflection, 
+                                                                    ) 
             
             # -----1.3. Save intermediate vars before making changes-----
-            # Store current code to `intermediate_codes`
             solution.intermediate_codes.append(solution.code)
-            solution.intermediate_outputs.append(processed_output)
-            solution.intermediate_metrics.append(metrics)
-            solution.intermediate_features.append(features)
-            solution.intermediate_scores.append(score)
+            solution.intermediate_outputs.append(solution.output)
+            solution.intermediate_metrics.append(solution.metrics)
+            solution.intermediate_features.append(solution.features)
+            solution.intermediate_scores.append(solution.score)
             solution.intermediate_actions.append(response)
             # you may want to also store intermediate solution code 
-            # TODO: in case the last try fails, you can revert back to the last working solution explicitly
-            # "manually revert code back at the end of experiment" - we leave it for the user to decide and mark with a TODO flag
+            # TODO: in case the last try fails, you can revert back to the last working solution manually
+            # "manually revert code back at the end of experiment" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
             
             # -----1.4. Take actions-----
             if not thinking:
-                print(f"\n>>>[ExperimentAgent] Warning: no valid thinking extracted; Response: {response}\n")
+                print(f"\n>>>[ExperimentAgent] Warning: no valid thinking extracted. Response:\n{response}\n")
                 # We don't raise error here; it may be handled by next round of experiment
+            else:
+                print(f"\n>>>[ExperimentAgent] Thinking:\n{thinking}\n")
                 
             if termination_dict:
                 if "termination" in termination_dict:
                     termination = termination_dict['termination']
                     print(f"\n>>>[ExperimentAgent] Termination: {termination}\n")
                 else:
-                    print(f"\n>>>[ExperimentAgent] Warning: no valid termination field in response: {response}\n")
+                    print(f"\n>>>[ExperimentAgent] Warning: no valid termination field in response: \n{response}\n")
             else:
                 # We don't raise error here; it may be handled by next round of experiment
-                # by default, we set termination to 'no'
-                print(f"\n>>>[ExperimentAgent] Warning: cannot extract termination field in response: {response}\n")
+                # by default, we keep termination to 'no'
+                print(f"\n>>>[ExperimentAgent] Warning: cannot extract termination field in response: \n{response}\n")
             
             if code_diff:
                 tmp_code = utils.update_code(solution.code, code_diff)
@@ -587,9 +608,9 @@ Give it your best shot and make sure that the last solution code is executable."
                         print(">>>[ExperimentAgent] Code diff:")
                         print(code_diff)
                 else:
-                    print("\n>>>[ExperimentAgent] Warning: code update failed\ncode diff:\n{code_diff}")
+                    print(f"\n>>>[ExperimentAgent] Warning: code update failed\ncode diff:\n{code_diff}\n")
             
-            if callbacks:  
+            if callbacks:
                 # if new callbacks are generated, we update them
                 # `curr_callbacks` updated and will be executed in the next iteration
                 curr_callbacks = callbacks 
@@ -617,32 +638,74 @@ Give it your best shot and make sure that the last solution code is executable."
 
 
         # =====2. Prepare the return and summarize=====
-        # Remember to evaluate again before return; since the code may have been updated before breaking the loop
+        # -----Evaluate again before return; since the code may have been updated before breaking the loop-----
         if code_diff:
             raw_output, metrics, features, score = self.evaluator.run(solution)
             self.function_evals += 1
-        processed_output = utils.truncate(raw_output)  # raw output could be very long, truncate it to avoid context window overflow
-                
-        # Prepare return
-        solution.output = processed_output
-        solution.metrics = metrics
-        solution.features = features
-        solution.score = score
-        
-        # Additional debugging step if final solution is not valid
+            processed_output = utils.truncate(raw_output)  # raw output could be very long, truncate it to avoid context window overflow
+
+            # Prepare return
+            solution.output = processed_output
+            solution.metrics = metrics
+            solution.features = features
+            solution.score = score
+            
+            solution.intermediate_codes.append(solution.code)
+            solution.intermediate_outputs.append(solution.output)
+            solution.intermediate_metrics.append(solution.metrics)
+            solution.intermediate_features.append(solution.features)
+            solution.intermediate_scores.append(solution.score)
+            solution.intermediate_actions.append(None)  # the last evaluation has no response hence we append None; just to keep all intermediate vars having same length
+                    
+        # -----Additional debugging step if final solution is not valid-----
         # TODO: we could add an additional debugging step here
         # Instead, we moved this step to LeadAgent at location where ExperimentAgent just returns solution
         # so that the workflow is simpler - only central LeadAgent calls other agents
         # alternatives are possible
-        # “additional debugging stage before experiment return” - we leave it for the user to decide and mark with a TODO flag
+        # “additional debugging stage before experiment return” - This requires further exploration, analysis, and validation, and is marked with a TODO flag
         
+        # -----Manually revert back to previous solution-----
+        # here we revert back to previous best solutions
+        # Find the index of the best score (maximum if self.obj_type == 'max', minimum if self.obj_type == 'min')
+        # Handle None values by filtering them out
+        valid_scores = [(i, score) for i, score in enumerate(solution.intermediate_scores) if score is not None]
+
+        if not valid_scores:
+            # If all scores are None, use the first solution
+            best_sol_idx = 0
+        elif self.obj_type == 'max':
+            best_sol_idx = max(valid_scores, key=lambda x: x[1])[0]
+        else:  # self.obj_type == 'min'
+            best_sol_idx = min(valid_scores, key=lambda x: x[1])[0]
+
+        # Update `solution` using this intermediate solution
+        if not solution.score or (self.obj_type == 'max' and solution.intermediate_scores[best_sol_idx] > solution.score) or (self.obj_type == 'min' and solution.intermediate_scores[best_sol_idx] < solution.score):
+            print(f"\n>>>[ExperimentAgent] Revert back to previous code version | score reverted from {solution.score} to {solution.intermediate_scores[best_sol_idx]}")
+            solution.code = solution.intermediate_codes[best_sol_idx]
+            solution.output = solution.intermediate_outputs[best_sol_idx]
+            solution.metrics = solution.intermediate_metrics[best_sol_idx]
+            solution.features = solution.intermediate_features[best_sol_idx]
+            solution.score = solution.intermediate_scores[best_sol_idx]
+            
+            '''deprecated
+            # for convenience of summary, we will abort intermediate experiment results afterwards
+            # alternatively, we could have make use of the information in those failed experiments
+            solution.intermediate_codes = solution.intermediate_codes[:best_sol_idx]
+            solution.intermediate_outputs = solution.intermediate_outputs[:best_sol_idx]
+            solution.intermediate_metrics = solution.intermediate_metrics[:best_sol_idx]
+            solution.intermediate_features = solution.intermediate_features[:best_sol_idx]
+            solution.intermediate_scores = solution.intermediate_scores[:best_sol_idx]
+            solution.intermediate_actions = solution.intermediate_actions[:best_sol_idx]
+            '''
+        
+        # -----Summary-----
         solution.summary = self.summarize(solution=solution, 
                                           long_term_reflection=long_term_reflection,
                                           )
         print(f"\n>>>[ExperimentAgent] Final summary after {experiment_count} experiments:\n{solution.summary}\n")
         
-        # Clear intermediate vars after experiment to save space
-        solution.intermediate_codes = []  # we recommend to clear intermediate code since they may consume too much space; other intermediate variables can be cleared according to your needs
+        # -----Clear intermediate vars after experiment to save space-----
+        solution.intermediate_codes = []  # we recommend to clear intermediate code at least since they may consume too much space for complex problem; other intermediate variables can be cleared according to your needs
         #solution.intermediate_outputs = []
         #solution.intermediate_actions = []
         #solution.intermediate_metrics = []

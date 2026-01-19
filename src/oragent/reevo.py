@@ -600,13 +600,16 @@ class ReEvo:
     
     def run(self):
         last_save_time = time.time()
-        
-        # two update_iter() updates per loop
+        # Note: two update_iter() updates per loop
         
         # self.population now has size self.init_pop_size
         while self.total_responses <= self.max_evolutions or self.function_evals <= self.max_evolutions:
             # `self.iteration` will increase by 1 each time `self.update_iter()` is invoked;
             # two iterations happen in population initialization; and for each loop, `self.iteration` will increase by 2.
+            
+            # Current pop size: 
+            # - (1st loop, right after initialization) self.init_pop_size
+            # - (loops afterwards) self.pop_size + int(self.pop_size * self.mutation_rate)
             
             # If all individuals are invalid, stop
             if all([not individual.score for individual in self.population]):
@@ -615,29 +618,35 @@ class ReEvo:
             # Current population size: self.population is of size self.pop_size + int(self.pop_size * self.mutation_rate) from last iteration
             # after following `selection`, we will have `selected_population` with size 2 * self.pop_size
             # Population size is controlled through this way
-                            
+            
+               
             # =====Select (uniform distribution)=====
             # Add elitist to population for selection since elitist may not be in self.population after crossover and mutation
+            # `selected_population` size: 2 * self.pop_size; or `self.pop_size` pairs
             print("\n>>>[ReEvo] Selecting population...")
             population_to_select = self.population if (self.elitist is None or self.elitist in self.population) else [self.elitist] + self.population 
             selected_population = utils.random_select(population_to_select, self.pop_size)  # `selected_population` size: 2 * self.pop_size
             if selected_population is None:
                 raise RuntimeError("Selection failed. Please check the population.")
             
-            # Log progress to progress.txt for webui
+            # Log progress to progress.txt for webui real-time visualization
             with open(f"{self.output_dir}/progress.txt", 'w') as file:
                 self.print_progress(file=file)
                 print(f"\n>>>[ReEvo] Selected population size: {len(selected_population)}; next: short-term reflection and crossover", file=file)
                 
+            
             # =====Short-term reflection on the selected population=====
             # pair of parents -> short term reflection
+            # `self.pop_size` short-term reflections
             print("\n>>>[ReEvo] Short-term reflection...")
             short_term_reflection_tuple = self.short_term_reflect(selected_population) # `short_term_reflection_tuple` is (response_lst, worse_solution_lst, better_solution_lst); 
             # `short_term_reflection_tuple` size: self.pop_size
             # `worse_solution_lst` and `better_solution_lst` are used in crossover later; they are the parents actually
             
+            
             # =====Crossover on the selected population=====
             # pair of parents + st-term reflection -> crossover offsprings
+            # `self.pop_size` crossover offsprings
             print("\n>>>[ReEvo] Crossover...")
             crossed_population = self.crossover(short_term_reflection_tuple)  # `crossed_population` size: self.pop_size
             
@@ -648,13 +657,15 @@ class ReEvo:
             self.population = [ind for ind in self.population if ind.score]
             self.valid_responses += len(self.population)
             
-            # Update; so the best individual and best objective are updated
+            
+            # =====Update; so the best individual and best objective are updated=====
             self.update_iter()  
             
-            # Log progress to progress.txt for webui
+            # Log progress to progress.txt for webui real-time visualization
             with open(f"{self.output_dir}/progress.txt", 'w') as file:
                 self.print_progress(file=file)
                 print(f"Just finished crossover; next: long-term reflection and mutation", file=file)
+            
             
             # =====Long-term reflection=====
             # old lt-reflection + st-term reflection -> new lt-reflection
@@ -668,26 +679,34 @@ class ReEvo:
             with open(f"{self.output_dir}/long_term_reflection.txt", 'w') as file:
                 file.write(self.long_term_reflection)
                 
+            
             # =====Mutate on the best (single) individual; generate int(self.pop_size * self.mutation_rate) many offsprings=====
             # best individual + new lt-term reflection -> mutation offsprings
+            # `int(self.pop_size * self.mutation_rate)` many mutation offsprings
             print("\n>>>[ReEvo] Mutation...")
             mutated_population = self.mutate()  # newly generated mutation population (based on the best individual); `mutated_population` size: int(self.pop_size * self.mutation_rate)
             
             # Evaluate the mutation offsprings
             print("\n>>>[ReEvo] Evaluating mutation offsprings...")
             mutated_population = self.evaluator.evaluate_population(mutated_population)
+            
+            
+            # =====Add mutation offsprings to population=====
+            # now pop size: `self.pop_size + int(self.pop_size * self.mutation_rate)`
             self.population.extend(mutated_population)  # add mutation offsprings to self.population; `self.population` size increased to: self.pop_size + int(self.pop_size * self.mutation_rate)
             self.function_evals += len(mutated_population)
             self.valid_responses += len([ind for ind in mutated_population if ind.score])
             
-            # Update; so the best individual and best objective are updated
+            
+            # =====Update; so the best individual and best objective are updated=====
             self.update_iter()
             
-            # Log progress to progress.txt for webui
+            # Log progress to progress.txt for webui real-time visualization
             with open(f"{self.output_dir}/progress.txt", 'w') as file:
                 self.print_progress(file=file)
                 print(f"\n>>>[ReEvo] Just finished one round of evolution", file=file)
-                
+            
+            
             # =====Autosaving=====
             if time.time() - last_save_time >= self.autosave_interval_minutes * 60:
                 self.save()

@@ -1142,7 +1142,7 @@ if __name__ == "__main__":
                 os.chdir(basepath)
                 score_optimal, score_student, gap = eval_heuristic()
                 print(f"Problem size: {problem_size}, Optimal: {score_optimal}, Student: {score_student}, Gap (%): {gap}")
-                metrics[problem_size] = np.mean(score_student)
+                metrics[problem_size] = float(np.mean(score_student))
                 
         if metrics:
             features = get_feature(metrics)

@@ -300,7 +300,7 @@ if __name__ == "__main__":
                     objs.append(obj.item())
                 
                 print(f"[*] Average for {problem_size}: {np.mean(objs)}")
-                metrics[problem_size] = np.mean(objs)
+                metrics[problem_size] = float(np.mean(objs))
                 
         if metrics:
             features = get_feature(metrics)
