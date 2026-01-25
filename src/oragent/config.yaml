@@ -43,8 +43,8 @@
 
 
 # =====General Settings=====
-algorithm: "oragent"  # Options: "oragent", "reevo", "eoh", "ael", "funsearch"
-problem: "op_aco"  # problem to solve
+algorithm: "reevo"  # Options: "oragent", "reevo", "eoh", "ael", "funsearch"
+problem: "bpp_online"  # problem to solve
 init_pop_size: 4  # initial population size; default: 10
 num_parents: 2  # number of parents to start research (ORAgent) or for crossover (ReEvo, EoH, AEL, FunSearch); default: 2
 autosave_interval_minutes: 180  # autosaving interval

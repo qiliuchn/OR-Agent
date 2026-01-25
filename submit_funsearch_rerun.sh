@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=cvrp_lehd
+#SBATCH --job-name=funsearch_rerun
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
@@ -11,8 +11,8 @@
                                             # Current: 5 algorithms × 1 problem = 5 tasks (0-4)
 
 # Algorithms and problems for all combinations TODO: change
-ALGORITHMS=("reevo" "eoh" "ael" "funsearch")
-PROBLEMS=("cvrp_lehd")
+ALGORITHMS=("funsearch")
+PROBLEMS=("tsp_constructive" "tsp_aco" "tsp_lehd" "cvrp_lehd")
 
 # Calculate total tasks for array range
 NUM_ALGORITHMS=${#ALGORITHMS[@]}
@@ -33,7 +33,7 @@ PROBLEM=${PROBLEMS[$PROB_INDEX]}
 
 # Output directory
 # TODO: carefully set output dir so that tasks don't overwrite each other!
-OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/eval_updated"
+OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/funsearch_rerun"
 mkdir -p "$OUTPUT_DIR"
 
 # Print out info
@@ -56,6 +56,9 @@ python -u src/oragent/cli.py \
     --algorithm "$ALGORITHM" \
     --problem "$PROBLEM" \
     --max-evolutions 500 \
+    --num-islands 8 \
+    --reset-period-minutes 240 \
+    --cluster-sampling-temperature-period 300 \
     --timeout-seconds 300 \
     --output-dir "$OUTPUT_DIR" \
     > "$OUTPUT_DIR/output.txt" 2>&1

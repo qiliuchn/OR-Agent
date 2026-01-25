@@ -1137,7 +1137,7 @@ if __name__ == "__main__":
                     1000: ['test_TSP1000_n128.txt', 64, 64, 64],
                 }
             metrics = {}
-            for problem_size in [200]:  # options: 200, 500, 1000
+            for problem_size in [200, 500]:  # options: 200, 500, 1000
                 # Changes the current working directory to the problem directory so that all files are relative to the problem directory when executing `eval_heuristic`
                 os.chdir(basepath)
                 score_optimal, score_student, gap = eval_heuristic()

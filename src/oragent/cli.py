@@ -223,6 +223,30 @@ def main():
         help="Timeout seconds for each solution evaluation"
     )
     parser.add_argument(
+        "--num-islands",
+        type=int,
+        default=None,
+        help="Number of islands for solution database"
+    )
+    parser.add_argument(
+        "--reset-period-minutes",
+        type=int,
+        default=None,
+        help="Reset period for solution database"
+    )
+    parser.add_argument(
+        "--cluster-sampling-temperature-init",
+        type=int,
+        default=None,
+        help="Initial temperature for cluster sampling"
+    )
+    parser.add_argument(
+        "--cluster-sampling-temperature-period",
+        type=int,
+        default=None,
+        help="Period for cluster sampling temperature"
+    )
+    parser.add_argument(
         "--output-dir", 
         type=str, 
         default=None,
@@ -329,6 +353,18 @@ def main():
         
         if args.timeout_seconds != None:
             config['evaluation']['timeout_seconds'] = args.timeout_seconds
+            
+        if args.num_islands != None:
+            config['database']['num_islands'] = args.num_islands
+        
+        if args.reset_period_minutes != None:
+            config['database']['reset_period_minutes'] = args.reset_period_minutes
+            
+        if args.cluster_sampling_temperature_init != None:
+            config['database']['cluster_sampling_temperature_init'] = args.cluster_sampling_temperature_init
+        
+        if args.cluster_sampling_temperature_period != None:
+            config['database']['cluster_sampling_temperature_period'] = args.cluster_sampling_temperature_period
     
     # -----output dir can always be updated (even if loading from checkpoint)-----
     if args.output_dir:

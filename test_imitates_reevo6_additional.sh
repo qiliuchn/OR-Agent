@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=cvrp_lehd
+#SBATCH --job-name=imitate_reevo6
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
@@ -7,12 +7,35 @@
 #SBATCH --output=%x_%A_%a.out
 #SBATCH --error=%x_%A_%a.err
 #SBATCH --time=120:00:00
-#SBATCH --array=0-3                         # Manual: TODO: Update when changing algorithms/problems
-                                            # Current: 5 algorithms × 1 problem = 5 tasks (0-4)
+#SBATCH --array=0-0                         # Manual: TODO: Update when changing algorithms/problems
+                                            # Current: 1 algorithms × 5 problem = 5 tasks (0-4)
+
+# =====================
+# imitate_reevo6
+# =====================
+# inherited from imitate_reevo4
+# experiment prompt updated
+# still no tree structure
+#
+# no memory compression
+# let ideas generation coordinated
+# and use more experiment repeats
+# enable eval description
+
+# num_children=1
+# max_tree_depth=1
+# max_debug_rounds=0
+# max_experiment_repeats=0
+# elitist_as_root_period=11
+# elitist_enlargement_factor=5.0
+# reflection_period=8
+# reflection_compression=50
+# reflection_disabled_for_crossover=True
+# reflection_elitist_synchro=True
 
 # Algorithms and problems for all combinations TODO: change
-ALGORITHMS=("reevo" "eoh" "ael" "funsearch")
-PROBLEMS=("cvrp_lehd")
+ALGORITHMS=("oragent")
+PROBLEMS=("bpp_online")
 
 # Calculate total tasks for array range
 NUM_ALGORITHMS=${#ALGORITHMS[@]}
@@ -33,7 +56,7 @@ PROBLEM=${PROBLEMS[$PROB_INDEX]}
 
 # Output directory
 # TODO: carefully set output dir so that tasks don't overwrite each other!
-OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/eval_updated"
+OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/imitate_reevo6"
 mkdir -p "$OUTPUT_DIR"
 
 # Print out info
@@ -49,13 +72,23 @@ conda activate sumo
 module load xerces-c/3.2.3 sumo/1.20
 
 # Change directory
-cd /share/home/u23310103/apps/or_agent
+cd /share/home/u23310103/apps/or_agent2
 
-# Run the task
+# Run the task TODO: check cmd
 python -u src/oragent/cli.py \
     --algorithm "$ALGORITHM" \
     --problem "$PROBLEM" \
     --max-evolutions 500 \
+    --init-pop-size 20 \
+    --num-children 1 \
+    --max-tree-depth 1 \
+    --max-debug-rounds 2 \
+    --max-experiment-repeats 4 \
+    --elitist-as-root-period 11 \
+    --elitist-enlargement-factor 5.0 \
+    --reflection-period 0 \
+    --reflection-disabled-for-crossover \
+    --reflection-elitist-synchro \
     --timeout-seconds 300 \
     --output-dir "$OUTPUT_DIR" \
     > "$OUTPUT_DIR/output.txt" 2>&1

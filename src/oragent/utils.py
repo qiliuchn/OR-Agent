@@ -1087,9 +1087,9 @@ def random_select(population: list[Solution],
         if parents[0].score != parents[1].score:
             selected_population.extend(parents)
             
-        if attempt > 1000:
+        if attempt > 200:
             print(f"\n>>>[Utils] Random selection failed after 1000 attempts; len(population)={len(population)}; pop_size={pop_size}; selected_population size={len(selected_population)}")
-            raise RuntimeError(">>>[Utils] Random selection failed after 1000 attempts")
+            raise RuntimeError(">>>[Utils] Random selection failed after 200 attempts")
     
     return selected_population
 

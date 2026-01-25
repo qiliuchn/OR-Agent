@@ -105,7 +105,7 @@ class FlowGraph:
         Return:
             None.
         """
-        #checkpoint = checkpoint or datetime.now().strftime("%Y-%m-%d_%H-%M-%S")  # default checkpoint name example: '2025-12-29_20-40-25'
+        #checkpoint = checkpoint or datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + f"_{self.algorithm}_{self.problem}"  # default checkpoint name example: '2025-12-29_20-40-25'
         checkpoint_directory = f'{self.project_root}/checkpoints/{checkpoint}'
         os.makedirs(checkpoint_directory, exist_ok=True)
 
@@ -338,10 +338,10 @@ Legend:
     └── ⊕ Node 2 (0.70): Third solution idea
             └── ✓ Node 4 (0.75): Fifth solution idea
 ========================================
-
 Total nodes: 5 | Total expanded solutions: 3 | Total pending leaves: 0 | Total terminal leaves: 2
 
 PS: ideas will not show unless `show_details=True`
+
         """
         output = self.visualize_str(show_details)
         print(output, file=file)

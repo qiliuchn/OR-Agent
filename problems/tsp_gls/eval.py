@@ -29,12 +29,12 @@ heuristics = getattr(solution_module, "heuristics")  # Get function to evolve
 
 
 # =====GLS algorithm=====
-FloatArray = npt.NDArray[np.float_]
+FloatArray = npt.NDArray[np.float64]
 IntArray = npt.NDArray[np.int_]
 usecache = True
 
 class TSPInstance:
-    def __init__(self, positions: npt.NDArray[np.float_]) -> None:
+    def __init__(self, positions: npt.NDArray[np.float64]) -> None:
         self.positions = positions
         self.n = positions.shape[0]
         self.distmat = distance_matrix(positions, positions) + np.eye(self.n)*1e-5

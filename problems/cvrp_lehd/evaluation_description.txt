@@ -11,6 +11,7 @@ The key ideas are:
 """
 import os
 import sys
+import traceback
 import numpy as np
 from typing import Dict, Tuple, List, Any
 import argparse
@@ -65,45 +66,6 @@ def set_result_folder(folder):
     global result_folder
     result_folder = folder
 
-def create_logger(log_file=None):
-    if 'filepath' not in log_file:
-        log_file['filepath'] = get_result_folder()
-
-    if 'desc' in log_file:
-        log_file['filepath'] = log_file['filepath'].format(desc='_' + log_file['desc'])
-    else:
-        log_file['filepath'] = log_file['filepath'].format(desc='')
-
-    set_result_folder(log_file['filepath'])
-
-    if 'filename' in log_file:
-        filename = log_file['filepath'] + '/' + log_file['filename']
-    else:
-        filename = log_file['filepath'] + '/' + 'log.txt'
-
-    if not os.path.exists(log_file['filepath']):
-        os.makedirs(log_file['filepath'])
-
-    file_mode = 'a' if os.path.isfile(filename)  else 'w'
-
-    root_logger = logging.getLogger()
-    root_logger.setLevel(level=logging.INFO)
-    formatter = logging.Formatter("[%(asctime)s] %(filename)s(%(lineno)d) : %(message)s", "%Y-%m-%d %H:%M:%S")
-
-    for hdlr in root_logger.handlers[:]:
-        root_logger.removeHandler(hdlr)
-
-    # write to file
-    fileout = logging.FileHandler(filename, mode=file_mode)
-    fileout.setLevel(logging.INFO)
-    fileout.setFormatter(formatter)
-    root_logger.addHandler(fileout)
-
-    # write to console
-    console = logging.StreamHandler(sys.stdout)
-    console.setLevel(logging.INFO)
-    console.setFormatter(formatter)
-    root_logger.addHandler(console)
 
 class AverageMeter:
     def __init__(self):
@@ -121,89 +83,6 @@ class AverageMeter:
     def avg(self):
         return self.sum / self.count if self.count else 0
 
-class LogData:
-    def __init__(self):
-        self.keys = set()
-        self.data = {}
-
-    def get_raw_data(self):
-        return self.keys, self.data
-
-    def set_raw_data(self, r_data):
-        self.keys, self.data = r_data
-
-    def append_all(self, key, *args):
-        if len(args) == 1:
-            value = [list(range(len(args[0]))), args[0]]
-        elif len(args) == 2:
-            value = [args[0], args[1]]
-        else:
-            raise ValueError('Unsupported value type')
-
-        if key in self.keys:
-            self.data[key].extend(value)
-        else:
-            self.data[key] = np.stack(value, axis=1).tolist()
-            self.keys.add(key)
-
-    def append(self, key, *args):
-        if len(args) == 1:
-            args = args[0]
-
-            if isinstance(args, int) or isinstance(args, float):
-                if self.has_key(key):
-                    value = [len(self.data[key]), args]
-                else:
-                    value = [0, args]
-            elif type(args) == tuple:
-                value = list(args)
-            elif type(args) == list:
-                value = args
-            else:
-                raise ValueError('Unsupported value type')
-        elif len(args) == 2:
-            value = [args[0], args[1]]
-        else:
-            raise ValueError('Unsupported value type')
-
-        if key in self.keys:
-            self.data[key].append(value)
-        else:
-            self.data[key] = [value]
-            self.keys.add(key)
-
-    def get_last(self, key):
-        if not self.has_key(key):
-            return None
-        return self.data[key][-1]
-
-    def has_key(self, key):
-        return key in self.keys
-
-    def get(self, key):
-        split = np.hsplit(np.array(self.data[key]), 2)
-
-        return split[1].squeeze().tolist()
-
-    def getXY(self, key, start_idx=0):
-        split = np.hsplit(np.array(self.data[key]), 2)
-
-        xs = split[0].squeeze().tolist()
-        ys = split[1].squeeze().tolist()
-
-        if type(xs) is not list:
-            return xs, ys
-
-        if start_idx == 0:
-            return xs, ys
-        elif start_idx in xs:
-            idx = xs.index(start_idx)
-            return xs[idx:], ys[idx:]
-        else:
-            raise KeyError('no start_idx value in X axis data.')
-
-    def get_keys(self):
-        return self.keys
 
 class TimeEstimator:
     def __init__(self):
@@ -240,11 +119,6 @@ class TimeEstimator:
         self.logger.info("Epoch {:3d}/{:3d}: Time Est.: Elapsed[{}], Remain[{}]".format(
             count, total, elapsed_time_str, remain_time_str))
 
-def util_print_log_array(logger, result_log: LogData):
-    assert type(result_log) == LogData, 'use LogData Class for result_log.'
-
-    for key in result_log.get_keys():
-        logger.info('{} = {}'.format(key+'_list', result_log.get(key)))
 
 def copy_all_src(dst_root):
     # execution dir
@@ -611,6 +485,13 @@ class VRPEnv:
             # shape (B,V,2)
 
     def reset(self, mode, sample_size = 1):
+        # start capacity per instance (shape [B])
+        # capacity is stored in problems[:,:,3], repeated across nodes  [oai_citation:2‡evaluation_description.txt](sediment://file_00000000d43472068829c045718ecbab)
+        self.start_capacity_vec = self.problems[:, 0, 3].clone().view(-1)
+
+        self.rem_cap_teacher = self.start_capacity_vec.clone()
+        self.rem_cap_student = self.start_capacity_vec.clone()
+    
         self.selected_count = 0
         self.selected_node_list = torch.zeros((self.batch_size, 0), dtype=torch.long)
         self.selected_teacher_flag = torch.zeros((self.batch_size, 0), dtype=torch.long)
@@ -627,32 +508,47 @@ class VRPEnv:
         done = False
         return self.step_state, reward, reward_student, done
 
-    def step(self, selected, selected_student,selected_flag_teacher,selected_flag_student):
+    def step(self, selected, selected_student, selected_flag_teacher, selected_flag_student):
         self.selected_count += 1
-        gather_index = selected[:, None, None].expand((len(selected), 1, 4)) # shape [B,1,4]
-        # Update capacity
-        # 1. If flag = 1, the vehicle returns to depot and capacity is refilled
-        is_depot = selected_flag_teacher==1
-        self.problems[is_depot, :, 3] =  self.raw_data_capacity.ravel()[0].item()
 
-        # 2. If capacity is less than demand, capacity is also refilled and the flag of the current access node is changed to 1
-        self.current_node_temp = self.problems.gather(index=gather_index, dim=1).squeeze(1)
-        demands = self.current_node_temp[:,2]
-        smaller_ = self.problems[:, 0, 3] < demands
-        selected_flag_teacher[smaller_] = 1
-        self.problems[smaller_, :, 3] =  self.raw_data_capacity.ravel()[0].item()
+        # ---- Teacher capacity (optional, kept separate) ----
+        # Refill if teacher explicitly returns to depot
+        is_depot_teacher = (selected_flag_teacher == 1)
+        self.rem_cap_teacher = torch.where(is_depot_teacher, self.start_capacity_vec, self.rem_cap_teacher)
 
-        # 3. Subtract the demand of the currently visited node regardless of whether the vehicle is returned to depot to refill
-        self.problems[:,:,3] =  self.problems[:,:,3]- demands[:,None]
+        demand_teacher = self.Batch_demand.gather(1, selected[:, None]).squeeze(1)  # [B]
+        need_return_teacher = self.rem_cap_teacher < demand_teacher
+        if need_return_teacher.any():
+            selected_flag_teacher = selected_flag_teacher.clone()
+            selected_flag_teacher[need_return_teacher] = 1
+            self.rem_cap_teacher[need_return_teacher] = self.start_capacity_vec[need_return_teacher]
+        self.rem_cap_teacher = self.rem_cap_teacher - demand_teacher
+
+        # ---- Student capacity (the one that matters for scoring) ----
+        is_depot_student = (selected_flag_student == 1)
+        self.rem_cap_student = torch.where(is_depot_student, self.start_capacity_vec, self.rem_cap_student)
+
+        demand_student = self.Batch_demand.gather(1, selected_student[:, None]).squeeze(1)  # [B]
+        need_return_student = self.rem_cap_student < demand_student
+        if need_return_student.any():
+            selected_flag_student = selected_flag_student.clone()
+            selected_flag_student[need_return_student] = 1
+            self.rem_cap_student[need_return_student] = self.start_capacity_vec[need_return_student]
+        self.rem_cap_student = self.rem_cap_student - demand_student
+
+        # Optional but recommended: expose student remaining capacity to the model via state.problems
+        self.problems[:, :, 3] = self.rem_cap_student[:, None].expand(-1, self.problems.size(1))
+
+        # ---- Record selections/flags ----
         self.selected_node_list = torch.cat((self.selected_node_list, selected[:, None]), dim=1)
         self.selected_teacher_flag = torch.cat((self.selected_teacher_flag, selected_flag_teacher[:, None]), dim=1)
+
         self.selected_student_list = torch.cat((self.selected_student_list, selected_student[:, None]), dim=1)
         self.selected_student_flag = torch.cat((self.selected_student_flag, selected_flag_student[:, None]), dim=1)
 
-        # returning values
-        done = (self.selected_count == self.problems.shape[1]-1)
+        done = (self.selected_count == self.problems.shape[1] - 1)
         if done:
-            reward, reward_student = self._get_travel_distance()  # note the minus sign!
+            reward, reward_student = self._get_travel_distance()
         else:
             reward, reward_student = None, None
 
@@ -1578,7 +1474,7 @@ if __name__ == "__main__":
                 os.chdir(basepath)
                 score_optimal, score_student, gap = eval_heuristic()
                 print(f"Problem size: {problem_size}, Optimal: {score_optimal}, Student: {score_student}, Gap (%): {gap}")
-                metrics[problem_size] = np.mean(score_student)
+                metrics[problem_size] = float(np.mean(score_student))
                 
         if metrics:
             features = get_feature(metrics)
@@ -1604,7 +1500,6 @@ if __name__ == "__main__":
         print('__SANDBOX_SUCCESS__')
         
     except Exception as e:
-        import traceback
         print('__SANDBOX_ERROR__:')
         print(f'Error type: {type(e).__name__}')
         print(f'Error message: {str(e)}')

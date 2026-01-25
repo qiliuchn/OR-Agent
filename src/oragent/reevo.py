@@ -324,7 +324,7 @@ class ReEvo:
         Return:
             None.
         """
-        checkpoint = checkpoint or datetime.now().strftime("%Y-%m-%d_%H-%M-%S")  # default checkpoint name example: '2025-12-29_20-40-25'
+        checkpoint = checkpoint or datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + f"_{self.algorithm}_{self.problem}"  # default checkpoint name example: '2025-12-29_20-40-25'
         checkpoint_directory = f'{self.project_root}/checkpoints/{checkpoint}'
         os.makedirs(checkpoint_directory, exist_ok=True)
 

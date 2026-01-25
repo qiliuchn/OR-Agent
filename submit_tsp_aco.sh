@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=cvrp_lehd
+#SBATCH --job-name=tsp_aco
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
@@ -12,7 +12,7 @@
 
 # Algorithms and problems for all combinations TODO: change
 ALGORITHMS=("reevo" "eoh" "ael" "funsearch")
-PROBLEMS=("cvrp_lehd")
+PROBLEMS=("tsp_aco")
 
 # Calculate total tasks for array range
 NUM_ALGORITHMS=${#ALGORITHMS[@]}
@@ -33,7 +33,7 @@ PROBLEM=${PROBLEMS[$PROB_INDEX]}
 
 # Output directory
 # TODO: carefully set output dir so that tasks don't overwrite each other!
-OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/eval_updated"
+OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}"
 mkdir -p "$OUTPUT_DIR"
 
 # Print out info

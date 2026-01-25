@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=standard_mode14
+#SBATCH --job-name=standard_mode14_elitist_as_period
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
@@ -11,8 +11,11 @@
                                             # Current: 1 algorithms × 5 problem = 5 tasks (0-4)
 
 # =====================
-# standard_mode14
+# standard_mode14_elitist_as_period
 # =====================
+# inherited from standard_mode14
+# reflection compression added
+# 
 # inherited from standard_mode12
 # tree info added to ideation
 # increased num children
@@ -40,36 +43,38 @@
 # VS "exploitation_focused_mode" VS "random_exploration_focused_mode" VS "systematic_exploration mode"
 
 # Algorithms and problems for all combinations TODO: change
-ALGORITHMS=("oragent")
-PROBLEMS=("cvrp_pomo" "dpp_ga" "mkp_aco" "op_aco" "tsp_constructive")
+ALGORITHM="oragent"
+PROBLEM="cvrp_pomo"
 
-# Calculate total tasks for array range
-NUM_ALGORITHMS=${#ALGORITHMS[@]}
-NUM_PROBLEMS=${#PROBLEMS[@]}
-TOTAL_TASKS=$((NUM_ALGORITHMS * NUM_PROBLEMS))
+# Tasks in this file vary "--elitist-as-root-period" settings
+# CONFIG format: <elitist-as-root-period>
+CONFIG=(
+    2
+    4
+    8
+    16
+    32
+)
 
 # Calculate algorithm and problem indices from array task ID
 # SLURM_ARRAY_TASK_ID or SLURM_JOB_ARRAY_INDEX is an environment variable automatically set by SLURM for job arrays
 # A unique number (0, 1, 2, ...) assigned to each task in a job array
 # For #SBATCH --array=0-9, it will be 0 through 9
 TASK_ID=${SLURM_ARRAY_TASK_ID:-${SLURM_JOB_ARRAY_INDEX:-0}}
-ALG_INDEX=$((TASK_ID / NUM_PROBLEMS))
-PROB_INDEX=$((TASK_ID % NUM_PROBLEMS))
 
-# Get algorithm and problem
-ALGORITHM=${ALGORITHMS[$ALG_INDEX]}
-PROBLEM=${PROBLEMS[$PROB_INDEX]}
+# Parse configuration for this array task TODO: use right way to parse
+ELITIST_AS_ROOT_PERIOD=${CONFIG[$TASK_ID]}
+
 
 # Output directory
 # TODO: carefully set output dir so that tasks don't overwrite each other!
-OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/standard_mode14"
+OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/standard_mode14_elitist_as_period_${ELITIST_AS_ROOT_PERIOD}"
 mkdir -p "$OUTPUT_DIR"
 
+
 # Print out info
-echo "TASK_ID: $TASK_ID, SLURM_ARRAY_TASK_ID: $SLURM_ARRAY_TASK_ID, SLURM_JOB_ARRAY_INDEX: $SLURM_JOB_ARRAY_INDEX"
-echo "Total algorithms: $NUM_ALGORITHMS, Total problems: $NUM_PROBLEMS, Total tasks: $TOTAL_TASKS"
+echo "TASK_ID: $TASK_ID"
 echo "Running task $TASK_ID: $ALGORITHM on $PROBLEM"
-echo "Algorithm index: $ALG_INDEX, Problem index: $PROB_INDEX"
 echo "Output directory: $OUTPUT_DIR"
 
 # Load environment
@@ -91,11 +96,12 @@ python -u src/oragent/cli.py \
     --fast-exploration-for-crossover \
     --max-debug-rounds 2 \
     --max-experiment-repeats 3 \
-    --elitist-as-root-period 11 \
-    --elitist-enlargement-factor 2.5 \
+    --elitist-as-root-period "$ELITIST_AS_ROOT_PERIOD" \
+    --elitist-enlargement-factor 2.0 \
     --reflection-period 0 \
     --reflection-disabled-for-crossover \
     --reflection-elitist-synchro \
+    --reflection-compression 100 \
     --timeout-seconds 300 \
     --output-dir "$OUTPUT_DIR" \
     > "$OUTPUT_DIR/output.txt" 2>&1

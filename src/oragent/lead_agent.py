@@ -507,7 +507,7 @@ class LeadAgent:
         Return:
             None.
         """
-        #checkpoint = checkpoint or datetime.now().strftime("%Y-%m-%d_%H-%M-%S")  # default checkpoint name example: '2025-12-29_20-40-25'
+        #checkpoint = checkpoint or datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + f"_{self.algorithm}_{self.problem}"  # default checkpoint name example: '2025-12-29_20-40-25'
         checkpoint_directory = f'{self.project_root}/checkpoints/{checkpoint}'
         os.makedirs(checkpoint_directory, exist_ok=True)
 
@@ -1101,11 +1101,11 @@ class LeadAgent:
         
         print(f"\n>>>[LeadAgent] Lead agent {self.id} research round {self.research_round} finished | number of solutions to return: {len(solutions)} (IDs: {', '.join([str(sol.id) for sol in solutions])})")
         print(f"\n>>>[LeadAgent] Final flow graph:")
-        self.flow_graph.visualize()
+        self.flow_graph.visualize(show_details=True)
         # Log flow graph
         file_name = f"{self.output_dir}/details/flow_graph_lead{self.id}_round{self.research_round}_done.txt"
         with open(file_name, 'w') as file:
-            self.flow_graph.visualize(file=file)
+            self.flow_graph.visualize(file=file, show_details=True)
             
         # Log progress to progress.txt for webui real-time visualization
         with open(f"{self.output_dir}/progress.txt", 'w') as file:
