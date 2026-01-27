@@ -43,8 +43,8 @@
 
 
 # =====General Settings=====
-algorithm: "reevo"  # Options: "oragent", "reevo", "eoh", "ael", "funsearch"
-problem: "bpp_online"  # problem to solve
+algorithm: "oragent"  # Options: "oragent", "reevo", "eoh", "ael", "funsearch"
+problem: "driving"  # problem to solve
 init_pop_size: 20  # initial population size; default: 10
 num_parents: 2  # number of parents to start research (ORAgent) or for crossover (ReEvo, EoH, AEL, FunSearch); default: 2
 autosave_interval_minutes: 180  # autosaving interval
@@ -55,13 +55,14 @@ num_lead_agents: 1  # number of lead agents work in parallel; if > 1, multiproce
 max_research_rounds: 10000  # maximum number of research rounds; default: 1000
 num_children: 2  # number of children to generate for one solution node in the research tree; default: 4
 max_tree_depth: 2  # maximum depth of the research tree; root node has depth 0; None means no constraint; default: null
-fast_exploration_for_crossover: false  # whether to use fast exploration for crossover; default: false
+fast_exploration_for_crossover: true  # whether to use fast exploration for crossover; default: false
 max_debug_rounds: 2  # maximum number of attempts to debug code (ExperimentAgent of oragent); default: 5
-max_experiment_repeats: 4  # maximum number of times to repeat the experiment for a solution node; default: 16
-elitist_as_root_period: 3  # the research rounds period for re-using elitist as root; "0" means never directly use elitist as root; default: 3
+max_experiment_repeats: 3  # maximum number of times to repeat the experiment for a solution node; default: 16
+elitist_as_root_period: 11  # the research rounds period for re-using elitist as root; "0" means never directly use elitist as root; default: 3
 elitist_enlargement_factor: 1.0  # the enlargement factor for elitist when used as root; int(elitist_enlargement * num_children) many children will be generated for elitist; default: 1.0
+elitist_experiment_factor: 3.4  # if parent is elitist, spend more time on experiments; max experiments = elitist_experiment_factor * max_experiment_repeats
 reflection_compression: null  # the limit (number of words) on long-term memory compression between research rounds; null means no compression; default: null
-reflection_period: 5  # the batch size of experiment reflections used to update long-term memory; null or 0 means no automatic periodic update; default: 5
+reflection_period: null  # the batch size of experiment reflections used to update long-term memory; null or 0 means no automatic periodic update; default: 5
 reflection_clearance_period: null  # the research rounds period for clearing long-term memory; null means no clearance; default: null
 reflection_disabled_for_crossover: false  # whether to disable using long-term reflection when doing crossover; default: false
 reflection_elitist_synchro: false  # whether reflection update should be synchronized with elitist as root event; default: false

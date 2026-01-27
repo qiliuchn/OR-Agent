@@ -161,6 +161,11 @@ from oragent.utils import Solution
 from oragent.solution_database import SolutionDatabase
 
 
+# Utility functions
+def check_elitist(elitist: Solution, solution: Solution):
+    """Check if `solution` can be regarded as the elitist."""
+    return abs(elitist.score - solution.score) < 1e-4
+
 
 
 class LeadAgent:
@@ -327,7 +332,7 @@ class LeadAgent:
                 seed_solution = self.code_agent.run(parent_solutions=None, 
                                                     long_term_reflection=self.long_term_reflection, 
                                                     solution=seed_solution,
-                                                    elitist_parent=True,  # make use of long-term reflection, which is external knowledge if exists
+                                                    use_long_term_reflection=True,  # make use of long-term reflection, which is external knowledge if exists
                                                     )
                 # Note: code will be generated; and metrics, features, score will also be generated
             else:
@@ -400,7 +405,7 @@ class LeadAgent:
             sol = self.code_agent.run(parent_solutions=seed_solution,  # maybe None if there is no seed solution
                                     long_term_reflection=self.long_term_reflection, 
                                     solution=sol,
-                                    elitist_parent=True,
+                                    use_long_term_reflection=True,
                                     )
             children_solutions.append(sol)
         
@@ -804,7 +809,6 @@ class LeadAgent:
                 # otherwise, we generate ideas as normal
                 num_ideas = self.num_children
             
-            
             print(f"\n>>>[LeadAgent] Generating {num_ideas} ideas...")
             ideas = self.idea_agent.run(parent_solutions=root_solutions, 
                                         long_term_reflection=self.long_term_reflection, 
@@ -838,7 +842,8 @@ class LeadAgent:
                 sol = self.code_agent.run(parent_solutions=root_solutions, 
                                         long_term_reflection=self.long_term_reflection, 
                                         solution=sol,
-                                        elitist_parent=self.elitist_as_root)
+                                        use_long_term_reflection=self.elitist_as_root,
+                                        )
                 solutions_updated.append(sol)
                 
             # -----Conduct experiments on each child node-----
@@ -848,7 +853,9 @@ class LeadAgent:
                 sol = self.experiment_agent.run(parent_solutions=root_solutions,
                                                 solution=sol, 
                                                 long_term_reflection=self.long_term_reflection,
-                                                elitist_parent=self.elitist_as_root)
+                                                use_long_term_reflection=self.elitist_as_root,
+                                                is_elitist=check_elitist(self.elitist, sol),
+                                                )
 
                 # Here we add an additional solution debugging step
                 if not sol.score:
@@ -981,6 +988,7 @@ class LeadAgent:
             ideas = self.idea_agent.run(parent_solutions=best_leaf.solution, 
                                         long_term_reflection=self.long_term_reflection, 
                                         num_ideas=self.num_children,
+                                        elitist_parent=check_elitist(self.elitist, best_leaf.solution),
                                         current_research_flow_graph=self.flow_graph.visualize_str(show_details=True),
                                         )
             
@@ -1002,17 +1010,22 @@ class LeadAgent:
             for sol in solutions:
                 sol = self.code_agent.run(parent_solutions=best_leaf.solution, 
                                         long_term_reflection=self.long_term_reflection,
-                                        solution=sol
+                                        solution=sol,
+                                        use_long_term_reflection=self.elitist_as_root,
                                         )
                 solutions_updated.append(sol)
                 
             # -----Conduct experiments for each child solution-----
+            # although parent may not be elitist now, we still allow to use long-term reflection
+            # TODO: "how to use long-term reflection?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
             children_solutions = []
             for i, sol in enumerate(solutions_updated):
                 print(f"\n>>>[LeadAgent] Conducting experiment for {i}-th solution ({sol.id_str(self.algorithm)})...")
                 sol = self.experiment_agent.run(parent_solutions=best_leaf.solution, 
                                                 solution=sol, 
-                                                long_term_reflection=self.long_term_reflection
+                                                long_term_reflection=self.long_term_reflection,
+                                                use_long_term_reflection=self.elitist_as_root,
+                                                is_elitist=check_elitist(self.elitist, sol),
                                                 )
                 
                 # Check solution validness

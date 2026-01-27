@@ -1,0 +1,10 @@
+Use a **three-phase decision process**: (1) situation analysis, (2) action generation, and (3) safety verification. 
+Maintains persistent memory across time steps to track lane change history, cooperative partnerships, and vehicle intentions, preventing erratic behavior.
+
+**Two cooperation primitives**:
+(1) Swap coordination, where two vehicles needing each other’s lanes coordinate acceleration and braking to exchange positions safely; and
+(2) Platoon-assisted merging, where a vehicle already in the target lane adjusts speed to create a deterministic insertion gap for a joining vehicle.
+
+**Multi-Layer Safety Verification**: multiple safety post-checks predict next-step gaps, enforce polite behavior toward merging vehicles, and resolve simultaneous merges by prioritizing higher urgency
+
+**Urgency-Based Decision Making**: Calculates urgency based on distance to lane end, progressively relaxing safety constraints for vehicles approaching critical zones.

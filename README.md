@@ -373,6 +373,8 @@ To facilitate further development, we have added markers throughout the codebase
 - "how to fast explore?"
 - "how many child ideas to generate at the start of research?"
 - "how to search tree?"
+- "how to use long-term reflection?"
+- "how to fast explore in experiments?" 
 - "how to control the size of the research tree?"
 - "add solution details for long-term reflection update?"
 - "about temperature setting, first exploit or first explore? what's the pattern?"

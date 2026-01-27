@@ -1,17 +1,14 @@
-### Problem Description
 You goal is to design a cooperative driving algorithm, implemented as a python function named `driving_actions`.
-This `driving_actions` function takes road segment info and vehicles info as inputs and generates driving actions (including acceleration and lane-changing actions) for all vehicles on a specified road segment.
+This `driving_actions` function takes road segment info and vehicles info as inputs and generates driving actions (including acceleration and lane-changing actions) for all vehicles on the specified road segment.
 This `driving_actions` function will be evaluated using SUMO (Simulation of Urban MObility).
 It should improve the safety, speed efficiency and traffic smoothness. Your aim is to maximize the overall score.
 
-### Design Principles
 Some design principles are provided to guide the driving behavior:
 1. Safety is of utmost importance. A good driving algorithm should avoid incurring collisions.
 2. Efficiency is also important. A good driving algorithm should maximize the speed on the condition of safety.
 3. Smooth traffic is preferred. A good driving algorithm should make the traffic flow smooth and reduce traffic congestion.
-4. The overall score is calculated by weighting safety, efficiency, and traffic smoothness at 0.5, 0.3, and 0.2, respectively. 
-5. Frequent lane-changing is usually unsafe and inefficient.
-6. Deadlock condition is deadly; it may occur when vehicles wait for each other to change lane (they wait to switch their lanes).
-7. The traffic flow on the road segment contains vehicles heading left-turn, right-turn, and straight. Handle weaving flows carefully and efficiently.
-8. Cooperative driving can improve the efficient and safety; namely, vehicles can cooperate with each other to reduce collision and traffic congestion.
-9. It's a good practice to remember your previous actions and observations (e.g. through function attributes) such that you don't make changes too frequently.
+4. Frequent lane-changing is usually unsafe and inefficient.
+5. Deadlock condition is deadly; it may occur when vehicles wait for each other to change lane (they wait to switch their lanes).
+6. The traffic flow on the road segment contains vehicles heading left-turn, right-turn, and straight. Handle weaving flows carefully and efficiently.
+7. Cooperative driving can improve the efficient and safety; namely, vehicles can cooperate with each other to reduce collision and traffic congestion.
+8. It's a good practice to remember your previous actions and observations (e.g. through function attributes) such that you don't make changes too frequently.

@@ -1,4 +1,3 @@
-### Overview
 Callbacks are executed at the end of each simulation step in the SUMO traffic simulation environment. They provide a mechanism to monitor, analyze, and potentially influence the simulation behavior.
 
 ### Implementation Requirements

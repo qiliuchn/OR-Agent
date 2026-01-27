@@ -1,37 +1,43 @@
-### Solution Function API
-The API of the `driving_actions` function is as follows:
-Args:
-    edge_info (dict): target edge info; dict keys are:
-    - 'edge_id' (str)
-    - 'lane_count' (int)
-    - 'length' (float, m)
-    - 'max_speed' (float, m/s)
+`driving_actions` is the function to be optimized. It takes two arguments: `edge_info` and `vehicles_info` and returns a list of actions.
 
-    vehicles_info (list[dict]): info of vehicles on the edge; one dict for each vehicle; dict keys are:
-    - 'veh_id' (str):   # e.g. 'veh_5_3_0'
-    - 'veh_type' (str)  # e.g. 'passenger', 'bus', 'truck', 'emergency'
-    - 'position' (int)  # position of the vehicle on the road segment (m)
-    - 'speed' (float)  # speed of the vehicle (m/s)
-    - 'current_lane' (str)  # current lane's id, e.g., "E5_0"; note in SUMO, lane index starts from 0 and counts from rightmost to leftmost
-    - 'wants_left' (bool) # whether the vehicle wants to change lane to the left for the current time step
-    - 'wants_right' (bool) # whether the vehicle wants to change lane to the right for the current time step
-    - 'potential_target_lanes' (list[Tuple])  # info of potential target lanes for the vehicle
-        potential_target_lanes[i] format: (laneID, length, occupation, bestLaneOffset, allowsContinuation, nextLanes)
-        - 'laneID': ID of that lane (on the current edge)
-        - 'length': The length that can be driven without lane change (measured from the start of that lane)
-        - 'occupation': Forecast “brutto vehicle lengths” on the future lanes (a congestion proxy)
-        - 'bestLaneOffset': Offset from the "best" lane (e.g., -1 = one lane right of the "best lane", +1 = one lane left of the "best lane", 0 = is the "best lane")
-        - 'allowsContinuation': Whether this lane allows continuation of the route (boolean)
-        - 'nextLanes': The list of lanes on the next edge that the vehicle will reach if it stays on this lane
+### Solution Function Signature
+```python
+def driving_actions(edge_info: dict, vehicles_info: list[dict]) -> list[dict]:
+    """
+    Args:
+        edge_info (dict): target edge info; dict keys are:
+        - 'edge_id' (str)
+        - 'lane_count' (int)
+        - 'length' (float, m)
+        - 'max_speed' (float, m/s)
 
-Returns:
-    actions (list[Dict]): actions to take; one dict for each vehicle; dict keys are:
-    - 'veh_id'
-    - 'acceleration' (float, m/s^2); positive for acceleration, negative for deceleration
-    - 'lane_changing' (int: +1=left, 0=keep, -1=right)
+        vehicles_info (list[dict]): info of vehicles on the edge; one dict for each vehicle; dict keys are:
+        - 'veh_id' (str):   # e.g. 'veh_5_3_0'
+        - 'veh_type' (str)  # e.g. 'passenger', 'bus', 'truck', 'emergency'
+        - 'position' (int)  # position of the vehicle on the road segment (m)
+        - 'speed' (float)  # speed of the vehicle (m/s)
+        - 'current_lane' (str)  # current lane's id, e.g., "E5_0"; note in SUMO, lane index starts from 0 and counts from rightmost to leftmost
+        - 'wants_left' (bool) # whether the vehicle wants to change lane to the left for the current time step
+        - 'wants_right' (bool) # whether the vehicle wants to change lane to the right for the current time step
+        - 'potential_target_lanes' (list[Tuple])  # info of potential target lanes for the vehicle
+            potential_target_lanes[i] format: (laneID, length, occupation, bestLaneOffset, allowsContinuation, nextLanes)
+            - 'laneID': ID of that lane (on the current edge)
+            - 'length': The length that can be driven without lane change (measured from the start of that lane)
+            - 'occupation': Forecast “brutto vehicle lengths” on the future lanes (a congestion proxy)
+            - 'bestLaneOffset': Offset from the "best" lane (e.g., -1 = one lane right of the "best lane", +1 = one lane left of the "best lane", 0 = is the "best lane")
+            - 'allowsContinuation': Whether this lane allows continuation of the route (boolean)
+            - 'nextLanes': The list of lanes on the next edge that the vehicle will reach if it stays on this lane
+
+    Returns:
+        actions (list[Dict]): actions to take; one dict for each vehicle; dict keys are:
+        - 'veh_id'
+        - 'acceleration' (float, m/s^2); positive for acceleration, negative for deceleration
+        - 'lane_changing' (int: +1=left, 0=keep, -1=right)
+    """
+```
 
 ### Important Notes
 1. Make sure your rewritten function maintains the same inputs and outputs as the original function, but with improved Performance.
-2. You can use traci APIs to inspect vehicle state that are not included in the inputs; but DO NOT alter vehicle state (like changing speed, lane-changing behavior, etc.) directly using traci in your function.
-3. DO NOT use SUMO internal driving model to generate driving actions (e.g. use traci.vehicle.getAcceleration to get acceleration); find your own model.
-4. Never try to control vehicles not included in the `vehicles_info` list.
+2. You can use traci APIs to inspect vehicle state that are not included in the inputs; but do not directly alter vehicle state (like changing speed, lane-changing behavior, etc.) using traci in your function.
+3. DO NOT use SUMO internal driving model to generate driving actions (e.g. use traci.vehicle.getAcceleration to get acceleration); find your own driving model.
+4. `vehicles_info` list contains the info of vehicles on the target edge. Never try to control vehicles not on the target edge.

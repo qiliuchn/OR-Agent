@@ -20,8 +20,8 @@ from typing import Dict, Mapping
 import <solution_moodule> as solution_module  # Note: solution module script is generated and saved on the fly
 
 # =====Load function to evolve=====
-function_to_evolve = "driving_actions"  # name of the function to evolve
-driving_actions = getattr(solution_module, function_to_evolve)
+problem = "driving"
+driving_actions = getattr(solution_module, "driving_actions")  # Get function to evolve
 
 # =====Utils for driving problem: test metrics conversion=====
 # Type aliases

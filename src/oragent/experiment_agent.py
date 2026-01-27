@@ -251,8 +251,9 @@ class ExperimentAgent:
         
         # =====ExperimentAgent settings=====
         self.max_experiment_repeats = self.config['max_experiment_repeats']  # max number of times to repeat experiments for a solution
-        self.reflection_disabled_for_crossover = self.config['reflection_disabled_for_crossover']  # whether long-term reflection is disabled  when doing crossover
+        self.elitist_experiment_factor = self.config['elitist_experiment_factor']  # factor to multiply when doing experiment on elitist
         self.evaluation_description_disabled = self.config['evaluation_description_disabled']
+        self.fast_exploration_for_crossover = self.config['fast_exploration_for_crossover']  # whether to use fast exploration for crossover
         self.verbose = self.config['verbose']
         
         # =====Load problem data and prompts=====
@@ -345,7 +346,7 @@ class ExperimentAgent:
     def reflect(self, 
                 parent_solutions: Union[Solution, List[Solution]], 
                 solution: Solution, 
-                long_term_reflection,
+                long_term_reflection: str,
                 #other_context=None,
                 ):
         """
@@ -468,7 +469,8 @@ class ExperimentAgent:
             parent_solutions: Union[Solution, List[Solution]], 
             solution: Solution, 
             long_term_reflection: Union[str, None]=None,
-            elitist_parent: bool=False,
+            use_long_term_reflection: bool=False,
+            is_elitist: bool=False
             ):
         """
         Conducts experiments on candidate solutions to evaluate their performance. 
@@ -479,7 +481,8 @@ class ExperimentAgent:
             parent_solutions (Union[Solution, List[Solution]): parent solution(s).
             solution (Solution): solution that only contains the idea and code yet
             long_term_reflection (str): long term reflection from previous experiments
-            elitist_parent (bool): whether elitist is used as root solution; default False.
+            use_long_term_reflection (bool): whether elitist is used as root solution; default False.
+            is_elitist (bool): whether current solution is elitist; default False.
             
         Returns:
             solution (Solution): the updated solution; updated fields include:
@@ -497,13 +500,13 @@ class ExperimentAgent:
         # Handle long-term reflection for crossover
         # for mutation on elitist, we always use long-term reflection
         # for crossover, we may not want to provide long-term reflection
-        if not elitist_parent and self.reflection_disabled_for_crossover:
+        if not use_long_term_reflection:
             long_term_reflection = "None"
             print("\n>>>[ExperimentAgent] Long-term reflection is not used.")
         else:
             print("\n>>>[ExperimentAgent] Long-term reflection is used.")
         
-        long_term_reflection = long_term_reflection if long_term_reflection else "(empty)"
+        long_term_reflection = long_term_reflection if long_term_reflection else "None"
         
         # Clear intermediate results in solution
         solution.intermediate_codes = []  # code
@@ -524,8 +527,15 @@ class ExperimentAgent:
         termination = 'no'
         code_diff = None
         
+        # we choose to spend on more time doing experiments for elitist solution
+        # TODO: "how to fast explore in experiments?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
+        if is_elitist:
+            max_experiment_repeats = int(self.max_experiment_repeats * self.elitist_experiment_factor)
+        else:
+            max_experiment_repeats = self.max_experiment_repeats
+        
         experiment_count = 0
-        while experiment_count < self.max_experiment_repeats:  # when self.max_experiment_repeats is 0, no experiment is conducted, directly go to summarization step
+        while experiment_count < max_experiment_repeats:  # when self.max_experiment_repeats is 0, no experiment is conducted, directly go to summarization step
             experiment_count += 1
             
             # -----1.1. Evaluate the code-----
@@ -668,18 +678,21 @@ Give it your best shot and make sure that the last solution code is executable."
         # here we revert back to previous best solutions
         # Find the index of the best score (maximum if self.obj_type == 'max', minimum if self.obj_type == 'min')
         # Handle None values by filtering them out
-        valid_scores = [(i, score) for i, score in enumerate(solution.intermediate_scores) if score is not None]
+        valid_scores = [(i, score) for i, score in enumerate(solution.intermediate_scores) if score]
 
         if not valid_scores:
-            # If all scores are None, use the first solution
-            best_sol_idx = 0
+            # If all scores are None, use the current solution; for example, experiment 0 times
+            best_sol_idx = None
         elif self.obj_type == 'max':
             best_sol_idx = max(valid_scores, key=lambda x: x[1])[0]
         else:  # self.obj_type == 'min'
             best_sol_idx = min(valid_scores, key=lambda x: x[1])[0]
 
         # Update `solution` using this intermediate solution
-        if not solution.score or (self.obj_type == 'max' and solution.intermediate_scores[best_sol_idx] > solution.score) or (self.obj_type == 'min' and solution.intermediate_scores[best_sol_idx] < solution.score):
+        # Note: best_sol_idx may be 0, and 0 is valid index; don't use `if best_sol_idx`
+        if (not solution.score and best_sol_idx != None) \
+            or (best_sol_idx != None and self.obj_type == 'max' and solution.intermediate_scores[best_sol_idx] > solution.score) \
+            or (best_sol_idx != None and self.obj_type == 'min' and solution.intermediate_scores[best_sol_idx] < solution.score):
             print(f"\n>>>[ExperimentAgent] Revert back to previous code version | score reverted from {solution.score} to {solution.intermediate_scores[best_sol_idx]}")
             solution.code = solution.intermediate_codes[best_sol_idx]
             solution.output = solution.intermediate_outputs[best_sol_idx]

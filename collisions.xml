@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-01-26 21:25:01 by Eclipse SUMO sumo Version 1.20.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/Users/liuqi/Desktop/or_agent/problems/driving/dataset/case_1.net.xml"/>
+        <route-files value="/Users/liuqi/Desktop/or_agent/problems/driving/dataset/case_1.rou.xml,/Users/liuqi/Desktop/or_agent/problems/driving/dataset/ case_1_demand.rou.xml"/>
+    </input>
+
+    <output>
+        <collision-output value="collisions.xml"/>
+        <statistic-output value="stats.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="600"/>
+        <step-length value="1.0"/>
+    </time>
+
+    <processing>
+        <collision.action value="warn"/>
+    </processing>
+
+    <report>
+        <no-warnings value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <ssm_device>
+        <device.ssm.probability value="1.0"/>
+        <device.ssm.measures value="TTC"/>
+        <device.ssm.thresholds value="1.5"/>
+        <device.ssm.file value="/Users/liuqi/Desktop/or_agent/ssm.xml"/>
+    </ssm_device>
+
+    <traci_server>
+        <remote-port value="58124"/>
+    </traci_server>
+
+</configuration>
+-->
+
+<collisions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/collision_file.xsd">
+    <collision time="336.00" type="collision" lane="E5_0" pos="19.28" collider="veh_6_9_0" victim="veh_1_3_0" colliderType="passenger" victimType="truck" colliderSpeed="4.89" victimSpeed="1.30"/>
+</collisions>

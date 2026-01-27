@@ -33,7 +33,7 @@ Evaluating current solution code generate the following output:
 
 
 ## Task
-Debug and fix the above code to resolve the issues. Your debugging should:
+Debug and fix the above code to resolve the issues.
 
 ### Requirements
 1. **Maintain Exact Function Signature**: Keep the same function name, arguments, and return types

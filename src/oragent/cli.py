@@ -176,7 +176,13 @@ def main():
         "--elitist-enlargement-factor",
         type=float,
         default=None,
-        help="Enlargement factor for elitist when used as root"
+        help="Children enlargement factor for elitist as parent"
+    )
+    parser.add_argument(
+        "--elitist-experiment-factor",
+        type=float,
+        default=None,
+        help="Experiment enlargement factor for elitist solution"
     )
     parser.add_argument(
         "--reflection-compression",
@@ -330,6 +336,9 @@ def main():
         if args.elitist_enlargement_factor != None:
             config['elitist_enlargement_factor'] = args.elitist_enlargement_factor
         
+        if args.elitist_experiment_factor != None:
+            config['elitist_experiment_factor'] = args.elitist_experiment_factor
+        
         if args.reflection_compression != None:
             config['reflection_compression'] = args.reflection_compression
             
@@ -410,6 +419,7 @@ def main():
     print(f">>>[OR-Agent] max_experiment_repeats: {config['max_experiment_repeats']}")
     print(f">>>[OR-Agent] elitist_as_root_period: {config['elitist_as_root_period']}")
     print(f">>>[OR-Agent] elitist_enlargement_factor: {config['elitist_enlargement_factor']}")
+    print(f">>>[OR-Agent] elitist_experiment_factor: {config['elitist_experiment_factor']}")
     print(f">>>[OR-Agent] reflection_compression: {config['reflection_compression']}")
     print(f">>>[OR-Agent] reflection_period: {config['reflection_period']}")
     print(f">>>[OR-Agent] reflection_clearance_period: {config['reflection_clearance_period']}")

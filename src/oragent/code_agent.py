@@ -201,7 +201,7 @@ class CodeAgent:
             parent_solutions: Union[Solution, List[Solution]], 
             long_term_reflection: str, 
             solution: Solution,
-            elitist_parent: bool=False,
+            use_long_term_reflection: bool=False,
             ):
         """
         Generate ideas for improving ideas.
@@ -210,24 +210,27 @@ class CodeAgent:
             parent_solutions (Union[Solution, List[Solution]): parent solution(s).
             long_term_reflection (Str): long term reflection of the lead agent.
             solution (Solution): currently solution that only contains the idea.
-            elitist_parent (bool): whether elitist is used as root solution; default False.
+            use_long_term_reflection (bool): whether use long-term reflection; default False.
             
         Returns:
             solution (Solution): solution with code, metrics, features, score updated
         """
         print(f"\n>>>[CodeAgent] Starts to work on solution {solution.id_str(algorithm=self.algorithm)}...")
         
-        if not isinstance(parent_solutions, List):
+        if parent_solutions and not isinstance(parent_solutions, List):
             parent_solutions = [parent_solutions]
         
         # =====1. Generate code based on the idea=====
         # convert parent solutions to string
-        parent_solutions_str = utils.parents_to_str(parent_solutions)
+        if parent_solutions:
+            parent_solutions_str = utils.parents_to_str(parent_solutions)
+        else:
+            parent_solutions_str = "None"
         
         # Handle long-term reflection for crossover
         # for mutation on elitist, we always use long-term reflection
         # for crossover, we may not want to provide long-term reflection
-        if not elitist_parent and self.reflection_disabled_for_crossover:
+        if not use_long_term_reflection:
             long_term_reflection = "None"
             print("\n>>>[CodeAgent] Long-term reflection is not used for this generation.")
         else:

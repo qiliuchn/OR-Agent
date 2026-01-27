@@ -20,29 +20,7 @@ import seed_solution as solution_module  # Note: solution module script is gener
 
 # =====Load function to evolve=====
 problem = "driving"
-function_to_evolve = "driving_actions"  # name of the function to evolve
-# Robust way to get the name of the function to evolve
-def get_function_name(module, possible_names: list[str]):
-    """ 
-    Args:   
-        module: module to search for heuristic function
-        possible_names: list of possible names for function to evolve
-    
-    Used in eval script.
-    
-    Usage:
-        possible_func_names = ["heuristics", "heuristics_v1", "heuristics_v2", "heuristics_v3"]
-        heuristic_name = get_function_name(gpt, possible_func_names)
-    """
-    for func_name in possible_names:
-        if hasattr(module, func_name):
-            if inspect.isfunction(getattr(module, func_name)):
-                return func_name
-
-possible_func_names = [function_to_evolve, function_to_evolve + "_v1", function_to_evolve + "_v2", function_to_evolve + "_v3"]
-heuristic_name = get_function_name(solution_module, possible_func_names)
-driving_actions = getattr(solution_module, heuristic_name)
-
+driving_actions = getattr(solution_module, "driving_actions")  # Get function to evolve
 
 
 # =====Helper functions=====
@@ -299,6 +277,7 @@ def evaluate(root_dir, file_output_prefix=''):
         callbacks = None
             
     test_names = ["case_0", "case_1"]  # list of test names; options: case_0 (low demand), case_1 (high demand)
+    print("\nTest Cases\ncase_0: low traffic demand\nCase_1: high traffic demand\n")
     metrics_per_test = {}  # initialize the return
     
     for test_name in test_names:
@@ -342,11 +321,11 @@ def evaluate(root_dir, file_output_prefix=''):
             #"--emission-output",  out_prefix + "emissions.xml",
             "--collision-output", file_output_prefix + "collisions.xml",
             "--device.ssm.probability", "1.0",
-            "--device.ssm.file",  file_output_prefix + "ssm.xml" if file_output_prefix else os.getcwd() + '/ssm.xml',  # Note: The SSM output file is being created relative to the SUMO config file's directory. Use absolute path for ssm.xml.
+            "--device.ssm.file",  os.getcwd() + '/' + file_output_prefix + "ssm.xml" if file_output_prefix else os.getcwd() + '/ssm.xml',  # Note: The SSM output file is being created relative to the SUMO config file's directory. Use absolute path for ssm.xml.
             "--device.ssm.measures", "TTC",
             "--device.ssm.thresholds", "1.5",
         ]
-        traci.start(sumo_cmd, numRetries=200)
+        traci.start(sumo_cmd, numRetries=100)
         
         
         # -----Create `edge_info` var - holds the information of the road segment to analyze-----

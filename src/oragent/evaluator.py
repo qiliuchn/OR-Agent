@@ -255,7 +255,9 @@ class Evaluator:
         # =====Load problem scripts=====
         self.problem_dir = f"{self.project_root}/problems/{self.problem}"
         #self.prompt_dir = f"{self.project_root}/prompts"
-        self.output_dir = self.config['output_dir'] or f"{self.project_root}/outputs/{self.algorithm}/{self.problem}"
+        # output directory; Note: use relative path!
+        #self.output_dir = self.config['output_dir'] or f"{self.project_root}/outputs/{self.algorithm}/{self.problem}"
+        self.output_dir = self.config['output_dir'] or f"outputs/{self.algorithm}/{self.problem}"
         os.makedirs(self.output_dir, exist_ok=True)
         os.makedirs(f"{self.output_dir}/details", exist_ok=True)  # folder to store details
         # Load eval file as string
@@ -330,7 +332,7 @@ class Evaluator:
         if self.eval_env_vars:
             env.update(self.eval_env_vars)
         # In case eval script needs to output some files, we provide an `output_prefix` for better logging
-        file_output_prefix = f"{self.output_dir}/details/{solution.id_str(self.algorithm)}_file_"
+        file_output_prefix = f"{self.output_dir}/details/{solution.id_str(self.algorithm)}_file_"  # use relative path!
         # Stdout during execution is also saved to local file
         output_filepath = f"{self.output_dir}/details/{solution.id_str(self.algorithm)}_stdout.txt"
         solution.output_filepath = output_filepath  # update solution field
