@@ -776,6 +776,9 @@ Parent #2:
 def truncate(raw_output: str, max_lines=100) -> str:
     """
     Truncate experiment output if it's too verbose.
+    Many failures are at the tail (traceback last lines).
+	keep both head+tail (e.g., first 50 lines + last 50 lines) and include a “traceback extractor” heuristic.
+    TODO: 
     
     Args:
         raw_output (str): experiment output

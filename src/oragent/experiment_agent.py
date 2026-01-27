@@ -454,8 +454,11 @@ class ExperimentAgent:
         
             response_extracted = utils.extract_json(response)
             if response_extracted:
-                reflection = response_extracted['summary']
-                self.valid_responses += 1
+                try:
+                    reflection = response_extracted['summary']
+                    self.valid_responses += 1
+                except KeyError:
+                    print(f"\n>>>[ExperimentAgent] Warning: JSON response does not contain 'summary' field (attempt {attempt}):\n{response}")
                 break
             else:
                 print(f"\n>>>[ExperimentAgent] Warning: LLM response could not be parsed as JSON (attempt {attempt}):\n{response}")
@@ -642,8 +645,8 @@ Give it your best shot and make sure that the last solution code is executable."
                 break
             
             # -----1.5. Check max_experiment_repeats-----   
-            if experiment_count >= self.max_experiment_repeats:
-                print(f"\n>>>[ExperimentAgent] Reached max_experiment_repeats ({self.max_experiment_repeats}). Terminating experiment.\n")
+            if experiment_count >= max_experiment_repeats:
+                print(f"\n>>>[ExperimentAgent] Reached max_experiment_repeats ({max_experiment_repeats}). Terminating experiment.\n")
                 break
 
 
@@ -678,7 +681,7 @@ Give it your best shot and make sure that the last solution code is executable."
         # here we revert back to previous best solutions
         # Find the index of the best score (maximum if self.obj_type == 'max', minimum if self.obj_type == 'min')
         # Handle None values by filtering them out
-        valid_scores = [(i, score) for i, score in enumerate(solution.intermediate_scores) if score]
+        valid_scores = [(i, score) for i, score in enumerate(solution.intermediate_scores) if score is not None]
 
         if not valid_scores:
             # If all scores are None, use the current solution; for example, experiment 0 times
@@ -690,7 +693,7 @@ Give it your best shot and make sure that the last solution code is executable."
 
         # Update `solution` using this intermediate solution
         # Note: best_sol_idx may be 0, and 0 is valid index; don't use `if best_sol_idx`
-        if (not solution.score and best_sol_idx != None) \
+        if (solution.score is None and best_sol_idx is not None) \
             or (best_sol_idx != None and self.obj_type == 'max' and solution.intermediate_scores[best_sol_idx] > solution.score) \
             or (best_sol_idx != None and self.obj_type == 'min' and solution.intermediate_scores[best_sol_idx] < solution.score):
             print(f"\n>>>[ExperimentAgent] Revert back to previous code version | score reverted from {solution.score} to {solution.intermediate_scores[best_sol_idx]}")

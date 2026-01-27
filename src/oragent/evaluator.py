@@ -455,7 +455,7 @@ class Evaluator:
         
         raw_output, metrics, features, score = self.run(individual)
         
-        if score:
+        if score is not None:
             individual.metrics = metrics
             individual.features = features
             individual.score = score
