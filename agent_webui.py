@@ -1,4 +1,4 @@
-# agent.py
+# agent_webui.py
 """ 
 # WebUI for Open Research Agent
 User can start OR-Agent research and monitor research progress using this web UI.

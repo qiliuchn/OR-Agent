@@ -1,4 +1,4 @@
-# canvas.py
+# canvas_webui.py
 """ 
 # Open Research Canvas
 User can use Open Research Canvas to:
