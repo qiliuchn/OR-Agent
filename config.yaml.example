@@ -50,24 +50,36 @@ num_parents: 2  # number of parents to start research (ORAgent) or for crossover
 autosave_interval_minutes: 180  # autosaving interval
 max_evolutions: 500  # maximum number of "evolutions"; termination condition; the exact meaning of "evolution" can be freely defined by users; in the current version of OR-Agent, we terminate only if total number LLM responses and function evaluations > `max_evolutions`;
 verbose: true  # whether to print out detailed experiment information; default: false
+output_dir: null  # output directory; default: null PS: each agent will decide default output directory
 # -----Settings for OR-Agent-----
 num_lead_agents: 1  # number of lead agents work in parallel; if > 1, multiprocessing will be used; default: 1
 max_research_rounds: 10000  # maximum number of research rounds; default: 1000
 num_children: 2  # number of children to generate for one solution node in the research tree; default: 4
-max_tree_depth: 2  # maximum depth of the research tree; root node has depth 0; None means no constraint; default: null
+max_tree_depth: 3  # maximum depth of the research tree; root node has depth 0; None means no constraint; default: null
 fast_exploration_for_crossover: true  # whether to use fast exploration for crossover; default: false
-max_debug_rounds: 2  # maximum number of attempts to debug code (ExperimentAgent of oragent); default: 5
-max_experiment_repeats: 3  # maximum number of times to repeat the experiment for a solution node; default: 16
+max_debug_rounds: 3  # maximum number of attempts to debug code (ExperimentAgent of oragent); default: 5
 elitist_as_root_period: 11  # the research rounds period for re-using elitist as root; "0" means never directly use elitist as root; default: 3
 elitist_enlargement_factor: 1.0  # the enlargement factor for elitist when used as root; int(elitist_enlargement * num_children) many children will be generated for elitist; default: 1.0
-elitist_experiment_factor: 3.4  # if parent is elitist, spend more time on experiments; max experiments = elitist_experiment_factor * max_experiment_repeats
+elitist_experiment_factor: 2  # if parent is elitist, spend more time on experiments; max experiments = elitist_experiment_factor * max_experiment_repeats
+# Dynamic Experiment Allocation Settings
+dynamic_experiment_allocation: true  # whether to use dynamic experiment allocation based on solution potential
+min_experiment_repeats: 3  # minimum experiments to allocate
+max_experiment_repeats: 6  # maximum number of times to repeat the experiment for a solution node; default: 16
+max_experiment_repeats_cap: 12  # maximum experiments cap
+improvement_threshold: 0.05  # 5% improvement threshold for allocating more experiments
+# Progressive Summarization Settings
+progressive_summarization: true  # whether to use progressive summarization to manage context size
+summarization_interval: 4  # summarize every N experiments
+compact_history_length: 0  # keep last N detailed experiments after summarization
+# Long-term reflection settings
 reflection_compression: null  # the limit (number of words) on long-term memory compression between research rounds; null means no compression; default: null
 reflection_period: null  # the batch size of experiment reflections used to update long-term memory; null or 0 means no automatic periodic update; default: 5
 reflection_clearance_period: null  # the research rounds period for clearing long-term memory; null means no clearance; default: null
-reflection_disabled_for_crossover: false  # whether to disable using long-term reflection when doing crossover; default: false
-reflection_elitist_synchro: false  # whether reflection update should be synchronized with elitist as root event; default: false
+reflection_disabled_for_crossover: true  # whether to disable using long-term reflection when doing crossover; default: false
+reflection_elitist_synchro: true  # whether reflection update should be synchronized with elitist as root event; default: false
 evaluation_description_disabled: false  # whether to disable using eval description; default: false
 ideas_coordinated_generation_disabled: false  # whether to disable ideas generation coordination; default: false
+external_knowledge_persistence_disabled: false  # whether to disable external knowledge persistence; default: false
 # -----Settings for ReEvo, EoH, AEL, and FunSearch-----
 pop_size: 10  # population size (ReEvo, EoH, AEL)
 mutation_rate: 0.5  # mutation rate (AEL)

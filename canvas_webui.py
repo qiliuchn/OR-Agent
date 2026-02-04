@@ -1,44 +1,57 @@
 # canvas.py
 """ 
 # Open Research Canvas
-User can create problem, start OR-Agent research and monitor research progress using this web UI.
+User can use Open Research Canvas to:
+1) define research problem (in "Problem Definition Section"), 
+2) start research agent (in "Agent Control Section") and 
+3) monitor research progress (in "Agent Output Section").
 
 
 ## Layout illustration
 +------------------------------------------------------------+
-|      Open Research Canvas                                  |      Header section
+|      Open Research Canvas                                  |       Header Section
 +------------------------------------------------------------+
-|  +--------+ +-------------------------------------------+  |
-|  |Pbm Name| |           Problem Description             |  |      Problem Description Section
-|  +--------+ +-------------------------------------------+  |
-|  +-------------+ +--------------------------------------+  |
-|  |Ext knowledge| | Function Description                 |  |      Solution Description Section
-|  +-------------+ +--------------------------------------+  |
-|  +--------------------------------------+ +-------------+  |
-|  |  Evaluation                          | |    Dataset  |  |      Evaluation Section
-|  |                                      | |  Generation |  |
-|  +--------------------------------------+ +-------------+  |
-|  +-------------+ +--------------------------------------+  |
-|  |Seed Sol Idea| |         Seed Solution                |  |      Ideation Section
-|  +-------------+ +--------------------------------------+  | 
+|  Problem Description  [Load Pbm][Submit Btn][LLM-gen Btn]  |     
+|  +--------+ +-----------------------+ +-----------------+  |
+|  |Pbm Name| |Pbm Description        | | Ext knowledge   |  |       Problem Definition Section - Subsection 1) Problem Description
+|  +--------+ +-----------------------+ +-----------------+  |
+|                                                            |       
+|  Evaluation Description        [Submit Btn] [LLM-gen Btn]  |             
+|  +------------------+ +---------------------------------+  |
+|  |Function Signature| |      Evaluation Script          |  |       Problem Definition Section - Subsection 2) Evaluation Description
+|  +------------------+ +---------------------------------+  |
+|                                                            |  
+|  Test Dataset          [Submit Btn][LLM-gen Btn][Run Btn]  |  
+|  +------------------+ +---------------------------------+  |
+|  |Data Files Visual | |       Dataset Generation Script |  |       Problem Definition Section - Subsection 3) Test Dataset Generation
+|  +------------------+ +---------------------------------+  |
+|                                                            |  
+|  Seed Solution          [Submit Btn][LLM-gen Btn][Run Btn] |
+|  +-----------------+ +----------------------------------+  |
+|  |Seed Sol Idea    | |      Seed Solution Script        |  |       Problem Definition Section - Subsection 4) Seed Solution Generation
+|  +-----------------+ +----------------------------------+  | 
+|                                                            |
+|  Agent Control                                             |
 |  +------------------------------------------------------+  |
-|  |[Gen config][Select problem][Select alg][Start][Stop] |  |      Agent Control section
+|  |[Gen config][Select problem][Select alg][Start][Stop] |  |       Agent Control Section
 |  +------------------------------------------------------+  |
+|                                                            |     
+|  Agent Output                                              |
 |  +-------------+  +-------------------------------------+  |
 |  |   Solution  |  |                                     |  |
 |  | Performance |  |                                     |  |
 |  |     Info    |  |            Real-time                |  |
-|  +-------------+  |            System Messages          |  |       Agent Output section
+|  +-------------+  |            System Messages          |  |       Agent Output Section - Subsection 1) Metrics, Config, Progress & Messages Display
 |  +-------------+  |            Scroll Window            |  |
 |  |   Research  |  |                                     |  |
 |  |   Progress  |  |                                     |  |
 |  +-------------+  +-------------------------------------+  |
 |  +------------------------------------------------------+  |
-|  |         Long-term reflections (optional)             |  |       Agent Long-Term Reflection Section
+|  |         Long-term reflections (optional)             |  |       Agent Output Section - Subsection 2) Long-Term Reflection Display
 |  |         User feedback input                          |  |
 |  +------------------------------------------------------+  |
 |  +------------------------------------------------------+  |
-|  |         Solution Database Info (optional)            |  |       Agent Solution Database Section
+|  |         Solution Database Info (optional)            |  |       Agent Output Section - Subsection 3) Solution Database Display
 |  |                                                      |  |
 |  +------------------------------------------------------+  |
 +------------------------------------------------------------+
@@ -48,24 +61,122 @@ User can create problem, start OR-Agent research and monitor research progress u
 
 
 ## Functionality
+
+### Problem Definition Section
+Problem Definition Section is the place where user and LLM collaborate to define the research problem, including:
+ - problem description
+ - evaluation description
+ - test dataset generation
+ - seed solution generation
+
+**Problem Definition Section - Subsection 1) Problem Description**
+This subsection has a drop-down list to select a problem from the list of existing problems
+ - Drop-down list `Load Pbm`: user can select a problem from the list of existing problems; default None, which means don't load any problem;
+  Check `problems/` folder for existing problems; the directory names are the existing problem names;
+  the problem name selected is stored in variable `problem_name`;
+  if user selects a problem, then `Pbm Name` text box will be updated with the problem name;
+  other text boxes like `Pbm Description`, `Ext knowledge`, `Function Signature`, `Evaluation Script`,
+  `Dataset Generation Script`, `Seed Sol Idea`, `Seed Solution Script` will also be updated by loading corresponding files from `problems/<problem_name>/` folder;
+  See below subsection explanations for more details about which files should be loaded to update those text boxes.
+  `Data Files Visual` display area will also be updated.
+
+This subsection has three text boxes:
+ - Text box `Pbm Name`: user input a problem name for creating a new problem, stored in variable `problem_name`; 
+   this text box is disabled for user input if user selects a problem from the drop-down list `Load Pbm`;
+ - Text box `Pbm Description`: user input problem description text, stored in variable `problem_description` (required)
+ - Text box `Ext knowledge`: user input external knowledge text about how to solve the problem, stored in variable `external_knowledge` (optional); None if not exists
+
+This subsection has three buttons:
+ - Button `Submit Btn`: user click this button then create folder `problems/<problem_name>` and `problems/<problem_name>/dataset/` if not exists;
+   And create a file `problems/<problem_name>/problem_description.txt` and write `problem_description` into it;
+   if `external_knowledge` is not None, create a file `problems/<problem_name>/external_knowledge.txt` and write `external_knowledge` into it;
+ - Button `LLM-gen Btn`: user click this button, 
+    Invoke `orcanvas.problem_description.generate_problem_description` function to generate a polished problem description text,
+    and update `problems/<problem_name>/problem_description.txt`;
+    `Pbm Description` text box will also be updated with the updated problem description;
+ 
+ 
+**Problem Definition Section - Subsection 2) Evaluation Description**
+There are two text boxes:
+ - Text box `Function Signature`: the function signature of the function to be optimized, user can input it here, or leave it empty (optional);
+ - Text box `Evaluation Script`: user input evaluation script (optional);
+ 
+And this subsection has two buttons:
+ - Button `Submit Btn`: user click this button, store user input from `Function Signature` text box in variable `function_signature`; None if no user input; 
+    if `function_signature` not None, write `function_signature` to file `problems/<problem_name>/function_description.txt`;
+    Store text from "Evaluation Script" text box in variable `evaluation_script`; None if no user input; 
+    if `evaluation_script` not None, write `evaluation_script` to file `problems/<problem_name>/eval.py`;
+    
+ - Button `LLM-gen Btn`: user click this button, invoke `orcanvas.evaluation_description.generate_evaluation_description` function to generate a polished evaluation script and function signature, as well as function to evolve and objective type
+ and write them into `problems/<problem_name>/eval.py` and `problems/<problem_name>/function_description.txt` respectively;
+ Also create `problems/<problem_name>/settings.yaml` file with content like:
+ ```yaml
+"function_to_evolve": "heuristics"
+"obj_type": "min"
+ ```
+ 
+ 
+**Problem Definition Section - Subsection 3) Test Dataset Generation**
+This subsection has an display area:
+ - Area `Data files Visual`: displaying files in the folder `problems/<problem_name>/dataset/` if `problem_name` is not None;
+  Use st.code;
+
+This subsection also has a text box:
+ - Text box `Dataset Generation Script`: user input test dataset generation script (optional);
+ 
+And three buttons:
+ - Button `Submit Btn`: user click this button, store user input from "Dataset Generation Script" text box in variable `dataset_generation_script`; None if no user input; 
+    if `dataset_generation_script` not None, write `dataset_generation_script` to file `problems/<problem_name>/generate_dataset.py`;
+ - Button `LLM-gen Btn`: user click this button, invoke `orcanvas.test_dataset_generation.generate_test_dataset` function to generate a polished test dataset generation script 
+ and update `problems/<problem_name>/generate_dataset.py`;
+ Text box `Dataset Generation Script` will also be updated with the updated test dataset generation script;
+ - Button `Run Btn`: user click this button, run `problems/<problem_name>/generate_dataset.py` in a separate process to generate test dataset;
+ Area `Data files Visual` will be updated to show the newly generated files;
+ 
+ 
+**Problem Definition Section - Subsection 4) Seed Solution Description**
+This subsection has two text boxes:
+ - `Seed Solution Idea`: user input a seed solution idea (optional);
+ - `Seed Solution Script`: user input seed solution script (optional);
+
+This subsection has three buttons:
+ - Button `Submit Btn`: user click this button, store user input from `Seed Solution Idea` text box in variable `seed_solution_idea`; None if no user input; 
+    if `seed_solution_idea` not None, write `seed_solution_idea` to file `problems/<problem_name>/seed_solution_idea.txt`;
+    Store text from `Seed Solution Script` text box in variable `seed_solution_script`; None if no user input;
+    If `seed_solution_script` not None, write `seed_solution_script` to file `problems/<problem_name>/seed_solution.py`;
+ - Button `LLM-gen Btn`: user click this button, invoke `orcanvas.seed_solution_generation.generate_seed_solution` function to generate a polished seed solution idea and script;
+ and update `problems/<problem_name>/seed_solution_idea.py` and `problems/<problem_name>/seed_solution.py` respectively;
+ Also update text box `Seed Solution Idea` and `Seed Solution Script` with the updated seed solution idea and script;
+ - Button `Run Btn`: user click this button, run `problems/<problem_name>/eval.py` in a separate process to evaluate the seed solution;
+
+
+
+
+
+
+
+### Agent Control section
+Control section have the following items:
+ - "Generate config" button: user click this, invoke `python src/oragent/cli.py --init-config` to generate a config.yaml file at current working directory.
+ - "Select checkpoint" drop-down list: the drop-down list will include all checkpoints in `<project_root>/checkpoints` directory.
+ - "Select problem" drop-down list: the drop-down list will include all problems in `<project_root>/problems` directory.
+ - "Select algorithm" drop-down list: the drop-down list will include options: "ORAgent", "ReEvo", "EoH", "AEL", "FunSearch".
+ - "Start" button: user click this, invoke `python src/oragent/cli.py --algorithm=<algorithm>` or `--problem=<problem>` to start the backend process.
+ - "Stop" button: user click this, stop the backend process. 
+
+
+
+
+### Agent Output Section
+Webui will check the files in the output directory for update every few seconds.
 WebUI need to display the following types of messages:
  - real-time system messages
  - solution performance info
  - research progress info
  - solution database info (optional)
- 
-
-### Control section
-Control section have the following items:
- - "Gen config" button: user click this, invoke `python src/oragent/cli.py --init-config` to generate a config.yaml file at current working directory.
- - "Select checkpoint" drop-down list: the drop-down list will include all checkpoints in `<project_root>/checkpoints` directory.
- - "Select problem" drop-down list: the drop-down list will include all problems in `<project_root>/problems` directory.
- - "Select alg" drop-down list: the drop-down list will include options: "ORAgent", "ReEvo", "EoH", "AEL", "FunSearch".
- - "Start" button: user click this, invoke `python src/oragent/cli.py --algorithm=<algorithm>` or `--problem=<problem>` to start the backend process.
- - "Stop" button: user click this, stop the backend process. 
 
 
-### Real-time system messages display
+**Real-time system messages display**
 Messages are strings send to backend stdout.
 ">>>[OR-Agent] Make sure that your problem has already been defined in \"[CWD]/problems\" directory"
 "\n>>>[FunSearch] FunSearch initialized"
@@ -79,7 +190,7 @@ different colors for different entities;
 when new messages come, old messages will scroll automatically.
 
 
-### Solution performance info display
+**Solution performance info display**
 WebUI will also display the progress of the research process in the research progress section.
 Solution performance info is stored in `<project_root>/outputs/<algorithm>/<problem>/results.json`.
 WebUI will display the solution performance curve; x-axis is "total_responses", y-axis is "best_obj_overall".
@@ -98,7 +209,7 @@ results.json is updated every time a new best solution is obtained.
 If the file does not exist, display a message saying "No solution performance info available".
 
 
-### Research progress info display
+**Research progress info display**
 Research progress info is a text file stored in `<project_root>/outputs/<algorithm>/<problem>/progress.txt`.
 Example:
 ```
@@ -115,7 +226,7 @@ WebUI will display the research progress info in the research progress section.
 If the file does not exist, display a message saying "No research progress info available".
 
 
-### Solution database info display (optional)
+**Solution database info display (optional)**
 Solution database info is a text file stored in `<project_root>/outputs/<algorithm>/<problem>/database.txt`.
 Database has islands;
 each island has many clusters;
@@ -165,16 +276,6 @@ Best overall score: 0.900000 (Island 0)
 
 WebUI should load the text description; parse it in the right way; and display it in the solution database info section properly.
 If the file does not exist, display a message saying "No solution database info available".
-
-
-
-## Implementation
-Use streamlit to build the webui.
-Start the backend process and capture the stdout.
-Check the files in the output directory for update every few seconds.
-
-
-Check `src/oragent/cli.py` for the package command line interface.
 """
 import streamlit as st
 import subprocess
@@ -189,11 +290,11 @@ import re
 import plotly.graph_objects as go
 from datetime import datetime
 import sys
-from orcanvas import problem_description_section, solution_description_section, evaluation_section, ideation_section
+import orcanvas
 
 
 
-# Initialize session state
+#=====Initialize session state=====
 if 'process' not in st.session_state:
     st.session_state.process = None
 if 'messages' not in st.session_state:
@@ -203,6 +304,10 @@ if 'last_update' not in st.session_state:
 if 'message_queue' not in st.session_state:
     st.session_state.message_queue = queue.Queue()
 
+
+
+
+#=====Helper functions=====
 def load_experiment_config(problem=None):
     """Load experiment config from problems/<problem>/settings.yaml"""
     if not problem:
@@ -534,19 +639,34 @@ def parse_solution_database(content):
 
     return result
 
+
+
+
+
+
+#=====WebUI=====
 # Streamlit UI
 st.set_page_config(layout="wide", page_title="OR-Agent WebUI")
 
 
 
+#-----Header Section-----
 # Header section
 st.markdown("""
 <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-    <h1 style="margin: 0; color: #003366;">Open Research Agent</h1>
+    <h1 style="margin: 0; color: #003366;">Open Research Canvas</h1>
 </div>
 """, unsafe_allow_html=True)
 #st.markdown("---")
 
+
+
+#-----Problem Definition Section-----
+# TODO: 
+
+
+
+#-----Agent Control Section-----
 # Control section - 6 columns as per new layout
 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 
@@ -671,10 +791,11 @@ st.markdown("---")
 
 
 
-# Output section
+#-----Agent Output Section-----
 col_left, col_right = st.columns([1, 2])
 
 with col_left:
+    #----Agent Output Section - Solution Performance Info---
     # Solution Performance Info
     st.subheader("Solution Performance Info")
 
@@ -749,6 +870,9 @@ with col_left:
 
     st.markdown("---")
 
+
+
+    #---Agent Output Section - Experiment Config Info---
     # Experiment Config Info
     st.subheader("Experiment Configuration")
 
@@ -791,7 +915,9 @@ with col_left:
         st.info("No experiment configuration available")
 
 
+
 with col_right:
+    #---Agent Output Section - Real-time Messages---
     # Display Messages
     st.subheader("System Messages")
 
@@ -858,9 +984,11 @@ with col_right:
             else:
                 st.info("No saved history available. Run an experiment first to generate output.txt")
     
-    
     st.markdown("---")
 
+
+
+    #---Agent Output Section - Research progress Info---
     # Research Progress Info
     st.subheader("Research Progress Info")
 
@@ -871,11 +999,11 @@ with col_right:
     else:
         st.info("No research progress info available")
 
-        
-        
-        
 st.markdown("---")
 
+
+
+#---Agent Output Section - Long-term Reflection---
 # Display Long-term reflection if it exists
 st.subheader("Long-term Reflection")
 
@@ -916,6 +1044,7 @@ st.markdown("---")
 
 
 
+#---Agent Output Section - Solution Database Info---
 # Solution Database Info (optional)
 st.subheader("Solution Database Info")
 
@@ -971,7 +1100,9 @@ else:
 
 st.markdown("---")
 
-# Footer section
+
+
+#-----Footer section-----
 col1, col2, col3 = st.columns(3)
 with col1:
     st.markdown("**Developer**: MAGIC Lab, Tongji Univ.")

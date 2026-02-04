@@ -161,13 +161,74 @@ from oragent.utils import Solution
 from oragent.solution_database import SolutionDatabase
 
 
-# Utility functions
+# =====Utility functions=====
 def check_elitist(elitist: Solution, solution: Solution):
     """Check if `solution` can be regarded as the elitist."""
+    if solution.score is None:
+        print("\n>>>[LeadAgent] Warning: solution score is found None when checking elitist")
+        return False
     return abs(elitist.score - solution.score) < 1e-4
 
+def calculate_dynamic_experiment_allocation(parent_score: float, child_score: float,
+                                          base_max_repeats: int, min_repeats: int,
+                                          max_repeats_cap: int, improvement_threshold: float,
+                                          is_elitist: bool, elitist_factor: float,
+                                          obj_type: str = 'max') -> int:
+    """
+    Calculate dynamic experiment allocation based on solution potential.
+
+    Args:
+        parent_score: Score of parent solution
+        child_score: Score of child solution (initial evaluation)
+        base_max_repeats: Base number of experiments
+        min_repeats: Minimum experiments to allocate
+        max_repeats_cap: Maximum experiments cap
+        improvement_threshold: Threshold for significant improvement (e.g., 0.05 for 5%)
+        is_elitist: Whether this is an elitist solution
+        elitist_factor: Factor to multiply for elitist solutions
+        obj_type: Objective type - 'max' or 'min'
+
+    Returns:
+        Dynamic experiment count
+    """
+    if parent_score is None or child_score is None:
+        # If no scores available, use base value
+        allocated = base_max_repeats
+    else:
+        # Calculate actual improvement (positive if better, negative if worse)
+        if obj_type == 'max':
+            improvement = child_score - parent_score  # Positive if child is better
+        else:  # 'min'
+            improvement = parent_score - child_score  # Positive if child is better
+
+        # Calculate relative improvement
+        if parent_score != 0:
+            relative_improvement = improvement / abs(parent_score)
+        else:
+            relative_improvement = improvement
+
+        # Base allocation on improvement rate
+        if relative_improvement > improvement_threshold:
+            # High potential - allocate more experiments
+            allocated = min(int(base_max_repeats * (1 + relative_improvement / improvement_threshold)), max_repeats_cap)
+        elif relative_improvement > 0:
+            # Moderate improvement - use base
+            allocated = base_max_repeats
+        else:
+            # No improvement or worse - allocate minimum
+            allocated = min_repeats
+
+    # Apply elitist factor if needed
+    if is_elitist:
+        allocated = int(allocated * elitist_factor)
+
+    # Ensure within bounds
+    allocated = max(min_repeats, min(allocated, max_repeats_cap))
+
+    return allocated
 
 
+# =====Main class=====
 class LeadAgent:
     """Agent to orchestrate rounds of research."""
     _id_counter = 0  # Class variable shared by all instances; used to generate unique lead agent IDs
@@ -204,7 +265,7 @@ class LeadAgent:
         # =====LeadAgent settings=====
         # Lead agent id
         LeadAgent._id_counter += 1
-        self.init_pop_size = self.config['init_pop_size']  # initial population size 
+        self.init_pop_size = self.config['init_pop_size']  # initial population size
         self.num_parents = self.config['num_parents']  # number of parents used to start a round of research
         self.num_children = self.config['num_children']  # number of children to generate for each parent node in the tree
         self.max_tree_depth = self.config['max_tree_depth']  # maximum depth of the research tree
@@ -216,6 +277,15 @@ class LeadAgent:
         self.reflection_period = self.config['reflection_period']  # the batch size of experiment reflections used to update long-term memory
         self.reflection_clearance_period = self.config['reflection_clearance_period']  # the research rounds period for clearing long-term memory; None means no clearance
         self.reflection_elitist_synchro = self.config['reflection_elitist_synchro']  # whether reflection update should be synchronized with elitist as root
+
+        # =====Dynamic Experiment Allocation Settings=====
+        self.dynamic_experiment_allocation = self.config.get('dynamic_experiment_allocation', True)  # whether to use dynamic experiment allocation
+        self.base_max_experiment_repeats = self.config['max_experiment_repeats']  # base number of experiments
+        self.min_experiment_repeats = self.config.get('min_experiment_repeats', 1)  # minimum experiments
+        self.max_experiment_repeats_cap = self.config.get('max_experiment_repeats_cap', 10)  # maximum experiments cap
+        self.improvement_threshold = self.config.get('improvement_threshold', 0.05)  # 5% improvement threshold
+        self.elitist_experiment_factor = self.config['elitist_experiment_factor']  # factor for elitist solutions
+        self.reflection_disabled_for_crossover = self.config['reflection_disabled_for_crossover']  # whether long-term reflection is disabled  when doing crossover
         
         # =====Create LLM client=====
         self.llm_provider = self.config['model']['lead_agent_llm_provider']
@@ -375,7 +445,8 @@ class LeadAgent:
         ideas = self.idea_agent.run(parent_solutions=seed_solution,  # may be None if there is no seed solution
                                     long_term_reflection=self.long_term_reflection, 
                                     num_ideas=self.init_pop_size,
-                                    elitist_parent=True,
+                                    elitist_parent=True,  # use elitist mutation prompt
+                                    use_long_term_reflection=True,  # make use of long-term reflection, which is external knowledge if exists
                                     )
         
         # Convert new ideas to solution instances
@@ -405,7 +476,7 @@ class LeadAgent:
             sol = self.code_agent.run(parent_solutions=seed_solution,  # maybe None if there is no seed solution
                                     long_term_reflection=self.long_term_reflection, 
                                     solution=sol,
-                                    use_long_term_reflection=True,
+                                    use_long_term_reflection=True,  # for initialization, we always make use of long-term reflection
                                     )
             children_solutions.append(sol)
         
@@ -641,14 +712,14 @@ class LeadAgent:
         # then set reflection_period to be a large number
         # lead agent will manually update reflection with force_update=True
         if self.elitist_as_root and self.reflection_elitist_synchro:
-            reflection_period = 10000000
+            reflection_period = 10000000  # no automatic reflection update
         else:
             reflection_period = self.reflection_period
             
         # =====Update long term reflection=====
         if (reflection_period and reflection_period > 0 and len(self.experiment_summaries) >= reflection_period) or (force_update and len(self.experiment_summaries) > 0):
             if len(self.experiment_summaries) >= reflection_period:
-                print(f"\n>>>[LeadAgent] After solution {solution.id_str(self.algorithm)}, update long-term reflection since {reflection_period} solution summaries have been collected...")
+                print(f"\n>>>[LeadAgent] After solution {solution.id_str(self.algorithm)}, update long-term reflection since {len(self.experiment_summaries)} solution summaries have been collected...")
             else:
                 print(f"\n>>>[LeadAgent] Force update long-term reflection; currently there are {len(self.experiment_summaries)} solution summaries...")
                 
@@ -698,6 +769,7 @@ class LeadAgent:
             if solution:
                 file_name = f"{self.output_dir}/details/long_term_reflection_{solution.id_str(self.algorithm)}.txt"
             else:
+                # sometimes we force update long-term reflection without a solution, we need to rename the file
                 file_name = f"{self.output_dir}/details/long_term_reflection_lead_{self.id}_round_{self.research_round}_{datetime.now().strftime('%b-%d-%H%M%S')}.txt"
             with open(file_name, 'w') as file:
                 file.write(self.long_term_reflection)
@@ -812,15 +884,22 @@ class LeadAgent:
             print(f"\n>>>[LeadAgent] Generating {num_ideas} ideas...")
             ideas = self.idea_agent.run(parent_solutions=root_solutions, 
                                         long_term_reflection=self.long_term_reflection, 
-                                        num_ideas=num_ideas,
-                                        elitist_parent=self.elitist_as_root
+                                        num_ideas=num_ideas,  # adjusted as described above
+                                        elitist_parent=self.elitist_as_root,  # for elitist root, we will use elitist mutation prompt; otherwise, use crossover prompt
+                                        use_long_term_reflection=self.elitist_as_root or (not self.reflection_disabled_for_crossover),  # if elitist is root or reflection is not disabled for crossover, we will use long-term reflection
+                                        current_research_flow_graph=self.flow_graph.visualize_str(show_details=True),  # for root, there is no need to pass flow graph with only a single root; we pass it anyway
                                         )
             
             # Check number of ideas returned
             if len(ideas) != num_ideas:
                 print(f"\n>>>[LeadAgent] Warning: idea agent returned {len(ideas)} ideas; expected {num_ideas} ideas.")
             num_ideas_valid = min(len(ideas), num_ideas)
-            ideas = ideas[:num_ideas_valid]  # trim ideas if more than needed; sometimes it happens
+            ideas = ideas[:num_ideas_valid]  
+            # trim ideas if more than needed; sometimes it happens
+            # TODO: we frequently find some LLM to return more ideas than instructed
+            # these extra ideas typically do represent potential directions to explore
+            # alternatively, you may want to retain those extra ideas
+            # "how to handle extra ideas?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
             
             # Convert ideas to `Solution` instances
             solutions = []
@@ -842,19 +921,45 @@ class LeadAgent:
                 sol = self.code_agent.run(parent_solutions=root_solutions, 
                                         long_term_reflection=self.long_term_reflection, 
                                         solution=sol,
-                                        use_long_term_reflection=self.elitist_as_root,
+                                        use_long_term_reflection=self.elitist_as_root or (not self.reflection_disabled_for_crossover),  # if tree root is elitist, or reflection not disabled for crossover, we will use long-term reflection
                                         )
                 solutions_updated.append(sol)
-                
-            # -----Conduct experiments on each child node-----
+            
+            # keep only valid solutions
+            solutions_updated = [sol for sol in solutions_updated if utils.is_valid(sol)]
+            
+            # -----Conduct experiments on each root child node-----
             print(f"\n>>>[LeadAgent] Conducting experiments at research round {self.research_round} starting stage...")
             children_solutions = []
             for sol in solutions_updated:
+                # Calculate dynamic experiment allocation if enabled
+                dynamic_max_experiment_repeats = None
+                if self.dynamic_experiment_allocation and sol.score is not None:
+                    # Get parent score (average of root solutions if multiple)
+                    if root_solutions:
+                        parent_score = sum(s.score for s in root_solutions if s.score is not None) / len([s for s in root_solutions if s.score is not None])
+                    else:
+                        parent_score = None
+
+                    dynamic_max_experiment_repeats = calculate_dynamic_experiment_allocation(
+                        parent_score=parent_score,
+                        child_score=sol.score,
+                        base_max_repeats=self.base_max_experiment_repeats,
+                        min_repeats=self.min_experiment_repeats,
+                        max_repeats_cap=self.max_experiment_repeats_cap,
+                        improvement_threshold=self.improvement_threshold,
+                        is_elitist=check_elitist(self.elitist, sol),
+                        elitist_factor=self.elitist_experiment_factor,
+                        obj_type=self.obj_type
+                    )
+                    print(f"\n>>>[LeadAgent] Dynamic experiment allocation for solution {sol.id_str(self.algorithm)}: {dynamic_max_experiment_repeats} experiments")
+
                 sol = self.experiment_agent.run(parent_solutions=root_solutions,
-                                                solution=sol, 
+                                                solution=sol,
                                                 long_term_reflection=self.long_term_reflection,
-                                                use_long_term_reflection=self.elitist_as_root,
-                                                is_elitist=check_elitist(self.elitist, sol),
+                                                use_long_term_reflection=self.elitist_as_root,  # if tree root is elitist, we will use long-term reflection for the whole tree
+                                                is_elitist=check_elitist(self.elitist, sol),  # if this node is current elitist, experiment can support special treatment
+                                                dynamic_max_experiment_repeats=dynamic_max_experiment_repeats
                                                 )
 
                 # Here we add an additional solution debugging step
@@ -865,7 +970,10 @@ class LeadAgent:
                 if utils.is_valid(sol):
                     children_solutions.append(sol)
                     # Update long term reflection after each experiment
-                    self.update_long_term_reflection(solution=sol)
+                    self.update_long_term_reflection(
+                        solution=sol,
+                        force_update=True,  # check this setting
+                        )
                     # Note we update long-term reflection after each experiment that generated valid solutions; 
                     # TODO: Questions: 1) should we also experiments that got invalid code but since they may still shed some lights?
                     # 2) how frequent should we update long-term reflection?
@@ -911,7 +1019,7 @@ class LeadAgent:
             
             # -----Add children nodes to flow_graph as root's children-----
             # Convert `Solution`s to `Node`s
-            children_nodes = [Node(solution=sol) for sol in children_solutions]       
+            children_nodes = [Node(solution=sol) for sol in children_solutions]
             # Add nodes to flow_graph as children of root node
             # Note that those children nodes are not guaranteed to have performances better than the root node(s)!
             # we intended so because when we explore a new research direction, we allow temporary performance downgrades
@@ -988,8 +1096,9 @@ class LeadAgent:
             ideas = self.idea_agent.run(parent_solutions=best_leaf.solution, 
                                         long_term_reflection=self.long_term_reflection, 
                                         num_ideas=self.num_children,
-                                        elitist_parent=check_elitist(self.elitist, best_leaf.solution),
-                                        current_research_flow_graph=self.flow_graph.visualize_str(show_details=True),
+                                        elitist_parent=False,  #check_elitist(self.elitist, best_leaf.solution),  #TODO: check this setting; here we're not using elitist mutation prompt
+                                        use_long_term_reflection=self.elitist_as_root or (not self.reflection_disabled_for_crossover),  # if elitist is root or reflection not disabled for crossover, we use long-term reflection
+                                        current_research_flow_graph=self.flow_graph.visualize_str(show_details=True),  # this is important context to be included
                                         )
             
             # Convert ideas to `Solution` instances
@@ -1011,7 +1120,7 @@ class LeadAgent:
                 sol = self.code_agent.run(parent_solutions=best_leaf.solution, 
                                         long_term_reflection=self.long_term_reflection,
                                         solution=sol,
-                                        use_long_term_reflection=self.elitist_as_root,
+                                        use_long_term_reflection=self.elitist_as_root or (not self.reflection_disabled_for_crossover),  # if elitist is root or reflection not disabled for crossover, we use long-term reflection
                                         )
                 solutions_updated.append(sol)
                 
@@ -1021,17 +1130,40 @@ class LeadAgent:
             children_solutions = []
             for i, sol in enumerate(solutions_updated):
                 print(f"\n>>>[LeadAgent] Conducting experiment for {i}-th solution ({sol.id_str(self.algorithm)})...")
-                sol = self.experiment_agent.run(parent_solutions=best_leaf.solution, 
-                                                solution=sol, 
+
+                # Calculate dynamic experiment allocation if enabled
+                dynamic_max_experiment_repeats = None
+                if self.dynamic_experiment_allocation and sol.score is not None:
+                    parent_score = best_leaf.solution.score if best_leaf.solution.score is not None else None
+
+                    dynamic_max_experiment_repeats = calculate_dynamic_experiment_allocation(
+                        parent_score=parent_score,
+                        child_score=sol.score,
+                        base_max_repeats=self.base_max_experiment_repeats,
+                        min_repeats=self.min_experiment_repeats,
+                        max_repeats_cap=self.max_experiment_repeats_cap,
+                        improvement_threshold=self.improvement_threshold,
+                        is_elitist=check_elitist(self.elitist, sol),
+                        elitist_factor=self.elitist_experiment_factor,
+                        obj_type=self.obj_type
+                    )
+                    print(f"\n>>>[LeadAgent] Dynamic experiment allocation for solution {sol.id_str(self.algorithm)}: {dynamic_max_experiment_repeats} experiments")
+
+                sol = self.experiment_agent.run(parent_solutions=best_leaf.solution,
+                                                solution=sol,
                                                 long_term_reflection=self.long_term_reflection,
-                                                use_long_term_reflection=self.elitist_as_root,
-                                                is_elitist=check_elitist(self.elitist, sol),
+                                                use_long_term_reflection=self.elitist_as_root or (not self.reflection_disabled_for_crossover),  # if elitist is root or reflection not disabled for crossover, we use long-term reflection
+                                                is_elitist=check_elitist(self.elitist, sol),  # if this node is current elitist, we experiment can support special treatment
+                                                dynamic_max_experiment_repeats=dynamic_max_experiment_repeats,
                                                 )
                 
                 # Check solution validness
                 if utils.is_valid(sol):
                     # Update long term reflection after each experiment
-                    self.update_long_term_reflection(solution=sol)
+                    self.update_long_term_reflection(
+                        solution=sol,
+                        force_update=True,  # check this setting
+                        )
                     children_solutions.append(sol)
                 else:
                     print(f"\n>>>[LeadAgent] Invalid solution generated: {sol.id_str(self.algorithm)}")

@@ -112,7 +112,6 @@ class CodeAgent:
         
         # =====CodeAgent settings=====
         self.max_debug_rounds = self.config['max_debug_rounds']
-        self.reflection_disabled_for_crossover = self.config['reflection_disabled_for_crossover']  # whether long-term reflection is disabled  when doing crossover
         self.evaluation_description_disabled = self.config['evaluation_description_disabled']
         self.verbose = self.config['verbose']
         
@@ -230,11 +229,12 @@ class CodeAgent:
         # Handle long-term reflection for crossover
         # for mutation on elitist, we always use long-term reflection
         # for crossover, we may not want to provide long-term reflection
-        if not use_long_term_reflection:
+        if use_long_term_reflection:
+            print("\n>>>[CodeAgent] Long-term reflection is used for this generation.")
+        else:
             long_term_reflection = "None"
             print("\n>>>[CodeAgent] Long-term reflection is not used for this generation.")
-        else:
-            print("\n>>>[CodeAgent] Long-term reflection is used for this generation.")
+            
         
         # Construct prompt
         user = self.user_code_generation_prompt.format(
@@ -302,18 +302,25 @@ class CodeAgent:
             self.total_responses += 1
             
             # Parse response into updated code string
-            thoughts = utils.extract_json(response)  # a dict with key 'thoughts'; for user to inspect
+            #thoughts = utils.extract_json(response)  # a dict with key 'thoughts'; for user to inspect
             code_diff = utils.extract_diff_block(response)
-            
-            if self.verbose:
-                print(f"\n>>>[CodeAgent] Thoughts:\n{thoughts}")
-                print(f"\n>>>[CodeAgent] Code diff:\n{code_diff}")
-            
+                                            
             if not code_diff:
                 print(f"\n>>>[CodeAgent] Warning: no code diff found in response (attempt {debug_round}): \n{response}")
                 # each debugging round must have code diff to update the code
                 # otherwise, there may be some problem with the response
-            else:          
+            else:
+                # Log code diff
+                print(f"\n>>>[CodeAgent] Update code at debug round: {debug_round}\n")
+                file_name = f"{self.output_dir}/details/{solution.id_str(self.algorithm)}_debug{debug_round}.txt"
+                with open(file_name, 'w') as file:
+                    file.write(code_diff)
+                print(f">>>[CodeAgent] Code diff saved to: {file_name}")
+            
+                if self.verbose:
+                    #print(f"\n>>>[CodeAgent] Thoughts:\n{thoughts}")
+                    print(f"\n>>>[CodeAgent] Code diff:\n{code_diff}\n")
+                
                 try:
                     # Update code
                     solution.code = utils.update_code(curr_code=solution.code, code_diff=code_diff)

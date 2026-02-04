@@ -8,3 +8,5 @@ Maintains persistent memory across time steps to track lane change history, coop
 **Multi-Layer Safety Verification**: multiple safety post-checks predict next-step gaps, enforce polite behavior toward merging vehicles, and resolve simultaneous merges by prioritizing higher urgency
 
 **Urgency-Based Decision Making**: Calculates urgency based on distance to lane end, progressively relaxing safety constraints for vehicles approaching critical zones.
+
+Important Note: first make sure vehicles can move at least 5m/s, then improve the safety gradually!

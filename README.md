@@ -372,6 +372,7 @@ To facilitate further development, we have added markers throughout the codebase
 - "elitist are sampled less and how to do?"
 - "how to fast explore?"
 - "how many child ideas to generate at the start of research?"
+- "how to handle extra ideas?"
 - "how to search tree?"
 - "how to use long-term reflection?"
 - "how to fast explore in experiments?" 

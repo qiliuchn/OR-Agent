@@ -277,10 +277,11 @@ def evaluate(root_dir, file_output_prefix=''):
         callbacks = None
             
     test_names = ["case_0", "case_1"]  # list of test names; options: case_0 (low demand), case_1 (high demand)
-    print("\nTest Cases\ncase_0: low traffic demand\nCase_1: high traffic demand\n")
+    print("\nTest Cases List:\n\"case_0\": low traffic demand\n\"Case_1\": high traffic demand")
     metrics_per_test = {}  # initialize the return
     
     for test_name in test_names:
+        print(f"\nTest case \"{test_name}\" starts...")
         # -----Set up SUMO environment for specified test case-----
         # Note the current directory will be changed by hydra!
         sumo_binary = "sumo" # "sumo-gui" for GUI, or "sumo" for command-line mode
@@ -321,7 +322,7 @@ def evaluate(root_dir, file_output_prefix=''):
             #"--emission-output",  out_prefix + "emissions.xml",
             "--collision-output", file_output_prefix + "collisions.xml",
             "--device.ssm.probability", "1.0",
-            "--device.ssm.file",  os.getcwd() + '/' + file_output_prefix + "ssm.xml" if file_output_prefix else os.getcwd() + '/ssm.xml',  # Note: The SSM output file is being created relative to the SUMO config file's directory. Use absolute path for ssm.xml.
+            "--device.ssm.file",  os.getcwd() + '/' + file_output_prefix + "ssm.xml" if file_output_prefix else os.getcwd() + '/ssm.xml',  # Note: The SSM output file is being created relative to the SUMO config file's directory if relative path is specified. Use absolute path for ssm.xml.
             "--device.ssm.measures", "TTC",
             "--device.ssm.thresholds", "1.5",
         ]
@@ -614,16 +615,17 @@ if __name__ == "__main__":
         # -----Run the evaluation-----
         metrics_per_test = evaluate(root_dir, file_output_prefix)
         scores_per_test = test_metrics_to_scores(metrics_per_test)
-        print("Metrics for all tests:")
+        print("\nMetrics for all tests:")
         for test_name in metrics_per_test:
             print(f"{test_name}: {str(metrics_per_test[test_name])}")
-        print("Scores for all tests:")
+        print("\nScores for all tests:")
         for test_name in scores_per_test:
             print(f"{test_name}: {str(scores_per_test[test_name])}")
         # Compute aggregate performance indices
         metrics = average_test_metrics(metrics_per_test)
         features = get_feature(metrics_per_test)
         score = reduce_score(scores_per_test)
+        print()
         
         # -----Print results to stdout (same for all problems)-----
         print('__SANDBOX_RESULT__')
@@ -648,4 +650,3 @@ if __name__ == "__main__":
         print(f'Error message: {str(e)}')
         print('Full traceback:')
         traceback.print_exc()
-        

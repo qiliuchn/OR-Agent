@@ -47,6 +47,10 @@ Previous experiments, their reflections and actions are provided below. Current 
 {latest_experiment_result}
 
 
+## Other Context
+{other_context}
+
+
 ## Task
 Analyze the latest experiment result in the context of previous experiments and determine the next course of action.
 
@@ -104,5 +108,5 @@ Note: The termination field must be either "yes" or "no".
 
 Focus on empirical evidence and provide specific, actionable recommendations.
 When parent solutions are available, analyze what makes higher-performing solutions successful and consider incorporating those insights.
-Try your best to identify the problem and improve the solution performance; don't terminate too early! If you indeed find the current idea not promising and intend to terminate, you should specify the reason clearly in the thinking part of your response.
+Try your best to identify the problem and improve the solution performance; don't terminate too early. If you indeed find the current idea not promising and intend to terminate, you should specify the reason clearly in the thinking part of your response.
 Now generate your response:

@@ -52,7 +52,7 @@ Update your long-term research reflection by synthesizing the insights from past
 Output json fenced block like this:
 ```json
 {{
-  "reflection": An updated long-term reflection that synthesizes prior knowledge with new insights, maintaining a cumulative understanding of the research progress and guiding future investigations.
+  "reflection": "An updated long-term reflection that synthesizes prior knowledge with new insights, maintaining a cumulative understanding of the research progress and guiding future investigations."
 }}
 ```
 Now generate your response:

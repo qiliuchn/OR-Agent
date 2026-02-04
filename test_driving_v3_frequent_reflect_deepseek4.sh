@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=driving_v3
+#SBATCH --job-name=driving_v3_frequent_reflect_deepseek4
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
@@ -11,10 +11,14 @@
                                             # Current: 1 algorithms × 5 problem = 5 tasks (0-4)
 
 # =====================
-# driving v3
+# driving v3 frequent reflect deepseek4
 # =====================
-# inherited from driving_v2
-# elitist deeper research tree not enabled
+# inherited from driving_v3 frequent reflect deepseek
+# tree depth 3 -> 1
+# min-experiment-repeats 3 -> 1
+# 
+# inherited from driving_v3
+# code major revision
 #
 # inherited from driving
 # experiment agent code updated
@@ -69,7 +73,7 @@ PROBLEM=${PROBLEMS[$PROB_INDEX]}
 
 # Output directory
 # TODO: carefully set output dir so that tasks don't overwrite each otheself.output_dir = self.config['output_dir'] or f"{self.project_root}/outputs/{self.algorithm}/{self.problem}"r!
-OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/standard_model14_v3_deep"
+OUTPUT_DIR="outputs/${ALGORITHM}/${PROBLEM}/standard_model14_v3_frequent_reflect_deepseek4"
 mkdir -p "$OUTPUT_DIR"
 
 # Print out info
@@ -96,13 +100,27 @@ python -u src/oragent/cli.py \
     --num-children 2 \
     --max-tree-depth 2 \
     --fast-exploration-for-crossover \
-    --max-debug-rounds 3 \
-    --max-experiment-repeats 10 \
+    --max-debug-rounds 2 \
+    --min-experiment-repeats 1 \
+    --max-experiment-repeats 8 \
+    --max-experiment-repeats-cap 16 \
     --elitist-as-root-period 11 \
-    --elitist-enlargement-factor 2.0 \
+    --elitist-enlargement-factor 2.5 \
     --reflection-period 0 \
     --reflection-disabled-for-crossover \
     --reflection-elitist-synchro \
+    --llm-provider "deepseek" \
+    --model-name "deepseek-reasoner" \
+    --lead-agent-llm-provider "deepseek" \
+    --lead-agent-model-name "deepseek-reasoner" \
+    --idea-agent-llm-provider "deepseek" \
+    --idea-agent-model-name "deepseek-reasoner" \
+    --code-agent-llm-provider "deepseek" \
+    --code-agent-model-name "deepseek-reasoner" \
+    --experiment-agent-reflect-llm-provider "deepseek" \
+    --experiment-agent-reflect-model-name "deepseek-reasoner" \
+    --experiment-agent-summarize-llm-provider "deepseek" \
+    --experiment-agent-summarize-model-name "deepseek-reasoner" \
     --reset-period-minutes 240 \
     --timeout-seconds 300 \
     --output-dir "$OUTPUT_DIR" \

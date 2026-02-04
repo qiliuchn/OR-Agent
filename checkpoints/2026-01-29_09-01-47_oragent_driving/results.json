@@ -1,0 +1,74 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": -77.917902,
+        "metrics": {
+            "collisions": 2.0,
+            "teleports": 4.0,
+            "speed_variance": 2.56,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 155.0,
+            "emergencyStops": 0.0,
+            "avg_speed": 0.32
+        },
+        "code_filepath": "outputs/oragent/driving/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/driving/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 9,
+        "total_function_evals": 9,
+        "total_valid_responses": 9,
+        "best_obj_overall": -34.31082500000001,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "emergencyStops": 0.0,
+            "avg_speed": 0.265,
+            "critical_ttc_count": 100.0,
+            "speed_variance": 2.16,
+            "teleports": 4.5,
+            "collisions": 0.5
+        },
+        "code_filepath": "outputs/oragent/driving/details/lead1_round0_count5_id5_solution.py",
+        "output_filepath": "outputs/oragent/driving/details/lead1_round0_count5_id5_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 57,
+        "total_function_evals": 47,
+        "total_valid_responses": 57,
+        "best_obj_overall": -20.323818000000006,
+        "metrics": {
+            "critical_ttc_count": 54.0,
+            "emergencyBraking": 0.0,
+            "emergencyStops": 0.0,
+            "teleports": 3.5,
+            "speed_variance": 1.925,
+            "avg_speed": 0.26,
+            "collisions": 1.0
+        },
+        "code_filepath": "outputs/oragent/driving/details/lead1_round1_count5_id14_solution.py",
+        "output_filepath": "outputs/oragent/driving/details/lead1_round1_count5_id14_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 104,
+        "total_function_evals": 84,
+        "total_valid_responses": 100,
+        "best_obj_overall": -3.4748040000000042,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 66.5,
+            "avg_speed": 0.25,
+            "teleports": 3.0,
+            "speed_variance": 1.23
+        },
+        "code_filepath": "outputs/oragent/driving/details/lead1_round4_count0_id17_solution.py",
+        "output_filepath": "outputs/oragent/driving/details/lead1_round4_count0_id17_stdout.txt"
+    }
+]

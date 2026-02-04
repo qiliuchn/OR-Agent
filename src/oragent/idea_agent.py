@@ -92,7 +92,6 @@ class IdeaAgent:
         
         # =====IdeaAgent settings=====
         self.num_children = self.config['num_children']  # number of children to generate for each parent node in the tree
-        self.reflection_disabled_for_crossover = self.config['reflection_disabled_for_crossover']  # whether long-term reflection is disabled  when doing crossover
         self.idea_agent_temperature = self.config['model']['idea_agent_temperature']
         self.ideas_coordinated_generation_disabled = self.config['ideas_coordinated_generation_disabled']
         self.verbose = self.config['verbose']
@@ -182,6 +181,7 @@ class IdeaAgent:
             long_term_reflection: str="", 
             num_ideas: Union[int, None]=None,
             elitist_parent: bool=False,
+            use_long_term_reflection: bool=False,
             current_research_flow_graph: str="",
             ):
         """
@@ -192,6 +192,8 @@ class IdeaAgent:
             long_term_reflection (Str): long term reflection of the lead agent.
             num_ideas (int): number of ideas to generate; default None, meaning using self.num_children.
             elitist_parent (bool): whether parent is elitist; default False.
+            use_long_term_reflection (bool): whether to use long term reflection; default False.
+            current_research_flow_graph (str): current research flow graph; default ""
             
         Returns:
             ideas (list[str]): list of ideas.
@@ -217,12 +219,12 @@ class IdeaAgent:
         # this is ReEvo style reflection - no use long-term reflection when doing short-term reflection on random sampled parents
         # long-term reflection is only used for extending elitist
         # TODO: "should we use long-term reflection when doing crossovering" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
-        if not elitist_parent and self.reflection_disabled_for_crossover:
+        if use_long_term_reflection:
+            print("\n>>>[IdeaAgent] Long-term reflection is used for this generation.")
+        else:
             long_term_reflection = "None"
             print("\n>>>[IdeaAgent] Long-term reflection is not used for this generation.")
-        else:
-            print("\n>>>[IdeaAgent] Long-term reflection is used for this generation.")
-        
+            
         '''deprecated
         user = self.user_idea_generation_crossover_prompt.format(
                 problem_description = self.problem_description,  # common
@@ -236,9 +238,10 @@ class IdeaAgent:
         '''
         if not self.ideas_coordinated_generation_disabled:
             # -----Coordinated generation-----
+            # Use coordinated generation template
             print(f"\n>>>[IdeaAgent] Idea generations are coordinated.")
             if elitist_parent:
-                # elitist mutation
+                # use elitist mutation template
                 user = self.user_idea_coordinated_generation_elitist_mutation_prompt.format(
                     problem_description = self.problem_description,  # common
                     function_to_evolve = self.function_to_evolve,  # common
@@ -249,14 +252,14 @@ class IdeaAgent:
                     num_ideas = num_ideas,  # number of ideas to generate; ideas combined can form a comprehensive research plan
                 )
             else:
-                # crossover
+                # use crossover template
                 print("\n>>>[IdeaAgent] For coordinated crossover, flow graph is provided")
                 user = self.user_idea_coordinated_generation_crossover_prompt.format(
                     problem_description = self.problem_description,  # common
                     function_to_evolve = self.function_to_evolve,  # common
                     obj_type = self.obj_type,  # common
                     function_description = self.function_description,  # common
-                    current_research_flow_graph = current_research_flow_graph if current_research_flow_graph else "(empty)",
+                    current_research_flow_graph = current_research_flow_graph if current_research_flow_graph else "(empty)",  # important context on current research flow graph
                     parent_solutions = parent_solutions_str if parent_solutions_str else "(empty)",  # parent solutions are provided to help idea agent to produce crossover and mutated research ideas
                     long_term_reflection = long_term_reflection if long_term_reflection else "(empty)",  # common
                     num_ideas = num_ideas,  # number of ideas to generate; ideas combined can form a comprehensive research plan
@@ -285,6 +288,7 @@ class IdeaAgent:
         
         else:
             # -----Independent generation-----
+            # Use independent generation template
             print(f"\n>>>[IdeaAgent] Idea generations are independent.")
             if elitist_parent:
                 # elitist mutation

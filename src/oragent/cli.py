@@ -161,7 +161,19 @@ def main():
         help="Maximum number of debug rounds for each solution code debugging"
     )
     parser.add_argument(
+        "--min-experiment-repeats",
+        type=int,
+        default=None,
+        help="Maximum number of experiment repeats for each solution"
+    )
+    parser.add_argument(
         "--max-experiment-repeats",
+        type=int,
+        default=None,
+        help="Maximum number of experiment repeats for each solution"
+    )
+    parser.add_argument(
+        "--max-experiment-repeats-cap",
         type=int,
         default=None,
         help="Maximum number of experiment repeats for each solution"
@@ -222,12 +234,80 @@ def main():
         action="store_true",
         help="Disable coordinated idea generation"
     )
+    # LLM settings
     parser.add_argument(
-        "--timeout-seconds",
-        type=int,
+        "--llm-provider", 
+        type=str, 
         default=None,
-        help="Timeout seconds for each solution evaluation"
+        help="LLM provider"
     )
+    parser.add_argument(
+        "--model-name", 
+        type=str, 
+        default=None,
+        help="LLM model name"
+    )
+    parser.add_argument(
+        "--lead-agent-llm-provider", 
+        type=str, 
+        default=None,
+        help="LLM provider"
+    )
+    parser.add_argument(
+        "--lead-agent-model-name", 
+        type=str, 
+        default=None,
+        help="LLM model name"
+    )
+    parser.add_argument(
+        "--idea-agent-llm-provider", 
+        type=str, 
+        default=None,
+        help="LLM provider"
+    )
+    parser.add_argument(
+        "--idea-agent-model-name", 
+        type=str, 
+        default=None,
+        help="LLM model name"
+    )
+    parser.add_argument(
+        "--code-agent-llm-provider", 
+        type=str, 
+        default=None,
+        help="LLM provider"
+    )
+    parser.add_argument(
+        "--code-agent-model-name", 
+        type=str, 
+        default=None,
+        help="LLM model name"
+    )
+    parser.add_argument(
+        "--experiment-agent-reflect-llm-provider", 
+        type=str, 
+        default=None,
+        help="LLM provider"
+    )
+    parser.add_argument(
+        "--experiment-agent-reflect-model-name", 
+        type=str, 
+        default=None,
+        help="LLM model name"
+    )
+    parser.add_argument(
+        "--experiment-agent-summarize-llm-provider", 
+        type=str, 
+        default=None,
+        help="LLM provider"
+    )
+    parser.add_argument(
+        "--experiment-agent-summarize-model-name", 
+        type=str, 
+        default=None,
+        help="LLM model name"
+    )
+    # Database settings
     parser.add_argument(
         "--num-islands",
         type=int,
@@ -251,6 +331,13 @@ def main():
         type=int,
         default=None,
         help="Period for cluster sampling temperature"
+    )
+    # Evaluation settings
+    parser.add_argument(
+        "--timeout-seconds",
+        type=int,
+        default=None,
+        help="Timeout seconds for each solution evaluation"
     )
     parser.add_argument(
         "--output-dir", 
@@ -301,7 +388,7 @@ def main():
             
         if args.problem:
             config['problem'] = args.problem
-            # update experiment config
+            # Update experiment config
             with open(f"{Path.cwd()}/problems/{args.problem}/settings.yaml", 'r') as f:
                 experiment_config = yaml.safe_load(f)
             config['experiment'] = experiment_config
@@ -327,8 +414,14 @@ def main():
         if args.max_debug_rounds != None:
             config['max_debug_rounds'] = args.max_debug_rounds
         
+        if args.min_experiment_repeats != None:
+            config['min_experiment_repeats'] = args.min_experiment_repeats
+            
         if args.max_experiment_repeats != None:
             config['max_experiment_repeats'] = args.max_experiment_repeats
+            
+        if args.max_experiment_repeats_cap != None:
+            config['max_experiment_repeats_cap'] = args.max_experiment_repeats_cap
     
         if args.elitist_as_root_period != None:
             config['elitist_as_root_period'] = args.elitist_as_root_period
@@ -359,13 +452,40 @@ def main():
         
         if args.ideas_coordinated_generation_disabled:
             config['ideas_coordinated_generation_disabled'] = True
+        # LLM settings
+        if args.llm_provider:
+            config['model']['llm_provider'] = args.llm_provider
+        if args.model_name:
+            config['model']['model_name'] = args.model_name
         
-        if args.timeout_seconds != None:
-            config['evaluation']['timeout_seconds'] = args.timeout_seconds
+        if args.lead_agent_llm_provider:
+            config['model']['lead_agent_llm_provider'] = args.lead_agent_llm_provider
+        if args.lead_agent_model_name:
+            config['model']['lead_agent_model_name'] = args.lead_agent_model_name
             
+        if args.idea_agent_llm_provider:
+            config['model']['idea_agent_llm_provider'] = args.idea_agent_llm_provider
+        if args.idea_agent_model_name:
+            config['model']['idea_agent_model_name'] = args.idea_agent_model_name
+            
+        if args.code_agent_llm_provider:
+            config['model']['code_agent_llm_provider'] = args.code_agent_llm_provider
+        if args.code_agent_model_name:
+            config['model']['code_agent_model_name'] = args.code_agent_model_name
+            
+        if args.experiment_agent_reflect_llm_provider:
+            config['model']['experiment_agent_reflect_llm_provider'] = args.experiment_agent_reflect_llm_provider
+        if args.experiment_agent_reflect_model_name:
+            config['model']['experiment_agent_reflect_model_name'] = args.experiment_agent_reflect_model_name
+            
+        if args.experiment_agent_summarize_llm_provider:
+            config['model']['experiment_agent_summarize_llm_provider'] = args.experiment_agent_summarize_llm_provider
+        if args.experiment_agent_summarize_model_name:
+            config['model']['experiment_agent_summarize_model_name'] = args.experiment_agent_summarize_model_name
+        # Database settings
         if args.num_islands != None:
             config['database']['num_islands'] = args.num_islands
-        
+
         if args.reset_period_minutes != None:
             config['database']['reset_period_minutes'] = args.reset_period_minutes
             
@@ -374,12 +494,13 @@ def main():
         
         if args.cluster_sampling_temperature_period != None:
             config['database']['cluster_sampling_temperature_period'] = args.cluster_sampling_temperature_period
-    
+        # Evaluation settings
+        if args.timeout_seconds != None:
+            config['evaluation']['timeout_seconds'] = args.timeout_seconds
+            
     # -----output dir can always be updated (even if loading from checkpoint)-----
     if args.output_dir:
         config['output_dir'] = args.output_dir
-    else:
-        config['output_dir'] = None
     
     # -----Load experiment config-----
     algorithm = config['algorithm'].lower().strip()
@@ -416,7 +537,9 @@ def main():
     print(f">>>[OR-Agent] max_tree_depth: {config['max_tree_depth']}")
     print(f">>>[OR-Agent] fast_exploration_for_crossover: {config['fast_exploration_for_crossover']}")
     print(f">>>[OR-Agent] max_debug_rounds: {config['max_debug_rounds']}")
+    print(f">>>[OR-Agent] min_experiment_repeats: {config['min_experiment_repeats']}")
     print(f">>>[OR-Agent] max_experiment_repeats: {config['max_experiment_repeats']}")
+    print(f">>>[OR-Agent] max_experiment_repeats_cap: {config['max_experiment_repeats_cap']}")
     print(f">>>[OR-Agent] elitist_as_root_period: {config['elitist_as_root_period']}")
     print(f">>>[OR-Agent] elitist_enlargement_factor: {config['elitist_enlargement_factor']}")
     print(f">>>[OR-Agent] elitist_experiment_factor: {config['elitist_experiment_factor']}")
@@ -428,6 +551,15 @@ def main():
     print(f">>>[OR-Agent] evaluation_description_disabled: {config['evaluation_description_disabled']}")
     print(f">>>[OR-Agent] ideas_coordinated_generation_disabled: {config['ideas_coordinated_generation_disabled']}")
     print(f">>>[OR-Agent] llm_provider: {config['model']['llm_provider']}")
+    print(f">>>[OR-Agent] model_name: {config['model']['model_name']}")
+    print(f">>>[OR-Agent] idea_agent_llm_provider: {config['model']['idea_agent_llm_provider']}")
+    print(f">>>[OR-Agent] idea_agent_model_name: {config['model']['idea_agent_model_name']}")
+    print(f">>>[OR-Agent] code_agent_llm_provider: {config['model']['code_agent_llm_provider']}")
+    print(f">>>[OR-Agent] code_agent_model_name: {config['model']['code_agent_model_name']}")
+    print(f">>>[OR-Agent] experiment_agent_reflect_llm_provider: {config['model']['experiment_agent_reflect_llm_provider']}")
+    print(f">>>[OR-Agent] experiment_agent_reflect_model_name: {config['model']['experiment_agent_reflect_model_name']}")
+    print(f">>>[OR-Agent] experiment_agent_summarize_llm_provider: {config['model']['experiment_agent_summarize_llm_provider']}")
+    print(f">>>[OR-Agent] experiment_agent_summarize_model_name: {config['model']['experiment_agent_summarize_model_name']}")
     print(f">>>[OR-Agent] timeout_seconds: {config['evaluation']['timeout_seconds']}")
     print(f">>>[OR-Agent] autosave_interval_minutes: {config['autosave_interval_minutes']}")
     # Get username and hostname

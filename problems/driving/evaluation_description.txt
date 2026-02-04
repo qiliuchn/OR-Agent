@@ -206,9 +206,11 @@ def evaluate(root_dir=None, file_output_prefix=''):
         root_dir = os.getcwd()
         
     test_names = ["case_0", "case_1"]  # list of test names; options: case_0 (low demand), case_1 (high demand)
+    print("\nTest Cases List:\n\"case_0\": low traffic demand\n\"Case_1\": high traffic demand")
     metrics_per_test = {}  # initialize the return
     
     for test_name in test_names:
+        print(f"\nTest case \"{test_name}\" starts...")
         # -----Set up SUMO environment for specified test case-----
         # Note the current directory will be changed by hydra!
         sumo_binary = "sumo" # "sumo-gui" for GUI, or "sumo" for command-line mode

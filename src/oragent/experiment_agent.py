@@ -254,7 +254,13 @@ class ExperimentAgent:
         self.elitist_experiment_factor = self.config['elitist_experiment_factor']  # factor to multiply when doing experiment on elitist
         self.evaluation_description_disabled = self.config['evaluation_description_disabled']
         self.fast_exploration_for_crossover = self.config['fast_exploration_for_crossover']  # whether to use fast exploration for crossover
+        self.external_knowledge_persistence_disabled = self.config['external_knowledge_persistence_disabled']  # whether to disable external knowledge persistence; if not disabled, external knowledge will be persistently used in experiments
         self.verbose = self.config['verbose']
+
+        # =====Progressive Summarization Settings=====
+        self.progressive_summarization = self.config.get('progressive_summarization', True)  # whether to use progressive summarization
+        self.summarization_interval = self.config.get('summarization_interval', 4)  # summarize every N experiments
+        self.compact_history_length = self.config.get('compact_history_length', 2)  # keep last N detailed experiments
         
         # =====Load problem data and prompts=====
         # Problem and prompt directory
@@ -280,6 +286,11 @@ class ExperimentAgent:
             self.callbacks_description = utils.file_to_string(f'{self.problem_dir}/callbacks_description.txt')
         else:
             self.callbacks_description = None
+        # optional
+        if os.path.exists(f'{self.problem_dir}/external_knowledge.txt'):
+            self.external_knowledge = utils.file_to_string(f'{self.problem_dir}/external_knowledge.txt')
+        else:
+            self.external_knowledge = ""
         print("\n>>>[ExperimentAgent] ExperimentAgent initialized.")
     
     
@@ -289,6 +300,102 @@ class ExperimentAgent:
         self.function_evals = 0  # Number of function evaluations; this is also an important metric for complexity, especially for the case when evaluation is the bottleneck
         self.valid_responses = 0 # Number of valid responses, namely responses that were successfully executed
         print(f"\n>>>[ExperimentAgent] ExperimentAgent reset.")
+
+
+    def generate_progressive_summary(self, 
+                                     solution: Solution, 
+                                     experiment_count: int,
+                                    ) -> str:
+        """
+        Generate a compact summary of experiments so far to manage context size.
+
+        Args:
+            solution: The solution with experiment history
+            experiment_count: Current experiment count
+
+        Returns:
+            Compact summary string
+        """
+        if not solution.intermediate_scores or len(solution.intermediate_scores) <= 2:
+            return "No significant experiment history to summarize yet."
+
+        # Extract key information
+        initial_score = solution.intermediate_scores[0] if solution.intermediate_scores else None
+        current_score = solution.intermediate_scores[-1] if solution.intermediate_scores else None
+        valid_intermediate_scores = [score for score in solution.intermediate_scores if score is not None]
+        if valid_intermediate_scores:
+            best_score = max(valid_intermediate_scores) if self.obj_type == 'max' else min(valid_intermediate_scores)
+        else:
+            best_score = None
+
+        # Calculate improvements
+        if initial_score is not None and current_score is not None:
+            if self.obj_type == 'max':
+                improvement = current_score - initial_score
+                relative_improvement = improvement / abs(initial_score) if initial_score != 0 else improvement
+            else:
+                improvement = initial_score - current_score
+                relative_improvement = improvement / abs(initial_score) if initial_score != 0 else improvement
+        else:
+            improvement = None
+            relative_improvement = None
+
+        # Generate compact summary
+        summary = f"Progressive Summary for experiments #{experiment_count - len(solution.intermediate_actions) + 1} ~ #{experiment_count}:\n"
+        summary += f"- Initial score: {initial_score}\n"
+        summary += f"- Current score: {current_score}\n"
+        summary += f"- Best score so far: {best_score}\n"
+        if improvement is not None:
+            summary += f"- Absolute improvement: {improvement:.4f}\n"
+        if relative_improvement is not None:
+            summary += f"- Relative improvement: {relative_improvement:.2%}\n"
+
+        # Add key insights from recent experiments (last 3 for compactness)
+        #recent_experiments = min(3, len(solution.intermediate_actions))
+        recent_experiments = len(solution.intermediate_actions)
+        if recent_experiments > 0:
+            summary += f"\nKey insights from recent experiments:\n"
+            # Accumulate the recent experiments
+            acc_summary = ""
+            for i in range(-recent_experiments, 0):
+                idx = len(solution.intermediate_actions) + i
+                # Extract score and metrics
+                score = solution.intermediate_scores[idx] if idx < len(solution.intermediate_scores) else None
+                metrics = solution.intermediate_metrics[idx] if idx < len(solution.intermediate_metrics) else None
+
+                # Extract thinking if available
+                thinking_summary = ""
+                if idx < len(solution.intermediate_actions) and solution.intermediate_actions[idx]:
+                    action = solution.intermediate_actions[idx]
+                    thinking = utils.extract_thinking(action)
+                    if thinking:
+                        thinking_summary = thinking  # here we don't truncate the thinking of each experiment; you can truncate it like below
+                        """optional
+                        # Take first 2 sentences or first 150 chars
+                        sentences = thinking.split('.')
+                        if len(sentences) > 1:
+                            thinking_summary = sentences[0] + '. ' + sentences[1] + '.' if len(sentences) > 2 else thinking[:150] + '...'
+                        else:
+                            thinking_summary = thinking[:1000] + '...'
+                        """
+
+                # Format experiment summary
+                exp_summary = f"    Experiment #{experiment_count + i + 1}: " if i == -recent_experiments else f"\n\n    Experiment #{experiment_count + i + 1}: "
+                if score is not None:
+                    exp_summary += f"Score: {score:.4f} | "
+                if metrics:
+                    # Include key metrics
+                    metric_keys = list(metrics.keys())
+                    metric_str = ', '.join([f"{k}: {metrics[k]}" for k in metric_keys])
+                    exp_summary += f"Metrics: {metric_str} | "
+                if thinking_summary:
+                    exp_summary += f"Insight: <insight>{thinking_summary}</insight>"
+
+                acc_summary += exp_summary
+                
+            summary += acc_summary
+        
+        return summary.strip()
     
     
     def save(self, checkpoint: str):
@@ -347,7 +454,7 @@ class ExperimentAgent:
                 parent_solutions: Union[Solution, List[Solution]], 
                 solution: Solution, 
                 long_term_reflection: str,
-                #other_context=None,
+                other_context=None,
                 ):
         """
         Reflect on the most recent experiment result and determine the next action.
@@ -368,10 +475,16 @@ class ExperimentAgent:
                 - termination_dict (dict): Dictionary with 'termination' field indicating whether to terminate the experiment.
         """
         # convert parent solutions to string
-        parent_solutions_str = utils.parents_to_str(parent_solutions)
+        # we add parent solutions to the prompt
+        # this is because we want to give the LLM a benchmark to compare against
+        # TODO: if you want to add code to parent solution string, you can set `show_code=True`
+        parent_solutions_str = utils.parents_to_str(parent_solutions, show_code=False)
         
         # Generate experiment history string by concatenating intermediate experiment (excluding the latest experiment) results and reflections
-        experiment_history = solution.experiment_history()
+        experiment_history = solution.experiment_history(
+                                        include_compact_summaries=True,
+                                        summarization_interval=self.summarization_interval,
+                                    )
                     
         # Construct prompt
         user = self.user_experiment_reflection_prompt.format(
@@ -387,7 +500,7 @@ class ExperimentAgent:
             code = solution.code,  # current solution code
             experiment_history = experiment_history if experiment_history else "(empty)",  # experiment history
             latest_experiment_result = solution.output,  # latest experiment result (errors will be included; metrics, features, and score will also be included; truncated if too long)
-            #other_context = other_context if other_context else "(empty)",  # other things you may want to remind agent of; like this is the last experiment
+            other_context = other_context if other_context else "(empty)",  # other things you may want to remind agent of; like this is the last experiment
         ) # Note: current callbacks is included in the `experiment_history`
         messages = [{"role": "system", "content": self.system_experiment_reflection_prompt}, {"role": "user", "content": user}]
         
@@ -428,7 +541,10 @@ class ExperimentAgent:
             recent experiment result.
         """
         # Generate experiment history string by concatenating intermediate experiment results and reflections
-        experiment_history = solution.experiment_history()
+        experiment_history = solution.experiment_history(
+                                        include_compact_summaries=True,
+                                        summarization_interval=self.summarization_interval,
+                                    )
     
         user = self.user_experiment_summary_prompt.format(
             problem_description = self.problem_description,  # common
@@ -437,10 +553,10 @@ class ExperimentAgent:
             function_description = self.function_description,  # common
             long_term_reflection = long_term_reflection,  # common
             idea = solution.idea,  # current solution idea
-            original_code = solution.intermediate_codes[0] if self.max_experiment_repeats > 0 else solution.code,  # original code
-            experiment_history = experiment_history if self.max_experiment_repeats > 0 else 'None',  # all experiments
+            original_code = solution.intermediate_codes[0] if solution.intermediate_codes else solution.code,  # original code
+            experiment_history = experiment_history if experiment_history else 'None',  # all experiments
             current_code = solution.code,  # current code
-            current_code_output = solution.output,  # current code output
+            current_code_output = solution.output  # current code output, or use solution.performance_str()
         )
         messages = [{"role": "system", "content": self.system_experiment_summary_prompt}, {"role": "user", "content": user}]
         
@@ -469,11 +585,12 @@ class ExperimentAgent:
     
 
     def run(self,
-            parent_solutions: Union[Solution, List[Solution]], 
-            solution: Solution, 
+            parent_solutions: Union[Solution, List[Solution]],
+            solution: Solution,
             long_term_reflection: Union[str, None]=None,
             use_long_term_reflection: bool=False,
-            is_elitist: bool=False
+            is_elitist: bool=False,
+            dynamic_max_experiment_repeats: int=None
             ):
         """
         Conducts experiments on candidate solutions to evaluate their performance. 
@@ -486,6 +603,7 @@ class ExperimentAgent:
             long_term_reflection (str): long term reflection from previous experiments
             use_long_term_reflection (bool): whether elitist is used as root solution; default False.
             is_elitist (bool): whether current solution is elitist; default False.
+            dynamic_max_experiment_repeats (int): dynamically calculated max experiment repeats; if None, uses config value.
             
         Returns:
             solution (Solution): the updated solution; updated fields include:
@@ -499,15 +617,18 @@ class ExperimentAgent:
         """
         print(f"\n>>>[ExperimentAgent] Starts to work on solution {solution.id_str(algorithm=self.algorithm)}...")
         
+        if dynamic_max_experiment_repeats and dynamic_max_experiment_repeats >= 10:
+            print()  # for debugging purposes
+        
         # =====0. Experiment Preparation=====
         # Handle long-term reflection for crossover
         # for mutation on elitist, we always use long-term reflection
         # for crossover, we may not want to provide long-term reflection
-        if not use_long_term_reflection:
+        if use_long_term_reflection:
+            print("\n>>>[ExperimentAgent] Long-term reflection is used.")
+        else:
             long_term_reflection = "None"
             print("\n>>>[ExperimentAgent] Long-term reflection is not used.")
-        else:
-            print("\n>>>[ExperimentAgent] Long-term reflection is used.")
         
         long_term_reflection = long_term_reflection if long_term_reflection else "None"
         
@@ -518,6 +639,9 @@ class ExperimentAgent:
         solution.intermediate_features = []  # features extracted from output
         solution.intermediate_scores = []  # score extracted from output
         solution.intermediate_actions = []  # actions by experiment agent
+
+        # Progressive summarization tracking
+        solution.compact_summaries = []  # compact summaries generated during progressive summarization
 
 
         # =====1. Experiment loop=====
@@ -530,13 +654,19 @@ class ExperimentAgent:
         termination = 'no'
         code_diff = None
         
-        # we choose to spend on more time doing experiments for elitist solution
-        # TODO: "how to fast explore in experiments?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
-        if is_elitist:
-            max_experiment_repeats = int(self.max_experiment_repeats * self.elitist_experiment_factor)
+        # Dynamic experiment allocation
+        if dynamic_max_experiment_repeats is not None:
+            max_experiment_repeats = dynamic_max_experiment_repeats
+            print(f"\n>>>[ExperimentAgent] Using dynamic experiment allocation: {max_experiment_repeats} experiments")
         else:
-            max_experiment_repeats = self.max_experiment_repeats
+            # Use static allocation based on elitist factor
+            if is_elitist:
+                max_experiment_repeats = int(self.max_experiment_repeats * self.elitist_experiment_factor)
+            else:
+                max_experiment_repeats = self.max_experiment_repeats
+            print(f"\n>>>[ExperimentAgent] Using static experiment allocation: {max_experiment_repeats} experiments")
         
+        # Loop through experiments
         experiment_count = 0
         while experiment_count < max_experiment_repeats:  # when self.max_experiment_repeats is 0, no experiment is conducted, directly go to summarization step
             experiment_count += 1
@@ -550,7 +680,8 @@ class ExperimentAgent:
                 self.function_evals += 1
                 
             processed_output = utils.truncate(raw_output)  # raw output could be very long, truncate it to avoid context window overflow
-            print(f"\n>>>[ExperimentAgent] Experiment {experiment_count} output:\n{processed_output}\n")
+            print(f"\n>>>[ExperimentAgent] Output processed for solution {solution.id_str(algorithm=self.algorithm)}, experiment #{experiment_count}\n")
+            #print(f"\n>>>[ExperimentAgent] Processed output for experiment #{experiment_count} :\n{processed_output}\n")
             
             # Update solution fields
             solution.output = processed_output
@@ -570,25 +701,61 @@ You may want to revert back to the previous version of the solution code or para
 Give it your best shot and make sure that the last solution code is executable."""
             '''
             
+            # Other context
+            if not self.external_knowledge_persistence_disabled:
+                other_context = self.external_knowledge
+                print(f"\n>>>[ExperimentAgent] External knowledge persistence is enabled.")
+            else:
+                other_context = "None"
+                print(f"\n>>>[ExperimentAgent] External knowledge persistence is disabled.")
+            
             # Reflect
             response, thinking, code_diff, callbacks, termination_dict = self.reflect(
                                                                         parent_solutions=parent_solutions,
                                                                         solution=solution, 
                                                                         long_term_reflection=long_term_reflection, 
+                                                                        other_context=other_context if other_context else "None",
                                                                     ) 
             
-            # -----1.3. Save intermediate vars before making changes-----
+            # -----1.3. Save intermediate vars before making changes to solution code-----
             solution.intermediate_codes.append(solution.code)
             solution.intermediate_outputs.append(solution.output)
             solution.intermediate_metrics.append(solution.metrics)
             solution.intermediate_features.append(solution.features)
             solution.intermediate_scores.append(solution.score)
             solution.intermediate_actions.append(response)
-            # you may want to also store intermediate solution code 
+            # you may want to also store intermediate solution code
             # TODO: in case the last try fails, you can revert back to the last working solution manually
             # "manually revert code back at the end of experiment" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
+
+            # -----1.4. Progressive Summarization Check-----
+            if self.progressive_summarization and experiment_count > 1 and experiment_count % self.summarization_interval == 0:
+                keep_last_n = self.compact_history_length
+                
+                print(f"\n>>>[ExperimentAgent] Generating progressive summary after {experiment_count} experiments...")
+                compact_summary = self.generate_progressive_summary(solution, experiment_count)
+                solution.compact_summaries.append(compact_summary)
+                print(f"\n>>>[ExperimentAgent] Progressive summary generated:\n{compact_summary}")
+
+                # Clear old detailed history, keep only recent experiments
+                if keep_last_n == 0:  # clear all
+                    solution.intermediate_codes = []
+                    solution.intermediate_outputs = []
+                    solution.intermediate_metrics = []
+                    solution.intermediate_features = []
+                    solution.intermediate_scores = []
+                    solution.intermediate_actions = []
+                    print(f"\n>>>[ExperimentAgent] Cleared all old experiment history.")
+                elif keep_last_n > 0 and len(solution.intermediate_codes) > keep_last_n:
+                    solution.intermediate_codes = solution.intermediate_codes[-keep_last_n:]
+                    solution.intermediate_outputs = solution.intermediate_outputs[-keep_last_n:]
+                    solution.intermediate_metrics = solution.intermediate_metrics[-keep_last_n:]
+                    solution.intermediate_features = solution.intermediate_features[-keep_last_n:]
+                    solution.intermediate_scores = solution.intermediate_scores[-keep_last_n:]
+                    solution.intermediate_actions = solution.intermediate_actions[-keep_last_n:]
+                    print(f"\n>>>[ExperimentAgent] Cleared old experiment history, keeping last {keep_last_n} detailed experiments.")
             
-            # -----1.4. Take actions-----
+            # -----1.5. Take actions-----
             if not thinking:
                 print(f"\n>>>[ExperimentAgent] Warning: no valid thinking extracted. Response:\n{response}\n")
                 # We don't raise error here; it may be handled by next round of experiment
@@ -612,11 +779,11 @@ Give it your best shot and make sure that the last solution code is executable."
                     # Code changes updated to solution code
                     solution.code = tmp_code
                     # Log code diff
-                    print(f"\n>>>[ExperimentAgent] action after experiment {experiment_count}: update code\n")
+                    print(f"\n>>>[ExperimentAgent] Action after experiment {experiment_count}: update code\n")
                     file_name = f"{self.output_dir}/details/{solution.id_str(self.algorithm)}_codediff{experiment_count}.txt"
                     with open(file_name, 'w') as file:
                         file.write(code_diff)
-                    print(f"Code diff saved to: {file_name}")
+                    print(f">>>[ExperimentAgent] Code diff saved to: {file_name}")
                     if self.verbose:
                         print(">>>[ExperimentAgent] Code diff:")
                         print(code_diff)
@@ -644,7 +811,7 @@ Give it your best shot and make sure that the last solution code is executable."
                 print(f"\n>>>[ExperimentAgent] action after experiment {experiment_count}: terminate\n")
                 break
             
-            # -----1.5. Check max_experiment_repeats-----   
+            # -----1.6. Check max_experiment_repeats-----   
             if experiment_count >= max_experiment_repeats:
                 print(f"\n>>>[ExperimentAgent] Reached max_experiment_repeats ({max_experiment_repeats}). Terminating experiment.\n")
                 break

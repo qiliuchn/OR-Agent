@@ -77,4 +77,4 @@ Note: The termination field must be either "yes" or "no".
 - When parent solutions are provided, analyze how the current solution compares to them and identify what can be learned from higher-performing parent solutions
 - When designing callbacks, keep output concise and focused to prevent context window overflow. If output becomes too verbose, reduce it in subsequent iterations.
 - For minor changes, include diff blocks; for major algorithm logic modifications that involve function complete reconstruction, document the issues in your reflection and set termination to "yes" - these will generate ideas for future research directions.
-- Try your best to identify the problem and improve the solution performance; don't termination too early! If you indeed find the current idea not promising and intend to terminate, you should specify the reason clearly in your analysis.
+- Try your best to identify the problem and improve the solution performance; don't termination too early. If you indeed find the current idea not promising and intend to terminate, you should specify the reason clearly in your analysis.

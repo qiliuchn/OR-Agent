@@ -115,6 +115,7 @@ class Solution:
     intermediate_features: List[Tuple[int, ...]] = field(default_factory=list)
     intermediate_scores: List[float] = field(default_factory=list)
     intermediate_actions: List[str] = field(default_factory=list)
+    compact_summaries: List[str] = field(default_factory=list)  # compact summaries for progressive summarization
     # (The following fields are used by ReEvo, EoH, AEL, and FunSearch; kept for compatibility)
     iteration: Optional[int] = None
     response_id: Optional[int] = None
@@ -217,17 +218,21 @@ Summary: Good solution with high accuracy...
 """
         return idea_performance_summary_str.strip()
     
-    def experiment_history(self, num_experiments=None) -> str:
+    def experiment_history(self, #num_experiments=None, 
+                           include_compact_summaries=True,
+                           summarization_interval=4,
+                           ) -> str:
         """
         Generate experiment history string by concatenating intermediate experiment results and reflections.
-        
+
         Args:
             num_experiments (int): Number of experiments to include; default: None (includes all).
                 If the allowed number of experiments is large, we recommend set `num_experiments` to avoid context growing too large for experiment agent.
-        
+            include_compact_summaries (bool): Whether to include compact summaries from progressive summarization.
+
         Returns:
             experiment_history_str (str): Formatted experiment history string.
-            
+
         Example:
 ----------------------------------------
 Experiment #1:
@@ -251,24 +256,36 @@ Experiment #2:
 ----------------------------------------
 ...
         """
+        # Include compact summaries if available
+        experiment_history_str = ''
+        if include_compact_summaries and self.compact_summaries:
+            experiment_history_str += f"\n{'='*60}\nCOMPACT SUMMARIES (Progressive Summarization)\n{'='*60}\n"
+            for i, summary in enumerate(self.compact_summaries):
+                experiment_history_str += f"\n{'-'*40}\nCompact Summary Batch #{i + 1}):\n{'-'*40}\n{summary}\n"
+                
+            experiment_history_str += f"\n{'='*60}\nDETAILED EXPERIMENT HISTORY\n{'='*60}\n"
+
         # Limit to num_experiments if specified
         # solution intermediate outputs and metrics length = actions length + 1
         # since the last evaluation remains to be reflected
         # we use len(self.intermediate_actions) to generate experiment history
-        num_experiments = num_experiments or len(self.intermediate_actions)
-            
+        num_experiments = len(self.intermediate_actions)
+
         # Experiment tracking - print alternately
         # concat results of last `num_experiments` experiment results.
-        experiment_history_str = ''
-        start_index = max(0, len(self.intermediate_actions) - num_experiments)
-        for i in range(start_index, len(self.intermediate_actions)):
-            tmp_str = f"\n{'-'*40}\nExperiment #{i + 1}:\n{'-'*40}\n"
-            tmp_str += f"**Stdout**:\n{self.intermediate_outputs[i]}\n\n"
-            tmp_str += f"**Metrics**:\n{self.intermediate_metrics[i]}\n\n"
-            tmp_str += f"**Features**:\n{self.intermediate_features[i]}\n\n"
-            tmp_str += f"**Score**: {self.intermediate_scores[i]}\n\n"
-            tmp_str += f"**Reflections and actions**:\n{self.intermediate_actions[i]}\n"
-            experiment_history_str += tmp_str
+        #start_index = max(0, len(self.intermediate_actions) - num_experiments)
+        if self.intermediate_actions:
+            experiment_counter_start = len(self.compact_summaries) * summarization_interval  # start from the last compact summary
+            for i in range(len(self.intermediate_actions)):
+                experiment_index = experiment_counter_start + (i + 1)
+                tmp_str = f"\n{'-'*40}\nExperiment #{experiment_index}:\n{'-'*40}\n"
+                tmp_str += f"**Stdout**:\n{self.intermediate_outputs[i]}\n\n"
+                tmp_str += f"**Metrics**:\n{self.intermediate_metrics[i]}\n\n"
+                tmp_str += f"**Features**:\n{self.intermediate_features[i]}\n\n"
+                tmp_str += f"**Score**: {self.intermediate_scores[i]}\n\n"
+                tmp_str += f"**Reflections and actions**:\n{self.intermediate_actions[i]}\n"
+                experiment_history_str += tmp_str
+                
         return experiment_history_str.strip()
 
 
@@ -355,6 +372,7 @@ class LLMClient:
                 choices = response.choices
                 if not choices:
                     print("\n>>>[LLMClient] None response generated")
+                    print(f">>>[LLMClient] Response: {response}")
                 else:
                     # check to make sure that choices is not none, then you can break! 
                     # otherwise, sometimes it returns None, and you will regard this as a successful generation
@@ -362,6 +380,21 @@ class LLMClient:
             except Exception as e:
                 sleep_time = random.randint(3, 60)
                 print(f"\n>>>[LLMClient] Attempt {attempt + 1} failed with error: {e}; sleep for {sleep_time} seconds")
+
+                # Try to extract request ID from different exception structures
+                request_id = None
+                if hasattr(e, 'response') and hasattr(e.response, 'headers'):
+                    request_id = e.response.headers.get('x-request-id')
+                elif hasattr(e, 'headers'):
+                    request_id = e.headers.get('x-request-id')
+                elif hasattr(e, 'request_id'):
+                    request_id = e.request_id
+
+                if request_id:
+                    print(f">>>[LLMClient] Request ID: {request_id}")
+                else:
+                    print(f">>>[LLMClient] No request ID found in exception")
+
                 time.sleep(sleep_time)
                 # Note: add random sleep time to avoid too frequent LLM call
                 # TODO: this is a simple trick; could be made better
@@ -726,7 +759,8 @@ def is_valid(solution: Solution)-> bool:
     return (solution.idea is not None) and (solution.code is not None) and (solution.score is not None)
 
 
-def parents_to_str(parent_solutions: Union['Solution']=None) -> str:
+def parents_to_str(parent_solutions: Union[Solution]=None,
+                   show_code=True) -> str:
     """Convert a list of solutions to a string.
 
     Example:
@@ -769,16 +803,19 @@ Parent #2:
     parent_solutions_str = ""
     if parent_solutions:
         for i, parent in enumerate(parent_solutions):
-            parent_solutions_str = parent_solutions_str + f"\n{'-'*40}\nParent #{i + 1}:\n{'-'*40}\n" + str(parent) + '\n'
+            if show_code:
+                parent_solutions_str = parent_solutions_str + f"\n{'-'*40}\nParent #{i + 1}:\n{'-'*40}\n" + str(parent) + '\n'
+            else:
+                parent_solutions_str = parent_solutions_str + f"\n{'-'*40}\nParent #{i + 1}:\n{'-'*40}\n" + parent.idea_performance_summary_str() + '\n'
+                
     return parent_solutions_str.strip()
 
 
 def truncate(raw_output: str, max_lines=100) -> str:
     """
     Truncate experiment output if it's too verbose.
-    Many failures are at the tail (traceback last lines).
-	keep both head+tail (e.g., first 50 lines + last 50 lines) and include a “traceback extractor” heuristic.
-    TODO: 
+    If raw_output has less than 100 lines, keep it as is.
+	If raw_output has more than 100 lines, keep both head+tail (e.g., first 50 lines + last 50 lines) and include a “traceback extractor” heuristic. Since many failures are at the tail (traceback last lines).
     
     Args:
         raw_output (str): experiment output
@@ -794,14 +831,35 @@ def truncate(raw_output: str, max_lines=100) -> str:
     if total_lines <= max_lines:
         return raw_output
 
-    # Keep only the first max_lines lines
-    truncated = "\n".join(lines[:max_lines])
-    # Add annotation so that LLM will know the result is too verbose; this is important!
-    truncated += f"\n...\n[Output truncated: {total_lines} total lines, showing first {max_lines} lines]"
-    
-    # TODO: this represents a simple logic to shorten verbose environment output
-    # there are alternatives; like you can extract important info, invoke LLM to compress to provide a summary, etc.
-    # "how to manage and compress context?" - This requires further exploration, analysis, and validation, and is marked with a TODO flag
+    # Use head+tail approach: first half and last half
+    head_lines = max_lines // 2
+    tail_lines = max_lines - head_lines
+
+    # Get head and tail sections
+    head = "\n".join(lines[:head_lines])
+    tail = "\n".join(lines[-tail_lines:])
+
+    # Combine with truncation indicator
+    truncated = f"{head}\n...\n[Output truncated: {total_lines} total lines, showing first {head_lines} and last {tail_lines} lines]\n...\n{tail}"
+
+    # Traceback extraction heuristic: look for traceback patterns in the tail
+    # This helps ensure important error information isn't lost in the middle
+    traceback_lines = []
+    in_traceback = False
+    for line in lines[-tail_lines*2:]:  # Look in last 2x tail_lines for tracebacks
+        if "Traceback" in line or "traceback" in line:
+            in_traceback = True
+        if in_traceback:
+            traceback_lines.append(line)
+            # Check if we've reached the end of a typical traceback (empty line or non-indented line)
+            if line.strip() == "" and len(traceback_lines) > 1:
+                break
+
+    # If we found a traceback, append it after the truncated output
+    if traceback_lines:
+        traceback_text = "\n".join(traceback_lines)
+        truncated += f"\n\n[Traceback found in original output]:\n{traceback_text}"
+
     return truncated
 
 
@@ -890,25 +948,27 @@ def update_code(curr_code: str, code_diff: str):
 
     while i < len(lines):
         line = lines[i]
-        # Look for conflict marker start
-        if line.strip() == '<<<<<<< SEARCH':
+        # Look for conflict marker start - focus on the marker pattern rather than specific label
+        # The marker format is: "<<<<<<<" followed by optional label (e.g., SEARCH, HEAD, etc.)
+        if line.strip().startswith('<<<<<<<'):
             search_start = i
-            # Find the ======= marker
-            while i < len(lines) and lines[i].strip() != '=======':
+            # Find the ======= marker (separator between search and replace blocks)
+            while i < len(lines) and not lines[i].strip().startswith('======='):
                 i += 1
             if i >= len(lines):
-                break  # Malformed diff
+                break  # Malformed diff - missing separator
             search_end = i
             i += 1  # Skip =======
 
-            # Find the >>>>>>> REPLACE marker
+            # Find the >>>>>>> marker (end of conflict block)
+            # The marker format is: ">>>>>>>" followed by optional label (e.g., REPLACE, MERGE, etc.)
             replace_start = i
-            while i < len(lines) and lines[i].strip() != '>>>>>>> REPLACE':
+            while i < len(lines) and not lines[i].strip().startswith('>>>>>>>'):
                 i += 1
             if i >= len(lines):
-                break  # Malformed diff
+                break  # Malformed diff - missing end marker
             replace_end = i
-            i += 1  # Skip >>>>>>> REPLACE
+            i += 1  # Skip >>>>>>>
 
             # Extract search and replace blocks
             search_block = '\n'.join(lines[search_start + 1:search_end])
@@ -930,6 +990,7 @@ def update_code(curr_code: str, code_diff: str):
                 # Try to find the block in the result (preserving original indentation)
                 for j in range(len(result_lines) - len(search_lines) + 1):
                     # Compare with trailing whitespace removed
+                    # Note: use rstrip() to remove trailing whitespace; heading whitespace is preserved!
                     if [l.rstrip() for l in result_lines[j:j + len(search_lines)]] == search_lines:
                         # Found a match, replace it
                         before = '\n'.join(result_lines[:j])
@@ -1310,6 +1371,10 @@ And some more text.
     # Test with list of parents
     parents_list_str = parents_to_str([parent1, parent2])
     print(f"\nMultiple parents result:\n{parents_list_str}")
+    
+    # Test with list of parents
+    parents_list_str = parents_to_str([parent1, parent2], show_code=False)
+    print(f"\nMultiple parents result (no code):\n{parents_list_str}")
 
     # Test with None
     none_parents_str = parents_to_str(None)
@@ -1356,6 +1421,27 @@ And some more text.
     # Test parameter update
     parameter_definitions = "a = 1.5\nb = 2.5"
     updated_code = update_parameter(test_code, parameter_definitions)
+    print("Original code:")
+    print(test_code)
+    print("\nUpdated code:")
+    print(updated_code)
+    
+    print("\n=== Testing update parameters using update_code() ===")
+    test_code = '''def example_function():
+    a = 1.0
+    b = 2.0
+    c = 3.0
+    return a + b + c'''
+    code_diff = """
+<<<<<<< HEAD
+    a = 1.0   
+    b = 2.0  
+=======
+    a = 1.5
+    b = 2.5
+>>>>>>> REPLACE
+"""
+    updated_code = update_code(test_code, code_diff)
     print("Original code:")
     print(test_code)
     print("\nUpdated code:")
