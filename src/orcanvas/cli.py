@@ -4,7 +4,7 @@ import sys
 from typing import NoReturn
 
 def main():
-    pass 
+    print("Open Research Canvas")
 
 
 def _exit(code: int) -> NoReturn:

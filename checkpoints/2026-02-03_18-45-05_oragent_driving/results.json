@@ -1,0 +1,128 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": -77.917902,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "teleports": 4.0,
+            "critical_ttc_count": 155.0,
+            "speed_variance": 2.56,
+            "avg_speed": 0.32,
+            "emergencyStops": 0.0,
+            "collisions": 2.0
+        },
+        "code_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 29,
+        "total_function_evals": 29,
+        "total_valid_responses": 21,
+        "best_obj_overall": -17.388783000000007,
+        "metrics": {
+            "critical_ttc_count": 92.0,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "speed_variance": 2.0549999999999997,
+            "avg_speed": 0.23500000000000001,
+            "teleports": 3.5,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round0_count5_id5_solution.py",
+        "output_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round0_count5_id5_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 94,
+        "total_function_evals": 67,
+        "total_valid_responses": 82,
+        "best_obj_overall": -8.969874000000003,
+        "metrics": {
+            "avg_speed": 0.3,
+            "critical_ttc_count": 139.0,
+            "speed_variance": 2.925,
+            "teleports": 3.0,
+            "collisions": 0.0,
+            "emergencyStops": 0.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round1_count9_id30_solution.py",
+        "output_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round1_count9_id30_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 119,
+        "total_function_evals": 79,
+        "total_valid_responses": 105,
+        "best_obj_overall": -7.748993000000002,
+        "metrics": {
+            "avg_speed": 0.385,
+            "emergencyStops": 0.0,
+            "speed_variance": 1.9,
+            "collisions": 0.0,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 135.0
+        },
+        "code_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round1_count14_id35_solution.py",
+        "output_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round1_count14_id35_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 196,
+        "total_function_evals": 125,
+        "total_valid_responses": 177,
+        "best_obj_overall": 7.6031539999999955,
+        "metrics": {
+            "avg_speed": 0.27999999999999997,
+            "speed_variance": 2.425,
+            "emergencyStops": 0.0,
+            "collisions": 0.0,
+            "critical_ttc_count": 72.5,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round2_count0_id46_solution.py",
+        "output_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round2_count0_id46_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 292,
+        "total_function_evals": 178,
+        "total_valid_responses": 269,
+        "best_obj_overall": 38.728153999999996,
+        "metrics": {
+            "teleports": 1.0,
+            "speed_variance": 0.08,
+            "emergencyStops": 0.0,
+            "critical_ttc_count": 68.0,
+            "avg_speed": 0.28,
+            "collisions": 0.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round12_count4_id60_solution.py",
+        "output_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round12_count4_id60_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 305,
+        "total_function_evals": 185,
+        "total_valid_responses": 282,
+        "best_obj_overall": 48.00413999999999,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "emergencyStops": 0.0,
+            "avg_speed": 0.29000000000000004,
+            "speed_variance": 0.065,
+            "teleports": 0.5,
+            "critical_ttc_count": 61.0,
+            "collisions": 0.0
+        },
+        "code_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round12_count5_id61_solution.py",
+        "output_filepath": "outputs/oragent/driving/standard_model14_v3_frequent_reflect_deepseek2/details/lead1_round12_count5_id61_stdout.txt"
+    }
+]

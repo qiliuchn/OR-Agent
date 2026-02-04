@@ -301,6 +301,11 @@ Specify your problem in `problems/<your_problem>`. You need to prepare the follo
 Check [How to Customize Your Own Benchmark](problems/README.md#how-to-customize-your-own-benchmark) for more details.
  
 
+Open Research Canvas:
+![CanvasWebUI](assets/canvas_webui1.png)
+![CanvasWebUI](assets/canvas_webui2.png)
+
+
 ### Configuration
 Create a new config template:
 ```python cli.py --init-config```
@@ -322,9 +327,9 @@ streamlit run agent.py
 
 If you want to view history runs, you can turn the WebUI into a visualizer by selecting `history messages`.
 
-![WebUI](assets/webui1.png)
-![WebUI](assets/webui2.png)
-![WebUI](assets/webui3.png)
+![AgentWebUI](assets/agent_webui1.png)
+![AgentWebUI](assets/agent_webui2.png)
+![AgentWebUI](assets/agent_webui3.png)
 
 
 

@@ -308,6 +308,186 @@ if 'message_queue' not in st.session_state:
 
 
 #=====Helper functions=====
+#-----Helper functions for OR-Canvas-----
+# Helper function to load existing problems
+def load_existing_problems():
+    problems_dir = Path.cwd() / "problems"
+    problems = []
+    if problems_dir.exists():
+        problems = [p.name for p in problems_dir.iterdir() if p.is_dir()]
+    return problems
+
+# Helper function to load problem data
+def load_problem_data(problem_name):
+    """Load all data for a given problem from files"""
+    problem_dir = Path.cwd() / "problems" / problem_name
+    data = {}
+
+    print(f"\n=== Loading problem data for: {problem_name} ===")
+    print(f"Problem directory: {problem_dir}")
+
+    # Load problem description
+    desc_file = problem_dir / "problem_description.txt"
+    if desc_file.exists():
+        print(f"✓ Found problem_description.txt")
+        with open(desc_file, 'r') as f:
+            data['problem_description'] = f.read()
+    else:
+        print(f"✗ Missing problem_description.txt")
+
+    # Load external knowledge
+    ext_file = problem_dir / "external_knowledge.txt"
+    if ext_file.exists():
+        print(f"✓ Found external_knowledge.txt")
+        with open(ext_file, 'r') as f:
+            data['external_knowledge'] = f.read()
+    else:
+        print(f"✗ Missing external_knowledge.txt")
+
+    # Load function signature
+    func_file = problem_dir / "function_description.txt"
+    if func_file.exists():
+        print(f"✓ Found function_description.txt")
+        with open(func_file, 'r') as f:
+            data['function_signature'] = f.read()
+    else:
+        print(f"✗ Missing function_description.txt")
+
+    # Load evaluation script
+    eval_file = problem_dir / "eval.py"
+    if eval_file.exists():
+        print(f"✓ Found eval.py")
+        with open(eval_file, 'r') as f:
+            data['evaluation_script'] = f.read()
+    else:
+        print(f"✗ Missing eval.py")
+
+    # Load dataset generation script
+    dataset_file = problem_dir / "generate_dataset.py"
+    if dataset_file.exists():
+        print(f"✓ Found generate_dataset.py")
+        with open(dataset_file, 'r') as f:
+            data['dataset_generation_script'] = f.read()
+    else:
+        print(f"✗ Missing generate_dataset.py")
+
+    # Load seed solution idea
+    seed_idea_file = problem_dir / "seed_solution_idea.txt"
+    if seed_idea_file.exists():
+        print(f"✓ Found seed_solution_idea.txt")
+        with open(seed_idea_file, 'r') as f:
+            data['seed_solution_idea'] = f.read()
+    else:
+        print(f"✗ Missing seed_solution_idea.txt")
+
+    # Load seed solution script
+    seed_script_file = problem_dir / "seed_solution.py"
+    if seed_script_file.exists():
+        print(f"✓ Found seed_solution.py")
+        with open(seed_script_file, 'r') as f:
+            data['seed_solution_script'] = f.read()
+    else:
+        print(f"✗ Missing seed_solution.py")
+
+    print(f"=== Finished loading problem data ===\n")
+    return data
+
+# Helper function to save problem data
+def save_problem_data(problem_name, data):
+    """Save problem data to files"""
+    problem_dir = Path.cwd() / "problems" / problem_name
+    dataset_dir = problem_dir / "dataset"
+
+    # Create directories if they don't exist
+    problem_dir.mkdir(parents=True, exist_ok=True)
+    dataset_dir.mkdir(parents=True, exist_ok=True)
+
+    # Save problem description
+    if 'problem_description' in data and data['problem_description']:
+        with open(problem_dir / "problem_description.txt", 'w') as f:
+            f.write(data['problem_description'])
+
+    # Save external knowledge
+    if 'external_knowledge' in data and data['external_knowledge']:
+        with open(problem_dir / "external_knowledge.txt", 'w') as f:
+            f.write(data['external_knowledge'])
+
+    # Save function signature
+    if 'function_signature' in data and data['function_signature']:
+        with open(problem_dir / "function_description.txt", 'w') as f:
+            f.write(data['function_signature'])
+
+    # Save evaluation script
+    if 'evaluation_script' in data and data['evaluation_script']:
+        with open(problem_dir / "eval.py", 'w') as f:
+            f.write(data['evaluation_script'])
+
+    # Save dataset generation script
+    if 'dataset_generation_script' in data and data['dataset_generation_script']:
+        with open(problem_dir / "generate_dataset.py", 'w') as f:
+            f.write(data['dataset_generation_script'])
+
+    # Save seed solution idea
+    if 'seed_solution_idea' in data and data['seed_solution_idea']:
+        with open(problem_dir / "seed_solution_idea.txt", 'w') as f:
+            f.write(data['seed_solution_idea'])
+
+    # Save seed solution script
+    if 'seed_solution_script' in data and data['seed_solution_script']:
+        with open(problem_dir / "seed_solution.py", 'w') as f:
+            f.write(data['seed_solution_script'])
+
+# Helper function to list dataset files
+def list_dataset_files(problem_name):
+    """List files in the dataset directory"""
+    dataset_dir = Path.cwd() / "problems" / problem_name / "dataset"
+    if dataset_dir.exists():
+        files = [f.name for f in dataset_dir.iterdir() if f.is_file()]
+        return files
+    return []
+
+# Helper function to run dataset generation script
+def run_dataset_generation(problem_name):
+    """Run the dataset generation script"""
+    script_path = Path.cwd() / "problems" / problem_name / "generate_dataset.py"
+    if script_path.exists():
+        try:
+            result = subprocess.run(
+                [sys.executable, str(script_path)],
+                capture_output=True,
+                text=True,
+                cwd=script_path.parent
+            )
+            if result.returncode == 0:
+                return True, result.stdout
+            else:
+                return False, result.stderr
+        except Exception as e:
+            return False, str(e)
+    return False, "Dataset generation script not found"
+
+# Helper function to run evaluation script
+def run_evaluation(problem_name):
+    """Run the evaluation script"""
+    script_path = Path.cwd() / "problems" / problem_name / "eval.py"
+    if script_path.exists():
+        try:
+            result = subprocess.run(
+                [sys.executable, str(script_path)],
+                capture_output=True,
+                text=True,
+                cwd=script_path.parent
+            )
+            if result.returncode == 0:
+                return True, result.stdout
+            else:
+                return False, result.stderr
+        except Exception as e:
+            return False, str(e)
+    return False, "Evaluation script not found"
+
+
+#-----Helper functions for OR-Agent-----
 def load_experiment_config(problem=None):
     """Load experiment config from problems/<problem>/settings.yaml"""
     if not problem:
@@ -644,6 +824,7 @@ def parse_solution_database(content):
 
 
 
+
 #=====WebUI=====
 # Streamlit UI
 st.set_page_config(layout="wide", page_title="OR-Agent WebUI")
@@ -654,7 +835,7 @@ st.set_page_config(layout="wide", page_title="OR-Agent WebUI")
 # Header section
 st.markdown("""
 <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-    <h1 style="margin: 0; color: #003366;">Open Research Canvas</h1>
+    <h1 style="margin: 0; color: #003399;">Open Research Canvas</h1>
 </div>
 """, unsafe_allow_html=True)
 #st.markdown("---")
@@ -662,11 +843,543 @@ st.markdown("""
 
 
 #-----Problem Definition Section-----
-# TODO: 
+# Initialize session state variables for problem definition
+if 'problem_name' not in st.session_state:
+    st.session_state.problem_name = ""
+if 'problem_description' not in st.session_state:
+    st.session_state.problem_description = ""
+if 'external_knowledge' not in st.session_state:
+    st.session_state.external_knowledge = ""
+if 'function_signature' not in st.session_state:
+    st.session_state.function_signature = ""
+if 'evaluation_script' not in st.session_state:
+    st.session_state.evaluation_script = ""
+if 'dataset_generation_script' not in st.session_state:
+    st.session_state.dataset_generation_script = ""
+if 'seed_solution_idea' not in st.session_state:
+    st.session_state.seed_solution_idea = ""
+if 'seed_solution_script' not in st.session_state:
+    st.session_state.seed_solution_script = ""
+if 'last_loaded_problem' not in st.session_state:
+    st.session_state.last_loaded_problem = ""
+if 'previous_dropdown_selection' not in st.session_state:
+    st.session_state.previous_dropdown_selection = "None"
+
+
+
+#---Subsection 1: Problem Description---
+st.markdown("#### Problem Description")
+col1, col2, col3, col4, col5= st.columns([9, 1, 1, 1, 1])
+
+with col1:
+    # Placeholder - empty column for alignment
+    st.empty()
+    
+with col2:
+    # Load existing problems dropdown
+    existing_problems = load_existing_problems()
+    existing_problems.insert(0, "None")
+    selected_existing = st.selectbox(
+        "Load Problem",
+        existing_problems,
+        index=0,
+        key="load_problem_select"
+    )
+
+    # If a problem is selected, load its data
+    print(f"\n=== Problem selection debug ===")
+    print(f"Selected existing: '{selected_existing}'")
+    print(f"Previous dropdown selection: '{st.session_state.previous_dropdown_selection}'")
+    print(f"Last loaded problem: '{st.session_state.last_loaded_problem}'")
+
+    # Only load if dropdown selection changed (not on every rerun)
+    if selected_existing != st.session_state.previous_dropdown_selection:
+        print(f"Dropdown selection changed from '{st.session_state.previous_dropdown_selection}' to '{selected_existing}'")
+
+        if selected_existing != "None":
+            print(f"Loading problem data for: {selected_existing}")
+            data = load_problem_data(selected_existing)
+            st.session_state.problem_name = selected_existing
+            st.session_state.problem_description = data.get('problem_description', '')
+            st.session_state.external_knowledge = data.get('external_knowledge', '')
+            st.session_state.function_signature = data.get('function_signature', '')
+            st.session_state.evaluation_script = data.get('evaluation_script', '')
+            st.session_state.dataset_generation_script = data.get('dataset_generation_script', '')
+            st.session_state.seed_solution_idea = data.get('seed_solution_idea', '')
+            st.session_state.seed_solution_script = data.get('seed_solution_script', '')
+            st.session_state.last_loaded_problem = selected_existing
+
+            # Also update the widget states directly since they have key parameters
+            st.session_state["problem_name_input"] = selected_existing
+            st.session_state["problem_description_input"] = data.get('problem_description', '')
+            st.session_state["external_knowledge_input"] = data.get('external_knowledge', '')
+            st.session_state["function_signature_input"] = data.get('function_signature', '')
+            st.session_state["evaluation_script_input"] = data.get('evaluation_script', '')
+            st.session_state["dataset_generation_script_input"] = data.get('dataset_generation_script', '')
+            st.session_state["seed_solution_idea_input"] = data.get('seed_solution_idea', '')
+            st.session_state["seed_solution_script_input"] = data.get('seed_solution_script', '')
+
+            print(f"Updated session state and widget states. Calling st.rerun()")
+        elif selected_existing == "None" and st.session_state.last_loaded_problem != "":
+            # If selecting "None" after having loaded a problem, clear the session state
+            print(f"Clearing session state - selected 'None'")
+            st.session_state.problem_name = ""
+            st.session_state.problem_description = ""
+            st.session_state.external_knowledge = ""
+            st.session_state.function_signature = ""
+            st.session_state.evaluation_script = ""
+            st.session_state.dataset_generation_script = ""
+            st.session_state.seed_solution_idea = ""
+            st.session_state.seed_solution_script = ""
+            st.session_state.last_loaded_problem = ""
+
+            # Also clear the widget states directly since they have key parameters
+            st.session_state["problem_name_input"] = ""
+            st.session_state["problem_description_input"] = ""
+            st.session_state["external_knowledge_input"] = ""
+            st.session_state["function_signature_input"] = ""
+            st.session_state["evaluation_script_input"] = ""
+            st.session_state["dataset_generation_script_input"] = ""
+            st.session_state["seed_solution_idea_input"] = ""
+            st.session_state["seed_solution_script_input"] = ""
+
+            print(f"Cleared session state and widget states. Calling st.rerun()")
+        else:
+            print(f"No action needed - selected 'None' and no previously loaded problem")
+
+        # Update previous dropdown selection
+        st.session_state.previous_dropdown_selection = selected_existing
+        st.rerun()
+    else:
+        print(f"Dropdown selection unchanged, skipping load")
+
+with col3:
+    # Problem name input (disabled if loading existing problem)
+    problem_name_disabled = selected_existing != "None"
+    print(f"Problem name text box - value: '{st.session_state.problem_name}', disabled: {problem_name_disabled}")
+    st.text_input(
+        "Problem Name",
+        value=st.session_state.problem_name,
+        disabled=problem_name_disabled,
+        key="problem_name_input"
+    )
+
+with col4:
+    st.markdown("""
+    <div style="display: flex; justify-content: center; align-items: center; height: 100%; margin-top: 28px;">
+    """, unsafe_allow_html=True)
+    submit_problem = st.button("Submit", type="secondary", use_container_width=True, key="submit_problem")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+with col5:
+    st.markdown("""
+    <div style="display: flex; justify-content: center; align-items: center; height: 100%; margin-top: 28px;">
+    """, unsafe_allow_html=True)
+    llm_gen_problem = st.button("LLM Generate", type="secondary", use_container_width=True, key="llm_gen_problem")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+
+# Problem description and external knowledge in columns
+col1, col2 = st.columns([9, 4])
+
+with col1:
+    st.text_area(
+        "Problem Description",
+        value=st.session_state.problem_description,
+        height=150,
+        key="problem_description_input"
+    )
+
+with col2:
+    st.text_area(
+        "External Knowledge",
+        value=st.session_state.external_knowledge,
+        height=150,
+        key="external_knowledge_input"
+    )
+
+# Handle submit button for problem description
+if submit_problem:
+    if not st.session_state.problem_name:
+        st.error("Please enter a problem name")
+    elif not st.session_state.problem_description:
+        st.error("Please enter a problem description")
+    else:
+        data = {
+            'problem_description': st.session_state.problem_description,
+            'external_knowledge': st.session_state.external_knowledge if st.session_state.external_knowledge else None
+        }
+        save_problem_data(st.session_state.problem_name, data)
+        st.success(f"Problem '{st.session_state.problem_name}' saved successfully!")
+        st.session_state.messages.append(("System", f"Problem '{st.session_state.problem_name}' saved"))
+
+# Handle LLM generate button for problem description
+if llm_gen_problem:
+    if not st.session_state.problem_name:
+        st.error("Please enter a problem name first")
+    elif not st.session_state.problem_description:
+        st.error("Please enter a problem description first")
+    else:
+        try:
+            # Call the LLM to generate polished problem description
+            updated_description = orcanvas.generate_problem_description(st.session_state.problem_description)
+            st.session_state.problem_description = updated_description
+
+            # Save the updated description
+            data = {
+                'problem_description': updated_description,
+                'external_knowledge': st.session_state.external_knowledge if st.session_state.external_knowledge else None
+            }
+            save_problem_data(st.session_state.problem_name, data)
+
+            st.success("Problem description polished by LLM and saved!")
+            st.session_state.messages.append(("System", f"Problem description for '{st.session_state.problem_name}' polished by LLM"))
+            st.rerun()
+        except Exception as e:
+            st.error(f"Error generating problem description: {str(e)}")
+            st.session_state.messages.append(("System", f"Error generating problem description: {str(e)}"))
+
+st.markdown("---")
+
+
+
+#---Subsection 2: Evaluation Description---
+st.markdown("#### Evaluation Description")
+col1, col2, col3 = st.columns([11, 1, 1])
+
+with col1:
+    # Placeholder - empty column for alignment
+    st.empty()
+
+with col2:
+    submit_eval = st.button("Submit", type="secondary", use_container_width=True, key="submit_eval")
+
+with col3:
+    llm_gen_eval = st.button("LLM Generate", type="secondary", use_container_width=True, key="llm_gen_eval")
+
+
+# Function signature and evaluation script in columns
+col1, col2 = st.columns([3, 7])
+
+with col1:
+    st.text_area(
+        "Function Signature",
+        value=st.session_state.function_signature,
+        height=300,
+        key="function_signature_input"
+    )
+
+with col2:
+    st.text_area(
+        "Evaluation Script",
+        value=st.session_state.evaluation_script,
+        height=300,
+        key="evaluation_script_input"
+    )
+
+# Handle submit button for evaluation description
+if submit_eval:
+    if not st.session_state.problem_name:
+        st.error("Please define a problem first (Section 1)")
+    else:
+        data = {}
+        if st.session_state.function_signature:
+            data['function_signature'] = st.session_state.function_signature
+        if st.session_state.evaluation_script:
+            data['evaluation_script'] = st.session_state.evaluation_script
+
+        save_problem_data(st.session_state.problem_name, data)
+        st.success("Evaluation description saved successfully!")
+        st.session_state.messages.append(("System", f"Evaluation description for '{st.session_state.problem_name}' saved"))
+
+# Handle LLM generate button for evaluation description
+if llm_gen_eval:
+    if not st.session_state.problem_name:
+        st.error("Please define a problem first (Section 1)")
+    elif not st.session_state.problem_description:
+        st.error("Please enter a problem description first (Section 1)")
+    else:
+        try:
+            # Call the LLM to generate evaluation description
+            result = orcanvas.generate_evaluation_description(
+                problem_description=st.session_state.problem_description,
+                function_signature=st.session_state.function_signature if st.session_state.function_signature else None,
+                evaluation_script=st.session_state.evaluation_script if st.session_state.evaluation_script else None
+            )
+
+            function_signature_update, function_to_evolve, obj_type, evaluation_script_update = result
+
+            # Update session state
+            st.session_state.function_signature = function_signature_update
+            st.session_state.evaluation_script = evaluation_script_update
+
+            # Save the updated data
+            data = {
+                'function_signature': function_signature_update,
+                'evaluation_script': evaluation_script_update
+            }
+            save_problem_data(st.session_state.problem_name, data)
+
+            # Create settings.yaml
+            settings_path = Path.cwd() / "problems" / st.session_state.problem_name / "settings.yaml"
+            settings = {
+                "function_to_evolve": function_to_evolve,
+                "obj_type": obj_type
+            }
+            with open(settings_path, 'w') as f:
+                yaml.dump(settings, f)
+
+            st.success("Evaluation description generated by LLM and saved!")
+            st.session_state.messages.append(("System", f"Evaluation description for '{st.session_state.problem_name}' generated by LLM"))
+            st.rerun()
+        except Exception as e:
+            st.error(f"Error generating evaluation description: {str(e)}")
+            st.session_state.messages.append(("System", f"Error generating evaluation description: {str(e)}"))
+
+st.markdown("---")
+
+
+
+
+#---Subsection 3: Test Dataset Generation---
+st.markdown("#### Test Dataset")
+col1, col2, col3, col4 = st.columns([10, 1, 1, 1])
+
+with col1:
+    # Placeholder - empty column for alignment
+    st.empty()
+    
+with col2:
+    submit_dataset = st.button("Submit", type="secondary", use_container_width=True, key="submit_dataset")
+
+with col3:
+    llm_gen_dataset = st.button("LLM Generate", type="secondary", use_container_width=True, key="llm_gen_dataset")
+
+with col4:
+    run_dataset = st.button("Run", type="secondary", use_container_width=True, key="run_dataset")
+    
+    
+# Display dataset files and dataset generation script in columns
+col1, col2 = st.columns([3, 7])
+with col1:
+    # Create a container with fixed height matching col2
+        container = st.container(height=300)
+        with container:
+            st.markdown("**Dataset Files:**")
+            # Display dataset files in fixed size container
+            if st.session_state.problem_name:
+                dataset_files = list_dataset_files(st.session_state.problem_name)
+                if dataset_files:
+                    for file in dataset_files:
+                        st.code(file, language="text")
+                else:
+                    st.info("No file found.")
+            else:
+                st.info("Problem not specified.")
+        
+
+with col2:
+    # Dataset generation script
+    st.text_area(
+        "Dataset Generation Script",
+        value=st.session_state.dataset_generation_script,
+        height=300,
+        key="dataset_generation_script_input"
+    )
+
+# Handle submit button for dataset generation
+if submit_dataset:
+    if not st.session_state.problem_name:
+        st.error("Please define a problem first (Section 1)")
+    else:
+        data = {}
+        if st.session_state.dataset_generation_script:
+            data['dataset_generation_script'] = st.session_state.dataset_generation_script
+
+        save_problem_data(st.session_state.problem_name, data)
+        st.success("Dataset generation script saved successfully!")
+        st.session_state.messages.append(("System", f"Dataset generation script for '{st.session_state.problem_name}' saved"))
+
+# Handle LLM generate button for dataset generation
+if llm_gen_dataset:
+    if not st.session_state.problem_name:
+        st.error("Please define a problem first (Section 1)")
+    elif not st.session_state.problem_description:
+        st.error("Please enter a problem description first (Section 1)")
+    elif not st.session_state.function_signature:
+        st.error("Please define function signature first (Section 2)")
+    elif not st.session_state.evaluation_script:
+        st.error("Please define evaluation script first (Section 2)")
+    else:
+        try:
+            # Call the LLM to generate dataset generation script
+            updated_script = orcanvas.generate_test_dataset(
+                problem_description=st.session_state.problem_description,
+                function_signature=st.session_state.function_signature,
+                evaluation_script=st.session_state.evaluation_script,
+                dataset_generation_script=st.session_state.dataset_generation_script if st.session_state.dataset_generation_script else None
+            )
+
+            # Update session state
+            st.session_state.dataset_generation_script = updated_script
+
+            # Save the updated script
+            data = {
+                'dataset_generation_script': updated_script
+            }
+            save_problem_data(st.session_state.problem_name, data)
+
+            st.success("Dataset generation script generated by LLM and saved!")
+            st.session_state.messages.append(("System", f"Dataset generation script for '{st.session_state.problem_name}' generated by LLM"))
+            st.rerun()
+        except Exception as e:
+            st.error(f"Error generating dataset generation script: {str(e)}")
+            st.session_state.messages.append(("System", f"Error generating dataset generation script: {str(e)}"))
+
+# Handle run button for dataset generation
+if run_dataset:
+    if not st.session_state.problem_name:
+        st.error("Please define a problem first (Section 1)")
+    else:
+        success, output = run_dataset_generation(st.session_state.problem_name)
+        if success:
+            st.success("Dataset generation completed successfully!")
+            st.session_state.messages.append(("System", f"Dataset generation for '{st.session_state.problem_name}' completed"))
+
+            # Show output if any
+            if output:
+                with st.expander("Dataset Generation Output"):
+                    st.code(output, language="text")
+        else:
+            st.error(f"Dataset generation failed: {output}")
+            st.session_state.messages.append(("System", f"Dataset generation for '{st.session_state.problem_name}' failed: {output}"))
+
+st.markdown("---")
+
+
+
+
+#---Subsection 4: Seed Solution Generation---
+st.markdown("#### Seed Solution")
+col1, col2, col3, col4 = st.columns([10, 1, 1, 1])
+
+with col1:
+    # Placeholder - empty column for alignment
+    st.empty()
+
+with col2:
+    submit_seed = st.button("Submit", type="secondary", use_container_width=True, key="submit_seed")
+
+with col3:
+    llm_gen_seed = st.button("LLM Generate", type="secondary", use_container_width=True, key="llm_gen_seed")
+
+with col4:
+    run_seed = st.button("Run", type="secondary", use_container_width=True, key="run_seed")
+
+# Seed solution idea and script in columns
+col1, col2 = st.columns([3, 7])
+
+with col1:
+    st.text_area(
+        "Seed Solution Idea",
+        value=st.session_state.seed_solution_idea,
+        height=300,
+        key="seed_solution_idea_input"
+    )
+
+with col2:
+    st.text_area(
+        "Seed Solution Script",
+        value=st.session_state.seed_solution_script,
+        height=300,
+        key="seed_solution_script_input"
+    )
+
+# Handle submit button for seed solution
+if submit_seed:
+    if not st.session_state.problem_name:
+        st.error("Please define a problem first (Section 1)")
+    else:
+        data = {}
+        if st.session_state.seed_solution_idea:
+            data['seed_solution_idea'] = st.session_state.seed_solution_idea
+        if st.session_state.seed_solution_script:
+            data['seed_solution_script'] = st.session_state.seed_solution_script
+
+        save_problem_data(st.session_state.problem_name, data)
+        st.success("Seed solution saved successfully!")
+        st.session_state.messages.append(("System", f"Seed solution for '{st.session_state.problem_name}' saved"))
+
+# Handle LLM generate button for seed solution
+if llm_gen_seed:
+    if not st.session_state.problem_name:
+        st.error("Please define a problem first (Section 1)")
+    elif not st.session_state.problem_description:
+        st.error("Please enter a problem description first (Section 1)")
+    elif not st.session_state.function_signature:
+        st.error("Please define function signature first (Section 2)")
+    elif not st.session_state.evaluation_script:
+        st.error("Please define evaluation script first (Section 2)")
+    else:
+        try:
+            # Call the LLM to generate seed solution
+            seed_idea_update, seed_script_update = orcanvas.generate_seed_solution(
+                problem_description=st.session_state.problem_description,
+                function_signature=st.session_state.function_signature,
+                evaluation_script=st.session_state.evaluation_script,
+                seed_solution_idea=st.session_state.seed_solution_idea if st.session_state.seed_solution_idea else None,
+                seed_solution_script=st.session_state.seed_solution_script if st.session_state.seed_solution_script else None
+            )
+
+            # Update session state
+            st.session_state.seed_solution_idea = seed_idea_update
+            st.session_state.seed_solution_script = seed_script_update
+
+            # Save the updated data
+            data = {
+                'seed_solution_idea': seed_idea_update,
+                'seed_solution_script': seed_script_update
+            }
+            save_problem_data(st.session_state.problem_name, data)
+
+            st.success("Seed solution generated by LLM and saved!")
+            st.session_state.messages.append(("System", f"Seed solution for '{st.session_state.problem_name}' generated by LLM"))
+            st.rerun()
+        except Exception as e:
+            st.error(f"Error generating seed solution: {str(e)}")
+            st.session_state.messages.append(("System", f"Error generating seed solution: {str(e)}"))
+
+# Handle run button for seed solution evaluation
+if run_seed:
+    if not st.session_state.problem_name:
+        st.error("Please define a problem first (Section 1)")
+    else:
+        success, output = run_evaluation(st.session_state.problem_name)
+        if success:
+            st.success("Seed solution evaluation completed successfully!")
+            st.session_state.messages.append(("System", f"Seed solution evaluation for '{st.session_state.problem_name}' completed"))
+
+            # Show output if any
+            if output:
+                with st.expander("Evaluation Output"):
+                    st.code(output, language="text")
+        else:
+            st.error(f"Seed solution evaluation failed: {output}")
+            st.session_state.messages.append(("System", f"Seed solution evaluation for '{st.session_state.problem_name}' failed: {output}"))
+
+st.markdown("")
+st.markdown("")
+
 
 
 
 #-----Agent Control Section-----
+st.markdown("""
+<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+    <h1 style="margin: 0; color: #003366;">Open Research Agent</h1>
+</div>
+""", unsafe_allow_html=True)
+
 # Control section - 6 columns as per new layout
 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 
