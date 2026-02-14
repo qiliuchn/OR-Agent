@@ -34,7 +34,7 @@ Qi Liu, Wanjing Ma
 MAGIC Lab, College of Transportation, Tongji University
 
 ### How to cite
-> Liu, Q., and Ma, W., 2025. [TBD]
+> Liu, Q., and Ma, W., 2026. [TBD]
 
 
 ## How It Works
