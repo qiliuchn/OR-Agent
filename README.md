@@ -16,16 +16,14 @@ This is an ongoing project that is continuously being improved. It is open-sourc
 
 
 ## Core Features
-**Multi-agent research framework**
-This study introduces a multi-agent architecture that supports ideation, literature survey, coding, and experimentation. OR-Agent can both search the internet for surveys and explore complex experimental environments—two forms of exploratory capability that are essential for automated scientific discovery.
-**Evolutionary ideation**
-We incorporate principles from evolutionary algorithms into the research-ideation stage, enabling OR-Agent to explore uncharted problem spaces and generate more innovative hypotheses.
-**Tree-search workflow management**
-A tree-search-based workflow controller is adopted to more faithfully model the branching structure of human research processes, including divergent exploration and iterative refinement.
-**Optimization-inspired reflection mechanisms**
-To help OR-Agent efficiently converge to high-quality solutions from evolution-derived starting points, we design reflection mechanisms inspired by classical optimization methods: short-term reflection acts as a verbal gradient, long-term reflection functions as verbal momentum, and reflection compression uses an exponential-decay schedule to stabilize updates.
+- We design a multi-agent research framework with **exploratory capabilities** in complex environment, enabling automated scientific discovery in domains with rich experimental settings.
+- We propose a structured **tree-based research workflow** that captures branching hypothesis exploration and systematic backtracking, enabling explicit management of research trajectories rather than relying solely on mutation and crossover iterations.
+- We introduce an **evolutionary–systematic ideation mechanism** that unifies evolutionary selection of research starting points, comprehensive research plan generation, and structured exploration within a tree-based workflow. Each round begins from evolutionarily selected solutions, from which agents generate a comprehensive research plan and explore refinement directions in a coordinated and structured manner.
+- We introduce a **hierarchical optimization-inspired reflection system**. Experimental reflection and summary function as a form of verbal gradient, providing immediate corrective signals based on recent experimental feedback. Long-term reflection accumulates insights as verbal momentum. Memory compression acts as a regularization mechanism analogous to weight decay, preserving essential signals while discarding redundancy. Together, these components form a principled hierarchical reflection architecture that governs research dynamics in OR-Agent.
+- We conduct extensive experiments across classical combinatorial optimization problems (e.g., traveling salesman problem, capacitated vehicle routing, bin packing, orienteering, and multiple knapsack) and simulation-based cooperative driving scenarios, demonstrating the effectiveness and generality of the proposed framework.
 
 The OR-Agent framework is illustrated below:
+![OR-Agent framework](assets/framework.png)
 
 
 
