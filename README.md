@@ -4,6 +4,8 @@
 
 ![OR-Agent Overview](assets/overview.png)
 
+
+
 ## Overview
 Open Research Agent (OR-Agent) is a research agent originally developed for solving operations-research problems, particularly those with complex environments such as cooperative driving algorithms. More broadly, its design generalizes to scientific research tasks that support automated evaluation. This project also includes Open Research Canvas (OR-Canvas), where users can collaborate with LLMs to specify problems.
 
@@ -155,26 +157,19 @@ Solutions are wrapped as `Node` instances.
 
 Flow graph can be visualize using `visualize()` method; `TSP-constructive` example:
 ```
-========================================
-✓ Node [0 (7.03), 1 (8.31)]
-    └── ⊕ Node 12 (9.12)
-            ├── ○ Node 13 (8.25)
-            └── ⊕ Node 14 (7.60)
-                    └── ⊕ Node 16 (7.36)
-                            ├── ⊕ Node 17 (7.04)
-                            │       └── ⊕ Node 21 (6.99)
-                            │               ├── ○ Node 23 (6.74)
-                            │               └── ○ Node 24 (6.77)
-                            └── ✓ Node 18 (6.99)
-========================================
-Total nodes: 8 | Total expanded solutions: 5 | Total pending leaves: 3 | Total terminal leaves: 1
-
 Format: Node <ID> (<score>): '<idea>'
 Legend:
   ⊕ = solution expanded with improved children solution(s)
   ○ = solution pending expansion
-  ✓ = terminal solution (local optimum, no improvement found)
-
+  ✓ = terminal solution (approximate local optimum, no improvement found)
+========================================
+  Node 0 (0.80): Implement a look-ahead nearest neighbor...
+    ├── ⊕ Node 1 (0.90): Design lightweight structural proxies...
+    │   └── ✓ Node 3 (0.85): Construct normalized distance-to-demand ratio matrix...
+    └── ⊕ Node 2 (0.70): Leverage graph Laplacian structure...
+        └── ○ Node 4 (0.75): Use min-max demand normalization...
+========================================
+Total nodes: 5 | Total expanded solutions: 2 | Total pending leaves: 1 | Total terminal leaves: 1
 ```
 
 Flow graph constructed over research rounds is illustrated below (`OR-Agent`ran on `CVRP-POMO` problem):
