@@ -617,22 +617,26 @@ The solutions found be OR-Agent are shared at [oragent best solutions](research_
 ### Ablations
 
 **Population Ruin Phenomenon**
+
 Without an evolutionary population database, we sometimes observe a phenomenon called "population ruin". In this scenario, a single "good" solution dominates the entire population, but this solution leads to invalid outcomes. For example, improving such a "good" solution would likely result in excessive computation time, causing timeouts hence invalid solutions. This phenomenon has also been observed in AEL and ReEvo, as illustrated in the figure below.
 
 ![population ruin](assets/population_ruin.png)
 
 
 **Ablations on Thinking Depth**
+
 We investigate the classic exploration-exploitation trade-off: deeper exploration of specific search space regions reduces overall coverage under fixed computational budgets. Our ablation study compares three modes: "deep exploration" (increased tree depth and maximum experiments), "fast exploration" (reduced depth and experiments), and "standard" (intermediate parameters). Results demonstrate that thinking depth significantly impacts algorithm performance. Both "deep exploration" and "fast exploration" modes underperform the "standard" configuration, highlighting the importance of balanced exploration-exploitation dynamics, which the "standard" mode achieves optimally.
 ![ablations on thinking depth](assets/ablation_thinking_depth.png)
 
 
 **Ablations on the Period of Using Elite as Root**
+
 The exploration-exploitation trade-off also involves determining how frequently to focus on the most promising solution directions. We conducted ablation studies to evaluate how the period of using elite solutions as roots affects algorithm performance. Results (shown below) demonstrate that a period of 8 yields significantly better performance than other tested values (2, 4, 16, and 32).
 ![ablations on period of using elite as root](assets/ablation_elite_as_root_period.png)
 
 
 **Ablations on Memory Compression**
+
 We conducted ablations on long-term reflection compression. Memory compression functions similarly to gradient decay in traditional optimization, potentially causing "verbal gradients" to decay faster.
 
 We tested four compression levels: 100, 200, and 400 words, plus no explicit compression (approximately 4K words for the LLMs we tested). Across six problems, no compression performed best in four cases and achieved the highest overall performance. Interestingly, compression to 100 words yielded the second-best performance, while compression to 400 words performed worst. The underlying reasons for this pattern remain unclear.
@@ -640,15 +644,16 @@ We tested four compression levels: 100, 200, and 400 words, plus no explicit com
 
 
 **Ablations on Long-Term Reflection Usage for Crossover**
+
 When parent solutions are randomly sampled from the solution database, we investigate whether long-term reflection should be used during crossover. The supporting view argues that leveraging accumulated knowledge through reflection can accelerate search by building on past insights. The opposing view suggests disabling reflection for crossover, as setting aside past experimental reflections may foster more innovative thinking—akin to scientists thinking "outside the box". We tested both approaches across six problems: (1) using long-term reflection during crossover, and (2) disabling long-term reflection for crossover. Results show each approach outperforms the other in three cases, with no definitive conclusion on the optimal setting.
 ![ablations on long-term reflection usage for crossover](assets/ablation_reflection_for_crossover.png)
+
 
 
 ## Open Research Questions and Future Work
 This project represents our initial attempt to build a research agent. Many questions remain open for exploration, including those related to agent workflows, solution database design, visualization techniques, and efficiency optimizations.
 
 To facilitate further development, we have added markers throughout the codebase to highlight key decision points. We have also included brief discussions at these locations. To identify all such locations, search for the text `This requires further exploration, analysis, and validation, and is marked with a TODO flag` in your IDE (VSCode with the TODO highlight extension is recommended):
-
 - "manually revert code back at the end of experiment"
 - “additional debugging stage before experiment return”
 - "funsearch crossover generates multiple children"
