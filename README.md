@@ -2,10 +2,10 @@
 
 ![Feature: Multi-Agent](https://img.shields.io/badge/✨%20Feature-Multi--Agent-800080)![Feature: Visualization](https://img.shields.io/badge/✨%20Feature-Visualization-9b59b6)![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white)![Feature: Easy-to-use](https://img.shields.io/badge/✨%20Feature-Easy--to--use-f1c40f)![Feature: Transparent](https://img.shields.io/badge/✨%20Feature-Transparent-7ed321)![Feature: Customization](https://img.shields.io/badge/✨%20Feature-Customization-5dade2)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
+![OR-Agent Overview](assets/overview.png)
 
 ## Overview
 Open Research Agent (OR-Agent) is a research agent originally developed for solving operations-research problems, particularly those with complex environments such as cooperative driving algorithms. More broadly, its design generalizes to scientific research tasks that support automated evaluation. This project also includes Open Research Canvas (OR-Canvas), where users can collaborate with LLMs to specify problems.
-![OR-Agent Overview](assets/overview.png)
 
 This work is inspired by [FunSearch](https://github.com/google-deepmind/funsearch/tree/main), [ReEvo](https://ai4co.github.io/reevo/), [AI Researcher](https://github.com/HKUDS/AI-Researcher), and [AI Scientist](https://github.com/SakanaAI/AI-Scientist). 
 This is an ongoing project that is continuously being improved. It is open-sourced under the `Apache 2.0` license, and contributions from practitioners are warmly welcome!
@@ -24,7 +24,6 @@ A tree-search-based workflow controller is adopted to more faithfully model the 
 To help OR-Agent efficiently converge to high-quality solutions from evolution-derived starting points, we design reflection mechanisms inspired by classical optimization methods: short-term reflection acts as a verbal gradient, long-term reflection functions as verbal momentum, and reflection compression uses an exponential-decay schedule to stabilize updates.
 
 The OR-Agent framework is illustrated below:
-![OR-Agent](assets/framework.png)
 
 
 
