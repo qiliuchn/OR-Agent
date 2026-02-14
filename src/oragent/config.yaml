@@ -44,7 +44,7 @@
 
 # =====General Settings=====
 algorithm: "oragent"  # Options: "oragent", "reevo", "eoh", "ael", "funsearch"
-problem: "driving"  # problem to solve
+problem: "tsp_constructive"  # problem to solve
 init_pop_size: 10  # initial population size; default: 10
 num_parents: 2  # number of parents to start research (ORAgent) or for crossover (ReEvo, EoH, AEL, FunSearch); default: 2
 autosave_interval_minutes: 180  # autosaving interval

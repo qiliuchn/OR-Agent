@@ -15,7 +15,7 @@ from datetime import datetime
 import traci 
 import xml.etree.ElementTree as ET
 from typing import Dict, Mapping
-import seed_solution as solution_module  # Note: solution module script is generated and saved on the fly
+import seed_solution2 as solution_module  # Note: solution module script is generated and saved on the fly
 
 
 # =====Load function to evolve=====

@@ -161,6 +161,11 @@ def main():
         help="Maximum number of debug rounds for each solution code debugging"
     )
     parser.add_argument(
+        "--dynamic-experiment-allocation",
+        action="store_true",
+        help="dynamic experiment allocation based on solution potential"
+    )
+    parser.add_argument(
         "--min-experiment-repeats",
         type=int,
         default=None,
@@ -413,6 +418,9 @@ def main():
         
         if args.max_debug_rounds != None:
             config['max_debug_rounds'] = args.max_debug_rounds
+        
+        if args.dynamic_experiment_allocation:
+            config['dynamic_experiment_allocation'] = True
         
         if args.min_experiment_repeats != None:
             config['min_experiment_repeats'] = args.min_experiment_repeats

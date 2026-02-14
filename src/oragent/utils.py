@@ -56,6 +56,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+
+
 # ===== Data type and data class definitions =====
 @dataclass
 class Solution:
@@ -463,6 +465,12 @@ class LLMClient:
 
 
 # ===== Other utilities =====
+def get_default_config():
+    """Load the default config and return it."""
+    with open(os.path.join(os.path.dirname(__file__), 'config.yaml'), 'r') as f:
+        return yaml.safe_load(f)
+    
+
 def init_json_list(filepath: str):
     """If the file exists, clear the filepath to be a empty json list; if not, create a new empty json list file."""
     with open(filepath, "w") as fp:

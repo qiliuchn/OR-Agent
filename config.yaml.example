@@ -62,7 +62,7 @@ elitist_as_root_period: 11  # the research rounds period for re-using elitist as
 elitist_enlargement_factor: 1.0  # the enlargement factor for elitist when used as root; int(elitist_enlargement * num_children) many children will be generated for elitist; default: 1.0
 elitist_experiment_factor: 2  # if parent is elitist, spend more time on experiments; max experiments = elitist_experiment_factor * max_experiment_repeats
 # Dynamic Experiment Allocation Settings
-dynamic_experiment_allocation: true  # whether to use dynamic experiment allocation based on solution potential
+dynamic_experiment_allocation: false  # whether to use dynamic experiment allocation based on solution potential; default: false
 min_experiment_repeats: 3  # minimum experiments to allocate
 max_experiment_repeats: 6  # maximum number of times to repeat the experiment for a solution node; default: 16
 max_experiment_repeats_cap: 12  # maximum experiments cap

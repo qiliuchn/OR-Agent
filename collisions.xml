@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2026-01-31 17:21:08 by Eclipse SUMO sumo Version 1.20.0
+<!-- generated on 2026-02-06 10:46:01 by Eclipse SUMO sumo Version 1.20.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
@@ -36,12 +36,11 @@
     </ssm_device>
 
     <traci_server>
-        <remote-port value="50752"/>
+        <remote-port value="58852"/>
     </traci_server>
 
 </configuration>
 -->
 
 <collisions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/collision_file.xsd">
-    <collision time="336.00" type="collision" lane="E5_0" pos="19.28" collider="veh_6_9_0" victim="veh_1_3_0" colliderType="passenger" victimType="truck" colliderSpeed="4.89" victimSpeed="1.30"/>
 </collisions>
