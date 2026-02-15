@@ -656,19 +656,21 @@ When parent solutions are randomly sampled from the solution database, we invest
 
 
 
-## Share files on experiment result analysis
-- Check [performance comparison on 12 Operation Research Benchmark Problems](research_results/performance_comparision_summary.ipynb) for more details on the performance comparison.
+## Experiment Result Analysis Files
+- Check [performance comparison on 12 Operation Research Benchmark Problems](research_results/performance_comparision_summary.ipynb) for more details on the performance comparison on 12 Operation Research Benchmark Problems.
 - Check [metrics, feature and score definition for driving problem](research_results/metrics_feature_score_definitions_for_driving_problem.ipynb) for more details on metrics, features and score definition for driving problem.
-- Check [performance comparisons on driving problem](research_results/performance_comparison_driving.ipynb) for more details.
-- Check [research tree sizes](research_results/research_tree_example.ipynb) for more details on the research tree sizes varying with the branching factor.
-- Check [long-term reflection analysis](research_results/long_term_reflection_analysis.ipynb) for analysis on the long term reflection length.
-- Check [soft reversion example](research_results/soft_reversion_driving_example.ipynb) for sorted reversion example on the driving problem by OR-Agent.
+- Check [performance comparisons on driving problem](research_results/performance_comparison_driving.ipynb) for more details on the performance comparison on driving problem.
+- Check [research tree sizes](research_results/research_tree_example.ipynb) for more details on how research tree sizes varying with the branching factor.
+- Check [long-term reflection analysis](research_results/long_term_reflection_analysis.ipynb) for analysis on the long term reflection length analysis.
+- Check [soft reversion example](research_results/soft_reversion_driving_example.ipynb) for solution reversion example on the driving problem by OR-Agent.
 - Check [termination of unpromising directions](research_results/termination_of_unpromising_directions.ipynb) for analysis on the termination of unpromising directions by OR-Agent.
 - Check [parameter tuning](research_results/parameter_tuning_example.ipynb) for example on parameter tuning by OR-Agent.
 - Check [independent vs coordinated idea generation](research_results/independent_vs_coordinated_idea_generation.ipynb) for comparison between independent and coordinated idea generation by OR-Agent.
-- Check [environment exploration](research_results/environment_exploration_example.ipynb) for example on environment exploration by OR-Agent.
-
-
+- Check [environment exploration](research_results/environment_exploration_example.ipynb) for example on environment exploration by OR-Agent on driving problem.
+- Check [ablation studies on thinking depth](research_results/ablation_studies_on_thinking_depth.ipynb) for ablation studies on thinking depth.
+- Check [ablation studies on memory compression](research_results/ablation_studies_on_memory_compression.ipynb) for ablation studies on memory compression.
+- Check [ablation studies on elite as root period](research_results/ablation_studies_on_elitist_as_root_period.ipynb) for ablation studies on the period of using elite solution as research root.
+- Check [ablation studies on reflection usage for crossover](research_results/ablation_studies_on_reflection_for_crossover.ipynb) for ablation studies on whether to use reflection for crossover.
 
 
 
