@@ -1,0 +1,18 @@
+Number of research rounds: 47
+Solution count: 792
+Total number of LLM calls: 792
+Total number of valid responses: 762
+Total number of function evaluations: 502
+Current best objective value: 29.33753776550293
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [103 (29.34), 109 (29.34)]: ["Develop an adaptive weighting mechanism that dynamically adjusts the contribution of angular similarity, distance bias, savings, and demand compatibility based on instance-specific features (e.g., demand variance, spatial dispersion, or average node density), replacing the fixed-weight combination with a lightweight learned scalar or feature-dependent gating function to better balance geometric and combinatorial signals across diverse CVRP instances.", "Replace the hand-crafted adaptive weighting mechanism with a lightweight learned gating network that predicts component weights from instance-level features (e.g., demand variance, spatial density, node count) using a small MLP or attention-based module, trained end-to-end via REINFORCE or policy gradient to directly minimize routing cost, thereby enabling data-driven balancing of geometric and combinatorial signals instead of heuristic adjustments."]
+    └── ✓ Node 159 (29.34): "Replace the classical MDS-based coordinate reconstruction with a differentiable, learnable geometric embedding module that infers 2D node positions from the distance matrix using a small neural network trained end-to-end via policy gradient to maximize routing performance, enabling the angular similarity component to adapt to instance-specific spatial patterns beyond Euclidean assumptions."
+========================================
+Total nodes: 2 | Total expanded solutions: 1 | Total pending leaves: 0 | Total terminal leaves: 1

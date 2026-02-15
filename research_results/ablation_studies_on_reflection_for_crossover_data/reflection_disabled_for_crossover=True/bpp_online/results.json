@@ -1,0 +1,66 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 2080.0,
+        "metrics": {
+            "val_0": 2087.0,
+            "val_1": 2083.0,
+            "val_2": 2077.0,
+            "val_3": 2065.0,
+            "val_4": 2088.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo6/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo6/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 73,
+        "total_function_evals": 57,
+        "total_valid_responses": 71,
+        "best_obj_overall": 2079.8,
+        "metrics": {
+            "val_0": 2088.0,
+            "val_1": 2083.0,
+            "val_2": 2077.0,
+            "val_3": 2063.0,
+            "val_4": 2088.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo6/details/lead1_round4_count0_id28_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo6/details/lead1_round4_count0_id28_stdout.txt"
+    },
+    {
+        "iteration": 69,
+        "total_responses": 606,
+        "total_function_evals": 367,
+        "total_valid_responses": 592,
+        "best_obj_overall": 2079.6,
+        "metrics": {
+            "val_0": 2084.0,
+            "val_1": 2083.0,
+            "val_2": 2077.0,
+            "val_3": 2066.0,
+            "val_4": 2088.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo6/details/lead1_round69_count0_id117_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo6/details/lead1_round69_count0_id117_stdout.txt"
+    },
+    {
+        "iteration": 72,
+        "total_responses": 625,
+        "total_function_evals": 378,
+        "total_valid_responses": 611,
+        "best_obj_overall": 2079.4,
+        "metrics": {
+            "val_0": 2088.0,
+            "val_1": 2083.0,
+            "val_2": 2076.0,
+            "val_3": 2063.0,
+            "val_4": 2087.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo6/details/lead1_round72_count0_id120_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo6/details/lead1_round72_count0_id120_stdout.txt"
+    }
+]

@@ -1,0 +1,106 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 12,
+        "best_obj_overall": 29.46737575531006,
+        "metrics": {
+            "200": 20.668733596801758,
+            "500": 38.26601791381836
+        },
+        "code_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter0_response11_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter0_response11_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 40,
+        "total_function_evals": 40,
+        "total_valid_responses": 27,
+        "best_obj_overall": 29.428126335144043,
+        "metrics": {
+            "200": 20.670351028442383,
+            "500": 38.1859016418457
+        },
+        "code_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter2_response8_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter2_response8_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 140,
+        "total_function_evals": 140,
+        "total_valid_responses": 107,
+        "best_obj_overall": 29.427170753479004,
+        "metrics": {
+            "200": 20.647737503051758,
+            "500": 38.20660400390625
+        },
+        "code_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter12_response3_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter12_response3_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 210,
+        "total_function_evals": 210,
+        "total_valid_responses": 166,
+        "best_obj_overall": 29.422725677490234,
+        "metrics": {
+            "200": 20.704017639160156,
+            "500": 38.14143371582031
+        },
+        "code_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter19_response1_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter19_response1_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 270,
+        "total_function_evals": 270,
+        "total_valid_responses": 217,
+        "best_obj_overall": 29.410313606262207,
+        "metrics": {
+            "200": 20.67038917541504,
+            "500": 38.150238037109375
+        },
+        "code_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter25_response1_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter25_response1_stdout.txt"
+    },
+    {
+        "iteration": 35,
+        "total_responses": 370,
+        "total_function_evals": 370,
+        "total_valid_responses": 296,
+        "best_obj_overall": 29.37356472015381,
+        "metrics": {
+            "200": 20.621580123901367,
+            "500": 38.12554931640625
+        },
+        "code_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter35_response5_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter35_response5_stdout.txt"
+    },
+    {
+        "iteration": 38,
+        "total_responses": 400,
+        "total_function_evals": 400,
+        "total_valid_responses": 317,
+        "best_obj_overall": 29.354666709899902,
+        "metrics": {
+            "200": 20.65973472595215,
+            "500": 38.049598693847656
+        },
+        "code_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter38_response4_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter38_response4_stdout.txt"
+    },
+    {
+        "iteration": 40,
+        "total_responses": 420,
+        "total_function_evals": 420,
+        "total_valid_responses": 337,
+        "best_obj_overall": 29.34793186187744,
+        "metrics": {
+            "200": 20.62504005432129,
+            "500": 38.070823669433594
+        },
+        "code_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter40_response8_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_lehd/eval_updated/details/iter40_response8_stdout.txt"
+    }
+]

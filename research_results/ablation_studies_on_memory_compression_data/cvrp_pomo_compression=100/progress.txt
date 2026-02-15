@@ -1,0 +1,22 @@
+Number of research rounds: 45
+Solution count: 882
+Total number of LLM calls: 882
+Total number of valid responses: 840
+Total number of function evaluations: 520
+Current best objective value: 46.123162587483726
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [115 (46.52)]: ["Design an ensemble heuristic fusion mechanism that combines multiple fixed-parameter geometric heuristics (e.g., variants with slightly perturbed spatial/angular weights) via a convex combination weighted by a learned selector network. The selector uses summary statistics of the instance (e.g., demand concentration, distance dispersion) to choose the most suitable bias configuration per problem scale, mitigating the performance gap on smaller instances while maintaining large-scale stability—effectively implementing a 'mixture of experts' approach within the attention bias without disrupting individual component integrity."]
+    ├── ✓ Node 134 (46.12): "Replace the hand-crafted discrete selector logic with a lightweight, differentiable neural selector that takes instance-level statistics (e.g., demand CV, distance dispersion, node count) as input and outputs continuous ensemble weights. This enables end-to-end training with the POMO policy, allowing the heuristic fusion to adapt dynamically during optimization while preserving the modular structure of geometric priors."
+    ├── ⊕ Node 135 (46.79): "Introduce demand-aware gating into the angular coherence component by modulating the angular penalty strength based on the sum or product of node demands—e.g., reducing angular penalties for low-demand node pairs to encourage clustering, while enforcing stricter directional separation for high-demand pairs to avoid capacity violations. This aligns with the reflection that demand-modulated geometric signals enhance performance."
+    │       └── ✓ Node 143 (46.76): "Replace hand-crafted discrete ensemble selector thresholds with adaptive, instance-size-aware gating that dynamically adjusts angular and spatial parameters based on node count and demand distribution skewness. Compute additional summary statistics such as demand skewness, spatial clustering coefficient (e.g., via k-NN density variance), and normalized depot centrality, then use these to modulate both the ensemble weights and internal geometric parameters (e.g., angular_penalty, gaussian_sigma) through differentiable interpolation—enabling smooth adaptation across problem scales without abrupt rule changes that hurt generalization."
+    ├── ✓ Node 136 (46.69): "Enhance spatial representation by replacing the isotropic Gaussian factor with an anisotropic kernel informed by local demand density gradients or Voronoi tessellation around each node. Compute per-node neighborhood statistics (e.g., average demand within k-nearest neighbors) to shape direction-sensitive attention biases that guide vehicles toward efficient regional service patterns rather than just pairwise proximity."
+    └── ✓ Node 137 (47.25): "Incorporate route-level feasibility proxies beyond pairwise capacity checks—such as estimated remaining capacity after visiting both nodes or marginal insertion cost approximations—into the bias matrix. Use a learned or analytically derived proxy (e.g., min(1 - d_i, 1 - d_j, 1 - d_i - d_j)) to penalize edges that are locally feasible but globally problematic, improving long-horizon planning without explicit rollout."
+========================================
+Total nodes: 6 | Total expanded solutions: 2 | Total pending leaves: 0 | Total terminal leaves: 4

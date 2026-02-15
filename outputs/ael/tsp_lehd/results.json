@@ -1,0 +1,67 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 2,
+        "best_obj_overall": 13.787495136260986,
+        "metrics": {
+            "200": 10.798321723937988,
+            "500": 16.776668548583984
+        },
+        "code_filepath": "outputs/ael/tsp_lehd/details/iter0_response2_solution.py",
+        "output_filepath": "outputs/ael/tsp_lehd/details/iter0_response2_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 50,
+        "total_function_evals": 50,
+        "total_valid_responses": 19,
+        "best_obj_overall": 13.784576892852783,
+        "metrics": {
+            "200": 10.801396369934082,
+            "500": 16.767757415771484
+        },
+        "code_filepath": "outputs/ael/tsp_lehd/details/iter2_response6_solution.py",
+        "output_filepath": "outputs/ael/tsp_lehd/details/iter2_response6_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 127,
+        "total_function_evals": 127,
+        "total_valid_responses": 58,
+        "best_obj_overall": 13.782041549682617,
+        "metrics": {
+            "200": 10.809255599975586,
+            "500": 16.75482749938965
+        },
+        "code_filepath": "outputs/ael/tsp_lehd/details/iter7_response7_solution.py",
+        "output_filepath": "outputs/ael/tsp_lehd/details/iter7_response7_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 140,
+        "total_function_evals": 140,
+        "total_valid_responses": 67,
+        "best_obj_overall": 13.779172897338867,
+        "metrics": {
+            "200": 10.803611755371094,
+            "500": 16.75473403930664
+        },
+        "code_filepath": "outputs/ael/tsp_lehd/details/iter8_response2_solution.py",
+        "output_filepath": "outputs/ael/tsp_lehd/details/iter8_response2_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 214,
+        "total_function_evals": 214,
+        "total_valid_responses": 114,
+        "best_obj_overall": 13.778286933898926,
+        "metrics": {
+            "200": 10.816268920898438,
+            "500": 16.740304946899414
+        },
+        "code_filepath": "outputs/ael/tsp_lehd/details/iter13_response3_solution.py",
+        "output_filepath": "outputs/ael/tsp_lehd/details/iter13_response3_stdout.txt"
+    }
+]

@@ -1,0 +1,57 @@
+algorithm: reevo
+autosave_interval_minutes: 120
+database:
+  cluster_sampling_temperature_init: 1.0
+  cluster_sampling_temperature_period: 50
+  num_islands: 5
+  reset_period_minutes: 180
+elitist_as_root_period: 2
+evaluation:
+  eval_env_vars: null
+  python_path:
+    liuqi: /opt/anaconda3/envs/sumo/bin/python
+    u23310103: /share/home/u23310103/.conda/envs/sumo/bin/python
+  timeout_seconds: 300
+experiment:
+  function_to_evolve: heuristics
+  obj_type: max
+init_pop_size: 20
+max_debug_rounds: 6
+max_evolutions: 500
+max_repeats: 6
+max_research_rounds: 10000
+model:
+  code_agent_llm_provider: qwen
+  code_agent_model_name: qwen3-coder-plus
+  experiment_agent_reflect_llm_provider: qwen
+  experiment_agent_reflect_model_name: qwen3-coder-plus
+  experiment_agent_summarize_llm_provider: qwen
+  experiment_agent_summarize_model_name: qwen3-max
+  idea_agent_llm_provider: qwen
+  idea_agent_model_name: qwen3-max
+  idea_agent_temperature: 1.0
+  lead_agent_llm_provider: qwen
+  lead_agent_model_name: qwen3-max
+  llm_provider: qwen
+  max_retries: 5
+  model_name: qwen3-coder-plus
+  reevo_crossover_llm_provider: qwen
+  reevo_crossover_model_name: qwen3-coder-plus
+  reevo_generator_llm_provider: qwen
+  reevo_generator_model_name: qwen3-coder-plus
+  reevo_generator_temperature: 1.0
+  reevo_long_reflector_llm_provider: qwen
+  reevo_long_reflector_model_name: qwen3-max
+  reevo_mutation_llm_provider: qwen
+  reevo_mutation_model_name: qwen3-coder-plus
+  reevo_short_reflector_llm_provider: qwen
+  reevo_short_reflector_model_name: qwen3-max
+  temperature: 1.0
+mutation_rate: 0.5
+num_children: 2
+num_lead_agents: 1
+num_parents: 2
+output_dir: outputs/reevo/mkp_aco
+pop_size: 10
+problem: mkp_aco
+verbose: true

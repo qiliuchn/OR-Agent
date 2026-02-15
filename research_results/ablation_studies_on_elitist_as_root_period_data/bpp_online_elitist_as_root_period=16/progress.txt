@@ -1,0 +1,21 @@
+Number of research rounds: 65
+Solution count: 752
+Total number of LLM calls: 752
+Total number of valid responses: 718
+Total number of function evaluations: 474
+Current best objective value: 2055.6
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [141 (2055.60)]: ["Develop a residual-aware ensemble priority function that dynamically weights multiple heuristic strategies (Best Fit, Worst Fit, and dead-zone-avoidance) based on real-time analysis of residual space distribution entropy: calculate the entropy of current bin residuals to measure dispersion, then use this as a confidence signal to blend heuristics—favoring Best Fit in low-entropy (structured) states and Worst Fit or adaptive strategies in high-entropy (chaotic) states, while maintaining the confidence-weighted dead zone penalty from parent solutions but anchoring the dead zone center to a moving average of recent item sizes inferred from residual changes rather than static bin capacity mean."]
+    ├── ○ Node 144 (2055.60): "Develop a state-augmented priority function that maintains minimal within-instance state (e.g., moving average and variance of recent item sizes) reset at instance boundaries, enabling more accurate dead zone estimation than residual-based inference alone. This would involve tracking the last K items explicitly to compute robust local statistics, while ensuring no cross-contamination between instances by design."
+    ├── ○ Node 145 (2055.60): "Investigate adaptive blend factor exponent tuning based on real-time bin utilization density: instead of fixing the exponent at 1.2, dynamically adjust it between 1.0–1.4 using the current fill ratio of bins (e.g., low fill → emphasize Worst Fit with higher exponent, high fill → emphasize Best Fit with lower exponent) to better balance fragmentation control and space preservation across different packing phases."
+    ├── ○ Node 146 (2055.60): "Replace the fixed dead zone radius minimum (15.0) with a data-driven adaptive radius calculated from the empirical standard deviation of recently placed items or from the dispersion of current residuals, potentially using interquartile range or median absolute deviation for robustness against outliers, to better align penalty zones with actual instance characteristics."
+    └── ○ Node 147 (2055.60): "Design a lightweight ensemble switching mechanism that selects between two pre-tuned static heuristics (e.g., pure Best Fit and the current hybrid) based on a simple trigger condition like the number of bins opened so far or the current entropy of bin residuals, avoiding complex blending in favor of crisp strategy shifts when the packing process enters qualitatively different regimes (e.g., early vs. late stage)."
+========================================
+Total nodes: 5 | Total expanded solutions: 1 | Total pending leaves: 4 | Total terminal leaves: 0

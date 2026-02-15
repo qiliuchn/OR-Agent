@@ -1,0 +1,198 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 7.034353925627436,
+        "metrics": {
+            "20": 4.450265933717864,
+            "50": 7.066327190059413,
+            "100": 9.586468653105033
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 22,
+        "total_function_evals": 22,
+        "total_valid_responses": 21,
+        "best_obj_overall": 6.94533304688326,
+        "metrics": {
+            "20": 4.350620300905168,
+            "50": 6.967505054383249,
+            "100": 9.517873785361363
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round0_count17_id17_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round0_count17_id17_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 53,
+        "total_function_evals": 46,
+        "total_valid_responses": 52,
+        "best_obj_overall": 6.385574058516077,
+        "metrics": {
+            "20": 4.08086958190147,
+            "50": 6.342811957799546,
+            "100": 8.733040635847217
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round1_count0_id21_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round1_count0_id21_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 89,
+        "total_function_evals": 71,
+        "total_valid_responses": 87,
+        "best_obj_overall": 6.3449197886181565,
+        "metrics": {
+            "20": 4.06202126001482,
+            "50": 6.30282393836354,
+            "100": 8.669914167476112
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round6_count0_id30_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round6_count0_id30_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 160,
+        "total_function_evals": 123,
+        "total_valid_responses": 152,
+        "best_obj_overall": 6.334565909858912,
+        "metrics": {
+            "20": 4.052029732114127,
+            "50": 6.292773967118151,
+            "100": 8.658894030344456
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round12_count3_id39_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round12_count3_id39_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 220,
+        "total_function_evals": 165,
+        "total_valid_responses": 206,
+        "best_obj_overall": 6.313407341836829,
+        "metrics": {
+            "20": 4.037444091567549,
+            "50": 6.294089282578264,
+            "100": 8.608688651364673
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round20_count0_id48_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round20_count0_id48_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 259,
+        "total_function_evals": 189,
+        "total_valid_responses": 243,
+        "best_obj_overall": 6.292747728720002,
+        "metrics": {
+            "20": 4.047117319646211,
+            "50": 6.278282570786105,
+            "100": 8.552843295727692
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round23_count0_id51_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round23_count0_id51_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 363,
+        "total_function_evals": 264,
+        "total_valid_responses": 341,
+        "best_obj_overall": 6.277626981864093,
+        "metrics": {
+            "20": 4.0352889056175645,
+            "50": 6.267425052290658,
+            "100": 8.530166987684057
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round34_count3_id69_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round34_count3_id69_stdout.txt"
+    },
+    {
+        "iteration": 36,
+        "total_responses": 379,
+        "total_function_evals": 274,
+        "total_valid_responses": 356,
+        "best_obj_overall": 6.266249590117742,
+        "metrics": {
+            "20": 4.021899611088509,
+            "50": 6.260691194322765,
+            "100": 8.516157964941955
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round36_count0_id72_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round36_count0_id72_stdout.txt"
+    },
+    {
+        "iteration": 44,
+        "total_responses": 429,
+        "total_function_evals": 303,
+        "total_valid_responses": 405,
+        "best_obj_overall": 6.263820112286711,
+        "metrics": {
+            "20": 4.023108635977438,
+            "50": 6.2650307708774875,
+            "100": 8.503320930005206
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round44_count0_id80_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round44_count0_id80_stdout.txt"
+    },
+    {
+        "iteration": 45,
+        "total_responses": 462,
+        "total_function_evals": 329,
+        "total_valid_responses": 437,
+        "best_obj_overall": 6.257725687515648,
+        "metrics": {
+            "20": 4.028956380170708,
+            "50": 6.252318046276155,
+            "100": 8.491902636100079
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round45_count2_id83_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round45_count2_id83_stdout.txt"
+    },
+    {
+        "iteration": 56,
+        "total_responses": 564,
+        "total_function_evals": 401,
+        "total_valid_responses": 538,
+        "best_obj_overall": 6.247409508774705,
+        "metrics": {
+            "20": 4.030071949997295,
+            "50": 6.245034226319847,
+            "100": 8.467122350006974
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round56_count0_id96_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round56_count0_id96_stdout.txt"
+    },
+    {
+        "iteration": 71,
+        "total_responses": 681,
+        "total_function_evals": 469,
+        "total_valid_responses": 649,
+        "best_obj_overall": 6.246718106798105,
+        "metrics": {
+            "20": 4.028506754117693,
+            "50": 6.25054362330113,
+            "100": 8.461103942975491
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round71_count0_id119_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round71_count0_id119_stdout.txt"
+    },
+    {
+        "iteration": 78,
+        "total_responses": 743,
+        "total_function_evals": 506,
+        "total_valid_responses": 708,
+        "best_obj_overall": 6.2423334699420465,
+        "metrics": {
+            "20": 4.020139715476018,
+            "50": 6.24414830079963,
+            "100": 8.46271239355049
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round78_count4_id130_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo6/details/lead1_round78_count4_id130_stdout.txt"
+    }
+]

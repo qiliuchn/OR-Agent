@@ -1,0 +1,18 @@
+Number of research rounds: 42
+Solution count: 836
+Total number of LLM calls: 836
+Total number of valid responses: 824
+Total number of function evaluations: 504
+Current best objective value: 13.340397165670618
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [41 (12.53), 40 (13.00)]: ["Develop a hybrid crossover operator that combines the proven deterministic elite-frequency framework (top-50% fixed elite window) with an instance-agnostic spatial dispersion heuristic using a composite scoring function. Specifically, precompute a static Manhattan distance utility map for all valid positions once per generation via vectorized operations over the grid. During offspring construction, inherit genes sequentially from elite parents (preserving beneficial spatial correlations), and resolve duplicates by selecting replacements that maximize a composite score: 0.6 × normalized elite frequency + 0.4 × precomputed minimum distance to already-placed decaps in the current offspring. This integrates the successful sequential inheritance pattern from Node 37 with the robust spatial dispersion mechanism from Node 40, avoiding adaptive complexity while directly targeting Instance 2’s clustering without requiring impedance variance calculations or dynamic elite sizing.", "Enhance the duplicate resolution mechanism in the topology-aware crossover by incorporating a deterministic, instance-agnostic spatial dispersion heuristic (inspired by Node 29) that explicitly maximizes minimum pairwise Manhattan distance during replacement selection. Instead of relying solely on the combined 0.7:0.3 weight for candidate ranking, evaluate each available position using a composite score: 0.6 × (normalized elite frequency + capacity weight) + 0.4 × (minimum distance to already-placed decaps in the offspring). Precompute spatial distance utilities once per generation via vectorized operations over the 10x10 grid to maintain efficiency. This directly targets Instance 2’s persistent clustering issue by enforcing geometric evenness during repair, complementing the capacity map’s local underutilization signal with global spatial awareness, while remaining fully vectorizable and aligned with 'adaptive minimalism'."]
+    └── ✓ Node 142 (13.05): "Develop a vectorized, batch-wise spatial-aware crossover that replaces the per-offspring sequential construction with a fully parallelizable duplicate resolution mechanism. Specifically, precompute the Manhattan distance matrix once per generation (as in Node 40), then for all offspring simultaneously: (1) perform uniform crossover across elite parents, (2) identify duplicates via broadcasting and boolean masking, and (3) resolve all conflicts in parallel by computing composite scores (0.6×elite frequency + 0.4×min Manhattan distance to current offspring’s unique positions) using matrix operations over the entire population. This eliminates sequential bottlenecks in the current implementations while preserving the proven 0.6:0.4 composite heuristic, enabling true vectorization and consistent handling of Instance 2’s clustering through global spatial awareness without nested loops."
+========================================
+Total nodes: 2 | Total expanded solutions: 1 | Total pending leaves: 0 | Total terminal leaves: 1

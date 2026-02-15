@@ -1,0 +1,1 @@
+Strengthen mutual nearest neighbor bias, use adaptive K based on problem size, simplify triangle inequality penalty, and apply smoother normalization to balance strong local guidance with global tour coherence.

@@ -1,0 +1,1 @@
+Focus on distance, demand complementarity, and capacity efficiency; use tight thresholds, adaptive depot incentives, and near-full route bonuses—all via smooth, vectorized operations.

@@ -1,0 +1,562 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 22.00786781311035,
+        "metrics": {
+            "200": 11.14848518371582,
+            "500": 21.43581771850586,
+            "1000": 33.439300537109375
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter0_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 17,
+        "best_obj_overall": 21.447798093159992,
+        "metrics": {
+            "200": 11.142830848693848,
+            "500": 21.04697608947754,
+            "1000": 32.153587341308594
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter1_response19_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter1_response19_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 40,
+        "total_function_evals": 31,
+        "total_valid_responses": 34,
+        "best_obj_overall": 21.285226504007976,
+        "metrics": {
+            "200": 11.160061836242676,
+            "500": 21.0532283782959,
+            "1000": 31.64238929748535
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter2_response1_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter2_response1_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 46,
+        "total_function_evals": 36,
+        "total_valid_responses": 39,
+        "best_obj_overall": 20.956919987996418,
+        "metrics": {
+            "200": 11.166557312011719,
+            "500": 20.814083099365234,
+            "1000": 30.890119552612305
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter3_response4_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter3_response4_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 66,
+        "total_function_evals": 46,
+        "total_valid_responses": 57,
+        "best_obj_overall": 20.666707674662273,
+        "metrics": {
+            "200": 11.23548412322998,
+            "500": 20.69623565673828,
+            "1000": 30.068403244018555
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter4_response7_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter4_response7_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 72,
+        "total_function_evals": 51,
+        "total_valid_responses": 63,
+        "best_obj_overall": 20.603798230489094,
+        "metrics": {
+            "200": 11.254639625549316,
+            "500": 20.751075744628906,
+            "1000": 29.805679321289062
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter5_response3_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter5_response3_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 92,
+        "total_function_evals": 61,
+        "total_valid_responses": 83,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 98,
+        "total_function_evals": 66,
+        "total_valid_responses": 87,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 118,
+        "total_function_evals": 76,
+        "total_valid_responses": 104,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 124,
+        "total_function_evals": 81,
+        "total_valid_responses": 110,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 144,
+        "total_function_evals": 91,
+        "total_valid_responses": 130,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 150,
+        "total_function_evals": 96,
+        "total_valid_responses": 136,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 170,
+        "total_function_evals": 106,
+        "total_valid_responses": 156,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 176,
+        "total_function_evals": 111,
+        "total_valid_responses": 160,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 196,
+        "total_function_evals": 121,
+        "total_valid_responses": 180,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 202,
+        "total_function_evals": 126,
+        "total_valid_responses": 183,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 222,
+        "total_function_evals": 136,
+        "total_valid_responses": 202,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 228,
+        "total_function_evals": 141,
+        "total_valid_responses": 204,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 248,
+        "total_function_evals": 151,
+        "total_valid_responses": 224,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 254,
+        "total_function_evals": 156,
+        "total_valid_responses": 225,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 274,
+        "total_function_evals": 166,
+        "total_valid_responses": 244,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 21,
+        "total_responses": 280,
+        "total_function_evals": 171,
+        "total_valid_responses": 249,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 300,
+        "total_function_evals": 181,
+        "total_valid_responses": 269,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 306,
+        "total_function_evals": 186,
+        "total_valid_responses": 270,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 24,
+        "total_responses": 326,
+        "total_function_evals": 196,
+        "total_valid_responses": 290,
+        "best_obj_overall": 20.5968074798584,
+        "metrics": {
+            "200": 11.442476272583008,
+            "500": 20.538524627685547,
+            "1000": 29.80942153930664
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter6_response6_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter6_response6_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 332,
+        "total_function_evals": 201,
+        "total_valid_responses": 292,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 26,
+        "total_responses": 352,
+        "total_function_evals": 211,
+        "total_valid_responses": 312,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 27,
+        "total_responses": 358,
+        "total_function_evals": 216,
+        "total_valid_responses": 318,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 378,
+        "total_function_evals": 226,
+        "total_valid_responses": 337,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 29,
+        "total_responses": 384,
+        "total_function_evals": 231,
+        "total_valid_responses": 343,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 30,
+        "total_responses": 404,
+        "total_function_evals": 241,
+        "total_valid_responses": 363,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 31,
+        "total_responses": 410,
+        "total_function_evals": 246,
+        "total_valid_responses": 369,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 32,
+        "total_responses": 430,
+        "total_function_evals": 256,
+        "total_valid_responses": 389,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 33,
+        "total_responses": 436,
+        "total_function_evals": 261,
+        "total_valid_responses": 395,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 456,
+        "total_function_evals": 271,
+        "total_valid_responses": 413,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 35,
+        "total_responses": 462,
+        "total_function_evals": 276,
+        "total_valid_responses": 419,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 36,
+        "total_responses": 482,
+        "total_function_evals": 286,
+        "total_valid_responses": 439,
+        "best_obj_overall": 20.571606636047363,
+        "metrics": {
+            "200": 11.244839668273926,
+            "500": 20.635574340820312,
+            "1000": 29.83440589904785
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter25_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter25_response0_stdout.txt"
+    },
+    {
+        "iteration": 37,
+        "total_responses": 488,
+        "total_function_evals": 291,
+        "total_valid_responses": 445,
+        "best_obj_overall": 20.480531056722004,
+        "metrics": {
+            "200": 11.210575103759766,
+            "500": 20.511672973632812,
+            "1000": 29.719345092773438
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter37_response1_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter37_response1_stdout.txt"
+    },
+    {
+        "iteration": 38,
+        "total_responses": 508,
+        "total_function_evals": 301,
+        "total_valid_responses": 465,
+        "best_obj_overall": 20.480531056722004,
+        "metrics": {
+            "200": 11.210575103759766,
+            "500": 20.511672973632812,
+            "1000": 29.719345092773438
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter37_response1_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter37_response1_stdout.txt"
+    },
+    {
+        "iteration": 39,
+        "total_responses": 514,
+        "total_function_evals": 306,
+        "total_valid_responses": 471,
+        "best_obj_overall": 20.38151454925537,
+        "metrics": {
+            "200": 11.313525199890137,
+            "500": 20.295080184936523,
+            "1000": 29.535938262939453
+        },
+        "code_filepath": "outputs/reevo/tsp_pomo/iter39_response0_solution.py",
+        "output_filepath": "outputs/reevo/tsp_pomo/iter39_response0_stdout.txt"
+    }
+]

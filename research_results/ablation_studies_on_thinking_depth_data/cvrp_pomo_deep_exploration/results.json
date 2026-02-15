@@ -1,0 +1,114 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 73.3245849609375,
+        "metrics": {
+            "200": 22.36349868774414,
+            "500": 50.416988372802734,
+            "1000": 147.19326782226562
+        },
+        "code_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 32,
+        "total_function_evals": 32,
+        "total_valid_responses": 21,
+        "best_obj_overall": 71.37468338012695,
+        "metrics": {
+            "200": 22.418079376220703,
+            "500": 51.408226013183594,
+            "1000": 140.29774475097656
+        },
+        "code_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round0_count15_id15_solution.py",
+        "output_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round0_count15_id15_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 43,
+        "total_function_evals": 40,
+        "total_valid_responses": 32,
+        "best_obj_overall": 71.31041717529297,
+        "metrics": {
+            "200": 22.41207504272461,
+            "500": 51.36416244506836,
+            "1000": 140.15501403808594
+        },
+        "code_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round1_count1_id22_solution.py",
+        "output_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round1_count1_id22_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 65,
+        "total_function_evals": 56,
+        "total_valid_responses": 54,
+        "best_obj_overall": 71.25344149271648,
+        "metrics": {
+            "200": 22.301137924194336,
+            "500": 51.31856155395508,
+            "1000": 140.140625
+        },
+        "code_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round1_count5_id26_solution.py",
+        "output_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round1_count5_id26_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 160,
+        "total_function_evals": 113,
+        "total_valid_responses": 147,
+        "best_obj_overall": 71.14247449239095,
+        "metrics": {
+            "200": 22.301137924194336,
+            "500": 51.20732498168945,
+            "1000": 139.91896057128906
+        },
+        "code_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round12_count0_id41_solution.py",
+        "output_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round12_count0_id41_stdout.txt"
+    },
+    {
+        "iteration": 53,
+        "total_responses": 497,
+        "total_function_evals": 308,
+        "total_valid_responses": 476,
+        "best_obj_overall": 71.11768341064453,
+        "metrics": {
+            "200": 22.291587829589844,
+            "500": 51.226593017578125,
+            "1000": 139.83486938476562
+        },
+        "code_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round53_count0_id102_solution.py",
+        "output_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round53_count0_id102_stdout.txt"
+    },
+    {
+        "iteration": 64,
+        "total_responses": 586,
+        "total_function_evals": 357,
+        "total_valid_responses": 564,
+        "best_obj_overall": 71.06424903869629,
+        "metrics": {
+            "200": 22.349966049194336,
+            "500": 51.10204315185547,
+            "1000": 139.74073791503906
+        },
+        "code_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round64_count0_id118_solution.py",
+        "output_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round64_count0_id118_stdout.txt"
+    },
+    {
+        "iteration": 78,
+        "total_responses": 729,
+        "total_function_evals": 440,
+        "total_valid_responses": 703,
+        "best_obj_overall": 71.05810483296712,
+        "metrics": {
+            "200": 22.349966049194336,
+            "500": 51.093162536621094,
+            "1000": 139.73118591308594
+        },
+        "code_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round78_count5_id144_solution.py",
+        "output_filepath": "outputs/oragent/cvrp_pomo/standard_mode14_deep_exploration/details/lead1_round78_count5_id144_stdout.txt"
+    }
+]

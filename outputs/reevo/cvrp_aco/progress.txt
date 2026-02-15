@@ -1,0 +1,7 @@
+Iteration: 52
+Total number of LLM calls: 670
+Total number of valid responses: 664
+Total number of function evaluations: 396
+Current best objective value: 7.0821977341559155
+
+>>>[ReEvo] Selected population size: 20; next: short-term reflection and crossover

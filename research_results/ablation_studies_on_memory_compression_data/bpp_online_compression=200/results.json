@@ -1,0 +1,162 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 2080.0,
+        "metrics": {
+            "val_0": 2087.0,
+            "val_1": 2083.0,
+            "val_2": 2077.0,
+            "val_3": 2065.0,
+            "val_4": 2088.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 162,
+        "total_function_evals": 100,
+        "total_valid_responses": 157,
+        "best_obj_overall": 2056.2,
+        "metrics": {
+            "val_0": 2062.0,
+            "val_1": 2062.0,
+            "val_2": 2058.0,
+            "val_3": 2039.0,
+            "val_4": 2060.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round8_count1_id40_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round8_count1_id40_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 209,
+        "total_function_evals": 129,
+        "total_valid_responses": 203,
+        "best_obj_overall": 2054.6,
+        "metrics": {
+            "val_0": 2063.0,
+            "val_1": 2060.0,
+            "val_2": 2055.0,
+            "val_3": 2039.0,
+            "val_4": 2056.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round12_count2_id46_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round12_count2_id46_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 232,
+        "total_function_evals": 139,
+        "total_valid_responses": 225,
+        "best_obj_overall": 2051.6,
+        "metrics": {
+            "val_0": 2064.0,
+            "val_1": 2056.0,
+            "val_2": 2051.0,
+            "val_3": 2034.0,
+            "val_4": 2053.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round12_count7_id51_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round12_count7_id51_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 243,
+        "total_function_evals": 144,
+        "total_valid_responses": 236,
+        "best_obj_overall": 2045.6,
+        "metrics": {
+            "val_0": 2055.0,
+            "val_1": 2053.0,
+            "val_2": 2045.0,
+            "val_3": 2029.0,
+            "val_4": 2046.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round12_count9_id53_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round12_count9_id53_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 280,
+        "total_function_evals": 160,
+        "total_valid_responses": 273,
+        "best_obj_overall": 2025.4,
+        "metrics": {
+            "val_0": 2036.0,
+            "val_1": 2028.0,
+            "val_2": 2029.0,
+            "val_3": 2012.0,
+            "val_4": 2022.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round14_count0_id59_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round14_count0_id59_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 358,
+        "total_function_evals": 199,
+        "total_valid_responses": 351,
+        "best_obj_overall": 2018.0,
+        "metrics": {
+            "val_0": 2025.0,
+            "val_1": 2021.0,
+            "val_2": 2019.0,
+            "val_3": 2009.0,
+            "val_4": 2016.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round23_count1_id69_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round23_count1_id69_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 396,
+        "total_function_evals": 220,
+        "total_valid_responses": 387,
+        "best_obj_overall": 2017.6,
+        "metrics": {
+            "val_0": 2025.0,
+            "val_1": 2021.0,
+            "val_2": 2018.0,
+            "val_3": 2003.0,
+            "val_4": 2021.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round23_count8_id76_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round23_count8_id76_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 559,
+        "total_function_evals": 310,
+        "total_valid_responses": 544,
+        "best_obj_overall": 2017.0,
+        "metrics": {
+            "val_0": 2019.0,
+            "val_1": 2022.0,
+            "val_2": 2023.0,
+            "val_3": 2006.0,
+            "val_4": 2015.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round34_count0_id99_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round34_count0_id99_stdout.txt"
+    },
+    {
+        "iteration": 45,
+        "total_responses": 721,
+        "total_function_evals": 405,
+        "total_valid_responses": 703,
+        "best_obj_overall": 2011.6,
+        "metrics": {
+            "val_0": 2017.0,
+            "val_1": 2016.0,
+            "val_2": 2011.0,
+            "val_3": 2002.0,
+            "val_4": 2012.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round45_count1_id124_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/standard_mode14_compression_200_rerun/details/lead1_round45_count1_id124_stdout.txt"
+    }
+]

@@ -1,0 +1,146 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 12.308373324462064,
+        "metrics": {
+            "0": 12.800430557657137,
+            "1": 12.129806902260636,
+            "2": 11.456933216311873,
+            "3": 13.411778142826426,
+            "4": 11.742917803254242
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 22,
+        "total_function_evals": 22,
+        "total_valid_responses": 21,
+        "best_obj_overall": 13.215280223539693,
+        "metrics": {
+            "0": 13.280132659402772,
+            "1": 12.07895920779357,
+            "2": 12.389039303047193,
+            "3": 16.014084428690005,
+            "4": 12.314185518764928
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round0_count20_id20_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round0_count20_id20_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 47,
+        "total_function_evals": 38,
+        "total_valid_responses": 46,
+        "best_obj_overall": 13.29202578643412,
+        "metrics": {
+            "0": 13.614428374627716,
+            "1": 12.180736729830441,
+            "2": 12.364691034715921,
+            "3": 15.972406802484112,
+            "4": 12.327865990512404
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round1_count3_id24_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round1_count3_id24_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 177,
+        "total_function_evals": 115,
+        "total_valid_responses": 172,
+        "best_obj_overall": 13.29326290742784,
+        "metrics": {
+            "0": 13.63338304056687,
+            "1": 12.26157202491554,
+            "2": 12.392639681016325,
+            "3": 15.832640747434464,
+            "4": 12.346079043206005
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round6_count0_id43_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round6_count0_id43_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 205,
+        "total_function_evals": 131,
+        "total_valid_responses": 200,
+        "best_obj_overall": 13.32597850403693,
+        "metrics": {
+            "0": 13.664621745410539,
+            "1": 12.218117744039592,
+            "2": 12.376679696456046,
+            "3": 16.029119602582448,
+            "4": 12.341353731696039
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round10_count0_id47_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round10_count0_id47_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 250,
+        "total_function_evals": 159,
+        "total_valid_responses": 245,
+        "best_obj_overall": 13.337709363000034,
+        "metrics": {
+            "0": 13.668388443515354,
+            "1": 12.249530217721773,
+            "2": 12.391518337183232,
+            "3": 16.013270815265905,
+            "4": 12.3658390013139
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round12_count5_id54_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round12_count5_id54_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 276,
+        "total_function_evals": 175,
+        "total_valid_responses": 271,
+        "best_obj_overall": 13.346388872422054,
+        "metrics": {
+            "0": 13.663081286735103,
+            "1": 12.238559772538734,
+            "2": 12.401647543138205,
+            "3": 16.035776290239518,
+            "4": 12.392879469458709
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round12_count8_id57_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round12_count8_id57_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 438,
+        "total_function_evals": 270,
+        "total_valid_responses": 431,
+        "best_obj_overall": 13.346972869395865,
+        "metrics": {
+            "0": 13.687466679454545,
+            "1": 12.287889244658707,
+            "2": 12.398148506748308,
+            "3": 15.975351960540205,
+            "4": 12.386007955577549
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round23_count0_id79_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round23_count0_id79_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 490,
+        "total_function_evals": 302,
+        "total_valid_responses": 483,
+        "best_obj_overall": 13.356386431748012,
+        "metrics": {
+            "0": 13.6933710399699,
+            "1": 12.284499619743045,
+            "2": 12.414854053023088,
+            "3": 16.033924620210144,
+            "4": 12.355282825793893
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round23_count10_id89_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression_200_rerun/details/lead1_round23_count10_id89_stdout.txt"
+    }
+]

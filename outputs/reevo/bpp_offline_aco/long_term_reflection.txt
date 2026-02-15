@@ -1,0 +1,6 @@
+**Constructive Hints:**
+- Prioritize stronger utilization incentives and aggressive gap-filling
+- Penalize overflow heavily while rewarding near-capacity pairings
+- Increase diagonal priority and optimize sparsification thresholds
+- Balance individual item weights with complementary pairing strategies
+- Simplify complex interactions while maintaining effective bin reduction mechanisms

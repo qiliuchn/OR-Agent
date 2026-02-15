@@ -1,0 +1,1 @@
+Emphasize worst-case prize-to-weight efficiency, incorporate entropy-based balance, apply mild adaptive sparsification tuned to constraint tightness, avoid over-penalization, and normalize heuristics to maintain exploration-exploitation balance.

@@ -1,0 +1,98 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 12.130008659242542,
+        "metrics": {
+            "0": 13.238543818341906,
+            "1": 11.771752576042825,
+            "2": 11.437450042143222,
+            "3": 12.624711380617505,
+            "4": 11.57758547906725
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 22,
+        "total_function_evals": 22,
+        "total_valid_responses": 21,
+        "best_obj_overall": 12.884737016721038,
+        "metrics": {
+            "0": 13.198071039545486,
+            "1": 12.143649446253985,
+            "2": 11.555263810600206,
+            "3": 15.222539496916246,
+            "4": 12.304161290289258
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round0_count13_id13_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round0_count13_id13_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 43,
+        "total_function_evals": 38,
+        "total_valid_responses": 42,
+        "best_obj_overall": 13.124221418546721,
+        "metrics": {
+            "0": 13.296384023089905,
+            "1": 12.144722476636153,
+            "2": 12.299959986244591,
+            "3": 15.584581316516843,
+            "4": 12.295459290246121
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round1_count2_id23_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round1_count2_id23_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 54,
+        "total_function_evals": 46,
+        "total_valid_responses": 53,
+        "best_obj_overall": 13.13183382182562,
+        "metrics": {
+            "0": 13.412750946243866,
+            "1": 12.168310143394908,
+            "2": 12.32086546037034,
+            "3": 15.484787236349765,
+            "4": 12.272455322769224
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round1_count5_id26_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round1_count5_id26_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 87,
+        "total_function_evals": 70,
+        "total_valid_responses": 86,
+        "best_obj_overall": 13.195790840772556,
+        "metrics": {
+            "0": 13.414928876896957,
+            "1": 12.208978905373431,
+            "2": 12.323157618366611,
+            "3": 16.005968053093504,
+            "4": 12.025920750132284
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round1_count11_id32_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round1_count11_id32_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 304,
+        "total_function_evals": 222,
+        "total_valid_responses": 301,
+        "best_obj_overall": 13.252319387486898,
+        "metrics": {
+            "0": 13.400023372491294,
+            "1": 12.210550111161698,
+            "2": 12.33726721355568,
+            "3": 15.985620860479376,
+            "4": 12.328135379746447
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round12_count19_id70_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode14_compression/details/lead1_round12_count19_id70_stdout.txt"
+    }
+]

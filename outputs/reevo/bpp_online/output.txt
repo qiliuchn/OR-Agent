@@ -1,0 +1,3381 @@
+
+   ____  ____      ___                    __ 
+  / __ \/ __ \    /   | ____ ____  ____  / /_
+ / / / / /_/ /   / /| |/ __ `/ _ \/ __ \/ __/
+/ /_/ / _, _/   / ___ / /_/ /  __/ / / / /_  
+\____/_/ |_|   /_/  |_\__, /\___/_/ /_/\__/  
+                     /____/                  
+
+
+Welcome to OR-Agent!
+
+>>>[OR-Agent] Loading config from: /share/home/u23310103/apps/or_agent/config.yaml
+
+>>>[OR-Agent] Running algorithm "reevo" on problem "bpp_online"
+
+>>>[OR-Agent] Make sure that your problem is defined in "/share/home/u23310103/apps/or_agent/problems/bpp_online" directory
+
+>>>[OR-Agent] Settings:
+>>>[OR-Agent] Output directory: outputs/reevo/bpp_online
+>>>[OR-Agent] max_evolutions: 500
+>>>[OR-Agent] init_pop_size: 20
+>>>[OR-Agent] num_children: 2
+>>>[OR-Agent] max_tree_depth: 2
+>>>[OR-Agent] fast_exploration_for_crossover: False
+>>>[OR-Agent] max_debug_rounds: 2
+>>>[OR-Agent] max_experiment_repeats: 4
+>>>[OR-Agent] elitist_as_root_period: 3
+>>>[OR-Agent] elitist_enlargement_factor: 1.0
+>>>[OR-Agent] reflection_compression: None
+>>>[OR-Agent] reflection_period: 5
+>>>[OR-Agent] reflection_clearance_period: None
+>>>[OR-Agent] reflection_disabled_for_crossover: False
+>>>[OR-Agent] reflection_elitist_synchro: False
+>>>[OR-Agent] evaluation_description_disabled: False
+>>>[OR-Agent] ideas_coordinated_generation_disabled: False
+>>>[OR-Agent] llm_provider: qwen
+>>>[OR-Agent] timeout_seconds: 300
+>>>[OR-Agent] autosave_interval_minutes: 180
+>>>[OR-Agent] python_path: /share/home/u23310103/.conda/envs/sumo/bin/python
+
+>>>[Evaluator] Evaluator initialized.
+
+>>>[ReEvo] Evaluating seed function...
+
+>>>[Evaluator] Evaluating solution: iter0_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter0_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter0_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter0_response0
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 1
+>>>[ReEvo] Valid population size: 1
+
+>>>[ReEvo] Elitist updated: iter0_response0 | score:2080.0 | code path: outputs/reevo/bpp_online/details/iter0_response0_solution.py
+
+>>>[ReEvo] Iteration 1 finished...
+
+>>>[Evaluator] Evaluating solution: iter1_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response0
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2100.4
+	 Lower bound on optimum: 1996.4
+	 Excess: 5.21%
+[*] Average:
+5.209376878381086
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2102.0, 'val_1': 2104.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2110.0}
+__METRICS_END__
+__FEATURES_START__
+(2102, 2104, 2099, 2087, 2110)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2100.4)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response1
+metrics: {'val_0': 2102.0, 'val_1': 2104.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2110.0}
+features: (2102, 2104, 2099, 2087, 2110)
+scores: 2100.4
+
+>>>[Evaluator] Evaluation successful: iter1_response1
+Obj: 2100.4
+
+>>>[Evaluator] Evaluating solution: iter1_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response2
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response2
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2100.4
+	 Lower bound on optimum: 1996.4
+	 Excess: 5.21%
+[*] Average:
+5.209376878381086
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2102.0, 'val_1': 2104.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2110.0}
+__METRICS_END__
+__FEATURES_START__
+(2102, 2104, 2099, 2087, 2110)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2100.4)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response4
+metrics: {'val_0': 2102.0, 'val_1': 2104.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2110.0}
+features: (2102, 2104, 2099, 2087, 2110)
+scores: 2100.4
+
+>>>[Evaluator] Evaluation successful: iter1_response4
+Obj: 2100.4
+
+>>>[Evaluator] Evaluating solution: iter1_response5
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response5_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2187.4
+	 Lower bound on optimum: 1996.4
+	 Excess: 9.57%
+[*] Average:
+9.567220997796031
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2192.0, 'val_1': 2192.0, 'val_2': 2193.0, 'val_3': 2171.0, 'val_4': 2189.0}
+__METRICS_END__
+__FEATURES_START__
+(2192, 2192, 2193, 2171, 2189)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2187.4)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response5
+metrics: {'val_0': 2192.0, 'val_1': 2192.0, 'val_2': 2193.0, 'val_3': 2171.0, 'val_4': 2189.0}
+features: (2192, 2192, 2193, 2171, 2189)
+scores: 2187.4
+
+>>>[Evaluator] Evaluation successful: iter1_response5
+Obj: 2187.4
+
+>>>[Evaluator] Evaluating solution: iter1_response6
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response6_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response6
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response6
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response7
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response7_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response7
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response7
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response8
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response8_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response8
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response8
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response9
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response9_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response9
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response9
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response10
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response10_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response10
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response10
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response11
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response11_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response11
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response11
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response12
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response12_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2124.2
+	 Lower bound on optimum: 1996.4
+	 Excess: 6.40%
+[*] Average:
+6.401522740933667
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2139.0, 'val_1': 2126.0, 'val_2': 2125.0, 'val_3': 2113.0, 'val_4': 2118.0}
+__METRICS_END__
+__FEATURES_START__
+(2139, 2126, 2125, 2113, 2118)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2124.2)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response12
+metrics: {'val_0': 2139.0, 'val_1': 2126.0, 'val_2': 2125.0, 'val_3': 2113.0, 'val_4': 2118.0}
+features: (2139, 2126, 2125, 2113, 2118)
+scores: 2124.2
+
+>>>[Evaluator] Evaluation successful: iter1_response12
+Obj: 2124.2
+
+>>>[Evaluator] Evaluating solution: iter1_response13
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response13_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response13
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response13
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response14
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response14_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response14
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response14
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response15
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response15_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response15
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response15
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response16
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response16_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response16
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response16
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response17
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response17_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response17
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response17
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response18
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response18_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response18
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response18
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter1_response19
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter1_response19_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter1_response19
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter1_response19
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 20
+>>>[ReEvo] Valid population size: 20
+
+>>>[ReEvo] Iteration 2 finished...
+
+>>>[ReEvo] Population initialization done. Population size: 20
+
+>>>[ReEvo] ReEvo initialized
+
+>>>[ReEvo] Selecting population...
+
+>>>[ReEvo] Short-term reflection...
+
+>>>[ReEvo] Crossover...
+
+>>>[ReEvo] Evaluating crossover offsprings...
+
+>>>[Evaluator] Evaluating solution: iter2_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter2_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter2_response0
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter2_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter2_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter2_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter2_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response2_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: NameError
+Error message: name 'bins' is not defined
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_solution.py", line 26, in priority
+    cap_after_placement = bins.where(feasible, bins_remain_cap - item, -np.inf)
+NameError: name 'bins' is not defined
+
+>>>[Evaluator] iter2_response2 - Error: no end marker found in the result:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response2_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: NameError
+Error message: name 'bins' is not defined
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_solution.py", line 26, in priority
+    cap_after_placement = bins.where(feasible, bins_remain_cap - item, -np.inf)
+NameError: name 'bins' is not defined
+
+
+>>>[Evaluator] Unable to evaluate solution: iter2_response2
+Raw output: 
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response2_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: NameError
+Error message: name 'bins' is not defined
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter2_response2_solution.py", line 26, in priority
+    cap_after_placement = bins.where(feasible, bins_remain_cap - item, -np.inf)
+NameError: name 'bins' is not defined
+
+
+>>>[Evaluator] Evaluating solution: iter2_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter2_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter2_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter2_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter2_response4
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter2_response4
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter2_response5
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response5_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2096.6
+	 Lower bound on optimum: 1996.4
+	 Excess: 5.02%
+[*] Average:
+5.019034261670999
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2100.0, 'val_1': 2102.0, 'val_2': 2094.0, 'val_3': 2082.0, 'val_4': 2105.0}
+__METRICS_END__
+__FEATURES_START__
+(2100, 2102, 2094, 2082, 2105)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2096.6)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter2_response5
+metrics: {'val_0': 2100.0, 'val_1': 2102.0, 'val_2': 2094.0, 'val_3': 2082.0, 'val_4': 2105.0}
+features: (2100, 2102, 2094, 2082, 2105)
+scores: 2096.6
+
+>>>[Evaluator] Evaluation successful: iter2_response5
+Obj: 2096.6
+
+>>>[Evaluator] Evaluating solution: iter2_response6
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response6_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter2_response6
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter2_response6
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter2_response7
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response7_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter2_response7
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter2_response7
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter2_response8
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response8_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter2_response8
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter2_response8
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter2_response9
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter2_response9_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter2_response9
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter2_response9
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 9
+>>>[ReEvo] Valid population size: 9
+
+>>>[ReEvo] Iteration 3 finished...
+
+>>>[ReEvo] Long-term reflection...
+
+>>>[ReEvo] Mutation...
+
+>>>[ReEvo] Evaluating mutation offsprings...
+
+>>>[Evaluator] Evaluating solution: iter3_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter3_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter3_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter3_response0
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter3_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter3_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter3_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter3_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter3_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter3_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter3_response2
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter3_response2
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter3_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter3_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter3_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter3_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter3_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter3_response4_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: UFuncTypeError
+Error message: Cannot cast ufunc 'divide' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_solution.py", line 26, in priority
+    utilization_ratio = np.divide(item, bins_remain_cap, out=np.full_like(bins_remain_cap, -1), where=bins_remain_cap > 0)
+numpy._core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'divide' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+>>>[Evaluator] iter3_response4 - Error: no end marker found in the result:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter3_response4_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: UFuncTypeError
+Error message: Cannot cast ufunc 'divide' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_solution.py", line 26, in priority
+    utilization_ratio = np.divide(item, bins_remain_cap, out=np.full_like(bins_remain_cap, -1), where=bins_remain_cap > 0)
+numpy._core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'divide' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+
+>>>[Evaluator] Unable to evaluate solution: iter3_response4
+Raw output: 
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter3_response4_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: UFuncTypeError
+Error message: Cannot cast ufunc 'divide' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter3_response4_solution.py", line 26, in priority
+    utilization_ratio = np.divide(item, bins_remain_cap, out=np.full_like(bins_remain_cap, -1), where=bins_remain_cap > 0)
+numpy._core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'divide' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 14
+>>>[ReEvo] Valid population size: 13
+
+>>>[ReEvo] Iteration 4 finished...
+
+>>>[ReEvo] Selecting population...
+
+>>>[ReEvo] Short-term reflection...
+
+>>>[ReEvo] Crossover...
+
+>>>[ReEvo] Evaluating crossover offsprings...
+
+>>>[Evaluator] Evaluating solution: iter4_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2095.6
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.97%
+[*] Average:
+4.968944099378873
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2095.0, 'val_1': 2101.0, 'val_2': 2096.0, 'val_3': 2082.0, 'val_4': 2104.0}
+__METRICS_END__
+__FEATURES_START__
+(2095, 2101, 2096, 2082, 2104)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2095.6)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response0
+metrics: {'val_0': 2095.0, 'val_1': 2101.0, 'val_2': 2096.0, 'val_3': 2082.0, 'val_4': 2104.0}
+features: (2095, 2101, 2096, 2082, 2104)
+scores: 2095.6
+
+>>>[Evaluator] Evaluation successful: iter4_response0
+Obj: 2095.6
+
+>>>[Evaluator] Evaluating solution: iter4_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter4_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter4_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2100.4
+	 Lower bound on optimum: 1996.4
+	 Excess: 5.21%
+[*] Average:
+5.209376878381086
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2102.0, 'val_1': 2105.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2109.0}
+__METRICS_END__
+__FEATURES_START__
+(2102, 2105, 2099, 2087, 2109)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2100.4)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response2
+metrics: {'val_0': 2102.0, 'val_1': 2105.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2109.0}
+features: (2102, 2105, 2099, 2087, 2109)
+scores: 2100.4
+
+>>>[Evaluator] Evaluation successful: iter4_response2
+Obj: 2100.4
+
+>>>[Evaluator] Evaluating solution: iter4_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter4_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter4_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2086.2
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.50%
+[*] Average:
+4.4980965738328855
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2091.0, 'val_1': 2090.0, 'val_2': 2086.0, 'val_3': 2070.0, 'val_4': 2094.0}
+__METRICS_END__
+__FEATURES_START__
+(2091, 2090, 2086, 2070, 2094)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2086.2)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response4
+metrics: {'val_0': 2091.0, 'val_1': 2090.0, 'val_2': 2086.0, 'val_3': 2070.0, 'val_4': 2094.0}
+features: (2091, 2090, 2086, 2070, 2094)
+scores: 2086.2
+
+>>>[Evaluator] Evaluation successful: iter4_response4
+Obj: 2086.2
+
+>>>[Evaluator] Evaluating solution: iter4_response5
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response5_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2093.8
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.88%
+[*] Average:
+4.87878180725306
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2098.0, 'val_1': 2097.0, 'val_2': 2095.0, 'val_3': 2078.0, 'val_4': 2101.0}
+__METRICS_END__
+__FEATURES_START__
+(2098, 2097, 2095, 2078, 2101)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2093.8)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response5
+metrics: {'val_0': 2098.0, 'val_1': 2097.0, 'val_2': 2095.0, 'val_3': 2078.0, 'val_4': 2101.0}
+features: (2098, 2097, 2095, 2078, 2101)
+scores: 2093.8
+
+>>>[Evaluator] Evaluation successful: iter4_response5
+Obj: 2093.8
+
+>>>[Evaluator] Evaluating solution: iter4_response6
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response6_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response6
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter4_response6
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter4_response7
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response7_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response7
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter4_response7
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter4_response8
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response8_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.6
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.22%
+[*] Average:
+4.217591664996985
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2080.0, 'val_3': 2064.0, 'val_4': 2089.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2080, 2064, 2089)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.6)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response8
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2080.0, 'val_3': 2064.0, 'val_4': 2089.0}
+features: (2087, 2083, 2080, 2064, 2089)
+scores: 2080.6
+
+>>>[Evaluator] Evaluation successful: iter4_response8
+Obj: 2080.6
+
+>>>[Evaluator] Evaluating solution: iter4_response9
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter4_response9_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter4_response9
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter4_response9
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 10
+>>>[ReEvo] Valid population size: 10
+
+>>>[ReEvo] Iteration 5 finished...
+
+>>>[ReEvo] Long-term reflection...
+
+>>>[ReEvo] Mutation...
+
+>>>[ReEvo] Evaluating mutation offsprings...
+
+>>>[Evaluator] Evaluating solution: iter5_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter5_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter5_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter5_response0
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter5_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter5_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter5_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter5_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter5_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter5_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter5_response2
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter5_response2
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter5_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter5_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter5_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter5_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter5_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter5_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter5_response4
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter5_response4
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 15
+>>>[ReEvo] Valid population size: 15
+
+>>>[ReEvo] Iteration 6 finished...
+
+>>>[ReEvo] Selecting population...
+
+>>>[ReEvo] Short-term reflection...
+
+>>>[ReEvo] Crossover...
+
+>>>[ReEvo] Evaluating crossover offsprings...
+
+>>>[Evaluator] Evaluating solution: iter6_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2106.8
+	 Lower bound on optimum: 1996.4
+	 Excess: 5.53%
+[*] Average:
+5.529953917050696
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2109.0, 'val_1': 2111.0, 'val_2': 2106.0, 'val_3': 2092.0, 'val_4': 2116.0}
+__METRICS_END__
+__FEATURES_START__
+(2109, 2111, 2106, 2092, 2116)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2106.8)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter6_response0
+metrics: {'val_0': 2109.0, 'val_1': 2111.0, 'val_2': 2106.0, 'val_3': 2092.0, 'val_4': 2116.0}
+features: (2109, 2111, 2106, 2092, 2116)
+scores: 2106.8
+
+>>>[Evaluator] Evaluation successful: iter6_response0
+Obj: 2106.8
+
+>>>[Evaluator] Evaluating solution: iter6_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter6_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter6_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter6_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2094.4
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.91%
+[*] Average:
+4.908835904628331
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2099.0, 'val_1': 2097.0, 'val_2': 2097.0, 'val_3': 2078.0, 'val_4': 2101.0}
+__METRICS_END__
+__FEATURES_START__
+(2099, 2097, 2097, 2078, 2101)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2094.4)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter6_response2
+metrics: {'val_0': 2099.0, 'val_1': 2097.0, 'val_2': 2097.0, 'val_3': 2078.0, 'val_4': 2101.0}
+features: (2099, 2097, 2097, 2078, 2101)
+scores: 2094.4
+
+>>>[Evaluator] Evaluation successful: iter6_response2
+Obj: 2094.4
+
+>>>[Evaluator] Evaluating solution: iter6_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2100.4
+	 Lower bound on optimum: 1996.4
+	 Excess: 5.21%
+[*] Average:
+5.209376878381086
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2102.0, 'val_1': 2104.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2110.0}
+__METRICS_END__
+__FEATURES_START__
+(2102, 2104, 2099, 2087, 2110)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2100.4)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter6_response3
+metrics: {'val_0': 2102.0, 'val_1': 2104.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2110.0}
+features: (2102, 2104, 2099, 2087, 2110)
+scores: 2100.4
+
+>>>[Evaluator] Evaluation successful: iter6_response3
+Obj: 2100.4
+
+>>>[Evaluator] Evaluating solution: iter6_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2096.4
+	 Lower bound on optimum: 1996.4
+	 Excess: 5.01%
+[*] Average:
+5.009016229212582
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2097.0, 'val_1': 2102.0, 'val_2': 2097.0, 'val_3': 2082.0, 'val_4': 2104.0}
+__METRICS_END__
+__FEATURES_START__
+(2097, 2102, 2097, 2082, 2104)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2096.4)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter6_response4
+metrics: {'val_0': 2097.0, 'val_1': 2102.0, 'val_2': 2097.0, 'val_3': 2082.0, 'val_4': 2104.0}
+features: (2097, 2102, 2097, 2082, 2104)
+scores: 2096.4
+
+>>>[Evaluator] Evaluation successful: iter6_response4
+Obj: 2096.4
+
+>>>[Evaluator] Evaluating solution: iter6_response5
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response5_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: UFuncTypeError
+Error message: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_solution.py", line 43, in priority
+    fragment_penalty[tiny_fragments] -= 0.5
+numpy._core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+>>>[Evaluator] iter6_response5 - Error: no end marker found in the result:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response5_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: UFuncTypeError
+Error message: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_solution.py", line 43, in priority
+    fragment_penalty[tiny_fragments] -= 0.5
+numpy._core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+
+>>>[Evaluator] Unable to evaluate solution: iter6_response5
+Raw output: 
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response5_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: UFuncTypeError
+Error message: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter6_response5_solution.py", line 43, in priority
+    fragment_penalty[tiny_fragments] -= 0.5
+numpy._core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+
+>>>[Evaluator] Evaluating solution: iter6_response6
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response6_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter6_response6
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter6_response6
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter6_response7
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response7_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter6_response7
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter6_response7
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter6_response8
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response8_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter6_response8
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter6_response8
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter6_response9
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter6_response9_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter6_response9
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter6_response9
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 9
+>>>[ReEvo] Valid population size: 9
+
+>>>[ReEvo] Iteration 7 finished...
+
+>>>[ReEvo] Long-term reflection...
+
+>>>[ReEvo] Mutation...
+
+>>>[ReEvo] Evaluating mutation offsprings...
+
+>>>[Evaluator] Evaluating solution: iter7_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter7_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter7_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter7_response0
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter7_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter7_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter7_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter7_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter7_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter7_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter7_response2
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter7_response2
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter7_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter7_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter7_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter7_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter7_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter7_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter7_response4
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter7_response4
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 14
+>>>[ReEvo] Valid population size: 14
+
+>>>[ReEvo] Iteration 8 finished...
+
+>>>[ReEvo] Selecting population...
+
+>>>[ReEvo] Short-term reflection...
+
+>>>[ReEvo] Crossover...
+
+>>>[ReEvo] Evaluating crossover offsprings...
+
+>>>[Evaluator] Evaluating solution: iter8_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter8_response0
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter8_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter8_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter8_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response2
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter8_response2
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter8_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter8_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter8_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2100.4
+	 Lower bound on optimum: 1996.4
+	 Excess: 5.21%
+[*] Average:
+5.209376878381086
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2102.0, 'val_1': 2104.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2110.0}
+__METRICS_END__
+__FEATURES_START__
+(2102, 2104, 2099, 2087, 2110)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2100.4)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response4
+metrics: {'val_0': 2102.0, 'val_1': 2104.0, 'val_2': 2099.0, 'val_3': 2087.0, 'val_4': 2110.0}
+features: (2102, 2104, 2099, 2087, 2110)
+scores: 2100.4
+
+>>>[Evaluator] Evaluation successful: iter8_response4
+Obj: 2100.4
+
+>>>[Evaluator] Evaluating solution: iter8_response5
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response5_file_
+mode: val
+/share/home/u23310103/apps/or_agent/outputs/reevo/bpp_online/details/iter8_response5_solution.py:35: RuntimeWarning: invalid value encountered in power
+  -((0.15 - remaining_after_placement) ** 1.5) * 3.0,
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response5
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter8_response5
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter8_response6
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response6_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response6
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter8_response6
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter8_response7
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response7_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response7
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter8_response7
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter8_response8
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response8_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response8
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter8_response8
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter8_response9
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter8_response9_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter8_response9
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter8_response9
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 10
+>>>[ReEvo] Valid population size: 10
+
+>>>[ReEvo] Iteration 9 finished...
+
+>>>[ReEvo] Long-term reflection...
+
+>>>[ReEvo] Mutation...
+
+>>>[ReEvo] Evaluating mutation offsprings...
+
+>>>[Evaluator] Evaluating solution: iter9_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter9_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter9_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter9_response0
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter9_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter9_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter9_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter9_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter9_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter9_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter9_response2
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter9_response2
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter9_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter9_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter9_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter9_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter9_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter9_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter9_response4
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter9_response4
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 15
+>>>[ReEvo] Valid population size: 15
+
+>>>[ReEvo] Iteration 10 finished...
+
+>>>[ReEvo] Selecting population...
+
+>>>[ReEvo] Short-term reflection...
+
+>>>[ReEvo] Crossover...
+
+>>>[ReEvo] Evaluating crossover offsprings...
+
+>>>[Evaluator] Evaluating solution: iter10_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response0
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter10_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter10_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response2
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response2
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter10_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter10_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response4
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response4
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter10_response5
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response5_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response5
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response5
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter10_response6
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response6_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response6
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response6
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter10_response7
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response7_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response7
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response7
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter10_response8
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response8_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response8
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response8
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter10_response9
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter10_response9_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter10_response9
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter10_response9
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 10
+>>>[ReEvo] Valid population size: 10
+
+>>>[ReEvo] Iteration 11 finished...
+
+>>>[ReEvo] Long-term reflection...
+
+>>>[ReEvo] Mutation...
+
+>>>[ReEvo] Evaluating mutation offsprings...
+
+>>>[Evaluator] Evaluating solution: iter11_response0
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter11_response0_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter11_response0
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter11_response0
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter11_response1
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter11_response1_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter11_response1
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter11_response1
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter11_response2
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter11_response2_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter11_response2
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter11_response2
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter11_response3
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter11_response3_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter11_response3
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter11_response3
+Obj: 2080.0
+
+>>>[Evaluator] Evaluating solution: iter11_response4
+
+>>>[Evaluator] stdout:
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/reevo/bpp_online/details/iter11_response4_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2080.0
+	 Lower bound on optimum: 1996.4
+	 Excess: 4.19%
+[*] Average:
+4.187537567621715
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+__METRICS_END__
+__FEATURES_START__
+(2087, 2083, 2077, 2065, 2088)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2080.0)
+__SCORE_END__
+__SANDBOX_SUCCESS__
+
+>>>[Evaluator] Metrics extracted for solution (id): iter11_response4
+metrics: {'val_0': 2087.0, 'val_1': 2083.0, 'val_2': 2077.0, 'val_3': 2065.0, 'val_4': 2088.0}
+features: (2087, 2083, 2077, 2065, 2088)
+scores: 2080.0
+
+>>>[Evaluator] Evaluation successful: iter11_response4
+Obj: 2080.0
+
+[ReEvo] Updating iteration...
+
+>>>[ReEvo] population size: 15
+>>>[ReEvo] Valid population size: 15
+
+>>>[ReEvo] Iteration 12 finished...
+
+>>>[ReEvo] Selecting population...
+
+>>>[Utils] Random selection failed after 1000 attempts; len(population)=16; pop_size=10; selected_population size=0
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/src/oragent/cli.py", line 426, in <module>
+    _exit(main())
+  File "/share/home/u23310103/apps/or_agent/src/oragent/cli.py", line 409, in main
+    agent.run()
+  File "/share/home/u23310103/apps/or_agent/src/oragent/reevo.py", line 628, in run
+    selected_population = utils.random_select(population_to_select, self.pop_size)  # `selected_population` size: 2 * self.pop_size
+  File "/share/home/u23310103/apps/or_agent/src/oragent/utils.py", line 1092, in random_select
+    raise RuntimeError(">>>[Utils] Random selection failed after 1000 attempts")
+RuntimeError: >>>[Utils] Random selection failed after 1000 attempts

@@ -1,0 +1,30 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 73.3245849609375,
+        "metrics": {
+            "200": 22.36349868774414,
+            "500": 50.416988372802734,
+            "1000": 147.19326782226562
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 15,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    }
+]

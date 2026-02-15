@@ -1,0 +1,21 @@
+Number of research rounds: 21
+Solution count: 614
+Total number of LLM calls: 614
+Total number of valid responses: 594
+Total number of function evaluations: 407
+Current best objective value: 2072.6
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [101 (2072.60)]: ["Integrate entropy-based distribution tracking instead of variance-based change detection to dynamically adjust the lookback window for CV calculation: replace the current variance-comparison logic in Node 97 with a sliding-window entropy estimator that quantifies the unpredictability of recent item sizes (e.g., using quantized bins or kernel density estimates). When entropy spikes—indicating a shift toward a more heterogeneous or heavy-tailed distribution—reduce the window size to increase responsiveness; when entropy stabilizes, expand the window for noise reduction. This directly addresses the failure of variance-based non-stationarity detection observed in Parent #1 and aligns with the recommendation to explore entropy-based metrics."]
+    ├── ✓ Node 120 (2072.60): "Replace the fixed quantization-based entropy estimator with a kernel density estimation (KDE)-based differential entropy estimator to better capture continuous distributional shifts in item sizes. This would involve maintaining a sliding window of recent items, fitting a lightweight KDE (e.g., using Gaussian kernels with Silverman’s rule for bandwidth), and computing differential entropy via Monte Carlo integration or analytical approximation. The resulting entropy signal would more accurately reflect changes in tail behavior and multimodality, enabling more precise window adaptation for CV calculation without arbitrary binning artifacts."
+    ├── ✓ Node 121 (2072.60): "Introduce a theoretically grounded, non-linear mapping from coefficient of variation (CV) to mixing weight that leverages information-theoretic bounds—specifically, derive a function based on the relationship between CV and maximum entropy for distributions on [0,1] (e.g., truncated exponential or beta families). Instead of a sigmoid, use this analytical mapping to directly translate observed CV into an optimal interpolation weight between Best Fit and Worst Fit, ensuring the heuristic aligns with the underlying uncertainty structure of the item stream."
+    ├── ○ Node 122 (2072.60): "Develop a minimal two-step lookahead mechanism that simulates not only the immediate placement but also the expected cost of the next item drawn from the empirical distribution of recent items. For each feasible bin, compute the average number of bins needed after placing the current item and then a randomly sampled 'representative' future item (from the last W items). Use this expected cost as a correction term to the priority score, while maintaining online feasibility by precomputing statistics and limiting simulation to one additional step with sampling from a maintained reservoir."
+    └── ○ Node 123 (2072.60): "Implement a lightweight ensemble of two complementary heuristics—one optimized for low-entropy (predictable) streams using aggressive Best Fit bias, and another for high-entropy (unpredictable) streams using adaptive Worst Fit—and dynamically blend their outputs using the real-time entropy signal. Each sub-heuristic would have simplified, specialized logic (e.g., no lookahead in the low-entropy mode, strong medium-gap penalties in high-entropy mode), and the blending weight would be a smooth function of normalized entropy, reducing complexity-induced fragility while preserving responsiveness to regime shifts."
+========================================
+Total nodes: 5 | Total expanded solutions: 1 | Total pending leaves: 2 | Total terminal leaves: 2

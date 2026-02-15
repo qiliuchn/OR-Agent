@@ -1,0 +1,920 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 16,
+        "best_obj_overall": -51.888783000000004,
+        "metrics": {
+            "critical_ttc_count": 150.0,
+            "collisions": 1.0,
+            "speed_variance": 1.51,
+            "emergencyStops": 0.0,
+            "teleports": 4.0,
+            "avg_speed": 0.235,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter0_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter0_response2_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 30,
+        "total_function_evals": 30,
+        "total_valid_responses": 25,
+        "best_obj_overall": -51.888783000000004,
+        "metrics": {
+            "critical_ttc_count": 150.0,
+            "collisions": 1.0,
+            "speed_variance": 1.51,
+            "emergencyStops": 0.0,
+            "teleports": 4.0,
+            "avg_speed": 0.235,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter0_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter0_response2_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 40,
+        "total_function_evals": 40,
+        "total_valid_responses": 33,
+        "best_obj_overall": -37.865930000000006,
+        "metrics": {
+            "collisions": 0.5,
+            "teleports": 4.0,
+            "emergencyStops": 0.0,
+            "critical_ttc_count": 143.0,
+            "avg_speed": 0.33999999999999997,
+            "speed_variance": 3.185,
+            "emergencyBraking": 0.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter2_response0_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter2_response0_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 50,
+        "total_function_evals": 50,
+        "total_valid_responses": 43,
+        "best_obj_overall": -23.789769,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.225,
+            "speed_variance": 1.12,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.5,
+            "teleports": 3.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter3_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter3_response3_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 60,
+        "total_function_evals": 60,
+        "total_valid_responses": 53,
+        "best_obj_overall": -23.789769,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.225,
+            "speed_variance": 1.12,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.5,
+            "teleports": 3.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter3_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter3_response3_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 70,
+        "total_function_evals": 70,
+        "total_valid_responses": 63,
+        "best_obj_overall": -23.789769,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.225,
+            "speed_variance": 1.12,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.5,
+            "teleports": 3.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter3_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter3_response3_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 80,
+        "total_function_evals": 80,
+        "total_valid_responses": 72,
+        "best_obj_overall": -23.789769,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.225,
+            "speed_variance": 1.12,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.5,
+            "teleports": 3.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter3_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter3_response3_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 90,
+        "total_function_evals": 90,
+        "total_valid_responses": 79,
+        "best_obj_overall": -23.789769,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.225,
+            "speed_variance": 1.12,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.5,
+            "teleports": 3.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter3_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter3_response3_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 100,
+        "total_function_evals": 100,
+        "total_valid_responses": 88,
+        "best_obj_overall": -23.789769,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.225,
+            "speed_variance": 1.12,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.5,
+            "teleports": 3.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter3_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter3_response3_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 110,
+        "total_function_evals": 110,
+        "total_valid_responses": 98,
+        "best_obj_overall": -23.789769,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.225,
+            "speed_variance": 1.12,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.5,
+            "teleports": 3.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter3_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter3_response3_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 120,
+        "total_function_evals": 120,
+        "total_valid_responses": 108,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 130,
+        "total_function_evals": 130,
+        "total_valid_responses": 118,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 140,
+        "total_function_evals": 140,
+        "total_valid_responses": 126,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 150,
+        "total_function_evals": 150,
+        "total_valid_responses": 135,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 160,
+        "total_function_evals": 160,
+        "total_valid_responses": 145,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 170,
+        "total_function_evals": 170,
+        "total_valid_responses": 155,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 180,
+        "total_function_evals": 180,
+        "total_valid_responses": 161,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 190,
+        "total_function_evals": 190,
+        "total_valid_responses": 166,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 200,
+        "total_function_evals": 200,
+        "total_valid_responses": 175,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 210,
+        "total_function_evals": 210,
+        "total_valid_responses": 185,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 220,
+        "total_function_evals": 220,
+        "total_valid_responses": 195,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 21,
+        "total_responses": 230,
+        "total_function_evals": 230,
+        "total_valid_responses": 205,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 240,
+        "total_function_evals": 240,
+        "total_valid_responses": 214,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 250,
+        "total_function_evals": 250,
+        "total_valid_responses": 221,
+        "best_obj_overall": -16.060825,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "avg_speed": 0.265,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.585
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter10_response2_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter10_response2_stdout.txt"
+    },
+    {
+        "iteration": 24,
+        "total_responses": 260,
+        "total_function_evals": 260,
+        "total_valid_responses": 231,
+        "best_obj_overall": -15.969874,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "speed_variance": 1.8,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "collisions": 0.5,
+            "avg_speed": 0.3
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter24_response7_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter24_response7_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 270,
+        "total_function_evals": 270,
+        "total_valid_responses": 240,
+        "best_obj_overall": -15.969874,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "speed_variance": 1.8,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 117.0,
+            "teleports": 3.0,
+            "collisions": 0.5,
+            "avg_speed": 0.3
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter24_response7_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter24_response7_stdout.txt"
+    },
+    {
+        "iteration": 26,
+        "total_responses": 280,
+        "total_function_evals": 280,
+        "total_valid_responses": 247,
+        "best_obj_overall": 0.585230999999995,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "avg_speed": 0.225,
+            "teleports": 3.0,
+            "speed_variance": 1.57,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 50.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 27,
+        "total_responses": 290,
+        "total_function_evals": 290,
+        "total_valid_responses": 255,
+        "best_obj_overall": 0.585230999999995,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "avg_speed": 0.225,
+            "teleports": 3.0,
+            "speed_variance": 1.57,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 50.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 300,
+        "total_function_evals": 300,
+        "total_valid_responses": 264,
+        "best_obj_overall": 0.585230999999995,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "avg_speed": 0.225,
+            "teleports": 3.0,
+            "speed_variance": 1.57,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 50.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 29,
+        "total_responses": 310,
+        "total_function_evals": 310,
+        "total_valid_responses": 274,
+        "best_obj_overall": 0.585230999999995,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "avg_speed": 0.225,
+            "teleports": 3.0,
+            "speed_variance": 1.57,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 50.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 30,
+        "total_responses": 320,
+        "total_function_evals": 320,
+        "total_valid_responses": 284,
+        "best_obj_overall": 0.585230999999995,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "avg_speed": 0.225,
+            "teleports": 3.0,
+            "speed_variance": 1.57,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 50.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 31,
+        "total_responses": 330,
+        "total_function_evals": 330,
+        "total_valid_responses": 292,
+        "best_obj_overall": 0.585230999999995,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "avg_speed": 0.225,
+            "teleports": 3.0,
+            "speed_variance": 1.57,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 50.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 32,
+        "total_responses": 340,
+        "total_function_evals": 340,
+        "total_valid_responses": 301,
+        "best_obj_overall": 3.585230999999995,
+        "metrics": {
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.225,
+            "emergencyStops": 0.0,
+            "critical_ttc_count": 38.0,
+            "speed_variance": 1.84,
+            "collisions": 0.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter32_response8_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter32_response8_stdout.txt"
+    },
+    {
+        "iteration": 33,
+        "total_responses": 350,
+        "total_function_evals": 350,
+        "total_valid_responses": 310,
+        "best_obj_overall": 3.585230999999995,
+        "metrics": {
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.225,
+            "emergencyStops": 0.0,
+            "critical_ttc_count": 38.0,
+            "speed_variance": 1.84,
+            "collisions": 0.5
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter32_response8_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter32_response8_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 360,
+        "total_function_evals": 360,
+        "total_valid_responses": 320,
+        "best_obj_overall": 12.874209999999996,
+        "metrics": {
+            "avg_speed": 0.24,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.7999999999999998,
+            "teleports": 3.0,
+            "emergencyStops": 0.0,
+            "critical_ttc_count": 51.0,
+            "collisions": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter34_response8_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter34_response8_stdout.txt"
+    },
+    {
+        "iteration": 35,
+        "total_responses": 370,
+        "total_function_evals": 370,
+        "total_valid_responses": 330,
+        "best_obj_overall": 12.874209999999996,
+        "metrics": {
+            "avg_speed": 0.24,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.7999999999999998,
+            "teleports": 3.0,
+            "emergencyStops": 0.0,
+            "critical_ttc_count": 51.0,
+            "collisions": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter34_response8_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter34_response8_stdout.txt"
+    },
+    {
+        "iteration": 36,
+        "total_responses": 380,
+        "total_function_evals": 380,
+        "total_valid_responses": 339,
+        "best_obj_overall": 12.874209999999996,
+        "metrics": {
+            "avg_speed": 0.24,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.7999999999999998,
+            "teleports": 3.0,
+            "emergencyStops": 0.0,
+            "critical_ttc_count": 51.0,
+            "collisions": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter34_response8_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter34_response8_stdout.txt"
+    },
+    {
+        "iteration": 37,
+        "total_responses": 390,
+        "total_function_evals": 390,
+        "total_valid_responses": 346,
+        "best_obj_overall": 12.874209999999996,
+        "metrics": {
+            "avg_speed": 0.24,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.7999999999999998,
+            "teleports": 3.0,
+            "emergencyStops": 0.0,
+            "critical_ttc_count": 51.0,
+            "collisions": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter34_response8_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter34_response8_stdout.txt"
+    },
+    {
+        "iteration": 38,
+        "total_responses": 400,
+        "total_function_evals": 400,
+        "total_valid_responses": 356,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 39,
+        "total_responses": 410,
+        "total_function_evals": 410,
+        "total_valid_responses": 366,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 40,
+        "total_responses": 420,
+        "total_function_evals": 420,
+        "total_valid_responses": 376,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 41,
+        "total_responses": 430,
+        "total_function_evals": 430,
+        "total_valid_responses": 383,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 42,
+        "total_responses": 440,
+        "total_function_evals": 440,
+        "total_valid_responses": 391,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 43,
+        "total_responses": 450,
+        "total_function_evals": 450,
+        "total_valid_responses": 401,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 44,
+        "total_responses": 460,
+        "total_function_evals": 460,
+        "total_valid_responses": 411,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 45,
+        "total_responses": 470,
+        "total_function_evals": 470,
+        "total_valid_responses": 421,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 46,
+        "total_responses": 480,
+        "total_function_evals": 480,
+        "total_valid_responses": 429,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 47,
+        "total_responses": 490,
+        "total_function_evals": 490,
+        "total_valid_responses": 437,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 48,
+        "total_responses": 500,
+        "total_function_evals": 500,
+        "total_valid_responses": 447,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 49,
+        "total_responses": 510,
+        "total_function_evals": 510,
+        "total_valid_responses": 456,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    },
+    {
+        "iteration": 50,
+        "total_responses": 520,
+        "total_function_evals": 520,
+        "total_valid_responses": 465,
+        "best_obj_overall": 13.624209999999994,
+        "metrics": {
+            "critical_ttc_count": 48.0,
+            "speed_variance": 1.765,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24,
+            "collisions": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/eoh/driving/v2/details/iter38_response3_solution.py",
+        "output_filepath": "outputs/eoh/driving/v2/details/iter38_response3_stdout.txt"
+    }
+]

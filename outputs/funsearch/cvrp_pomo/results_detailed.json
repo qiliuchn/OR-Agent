@@ -1,0 +1,4328 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 73.3245849609375,
+        "metrics": {
+            "200": 22.36349868774414,
+            "500": 50.416988372802734,
+            "1000": 147.19326782226562
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 15,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 21,
+        "total_function_evals": 22,
+        "total_valid_responses": 16,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 22,
+        "total_function_evals": 23,
+        "total_valid_responses": 17,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 23,
+        "total_function_evals": 24,
+        "total_valid_responses": 18,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 24,
+        "total_function_evals": 25,
+        "total_valid_responses": 19,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 25,
+        "total_function_evals": 26,
+        "total_valid_responses": 20,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 26,
+        "total_function_evals": 27,
+        "total_valid_responses": 21,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 27,
+        "total_function_evals": 28,
+        "total_valid_responses": 22,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 28,
+        "total_function_evals": 29,
+        "total_valid_responses": 23,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 29,
+        "total_function_evals": 30,
+        "total_valid_responses": 24,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 30,
+        "total_function_evals": 31,
+        "total_valid_responses": 25,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 31,
+        "total_function_evals": 32,
+        "total_valid_responses": 26,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 32,
+        "total_function_evals": 33,
+        "total_valid_responses": 27,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 33,
+        "total_function_evals": 34,
+        "total_valid_responses": 28,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 34,
+        "total_function_evals": 35,
+        "total_valid_responses": 29,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 35,
+        "total_function_evals": 36,
+        "total_valid_responses": 30,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 36,
+        "total_function_evals": 37,
+        "total_valid_responses": 31,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 37,
+        "total_function_evals": 38,
+        "total_valid_responses": 32,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 38,
+        "total_function_evals": 39,
+        "total_valid_responses": 33,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 39,
+        "total_function_evals": 40,
+        "total_valid_responses": 34,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 21,
+        "total_responses": 40,
+        "total_function_evals": 41,
+        "total_valid_responses": 35,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 41,
+        "total_function_evals": 42,
+        "total_valid_responses": 36,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 42,
+        "total_function_evals": 43,
+        "total_valid_responses": 37,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 24,
+        "total_responses": 43,
+        "total_function_evals": 44,
+        "total_valid_responses": 38,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 44,
+        "total_function_evals": 45,
+        "total_valid_responses": 39,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 26,
+        "total_responses": 45,
+        "total_function_evals": 46,
+        "total_valid_responses": 40,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 27,
+        "total_responses": 46,
+        "total_function_evals": 47,
+        "total_valid_responses": 41,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 47,
+        "total_function_evals": 48,
+        "total_valid_responses": 42,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 29,
+        "total_responses": 48,
+        "total_function_evals": 49,
+        "total_valid_responses": 43,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 30,
+        "total_responses": 49,
+        "total_function_evals": 50,
+        "total_valid_responses": 44,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 31,
+        "total_responses": 50,
+        "total_function_evals": 51,
+        "total_valid_responses": 45,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 32,
+        "total_responses": 51,
+        "total_function_evals": 52,
+        "total_valid_responses": 46,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 33,
+        "total_responses": 52,
+        "total_function_evals": 53,
+        "total_valid_responses": 47,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 53,
+        "total_function_evals": 54,
+        "total_valid_responses": 48,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 35,
+        "total_responses": 54,
+        "total_function_evals": 55,
+        "total_valid_responses": 49,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 36,
+        "total_responses": 55,
+        "total_function_evals": 56,
+        "total_valid_responses": 50,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 37,
+        "total_responses": 56,
+        "total_function_evals": 57,
+        "total_valid_responses": 51,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 38,
+        "total_responses": 57,
+        "total_function_evals": 58,
+        "total_valid_responses": 52,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 39,
+        "total_responses": 58,
+        "total_function_evals": 59,
+        "total_valid_responses": 53,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 40,
+        "total_responses": 59,
+        "total_function_evals": 60,
+        "total_valid_responses": 54,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 41,
+        "total_responses": 60,
+        "total_function_evals": 61,
+        "total_valid_responses": 55,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 42,
+        "total_responses": 61,
+        "total_function_evals": 62,
+        "total_valid_responses": 56,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 43,
+        "total_responses": 62,
+        "total_function_evals": 63,
+        "total_valid_responses": 57,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 44,
+        "total_responses": 63,
+        "total_function_evals": 64,
+        "total_valid_responses": 58,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 45,
+        "total_responses": 64,
+        "total_function_evals": 65,
+        "total_valid_responses": 59,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 46,
+        "total_responses": 65,
+        "total_function_evals": 66,
+        "total_valid_responses": 60,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 47,
+        "total_responses": 66,
+        "total_function_evals": 67,
+        "total_valid_responses": 61,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 48,
+        "total_responses": 67,
+        "total_function_evals": 68,
+        "total_valid_responses": 62,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 49,
+        "total_responses": 68,
+        "total_function_evals": 69,
+        "total_valid_responses": 63,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 50,
+        "total_responses": 69,
+        "total_function_evals": 70,
+        "total_valid_responses": 64,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 51,
+        "total_responses": 70,
+        "total_function_evals": 71,
+        "total_valid_responses": 65,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 52,
+        "total_responses": 71,
+        "total_function_evals": 72,
+        "total_valid_responses": 66,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 53,
+        "total_responses": 72,
+        "total_function_evals": 73,
+        "total_valid_responses": 67,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 54,
+        "total_responses": 73,
+        "total_function_evals": 74,
+        "total_valid_responses": 68,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 55,
+        "total_responses": 74,
+        "total_function_evals": 75,
+        "total_valid_responses": 69,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 56,
+        "total_responses": 75,
+        "total_function_evals": 76,
+        "total_valid_responses": 70,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 57,
+        "total_responses": 76,
+        "total_function_evals": 77,
+        "total_valid_responses": 71,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 58,
+        "total_responses": 77,
+        "total_function_evals": 78,
+        "total_valid_responses": 72,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 59,
+        "total_responses": 78,
+        "total_function_evals": 79,
+        "total_valid_responses": 73,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 60,
+        "total_responses": 79,
+        "total_function_evals": 80,
+        "total_valid_responses": 74,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 61,
+        "total_responses": 80,
+        "total_function_evals": 81,
+        "total_valid_responses": 75,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 62,
+        "total_responses": 81,
+        "total_function_evals": 82,
+        "total_valid_responses": 76,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 63,
+        "total_responses": 82,
+        "total_function_evals": 83,
+        "total_valid_responses": 77,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 64,
+        "total_responses": 83,
+        "total_function_evals": 84,
+        "total_valid_responses": 78,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 65,
+        "total_responses": 84,
+        "total_function_evals": 85,
+        "total_valid_responses": 79,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 66,
+        "total_responses": 85,
+        "total_function_evals": 86,
+        "total_valid_responses": 80,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 67,
+        "total_responses": 86,
+        "total_function_evals": 87,
+        "total_valid_responses": 81,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 68,
+        "total_responses": 87,
+        "total_function_evals": 88,
+        "total_valid_responses": 82,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 69,
+        "total_responses": 88,
+        "total_function_evals": 89,
+        "total_valid_responses": 83,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 70,
+        "total_responses": 89,
+        "total_function_evals": 90,
+        "total_valid_responses": 84,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 71,
+        "total_responses": 90,
+        "total_function_evals": 91,
+        "total_valid_responses": 85,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 72,
+        "total_responses": 91,
+        "total_function_evals": 92,
+        "total_valid_responses": 86,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 73,
+        "total_responses": 92,
+        "total_function_evals": 93,
+        "total_valid_responses": 87,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 74,
+        "total_responses": 93,
+        "total_function_evals": 94,
+        "total_valid_responses": 88,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 75,
+        "total_responses": 94,
+        "total_function_evals": 95,
+        "total_valid_responses": 89,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 76,
+        "total_responses": 95,
+        "total_function_evals": 96,
+        "total_valid_responses": 90,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 77,
+        "total_responses": 96,
+        "total_function_evals": 97,
+        "total_valid_responses": 91,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 78,
+        "total_responses": 97,
+        "total_function_evals": 98,
+        "total_valid_responses": 92,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 79,
+        "total_responses": 98,
+        "total_function_evals": 99,
+        "total_valid_responses": 93,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 80,
+        "total_responses": 99,
+        "total_function_evals": 100,
+        "total_valid_responses": 94,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 81,
+        "total_responses": 100,
+        "total_function_evals": 101,
+        "total_valid_responses": 95,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 82,
+        "total_responses": 101,
+        "total_function_evals": 102,
+        "total_valid_responses": 96,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 83,
+        "total_responses": 102,
+        "total_function_evals": 103,
+        "total_valid_responses": 97,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 84,
+        "total_responses": 103,
+        "total_function_evals": 104,
+        "total_valid_responses": 98,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 85,
+        "total_responses": 104,
+        "total_function_evals": 105,
+        "total_valid_responses": 99,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 86,
+        "total_responses": 105,
+        "total_function_evals": 106,
+        "total_valid_responses": 100,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 87,
+        "total_responses": 106,
+        "total_function_evals": 107,
+        "total_valid_responses": 101,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 88,
+        "total_responses": 107,
+        "total_function_evals": 108,
+        "total_valid_responses": 102,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 89,
+        "total_responses": 108,
+        "total_function_evals": 109,
+        "total_valid_responses": 103,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 90,
+        "total_responses": 109,
+        "total_function_evals": 110,
+        "total_valid_responses": 104,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 91,
+        "total_responses": 110,
+        "total_function_evals": 111,
+        "total_valid_responses": 105,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 92,
+        "total_responses": 111,
+        "total_function_evals": 112,
+        "total_valid_responses": 106,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 93,
+        "total_responses": 112,
+        "total_function_evals": 113,
+        "total_valid_responses": 107,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 94,
+        "total_responses": 113,
+        "total_function_evals": 114,
+        "total_valid_responses": 108,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 95,
+        "total_responses": 115,
+        "total_function_evals": 116,
+        "total_valid_responses": 109,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 96,
+        "total_responses": 116,
+        "total_function_evals": 117,
+        "total_valid_responses": 110,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 97,
+        "total_responses": 117,
+        "total_function_evals": 118,
+        "total_valid_responses": 111,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 98,
+        "total_responses": 118,
+        "total_function_evals": 119,
+        "total_valid_responses": 112,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 99,
+        "total_responses": 119,
+        "total_function_evals": 120,
+        "total_valid_responses": 113,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 100,
+        "total_responses": 120,
+        "total_function_evals": 121,
+        "total_valid_responses": 114,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 101,
+        "total_responses": 121,
+        "total_function_evals": 122,
+        "total_valid_responses": 115,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 102,
+        "total_responses": 122,
+        "total_function_evals": 123,
+        "total_valid_responses": 116,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 103,
+        "total_responses": 123,
+        "total_function_evals": 124,
+        "total_valid_responses": 117,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 104,
+        "total_responses": 124,
+        "total_function_evals": 125,
+        "total_valid_responses": 118,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 105,
+        "total_responses": 125,
+        "total_function_evals": 126,
+        "total_valid_responses": 119,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 106,
+        "total_responses": 126,
+        "total_function_evals": 127,
+        "total_valid_responses": 120,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 107,
+        "total_responses": 127,
+        "total_function_evals": 128,
+        "total_valid_responses": 121,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 108,
+        "total_responses": 128,
+        "total_function_evals": 129,
+        "total_valid_responses": 122,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 109,
+        "total_responses": 129,
+        "total_function_evals": 130,
+        "total_valid_responses": 123,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 110,
+        "total_responses": 131,
+        "total_function_evals": 132,
+        "total_valid_responses": 124,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 111,
+        "total_responses": 132,
+        "total_function_evals": 133,
+        "total_valid_responses": 125,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 112,
+        "total_responses": 133,
+        "total_function_evals": 134,
+        "total_valid_responses": 126,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 113,
+        "total_responses": 134,
+        "total_function_evals": 135,
+        "total_valid_responses": 127,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 114,
+        "total_responses": 135,
+        "total_function_evals": 136,
+        "total_valid_responses": 128,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 115,
+        "total_responses": 136,
+        "total_function_evals": 137,
+        "total_valid_responses": 129,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 116,
+        "total_responses": 137,
+        "total_function_evals": 138,
+        "total_valid_responses": 130,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 117,
+        "total_responses": 138,
+        "total_function_evals": 139,
+        "total_valid_responses": 131,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 118,
+        "total_responses": 139,
+        "total_function_evals": 140,
+        "total_valid_responses": 132,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 119,
+        "total_responses": 140,
+        "total_function_evals": 141,
+        "total_valid_responses": 133,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 120,
+        "total_responses": 141,
+        "total_function_evals": 142,
+        "total_valid_responses": 134,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 121,
+        "total_responses": 142,
+        "total_function_evals": 143,
+        "total_valid_responses": 135,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 122,
+        "total_responses": 143,
+        "total_function_evals": 144,
+        "total_valid_responses": 136,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 123,
+        "total_responses": 145,
+        "total_function_evals": 146,
+        "total_valid_responses": 137,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 124,
+        "total_responses": 146,
+        "total_function_evals": 147,
+        "total_valid_responses": 138,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 125,
+        "total_responses": 147,
+        "total_function_evals": 148,
+        "total_valid_responses": 139,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 126,
+        "total_responses": 149,
+        "total_function_evals": 150,
+        "total_valid_responses": 140,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 127,
+        "total_responses": 150,
+        "total_function_evals": 151,
+        "total_valid_responses": 141,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 128,
+        "total_responses": 151,
+        "total_function_evals": 152,
+        "total_valid_responses": 142,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 129,
+        "total_responses": 152,
+        "total_function_evals": 153,
+        "total_valid_responses": 143,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 130,
+        "total_responses": 154,
+        "total_function_evals": 155,
+        "total_valid_responses": 144,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 131,
+        "total_responses": 155,
+        "total_function_evals": 156,
+        "total_valid_responses": 145,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 132,
+        "total_responses": 156,
+        "total_function_evals": 157,
+        "total_valid_responses": 146,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 133,
+        "total_responses": 157,
+        "total_function_evals": 158,
+        "total_valid_responses": 147,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 134,
+        "total_responses": 158,
+        "total_function_evals": 159,
+        "total_valid_responses": 148,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 135,
+        "total_responses": 160,
+        "total_function_evals": 161,
+        "total_valid_responses": 149,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 136,
+        "total_responses": 161,
+        "total_function_evals": 162,
+        "total_valid_responses": 150,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 137,
+        "total_responses": 162,
+        "total_function_evals": 163,
+        "total_valid_responses": 151,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 138,
+        "total_responses": 163,
+        "total_function_evals": 164,
+        "total_valid_responses": 152,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 139,
+        "total_responses": 164,
+        "total_function_evals": 165,
+        "total_valid_responses": 153,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 140,
+        "total_responses": 165,
+        "total_function_evals": 166,
+        "total_valid_responses": 154,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 141,
+        "total_responses": 166,
+        "total_function_evals": 167,
+        "total_valid_responses": 155,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 142,
+        "total_responses": 167,
+        "total_function_evals": 168,
+        "total_valid_responses": 156,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 143,
+        "total_responses": 168,
+        "total_function_evals": 169,
+        "total_valid_responses": 157,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 144,
+        "total_responses": 169,
+        "total_function_evals": 170,
+        "total_valid_responses": 158,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 145,
+        "total_responses": 171,
+        "total_function_evals": 172,
+        "total_valid_responses": 159,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 146,
+        "total_responses": 172,
+        "total_function_evals": 173,
+        "total_valid_responses": 160,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 147,
+        "total_responses": 173,
+        "total_function_evals": 174,
+        "total_valid_responses": 161,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 148,
+        "total_responses": 174,
+        "total_function_evals": 175,
+        "total_valid_responses": 162,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 149,
+        "total_responses": 175,
+        "total_function_evals": 176,
+        "total_valid_responses": 163,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 150,
+        "total_responses": 176,
+        "total_function_evals": 177,
+        "total_valid_responses": 164,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 151,
+        "total_responses": 177,
+        "total_function_evals": 178,
+        "total_valid_responses": 165,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 152,
+        "total_responses": 178,
+        "total_function_evals": 179,
+        "total_valid_responses": 166,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 153,
+        "total_responses": 179,
+        "total_function_evals": 180,
+        "total_valid_responses": 167,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 154,
+        "total_responses": 180,
+        "total_function_evals": 181,
+        "total_valid_responses": 168,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 155,
+        "total_responses": 181,
+        "total_function_evals": 182,
+        "total_valid_responses": 169,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 156,
+        "total_responses": 182,
+        "total_function_evals": 183,
+        "total_valid_responses": 170,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 157,
+        "total_responses": 183,
+        "total_function_evals": 184,
+        "total_valid_responses": 171,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 158,
+        "total_responses": 184,
+        "total_function_evals": 185,
+        "total_valid_responses": 172,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 159,
+        "total_responses": 185,
+        "total_function_evals": 186,
+        "total_valid_responses": 173,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 160,
+        "total_responses": 186,
+        "total_function_evals": 187,
+        "total_valid_responses": 174,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 161,
+        "total_responses": 187,
+        "total_function_evals": 188,
+        "total_valid_responses": 175,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 162,
+        "total_responses": 188,
+        "total_function_evals": 189,
+        "total_valid_responses": 176,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 163,
+        "total_responses": 189,
+        "total_function_evals": 190,
+        "total_valid_responses": 177,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 164,
+        "total_responses": 190,
+        "total_function_evals": 191,
+        "total_valid_responses": 178,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 165,
+        "total_responses": 191,
+        "total_function_evals": 192,
+        "total_valid_responses": 179,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 166,
+        "total_responses": 192,
+        "total_function_evals": 193,
+        "total_valid_responses": 180,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 167,
+        "total_responses": 193,
+        "total_function_evals": 194,
+        "total_valid_responses": 181,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 168,
+        "total_responses": 195,
+        "total_function_evals": 196,
+        "total_valid_responses": 182,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 169,
+        "total_responses": 197,
+        "total_function_evals": 198,
+        "total_valid_responses": 183,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 170,
+        "total_responses": 198,
+        "total_function_evals": 199,
+        "total_valid_responses": 184,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 171,
+        "total_responses": 200,
+        "total_function_evals": 201,
+        "total_valid_responses": 185,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 172,
+        "total_responses": 201,
+        "total_function_evals": 202,
+        "total_valid_responses": 186,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 173,
+        "total_responses": 202,
+        "total_function_evals": 203,
+        "total_valid_responses": 187,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 174,
+        "total_responses": 203,
+        "total_function_evals": 204,
+        "total_valid_responses": 188,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 175,
+        "total_responses": 204,
+        "total_function_evals": 205,
+        "total_valid_responses": 189,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 176,
+        "total_responses": 205,
+        "total_function_evals": 206,
+        "total_valid_responses": 190,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 177,
+        "total_responses": 206,
+        "total_function_evals": 207,
+        "total_valid_responses": 191,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 178,
+        "total_responses": 207,
+        "total_function_evals": 208,
+        "total_valid_responses": 192,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 179,
+        "total_responses": 208,
+        "total_function_evals": 209,
+        "total_valid_responses": 193,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 180,
+        "total_responses": 209,
+        "total_function_evals": 210,
+        "total_valid_responses": 194,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 181,
+        "total_responses": 210,
+        "total_function_evals": 211,
+        "total_valid_responses": 195,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 182,
+        "total_responses": 211,
+        "total_function_evals": 212,
+        "total_valid_responses": 196,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 183,
+        "total_responses": 212,
+        "total_function_evals": 213,
+        "total_valid_responses": 197,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 184,
+        "total_responses": 213,
+        "total_function_evals": 214,
+        "total_valid_responses": 198,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 185,
+        "total_responses": 215,
+        "total_function_evals": 216,
+        "total_valid_responses": 199,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 186,
+        "total_responses": 216,
+        "total_function_evals": 217,
+        "total_valid_responses": 200,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 187,
+        "total_responses": 217,
+        "total_function_evals": 218,
+        "total_valid_responses": 201,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 188,
+        "total_responses": 218,
+        "total_function_evals": 219,
+        "total_valid_responses": 202,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 189,
+        "total_responses": 219,
+        "total_function_evals": 220,
+        "total_valid_responses": 203,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 190,
+        "total_responses": 221,
+        "total_function_evals": 222,
+        "total_valid_responses": 204,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 191,
+        "total_responses": 222,
+        "total_function_evals": 223,
+        "total_valid_responses": 205,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 192,
+        "total_responses": 223,
+        "total_function_evals": 224,
+        "total_valid_responses": 206,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 193,
+        "total_responses": 224,
+        "total_function_evals": 225,
+        "total_valid_responses": 207,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 194,
+        "total_responses": 225,
+        "total_function_evals": 226,
+        "total_valid_responses": 208,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 195,
+        "total_responses": 226,
+        "total_function_evals": 227,
+        "total_valid_responses": 209,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 196,
+        "total_responses": 227,
+        "total_function_evals": 228,
+        "total_valid_responses": 210,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 197,
+        "total_responses": 228,
+        "total_function_evals": 229,
+        "total_valid_responses": 211,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 198,
+        "total_responses": 229,
+        "total_function_evals": 230,
+        "total_valid_responses": 212,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 199,
+        "total_responses": 230,
+        "total_function_evals": 231,
+        "total_valid_responses": 213,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 200,
+        "total_responses": 232,
+        "total_function_evals": 233,
+        "total_valid_responses": 214,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 201,
+        "total_responses": 233,
+        "total_function_evals": 234,
+        "total_valid_responses": 215,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 202,
+        "total_responses": 234,
+        "total_function_evals": 235,
+        "total_valid_responses": 216,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 203,
+        "total_responses": 236,
+        "total_function_evals": 237,
+        "total_valid_responses": 217,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 204,
+        "total_responses": 237,
+        "total_function_evals": 238,
+        "total_valid_responses": 218,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 205,
+        "total_responses": 238,
+        "total_function_evals": 239,
+        "total_valid_responses": 219,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 206,
+        "total_responses": 239,
+        "total_function_evals": 240,
+        "total_valid_responses": 220,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 207,
+        "total_responses": 240,
+        "total_function_evals": 241,
+        "total_valid_responses": 221,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 208,
+        "total_responses": 241,
+        "total_function_evals": 242,
+        "total_valid_responses": 222,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 209,
+        "total_responses": 242,
+        "total_function_evals": 243,
+        "total_valid_responses": 223,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 210,
+        "total_responses": 243,
+        "total_function_evals": 244,
+        "total_valid_responses": 224,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 211,
+        "total_responses": 244,
+        "total_function_evals": 245,
+        "total_valid_responses": 225,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 212,
+        "total_responses": 245,
+        "total_function_evals": 246,
+        "total_valid_responses": 226,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 213,
+        "total_responses": 246,
+        "total_function_evals": 247,
+        "total_valid_responses": 227,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 214,
+        "total_responses": 247,
+        "total_function_evals": 248,
+        "total_valid_responses": 228,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 215,
+        "total_responses": 248,
+        "total_function_evals": 249,
+        "total_valid_responses": 229,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 216,
+        "total_responses": 250,
+        "total_function_evals": 251,
+        "total_valid_responses": 230,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 217,
+        "total_responses": 251,
+        "total_function_evals": 252,
+        "total_valid_responses": 231,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 218,
+        "total_responses": 252,
+        "total_function_evals": 253,
+        "total_valid_responses": 232,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 219,
+        "total_responses": 253,
+        "total_function_evals": 254,
+        "total_valid_responses": 233,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 220,
+        "total_responses": 254,
+        "total_function_evals": 255,
+        "total_valid_responses": 234,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 221,
+        "total_responses": 255,
+        "total_function_evals": 256,
+        "total_valid_responses": 235,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 222,
+        "total_responses": 256,
+        "total_function_evals": 257,
+        "total_valid_responses": 236,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 223,
+        "total_responses": 257,
+        "total_function_evals": 258,
+        "total_valid_responses": 237,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 224,
+        "total_responses": 258,
+        "total_function_evals": 259,
+        "total_valid_responses": 238,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 225,
+        "total_responses": 259,
+        "total_function_evals": 260,
+        "total_valid_responses": 239,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 226,
+        "total_responses": 260,
+        "total_function_evals": 261,
+        "total_valid_responses": 240,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 227,
+        "total_responses": 261,
+        "total_function_evals": 262,
+        "total_valid_responses": 241,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 228,
+        "total_responses": 262,
+        "total_function_evals": 263,
+        "total_valid_responses": 242,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 229,
+        "total_responses": 264,
+        "total_function_evals": 265,
+        "total_valid_responses": 243,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 230,
+        "total_responses": 265,
+        "total_function_evals": 266,
+        "total_valid_responses": 244,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 231,
+        "total_responses": 266,
+        "total_function_evals": 267,
+        "total_valid_responses": 245,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 232,
+        "total_responses": 267,
+        "total_function_evals": 268,
+        "total_valid_responses": 246,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 233,
+        "total_responses": 268,
+        "total_function_evals": 269,
+        "total_valid_responses": 247,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 234,
+        "total_responses": 269,
+        "total_function_evals": 270,
+        "total_valid_responses": 248,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 235,
+        "total_responses": 271,
+        "total_function_evals": 272,
+        "total_valid_responses": 249,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 236,
+        "total_responses": 272,
+        "total_function_evals": 273,
+        "total_valid_responses": 250,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 237,
+        "total_responses": 273,
+        "total_function_evals": 274,
+        "total_valid_responses": 251,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 238,
+        "total_responses": 274,
+        "total_function_evals": 275,
+        "total_valid_responses": 252,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 239,
+        "total_responses": 275,
+        "total_function_evals": 276,
+        "total_valid_responses": 253,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 240,
+        "total_responses": 276,
+        "total_function_evals": 277,
+        "total_valid_responses": 254,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 241,
+        "total_responses": 277,
+        "total_function_evals": 278,
+        "total_valid_responses": 255,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 242,
+        "total_responses": 278,
+        "total_function_evals": 279,
+        "total_valid_responses": 256,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 243,
+        "total_responses": 279,
+        "total_function_evals": 280,
+        "total_valid_responses": 257,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 244,
+        "total_responses": 280,
+        "total_function_evals": 281,
+        "total_valid_responses": 258,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 245,
+        "total_responses": 281,
+        "total_function_evals": 282,
+        "total_valid_responses": 259,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 246,
+        "total_responses": 282,
+        "total_function_evals": 283,
+        "total_valid_responses": 260,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 247,
+        "total_responses": 283,
+        "total_function_evals": 284,
+        "total_valid_responses": 261,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 248,
+        "total_responses": 284,
+        "total_function_evals": 285,
+        "total_valid_responses": 262,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 249,
+        "total_responses": 285,
+        "total_function_evals": 286,
+        "total_valid_responses": 263,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 250,
+        "total_responses": 286,
+        "total_function_evals": 287,
+        "total_valid_responses": 264,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 251,
+        "total_responses": 288,
+        "total_function_evals": 289,
+        "total_valid_responses": 265,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 252,
+        "total_responses": 289,
+        "total_function_evals": 290,
+        "total_valid_responses": 266,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 253,
+        "total_responses": 290,
+        "total_function_evals": 291,
+        "total_valid_responses": 267,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 254,
+        "total_responses": 291,
+        "total_function_evals": 292,
+        "total_valid_responses": 268,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 255,
+        "total_responses": 292,
+        "total_function_evals": 293,
+        "total_valid_responses": 269,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 256,
+        "total_responses": 293,
+        "total_function_evals": 294,
+        "total_valid_responses": 270,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 257,
+        "total_responses": 294,
+        "total_function_evals": 295,
+        "total_valid_responses": 271,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 258,
+        "total_responses": 295,
+        "total_function_evals": 296,
+        "total_valid_responses": 272,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 259,
+        "total_responses": 296,
+        "total_function_evals": 297,
+        "total_valid_responses": 273,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 260,
+        "total_responses": 297,
+        "total_function_evals": 298,
+        "total_valid_responses": 274,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 261,
+        "total_responses": 298,
+        "total_function_evals": 299,
+        "total_valid_responses": 275,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 262,
+        "total_responses": 299,
+        "total_function_evals": 300,
+        "total_valid_responses": 276,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 263,
+        "total_responses": 300,
+        "total_function_evals": 301,
+        "total_valid_responses": 277,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 264,
+        "total_responses": 301,
+        "total_function_evals": 302,
+        "total_valid_responses": 278,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 265,
+        "total_responses": 304,
+        "total_function_evals": 305,
+        "total_valid_responses": 279,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 266,
+        "total_responses": 305,
+        "total_function_evals": 306,
+        "total_valid_responses": 280,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 267,
+        "total_responses": 306,
+        "total_function_evals": 307,
+        "total_valid_responses": 281,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 268,
+        "total_responses": 307,
+        "total_function_evals": 308,
+        "total_valid_responses": 282,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 269,
+        "total_responses": 308,
+        "total_function_evals": 309,
+        "total_valid_responses": 283,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 270,
+        "total_responses": 309,
+        "total_function_evals": 310,
+        "total_valid_responses": 284,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 271,
+        "total_responses": 310,
+        "total_function_evals": 311,
+        "total_valid_responses": 285,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 272,
+        "total_responses": 311,
+        "total_function_evals": 312,
+        "total_valid_responses": 286,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 273,
+        "total_responses": 313,
+        "total_function_evals": 314,
+        "total_valid_responses": 287,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 274,
+        "total_responses": 314,
+        "total_function_evals": 315,
+        "total_valid_responses": 288,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 275,
+        "total_responses": 316,
+        "total_function_evals": 317,
+        "total_valid_responses": 289,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 276,
+        "total_responses": 318,
+        "total_function_evals": 319,
+        "total_valid_responses": 290,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 277,
+        "total_responses": 319,
+        "total_function_evals": 320,
+        "total_valid_responses": 291,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 278,
+        "total_responses": 320,
+        "total_function_evals": 321,
+        "total_valid_responses": 292,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 279,
+        "total_responses": 321,
+        "total_function_evals": 322,
+        "total_valid_responses": 293,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 280,
+        "total_responses": 322,
+        "total_function_evals": 323,
+        "total_valid_responses": 294,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 281,
+        "total_responses": 323,
+        "total_function_evals": 324,
+        "total_valid_responses": 295,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 282,
+        "total_responses": 324,
+        "total_function_evals": 325,
+        "total_valid_responses": 296,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 283,
+        "total_responses": 326,
+        "total_function_evals": 327,
+        "total_valid_responses": 297,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 284,
+        "total_responses": 327,
+        "total_function_evals": 328,
+        "total_valid_responses": 298,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 285,
+        "total_responses": 328,
+        "total_function_evals": 329,
+        "total_valid_responses": 299,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 286,
+        "total_responses": 329,
+        "total_function_evals": 330,
+        "total_valid_responses": 300,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 287,
+        "total_responses": 330,
+        "total_function_evals": 331,
+        "total_valid_responses": 301,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 288,
+        "total_responses": 331,
+        "total_function_evals": 332,
+        "total_valid_responses": 302,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 289,
+        "total_responses": 332,
+        "total_function_evals": 333,
+        "total_valid_responses": 303,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 290,
+        "total_responses": 333,
+        "total_function_evals": 334,
+        "total_valid_responses": 304,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 291,
+        "total_responses": 334,
+        "total_function_evals": 335,
+        "total_valid_responses": 305,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 292,
+        "total_responses": 335,
+        "total_function_evals": 336,
+        "total_valid_responses": 306,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 293,
+        "total_responses": 336,
+        "total_function_evals": 337,
+        "total_valid_responses": 307,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 294,
+        "total_responses": 337,
+        "total_function_evals": 338,
+        "total_valid_responses": 308,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 295,
+        "total_responses": 338,
+        "total_function_evals": 339,
+        "total_valid_responses": 309,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 296,
+        "total_responses": 339,
+        "total_function_evals": 340,
+        "total_valid_responses": 310,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 297,
+        "total_responses": 341,
+        "total_function_evals": 342,
+        "total_valid_responses": 311,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 298,
+        "total_responses": 342,
+        "total_function_evals": 343,
+        "total_valid_responses": 312,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 299,
+        "total_responses": 343,
+        "total_function_evals": 344,
+        "total_valid_responses": 313,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 300,
+        "total_responses": 344,
+        "total_function_evals": 345,
+        "total_valid_responses": 314,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 301,
+        "total_responses": 345,
+        "total_function_evals": 346,
+        "total_valid_responses": 315,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 302,
+        "total_responses": 346,
+        "total_function_evals": 347,
+        "total_valid_responses": 316,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 303,
+        "total_responses": 347,
+        "total_function_evals": 348,
+        "total_valid_responses": 317,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 304,
+        "total_responses": 348,
+        "total_function_evals": 349,
+        "total_valid_responses": 318,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 305,
+        "total_responses": 349,
+        "total_function_evals": 350,
+        "total_valid_responses": 319,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 306,
+        "total_responses": 350,
+        "total_function_evals": 351,
+        "total_valid_responses": 320,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 307,
+        "total_responses": 352,
+        "total_function_evals": 353,
+        "total_valid_responses": 321,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 308,
+        "total_responses": 353,
+        "total_function_evals": 354,
+        "total_valid_responses": 322,
+        "best_obj_overall": 67.54377428690593,
+        "metrics": {
+            "200": 24.57868766784668,
+            "500": 53.37257385253906,
+            "1000": 124.68006134033203
+        },
+        "code_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_pomo/details/iter1_response5_stdout.txt"
+    }
+]

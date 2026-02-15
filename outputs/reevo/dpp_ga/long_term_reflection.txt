@@ -1,0 +1,1 @@
+Prioritize high-variance grid positions in crossover, dynamically adjust blending based on parent diversity, tighten alpha ranges to boost exploitation, minimize mutation noise, and balance heuristic with blend crossovers for optimal exploration-exploitation trade-off—all while maintaining full vectorization.

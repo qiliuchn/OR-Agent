@@ -1,0 +1,418 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 19,
+        "best_obj_overall": 22.19163431186869,
+        "metrics": {
+            "50": 14.936605113636364,
+            "100": 29.44666351010101
+        },
+        "code_filepath": "outputs/ael/op_aco/iter0_response5_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter0_response5_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 39,
+        "total_function_evals": 39,
+        "total_valid_responses": 29,
+        "best_obj_overall": 22.820756786616162,
+        "metrics": {
+            "50": 15.31440183080808,
+            "100": 30.327111742424243
+        },
+        "code_filepath": "outputs/ael/op_aco/iter1_response8_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter1_response8_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 56,
+        "total_function_evals": 56,
+        "total_valid_responses": 39,
+        "best_obj_overall": 22.820756786616162,
+        "metrics": {
+            "50": 15.31440183080808,
+            "100": 30.327111742424243
+        },
+        "code_filepath": "outputs/ael/op_aco/iter1_response8_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter1_response8_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 70,
+        "total_function_evals": 70,
+        "total_valid_responses": 49,
+        "best_obj_overall": 22.820756786616162,
+        "metrics": {
+            "50": 15.31440183080808,
+            "100": 30.327111742424243
+        },
+        "code_filepath": "outputs/ael/op_aco/iter1_response8_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter1_response8_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 84,
+        "total_function_evals": 84,
+        "total_valid_responses": 59,
+        "best_obj_overall": 22.896361268939394,
+        "metrics": {
+            "50": 15.323731060606061,
+            "100": 30.46899147727273
+        },
+        "code_filepath": "outputs/ael/op_aco/iter4_response7_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter4_response7_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 100,
+        "total_function_evals": 100,
+        "total_valid_responses": 68,
+        "best_obj_overall": 22.896361268939394,
+        "metrics": {
+            "50": 15.323731060606061,
+            "100": 30.46899147727273
+        },
+        "code_filepath": "outputs/ael/op_aco/iter4_response7_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter4_response7_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 115,
+        "total_function_evals": 115,
+        "total_valid_responses": 76,
+        "best_obj_overall": 23.034400252525252,
+        "metrics": {
+            "50": 15.354928977272728,
+            "100": 30.713871527777776
+        },
+        "code_filepath": "outputs/ael/op_aco/iter6_response4_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter6_response4_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 130,
+        "total_function_evals": 130,
+        "total_valid_responses": 85,
+        "best_obj_overall": 23.034400252525252,
+        "metrics": {
+            "50": 15.354928977272728,
+            "100": 30.713871527777776
+        },
+        "code_filepath": "outputs/ael/op_aco/iter6_response4_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter6_response4_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 149,
+        "total_function_evals": 149,
+        "total_valid_responses": 95,
+        "best_obj_overall": 23.034400252525252,
+        "metrics": {
+            "50": 15.354928977272728,
+            "100": 30.713871527777776
+        },
+        "code_filepath": "outputs/ael/op_aco/iter6_response4_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter6_response4_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 164,
+        "total_function_evals": 164,
+        "total_valid_responses": 105,
+        "best_obj_overall": 23.034400252525252,
+        "metrics": {
+            "50": 15.354928977272728,
+            "100": 30.713871527777776
+        },
+        "code_filepath": "outputs/ael/op_aco/iter6_response4_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter6_response4_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 179,
+        "total_function_evals": 179,
+        "total_valid_responses": 114,
+        "best_obj_overall": 23.034400252525252,
+        "metrics": {
+            "50": 15.354928977272728,
+            "100": 30.713871527777776
+        },
+        "code_filepath": "outputs/ael/op_aco/iter6_response4_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter6_response4_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 195,
+        "total_function_evals": 195,
+        "total_valid_responses": 124,
+        "best_obj_overall": 23.071315498737373,
+        "metrics": {
+            "50": 15.37988952020202,
+            "100": 30.762741477272726
+        },
+        "code_filepath": "outputs/ael/op_aco/iter11_response0_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter11_response0_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 212,
+        "total_function_evals": 212,
+        "total_valid_responses": 134,
+        "best_obj_overall": 23.071315498737373,
+        "metrics": {
+            "50": 15.37988952020202,
+            "100": 30.762741477272726
+        },
+        "code_filepath": "outputs/ael/op_aco/iter11_response0_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter11_response0_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 227,
+        "total_function_evals": 227,
+        "total_valid_responses": 144,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 242,
+        "total_function_evals": 242,
+        "total_valid_responses": 154,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 256,
+        "total_function_evals": 256,
+        "total_valid_responses": 164,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 275,
+        "total_function_evals": 275,
+        "total_valid_responses": 174,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 291,
+        "total_function_evals": 291,
+        "total_valid_responses": 183,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 306,
+        "total_function_evals": 306,
+        "total_valid_responses": 193,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 323,
+        "total_function_evals": 323,
+        "total_valid_responses": 203,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 336,
+        "total_function_evals": 336,
+        "total_valid_responses": 212,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 21,
+        "total_responses": 350,
+        "total_function_evals": 350,
+        "total_valid_responses": 222,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 366,
+        "total_function_evals": 366,
+        "total_valid_responses": 232,
+        "best_obj_overall": 23.203835227272727,
+        "metrics": {
+            "50": 15.351152146464647,
+            "100": 31.056518308080808
+        },
+        "code_filepath": "outputs/ael/op_aco/iter13_response2_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter13_response2_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 379,
+        "total_function_evals": 379,
+        "total_valid_responses": 242,
+        "best_obj_overall": 23.219404198232322,
+        "metrics": {
+            "50": 15.406104797979797,
+            "100": 31.032703598484847
+        },
+        "code_filepath": "outputs/ael/op_aco/iter23_response6_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter23_response6_stdout.txt"
+    },
+    {
+        "iteration": 24,
+        "total_responses": 394,
+        "total_function_evals": 394,
+        "total_valid_responses": 252,
+        "best_obj_overall": 23.219404198232322,
+        "metrics": {
+            "50": 15.406104797979797,
+            "100": 31.032703598484847
+        },
+        "code_filepath": "outputs/ael/op_aco/iter23_response6_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter23_response6_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 405,
+        "total_function_evals": 405,
+        "total_valid_responses": 261,
+        "best_obj_overall": 23.219404198232322,
+        "metrics": {
+            "50": 15.406104797979797,
+            "100": 31.032703598484847
+        },
+        "code_filepath": "outputs/ael/op_aco/iter23_response6_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter23_response6_stdout.txt"
+    },
+    {
+        "iteration": 26,
+        "total_responses": 421,
+        "total_function_evals": 421,
+        "total_valid_responses": 270,
+        "best_obj_overall": 23.219404198232322,
+        "metrics": {
+            "50": 15.406104797979797,
+            "100": 31.032703598484847
+        },
+        "code_filepath": "outputs/ael/op_aco/iter23_response6_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter23_response6_stdout.txt"
+    },
+    {
+        "iteration": 27,
+        "total_responses": 436,
+        "total_function_evals": 436,
+        "total_valid_responses": 279,
+        "best_obj_overall": 23.219404198232322,
+        "metrics": {
+            "50": 15.406104797979797,
+            "100": 31.032703598484847
+        },
+        "code_filepath": "outputs/ael/op_aco/iter23_response6_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter23_response6_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 453,
+        "total_function_evals": 453,
+        "total_valid_responses": 288,
+        "best_obj_overall": 23.2270367739899,
+        "metrics": {
+            "50": 15.47280460858586,
+            "100": 30.981268939393942
+        },
+        "code_filepath": "outputs/ael/op_aco/iter28_response1_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter28_response1_stdout.txt"
+    },
+    {
+        "iteration": 29,
+        "total_responses": 469,
+        "total_function_evals": 469,
+        "total_valid_responses": 298,
+        "best_obj_overall": 23.2270367739899,
+        "metrics": {
+            "50": 15.47280460858586,
+            "100": 30.981268939393942
+        },
+        "code_filepath": "outputs/ael/op_aco/iter28_response1_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter28_response1_stdout.txt"
+    },
+    {
+        "iteration": 30,
+        "total_responses": 485,
+        "total_function_evals": 485,
+        "total_valid_responses": 308,
+        "best_obj_overall": 23.2270367739899,
+        "metrics": {
+            "50": 15.47280460858586,
+            "100": 30.981268939393942
+        },
+        "code_filepath": "outputs/ael/op_aco/iter28_response1_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter28_response1_stdout.txt"
+    },
+    {
+        "iteration": 31,
+        "total_responses": 501,
+        "total_function_evals": 501,
+        "total_valid_responses": 318,
+        "best_obj_overall": 23.265272253787877,
+        "metrics": {
+            "50": 15.464365530303029,
+            "100": 31.066178977272727
+        },
+        "code_filepath": "outputs/ael/op_aco/iter31_response0_solution.py",
+        "output_filepath": "outputs/ael/op_aco/iter31_response0_stdout.txt"
+    }
+]

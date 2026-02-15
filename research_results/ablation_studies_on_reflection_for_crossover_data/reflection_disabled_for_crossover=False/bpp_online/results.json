@@ -1,0 +1,162 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 2080.0,
+        "metrics": {
+            "val_0": 2087.0,
+            "val_1": 2083.0,
+            "val_2": 2077.0,
+            "val_3": 2065.0,
+            "val_4": 2088.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 219,
+        "total_function_evals": 132,
+        "total_valid_responses": 211,
+        "best_obj_overall": 2068.0,
+        "metrics": {
+            "val_0": 2070.0,
+            "val_1": 2070.0,
+            "val_2": 2073.0,
+            "val_3": 2055.0,
+            "val_4": 2072.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round25_count0_id57_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round25_count0_id57_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 286,
+        "total_function_evals": 167,
+        "total_valid_responses": 276,
+        "best_obj_overall": 2037.4,
+        "metrics": {
+            "val_0": 2045.0,
+            "val_1": 2043.0,
+            "val_2": 2039.0,
+            "val_3": 2022.0,
+            "val_4": 2038.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round34_count0_id66_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round34_count0_id66_stdout.txt"
+    },
+    {
+        "iteration": 45,
+        "total_responses": 389,
+        "total_function_evals": 233,
+        "total_valid_responses": 374,
+        "best_obj_overall": 2035.6,
+        "metrics": {
+            "val_0": 2039.0,
+            "val_1": 2054.0,
+            "val_2": 2033.0,
+            "val_3": 2020.0,
+            "val_4": 2032.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round45_count2_id84_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round45_count2_id84_stdout.txt"
+    },
+    {
+        "iteration": 46,
+        "total_responses": 397,
+        "total_function_evals": 238,
+        "total_valid_responses": 382,
+        "best_obj_overall": 2034.6,
+        "metrics": {
+            "val_0": 2039.0,
+            "val_1": 2053.0,
+            "val_2": 2031.0,
+            "val_3": 2019.0,
+            "val_4": 2031.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round46_count0_id87_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round46_count0_id87_stdout.txt"
+    },
+    {
+        "iteration": 56,
+        "total_responses": 487,
+        "total_function_evals": 298,
+        "total_valid_responses": 472,
+        "best_obj_overall": 2034.4,
+        "metrics": {
+            "val_0": 2038.0,
+            "val_1": 2051.0,
+            "val_2": 2032.0,
+            "val_3": 2020.0,
+            "val_4": 2031.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round56_count4_id101_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round56_count4_id101_stdout.txt"
+    },
+    {
+        "iteration": 69,
+        "total_responses": 601,
+        "total_function_evals": 374,
+        "total_valid_responses": 584,
+        "best_obj_overall": 2034.2,
+        "metrics": {
+            "val_0": 2038.0,
+            "val_1": 2053.0,
+            "val_2": 2031.0,
+            "val_3": 2018.0,
+            "val_4": 2031.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round69_count0_id118_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round69_count0_id118_stdout.txt"
+    },
+    {
+        "iteration": 75,
+        "total_responses": 641,
+        "total_function_evals": 400,
+        "total_valid_responses": 624,
+        "best_obj_overall": 2032.6,
+        "metrics": {
+            "val_0": 2038.0,
+            "val_1": 2043.0,
+            "val_2": 2033.0,
+            "val_3": 2018.0,
+            "val_4": 2031.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round75_count0_id124_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round75_count0_id124_stdout.txt"
+    },
+    {
+        "iteration": 78,
+        "total_responses": 687,
+        "total_function_evals": 434,
+        "total_valid_responses": 670,
+        "best_obj_overall": 2032.4,
+        "metrics": {
+            "val_0": 2038.0,
+            "val_1": 2043.0,
+            "val_2": 2033.0,
+            "val_3": 2017.0,
+            "val_4": 2031.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round78_count3_id130_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round78_count3_id130_stdout.txt"
+    },
+    {
+        "iteration": 81,
+        "total_responses": 709,
+        "total_function_evals": 449,
+        "total_valid_responses": 692,
+        "best_obj_overall": 2031.6,
+        "metrics": {
+            "val_0": 2040.0,
+            "val_1": 2043.0,
+            "val_2": 2030.0,
+            "val_3": 2017.0,
+            "val_4": 2028.0
+        },
+        "code_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round81_count0_id134_solution.py",
+        "output_filepath": "outputs/oragent/bpp_online/imitate_reevo7/details/lead1_round81_count0_id134_stdout.txt"
+    }
+]

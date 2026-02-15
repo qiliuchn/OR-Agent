@@ -1,0 +1,614 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 19,
+        "best_obj_overall": -48.51198600000001,
+        "metrics": {
+            "avg_speed": 0.38,
+            "collisions": 1.0,
+            "critical_ttc_count": 78.0,
+            "speed_variance": 3.715,
+            "emergencyStops": 0.0,
+            "emergencyBraking": 0.0,
+            "teleports": 5.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter0_response7_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter0_response7_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 34,
+        "total_function_evals": 34,
+        "total_valid_responses": 28,
+        "best_obj_overall": -36.37579000000001,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "teleports": 4.5,
+            "emergencyStops": 0.0,
+            "collisions": 0.0,
+            "speed_variance": 2.325,
+            "critical_ttc_count": 158.0,
+            "avg_speed": 0.24
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter1_response3_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter1_response3_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 44,
+        "total_function_evals": 44,
+        "total_valid_responses": 38,
+        "best_obj_overall": -36.37579000000001,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "teleports": 4.5,
+            "emergencyStops": 0.0,
+            "collisions": 0.0,
+            "speed_variance": 2.325,
+            "critical_ttc_count": 158.0,
+            "avg_speed": 0.24
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter1_response3_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter1_response3_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 60,
+        "total_function_evals": 60,
+        "total_valid_responses": 48,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 73,
+        "total_function_evals": 73,
+        "total_valid_responses": 58,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 87,
+        "total_function_evals": 87,
+        "total_valid_responses": 68,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 103,
+        "total_function_evals": 103,
+        "total_valid_responses": 77,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 119,
+        "total_function_evals": 119,
+        "total_valid_responses": 87,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 135,
+        "total_function_evals": 135,
+        "total_valid_responses": 97,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 150,
+        "total_function_evals": 150,
+        "total_valid_responses": 107,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 167,
+        "total_function_evals": 167,
+        "total_valid_responses": 117,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 182,
+        "total_function_evals": 182,
+        "total_valid_responses": 127,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 199,
+        "total_function_evals": 199,
+        "total_valid_responses": 137,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 215,
+        "total_function_evals": 215,
+        "total_valid_responses": 147,
+        "best_obj_overall": -6.625790000000007,
+        "metrics": {
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.0300000000000002,
+            "critical_ttc_count": 49.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 232,
+        "total_function_evals": 232,
+        "total_valid_responses": 157,
+        "best_obj_overall": -2.1257900000000074,
+        "metrics": {
+            "speed_variance": 2.05,
+            "avg_speed": 0.24000000000000002,
+            "teleports": 3.0,
+            "emergencyStops": 0.0,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 61.0,
+            "collisions": 0.5
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter14_response2_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter14_response2_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 247,
+        "total_function_evals": 247,
+        "total_valid_responses": 167,
+        "best_obj_overall": -1.8887830000000063,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "avg_speed": 0.23500000000000001,
+            "speed_variance": 1.9,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 60.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter15_response7_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter15_response7_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 260,
+        "total_function_evals": 260,
+        "total_valid_responses": 177,
+        "best_obj_overall": -1.8887830000000063,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "avg_speed": 0.23500000000000001,
+            "speed_variance": 1.9,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 60.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter15_response7_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter15_response7_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 276,
+        "total_function_evals": 276,
+        "total_valid_responses": 187,
+        "best_obj_overall": -1.8887830000000063,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "avg_speed": 0.23500000000000001,
+            "speed_variance": 1.9,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 60.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter15_response7_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter15_response7_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 291,
+        "total_function_evals": 291,
+        "total_valid_responses": 197,
+        "best_obj_overall": -1.8887830000000063,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "avg_speed": 0.23500000000000001,
+            "speed_variance": 1.9,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 60.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter15_response7_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter15_response7_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 307,
+        "total_function_evals": 307,
+        "total_valid_responses": 206,
+        "best_obj_overall": 0.6242099999999926,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "avg_speed": 0.24000000000000002,
+            "speed_variance": 1.8,
+            "critical_ttc_count": 50.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter19_response9_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter19_response9_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 322,
+        "total_function_evals": 322,
+        "total_valid_responses": 216,
+        "best_obj_overall": 0.6242099999999926,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "avg_speed": 0.24000000000000002,
+            "speed_variance": 1.8,
+            "critical_ttc_count": 50.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter19_response9_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter19_response9_stdout.txt"
+    },
+    {
+        "iteration": 21,
+        "total_responses": 335,
+        "total_function_evals": 335,
+        "total_valid_responses": 225,
+        "best_obj_overall": 0.6242099999999926,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "avg_speed": 0.24000000000000002,
+            "speed_variance": 1.8,
+            "critical_ttc_count": 50.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter19_response9_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter19_response9_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 350,
+        "total_function_evals": 350,
+        "total_valid_responses": 234,
+        "best_obj_overall": 0.6242099999999926,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "avg_speed": 0.24000000000000002,
+            "speed_variance": 1.8,
+            "critical_ttc_count": 50.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter19_response9_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter19_response9_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 364,
+        "total_function_evals": 364,
+        "total_valid_responses": 244,
+        "best_obj_overall": 1.6242099999999926,
+        "metrics": {
+            "speed_variance": 1.85,
+            "collisions": 0.5,
+            "emergencyStops": 0.0,
+            "avg_speed": 0.24000000000000002,
+            "emergencyBraking": 0.0,
+            "teleports": 3.0,
+            "critical_ttc_count": 46.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter23_response0_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter23_response0_stdout.txt"
+    },
+    {
+        "iteration": 24,
+        "total_responses": 378,
+        "total_function_evals": 378,
+        "total_valid_responses": 254,
+        "best_obj_overall": 2.3742099999999926,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "teleports": 3.0,
+            "speed_variance": 1.85,
+            "collisions": 0.5,
+            "emergencyStops": 0.0,
+            "avg_speed": 0.24000000000000002,
+            "critical_ttc_count": 43.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter24_response3_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter24_response3_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 392,
+        "total_function_evals": 392,
+        "total_valid_responses": 264,
+        "best_obj_overall": 2.3742099999999926,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "teleports": 3.0,
+            "speed_variance": 1.85,
+            "collisions": 0.5,
+            "emergencyStops": 0.0,
+            "avg_speed": 0.24000000000000002,
+            "critical_ttc_count": 43.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter24_response3_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter24_response3_stdout.txt"
+    },
+    {
+        "iteration": 26,
+        "total_responses": 407,
+        "total_function_evals": 407,
+        "total_valid_responses": 273,
+        "best_obj_overall": 2.6242099999999926,
+        "metrics": {
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 42.0,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.815,
+            "teleports": 3.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 27,
+        "total_responses": 424,
+        "total_function_evals": 424,
+        "total_valid_responses": 282,
+        "best_obj_overall": 2.6242099999999926,
+        "metrics": {
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 42.0,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.815,
+            "teleports": 3.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 439,
+        "total_function_evals": 439,
+        "total_valid_responses": 292,
+        "best_obj_overall": 2.6242099999999926,
+        "metrics": {
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 42.0,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.815,
+            "teleports": 3.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 29,
+        "total_responses": 450,
+        "total_function_evals": 450,
+        "total_valid_responses": 302,
+        "best_obj_overall": 2.6242099999999926,
+        "metrics": {
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0,
+            "collisions": 0.5,
+            "critical_ttc_count": 42.0,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.815,
+            "teleports": 3.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter26_response1_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter26_response1_stdout.txt"
+    },
+    {
+        "iteration": 30,
+        "total_responses": 464,
+        "total_function_evals": 464,
+        "total_valid_responses": 311,
+        "best_obj_overall": 3.3742099999999926,
+        "metrics": {
+            "speed_variance": 1.8,
+            "critical_ttc_count": 39.0,
+            "avg_speed": 0.24000000000000002,
+            "teleports": 3.0,
+            "collisions": 0.5,
+            "emergencyBraking": 0.0,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter30_response2_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter30_response2_stdout.txt"
+    },
+    {
+        "iteration": 31,
+        "total_responses": 478,
+        "total_function_evals": 478,
+        "total_valid_responses": 319,
+        "best_obj_overall": 4.374209999999993,
+        "metrics": {
+            "critical_ttc_count": 35.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "speed_variance": 1.82,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter31_response9_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter31_response9_stdout.txt"
+    },
+    {
+        "iteration": 32,
+        "total_responses": 492,
+        "total_function_evals": 492,
+        "total_valid_responses": 327,
+        "best_obj_overall": 4.374209999999993,
+        "metrics": {
+            "critical_ttc_count": 35.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "speed_variance": 1.82,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter31_response9_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter31_response9_stdout.txt"
+    },
+    {
+        "iteration": 33,
+        "total_responses": 505,
+        "total_function_evals": 505,
+        "total_valid_responses": 336,
+        "best_obj_overall": 4.374209999999993,
+        "metrics": {
+            "critical_ttc_count": 35.0,
+            "collisions": 0.5,
+            "teleports": 3.0,
+            "speed_variance": 1.82,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.24000000000000002,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/ael/driving/standard_model14/details/iter31_response9_solution.py",
+        "output_filepath": "outputs/ael/driving/standard_model14/details/iter31_response9_stdout.txt"
+    }
+]

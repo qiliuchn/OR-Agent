@@ -1,0 +1,13 @@
+Number of research rounds: 70
+Solution count: 699
+Total number of LLM calls: 699
+Total number of valid responses: 675
+Total number of function evaluations: 501
+Current best objective value: 6.244552400477711
+Current flow graph:
+========================================
+✓ Node [114 (6.33), 115 (6.26)]
+    └── ✓ Node 118 (7.02)
+========================================
+✓ = done, empty = not done; (score)
+Total nodes: 2  Total done leaves: 1

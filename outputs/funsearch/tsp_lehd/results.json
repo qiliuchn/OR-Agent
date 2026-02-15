@@ -1,0 +1,67 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 13.78795337677002,
+        "metrics": {
+            "200": 10.798372268676758,
+            "500": 16.77753448486328
+        },
+        "code_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 17,
+        "best_obj_overall": 13.78102970123291,
+        "metrics": {
+            "200": 10.794916152954102,
+            "500": 16.76714324951172
+        },
+        "code_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter1_response14_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter1_response14_stdout.txt"
+    },
+    {
+        "iteration": 67,
+        "total_responses": 107,
+        "total_function_evals": 108,
+        "total_valid_responses": 83,
+        "best_obj_overall": 13.78061294555664,
+        "metrics": {
+            "200": 10.811532974243164,
+            "500": 16.749692916870117
+        },
+        "code_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter67_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter67_response0_stdout.txt"
+    },
+    {
+        "iteration": 132,
+        "total_responses": 205,
+        "total_function_evals": 206,
+        "total_valid_responses": 148,
+        "best_obj_overall": 13.77807331085205,
+        "metrics": {
+            "200": 10.798202514648438,
+            "500": 16.757944107055664
+        },
+        "code_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter132_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter132_response0_stdout.txt"
+    },
+    {
+        "iteration": 187,
+        "total_responses": 266,
+        "total_function_evals": 267,
+        "total_valid_responses": 203,
+        "best_obj_overall": 13.771827697753906,
+        "metrics": {
+            "200": 10.79876708984375,
+            "500": 16.744888305664062
+        },
+        "code_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter187_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_lehd/funsearch_run2/details/iter187_response0_stdout.txt"
+    }
+]

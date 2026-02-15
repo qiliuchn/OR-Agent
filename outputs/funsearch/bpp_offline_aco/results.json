@@ -1,0 +1,145 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 133.3984375,
+        "metrics": {
+            "120": 51.078125,
+            "500": 215.71875
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 20,
+        "best_obj_overall": 128.671875,
+        "metrics": {
+            "120": 49.765625,
+            "500": 207.578125
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter1_response17_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter1_response17_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 21,
+        "total_function_evals": 22,
+        "total_valid_responses": 21,
+        "best_obj_overall": 128.5625,
+        "metrics": {
+            "120": 49.796875,
+            "500": 207.328125
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter2_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter2_response0_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 54,
+        "total_function_evals": 55,
+        "total_valid_responses": 53,
+        "best_obj_overall": 128.328125,
+        "metrics": {
+            "120": 50.078125,
+            "500": 206.578125
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter34_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter34_response0_stdout.txt"
+    },
+    {
+        "iteration": 39,
+        "total_responses": 60,
+        "total_function_evals": 61,
+        "total_valid_responses": 58,
+        "best_obj_overall": 128.1015625,
+        "metrics": {
+            "120": 49.640625,
+            "500": 206.5625
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter39_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter39_response0_stdout.txt"
+    },
+    {
+        "iteration": 41,
+        "total_responses": 63,
+        "total_function_evals": 64,
+        "total_valid_responses": 60,
+        "best_obj_overall": 127.453125,
+        "metrics": {
+            "120": 49.46875,
+            "500": 205.4375
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter41_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter41_response0_stdout.txt"
+    },
+    {
+        "iteration": 45,
+        "total_responses": 69,
+        "total_function_evals": 70,
+        "total_valid_responses": 64,
+        "best_obj_overall": 127.2421875,
+        "metrics": {
+            "120": 49.46875,
+            "500": 205.015625
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter45_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter45_response0_stdout.txt"
+    },
+    {
+        "iteration": 53,
+        "total_responses": 79,
+        "total_function_evals": 80,
+        "total_valid_responses": 72,
+        "best_obj_overall": 127.2265625,
+        "metrics": {
+            "120": 49.40625,
+            "500": 205.046875
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter53_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter53_response0_stdout.txt"
+    },
+    {
+        "iteration": 54,
+        "total_responses": 80,
+        "total_function_evals": 81,
+        "total_valid_responses": 73,
+        "best_obj_overall": 127.1953125,
+        "metrics": {
+            "120": 49.4375,
+            "500": 204.953125
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter54_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter54_response0_stdout.txt"
+    },
+    {
+        "iteration": 66,
+        "total_responses": 99,
+        "total_function_evals": 100,
+        "total_valid_responses": 85,
+        "best_obj_overall": 127.171875,
+        "metrics": {
+            "120": 49.421875,
+            "500": 204.921875
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter66_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter66_response0_stdout.txt"
+    },
+    {
+        "iteration": 225,
+        "total_responses": 324,
+        "total_function_evals": 325,
+        "total_valid_responses": 244,
+        "best_obj_overall": 127.09375,
+        "metrics": {
+            "120": 49.453125,
+            "500": 204.734375
+        },
+        "code_filepath": "outputs/funsearch/bpp_offline_aco/details/iter225_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_offline_aco/details/iter225_response0_stdout.txt"
+    }
+]

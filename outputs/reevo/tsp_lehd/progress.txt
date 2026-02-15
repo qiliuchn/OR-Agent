@@ -1,0 +1,6 @@
+Iteration: 59
+Total number of LLM calls: 768
+Total number of valid responses: 720
+Total number of function evaluations: 451
+Current best objective value: 13.775703430175781
+Just finished crossover; next: long-term reflection and mutation

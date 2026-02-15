@@ -1,0 +1,1 @@
+Use moderate power exponents (4-6) on inverse distances. Apply simple percentile-based sparsification (65%+ threshold). Focus on clean distance weighting without complex factors. Normalize row-wise for consistent guidance. Simpler designs consistently outperform complex approaches.

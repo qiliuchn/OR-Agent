@@ -1,0 +1,6 @@
+**Constructive Hints:**
+- Use simple greedy nearest-neighbor with moderate lookahead depth
+- Apply k-nearest neighbor pruning (k=5) for efficiency
+- Use fixed alpha=0.7 weighting, avoid complex adaptive schemes
+- Remove destination bias in future cost estimation
+- Focus on computational efficiency over complex logic

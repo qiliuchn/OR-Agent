@@ -1,0 +1,130 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 12.299453902501934,
+        "metrics": {
+            "0": 12.95735266260129,
+            "1": 12.162960505212293,
+            "2": 11.538923473111165,
+            "3": 13.343982373497088,
+            "4": 11.494050498087836
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 24,
+        "total_function_evals": 24,
+        "total_valid_responses": 21,
+        "best_obj_overall": 13.24389165918054,
+        "metrics": {
+            "0": 13.49158290036631,
+            "1": 12.221529077108167,
+            "2": 12.268665236265296,
+            "3": 15.906280224858543,
+            "4": 12.331400857304384
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round0_count5_id5_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round0_count5_id5_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 112,
+        "total_function_evals": 89,
+        "total_valid_responses": 109,
+        "best_obj_overall": 13.254630159842117,
+        "metrics": {
+            "0": 13.5695528933559,
+            "1": 12.122057068644173,
+            "2": 12.319493562001842,
+            "3": 15.985943031094584,
+            "4": 12.276104244114082
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round9_count0_id33_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round9_count0_id33_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 167,
+        "total_function_evals": 130,
+        "total_valid_responses": 163,
+        "best_obj_overall": 13.260593889838782,
+        "metrics": {
+            "0": 13.68275563226294,
+            "1": 12.029505260051819,
+            "2": 12.299597039697659,
+            "3": 15.992352830483682,
+            "4": 12.298758686697811
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round13_count0_id41_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round13_count0_id41_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 260,
+        "total_function_evals": 194,
+        "total_valid_responses": 256,
+        "best_obj_overall": 13.291197458471945,
+        "metrics": {
+            "0": 13.655712828697528,
+            "1": 12.06256325432786,
+            "2": 12.3310384039706,
+            "3": 16.017033908834073,
+            "4": 12.389638896529657
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round23_count1_id52_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round23_count1_id52_stdout.txt"
+    },
+    {
+        "iteration": 35,
+        "total_responses": 371,
+        "total_function_evals": 273,
+        "total_valid_responses": 367,
+        "best_obj_overall": 13.320381027811385,
+        "metrics": {
+            "0": 13.687822794479823,
+            "1": 12.181132822554972,
+            "2": 12.346722965318026,
+            "3": 16.018295920655113,
+            "4": 12.367930636048992
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round35_count0_id71_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round35_count0_id71_stdout.txt"
+    },
+    {
+        "iteration": 54,
+        "total_responses": 542,
+        "total_function_evals": 394,
+        "total_valid_responses": 532,
+        "best_obj_overall": 13.324565665853902,
+        "metrics": {
+            "0": 13.67198235983246,
+            "1": 12.200559175725376,
+            "2": 12.352416693351879,
+            "3": 16.02594836966329,
+            "4": 12.371921730696506
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round54_count0_id95_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round54_count0_id95_stdout.txt"
+    },
+    {
+        "iteration": 67,
+        "total_responses": 686,
+        "total_function_evals": 501,
+        "total_valid_responses": 674,
+        "best_obj_overall": 13.341587390541193,
+        "metrics": {
+            "0": 13.683549609366214,
+            "1": 12.226469196400263,
+            "2": 12.399413966685787,
+            "3": 15.99877046374039,
+            "4": 12.399733716513305
+        },
+        "code_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round67_count2_id114_solution.py",
+        "output_filepath": "outputs/oragent/dpp_ga/standard_mode_ir4/details/lead1_round67_count2_id114_stdout.txt"
+    }
+]

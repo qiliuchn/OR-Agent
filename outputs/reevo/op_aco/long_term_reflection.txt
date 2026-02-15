@@ -1,0 +1,1 @@
+Focus on prize-to-distance ratio, enforce budget-aware feasibility, incorporate lightweight multi-step lookahead for future reachability, and apply adaptive sparsification or clustering of high-value nodes—keep it simple to ensure robustness and generalization.

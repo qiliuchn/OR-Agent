@@ -1,0 +1,478 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 18,
+        "best_obj_overall": 71.07581329345703,
+        "metrics": {
+            "200": 22.291664123535156,
+            "500": 50.64848327636719,
+            "1000": 140.28729248046875
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter0_response9_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter0_response9_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 36,
+        "total_function_evals": 36,
+        "total_valid_responses": 26,
+        "best_obj_overall": 71.07581329345703,
+        "metrics": {
+            "200": 22.291664123535156,
+            "500": 50.64848327636719,
+            "1000": 140.28729248046875
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter0_response9_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter0_response9_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 53,
+        "total_function_evals": 53,
+        "total_valid_responses": 34,
+        "best_obj_overall": 71.06063334147136,
+        "metrics": {
+            "200": 22.354637145996094,
+            "500": 50.927406311035156,
+            "1000": 139.8998565673828
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter2_response5_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter2_response5_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 68,
+        "total_function_evals": 68,
+        "total_valid_responses": 43,
+        "best_obj_overall": 71.06063334147136,
+        "metrics": {
+            "200": 22.354637145996094,
+            "500": 50.927406311035156,
+            "1000": 139.8998565673828
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter2_response5_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter2_response5_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 82,
+        "total_function_evals": 82,
+        "total_valid_responses": 48,
+        "best_obj_overall": 70.98272069295247,
+        "metrics": {
+            "200": 22.293060302734375,
+            "500": 50.74192428588867,
+            "1000": 139.91317749023438
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter4_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter4_response3_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 97,
+        "total_function_evals": 97,
+        "total_valid_responses": 57,
+        "best_obj_overall": 70.98272069295247,
+        "metrics": {
+            "200": 22.293060302734375,
+            "500": 50.74192428588867,
+            "1000": 139.91317749023438
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter4_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter4_response3_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 112,
+        "total_function_evals": 112,
+        "total_valid_responses": 65,
+        "best_obj_overall": 70.98272069295247,
+        "metrics": {
+            "200": 22.293060302734375,
+            "500": 50.74192428588867,
+            "1000": 139.91317749023438
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter4_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter4_response3_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 129,
+        "total_function_evals": 129,
+        "total_valid_responses": 72,
+        "best_obj_overall": 70.96405537923177,
+        "metrics": {
+            "200": 22.377037048339844,
+            "500": 50.29344940185547,
+            "1000": 140.2216796875
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter7_response1_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter7_response1_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 146,
+        "total_function_evals": 146,
+        "total_valid_responses": 79,
+        "best_obj_overall": 70.20023600260417,
+        "metrics": {
+            "200": 22.583110809326172,
+            "500": 50.32292556762695,
+            "1000": 137.69467163085938
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter8_response2_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter8_response2_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 159,
+        "total_function_evals": 159,
+        "total_valid_responses": 86,
+        "best_obj_overall": 69.32597351074219,
+        "metrics": {
+            "200": 22.331157684326172,
+            "500": 50.01803970336914,
+            "1000": 135.62872314453125
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter9_response2_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter9_response2_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 174,
+        "total_function_evals": 174,
+        "total_valid_responses": 91,
+        "best_obj_overall": 67.31774202982585,
+        "metrics": {
+            "200": 22.469594955444336,
+            "500": 50.2343635559082,
+            "1000": 129.249267578125
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter10_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter10_response4_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 190,
+        "total_function_evals": 190,
+        "total_valid_responses": 99,
+        "best_obj_overall": 67.24424934387207,
+        "metrics": {
+            "200": 22.55747413635254,
+            "500": 49.95267868041992,
+            "1000": 129.22259521484375
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter11_response1_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter11_response1_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 202,
+        "total_function_evals": 202,
+        "total_valid_responses": 109,
+        "best_obj_overall": 65.34527842203777,
+        "metrics": {
+            "200": 22.748199462890625,
+            "500": 50.917144775390625,
+            "1000": 122.37049102783203
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter12_response2_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter12_response2_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 218,
+        "total_function_evals": 218,
+        "total_valid_responses": 117,
+        "best_obj_overall": 65.34527842203777,
+        "metrics": {
+            "200": 22.748199462890625,
+            "500": 50.917144775390625,
+            "1000": 122.37049102783203
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter12_response2_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter12_response2_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 231,
+        "total_function_evals": 231,
+        "total_valid_responses": 125,
+        "best_obj_overall": 63.51121266682943,
+        "metrics": {
+            "200": 22.728137969970703,
+            "500": 49.84573745727539,
+            "1000": 117.95976257324219
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter14_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter14_response3_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 244,
+        "total_function_evals": 244,
+        "total_valid_responses": 134,
+        "best_obj_overall": 61.55263900756836,
+        "metrics": {
+            "200": 22.781475067138672,
+            "500": 49.697044372558594,
+            "1000": 112.17939758300781
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter15_response2_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter15_response2_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 261,
+        "total_function_evals": 261,
+        "total_valid_responses": 144,
+        "best_obj_overall": 58.07277806599935,
+        "metrics": {
+            "200": 22.80124282836914,
+            "500": 49.26683044433594,
+            "1000": 102.15026092529297
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter16_response2_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter16_response2_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 275,
+        "total_function_evals": 275,
+        "total_valid_responses": 153,
+        "best_obj_overall": 58.03541692097982,
+        "metrics": {
+            "200": 22.863117218017578,
+            "500": 49.175025939941406,
+            "1000": 102.06810760498047
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter17_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter17_response4_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 288,
+        "total_function_evals": 288,
+        "total_valid_responses": 162,
+        "best_obj_overall": 52.15175819396973,
+        "metrics": {
+            "200": 23.16248893737793,
+            "500": 48.219017028808594,
+            "1000": 85.07376861572266
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter18_response2_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter18_response2_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 305,
+        "total_function_evals": 305,
+        "total_valid_responses": 172,
+        "best_obj_overall": 45.65650622049967,
+        "metrics": {
+            "200": 23.98563575744629,
+            "500": 47.43111801147461,
+            "1000": 65.55276489257812
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter19_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter19_response3_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 320,
+        "total_function_evals": 320,
+        "total_valid_responses": 182,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 21,
+        "total_responses": 334,
+        "total_function_evals": 334,
+        "total_valid_responses": 192,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 348,
+        "total_function_evals": 348,
+        "total_valid_responses": 201,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 363,
+        "total_function_evals": 363,
+        "total_valid_responses": 208,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 24,
+        "total_responses": 377,
+        "total_function_evals": 377,
+        "total_valid_responses": 218,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 392,
+        "total_function_evals": 392,
+        "total_valid_responses": 228,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 26,
+        "total_responses": 408,
+        "total_function_evals": 408,
+        "total_valid_responses": 237,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 27,
+        "total_responses": 422,
+        "total_function_evals": 422,
+        "total_valid_responses": 246,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 437,
+        "total_function_evals": 437,
+        "total_valid_responses": 256,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 29,
+        "total_responses": 452,
+        "total_function_evals": 452,
+        "total_valid_responses": 266,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 30,
+        "total_responses": 466,
+        "total_function_evals": 466,
+        "total_valid_responses": 275,
+        "best_obj_overall": 45.17184257507324,
+        "metrics": {
+            "200": 23.59169578552246,
+            "500": 46.7207145690918,
+            "1000": 65.20311737060547
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter20_response4_stdout.txt"
+    },
+    {
+        "iteration": 31,
+        "total_responses": 481,
+        "total_function_evals": 481,
+        "total_valid_responses": 284,
+        "best_obj_overall": 44.944153467814125,
+        "metrics": {
+            "200": 24.010698318481445,
+            "500": 47.224761962890625,
+            "1000": 63.59700012207031
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter31_response0_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter31_response0_stdout.txt"
+    },
+    {
+        "iteration": 32,
+        "total_responses": 495,
+        "total_function_evals": 495,
+        "total_valid_responses": 294,
+        "best_obj_overall": 44.944153467814125,
+        "metrics": {
+            "200": 24.010698318481445,
+            "500": 47.224761962890625,
+            "1000": 63.59700012207031
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter31_response0_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter31_response0_stdout.txt"
+    },
+    {
+        "iteration": 33,
+        "total_responses": 510,
+        "total_function_evals": 510,
+        "total_valid_responses": 304,
+        "best_obj_overall": 44.944153467814125,
+        "metrics": {
+            "200": 24.010698318481445,
+            "500": 47.224761962890625,
+            "1000": 63.59700012207031
+        },
+        "code_filepath": "outputs/ael/cvrp_pomo/details/iter31_response0_solution.py",
+        "output_filepath": "outputs/ael/cvrp_pomo/details/iter31_response0_stdout.txt"
+    }
+]

@@ -1,0 +1,114 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 10,
+        "best_obj_overall": 71.27033996582031,
+        "metrics": {
+            "200": 22.34768295288086,
+            "500": 50.92244338989258,
+            "1000": 140.5408935546875
+        },
+        "code_filepath": "outputs/eoh/cvrp_pomo/details/iter0_response12_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_pomo/details/iter0_response12_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 40,
+        "total_function_evals": 40,
+        "total_valid_responses": 24,
+        "best_obj_overall": 64.98484929402669,
+        "metrics": {
+            "200": 22.352840423583984,
+            "500": 47.88080596923828,
+            "1000": 124.72090148925781
+        },
+        "code_filepath": "outputs/eoh/cvrp_pomo/details/iter2_response2_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_pomo/details/iter2_response2_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 200,
+        "total_function_evals": 200,
+        "total_valid_responses": 163,
+        "best_obj_overall": 63.757144927978516,
+        "metrics": {
+            "200": 22.282421112060547,
+            "500": 47.607421875,
+            "1000": 121.381591796875
+        },
+        "code_filepath": "outputs/eoh/cvrp_pomo/details/iter18_response8_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_pomo/details/iter18_response8_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 240,
+        "total_function_evals": 240,
+        "total_valid_responses": 195,
+        "best_obj_overall": 62.2268918355306,
+        "metrics": {
+            "200": 22.414405822753906,
+            "500": 49.2623405456543,
+            "1000": 115.0039291381836
+        },
+        "code_filepath": "outputs/eoh/cvrp_pomo/details/iter22_response7_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_pomo/details/iter22_response7_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 250,
+        "total_function_evals": 250,
+        "total_valid_responses": 204,
+        "best_obj_overall": 61.39980443318685,
+        "metrics": {
+            "200": 22.447853088378906,
+            "500": 49.16408157348633,
+            "1000": 112.58747863769531
+        },
+        "code_filepath": "outputs/eoh/cvrp_pomo/details/iter23_response2_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_pomo/details/iter23_response2_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 300,
+        "total_function_evals": 300,
+        "total_valid_responses": 245,
+        "best_obj_overall": 61.13775380452474,
+        "metrics": {
+            "200": 22.24211883544922,
+            "500": 47.07178497314453,
+            "1000": 114.09935760498047
+        },
+        "code_filepath": "outputs/eoh/cvrp_pomo/details/iter28_response9_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_pomo/details/iter28_response9_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 360,
+        "total_function_evals": 360,
+        "total_valid_responses": 296,
+        "best_obj_overall": 58.69010353088379,
+        "metrics": {
+            "200": 22.284082412719727,
+            "500": 46.735782623291016,
+            "1000": 107.05044555664062
+        },
+        "code_filepath": "outputs/eoh/cvrp_pomo/details/iter34_response4_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_pomo/details/iter34_response4_stdout.txt"
+    },
+    {
+        "iteration": 43,
+        "total_responses": 450,
+        "total_function_evals": 450,
+        "total_valid_responses": 373,
+        "best_obj_overall": 58.105369567871094,
+        "metrics": {
+            "200": 22.422607421875,
+            "500": 46.46678924560547,
+            "1000": 105.42671203613281
+        },
+        "code_filepath": "outputs/eoh/cvrp_pomo/details/iter43_response8_solution.py",
+        "output_filepath": "outputs/eoh/cvrp_pomo/details/iter43_response8_stdout.txt"
+    }
+]

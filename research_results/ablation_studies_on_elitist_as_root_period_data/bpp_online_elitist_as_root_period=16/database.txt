@@ -1,0 +1,181 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: min
+
+ISLAND 0:
+  Number of clusters: 5
+  Total solutions: 7
+  Best score in island: 2068.4
+
+  CLUSTER 0:
+    Features: (2078, 2085, 2079, 2062, 2089)
+    Cluster score: 2078.600000
+    Number of solutions: 3
+      Solution 0:
+        Score: 2078.600000
+        Code length: 3498
+        ID: 55
+
+      Solution 1:
+        Score: 2078.600000
+        Code length: 3267
+        ID: 108
+
+      Solution 2:
+        Score: 2078.600000
+        Code length: 3286
+        ID: 113
+
+  CLUSTER 1:
+    Features: (2087, 2083, 2077, 2065, 2088)
+    Cluster score: 2080.000000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2080.000000
+        Code length: 5827
+        ID: 101
+
+  CLUSTER 2:
+    Features: (2075, 2074, 2076, 2048, 2069)
+    Cluster score: 2068.400000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2068.400000
+        Code length: 5732
+        ID: 115
+
+  CLUSTER 3:
+    Features: (2085, 2085, 2078, 2057, 2083)
+    Cluster score: 2077.600000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2077.600000
+        Code length: 3559
+        ID: 118
+
+  CLUSTER 4:
+    Features: (2081, 2088, 2074, 2060, 2086)
+    Cluster score: 2077.800000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2077.800000
+        Code length: 2768
+        ID: 123
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 1
+  Total solutions: 2
+  Best score in island: 2068.4
+
+  CLUSTER 0:
+    Features: (2075, 2074, 2076, 2048, 2069)
+    Cluster score: 2068.400000
+    Number of solutions: 2
+      Solution 0:
+        Score: 2068.400000
+        Code length: 5732
+        ID: 115
+
+      Solution 1:
+        Score: 2068.400000
+        Code length: 5732
+        ID: 142
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 2
+  Total solutions: 4
+  Best score in island: 2055.6
+
+  CLUSTER 0:
+    Features: (2075, 2074, 2076, 2048, 2069)
+    Cluster score: 2068.400000
+    Number of solutions: 2
+      Solution 0:
+        Score: 2068.400000
+        Code length: 5732
+        ID: 115
+
+      Solution 1:
+        Score: 2068.400000
+        Code length: 5732
+        ID: 140
+
+  CLUSTER 1:
+    Features: (2065, 2065, 2058, 2039, 2051)
+    Cluster score: 2055.600000
+    Number of solutions: 2
+      Solution 0:
+        Score: 2055.600000
+        Code length: 6424
+        ID: 141
+
+      Solution 1:
+        Score: 2055.600000
+        Code length: 6462
+        ID: 143
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 3
+  Total solutions: 7
+  Best score in island: 2077.6
+
+  CLUSTER 0:
+    Features: (2078, 2085, 2079, 2062, 2089)
+    Cluster score: 2078.600000
+    Number of solutions: 4
+      Solution 0:
+        Score: 2078.600000
+        Code length: 3498
+        ID: 55
+
+      Solution 1:
+        Score: 2078.600000
+        Code length: 3093
+        ID: 132
+
+      Solution 2:
+        Score: 2078.600000
+        Code length: 3081
+        ID: 133
+
+      Solution 3:
+        Score: 2078.600000
+        Code length: 3494
+        ID: 137
+
+  CLUSTER 1:
+    Features: (2082, 2088, 2080, 2061, 2084)
+    Cluster score: 2079.000000
+    Number of solutions: 2
+      Solution 0:
+        Score: 2079.000000
+        Code length: 2380
+        ID: 129
+
+      Solution 1:
+        Score: 2079.000000
+        Code length: 2380
+        ID: 131
+
+  CLUSTER 2:
+    Features: (2085, 2085, 2078, 2057, 2083)
+    Cluster score: 2077.600000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2077.600000
+        Code length: 3122
+        ID: 139
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 20
+Total clusters across all islands: 11
+Average cluster size: 1.82
+Best overall score: 2055.600000 (Island 2)
+========================================

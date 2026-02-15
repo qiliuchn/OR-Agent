@@ -1,0 +1,119 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 133.3671875,
+        "metrics": {
+            "120": 51.0625,
+            "500": 215.671875
+        },
+        "code_filepath": "outputs/reevo/bpp_offline_aco/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/reevo/bpp_offline_aco/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 20,
+        "best_obj_overall": 127.84375,
+        "metrics": {
+            "120": 49.6875,
+            "500": 206.0
+        },
+        "code_filepath": "outputs/reevo/bpp_offline_aco/details/iter1_response10_solution.py",
+        "output_filepath": "outputs/reevo/bpp_offline_aco/details/iter1_response10_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 66,
+        "total_function_evals": 46,
+        "total_valid_responses": 63,
+        "best_obj_overall": 127.5546875,
+        "metrics": {
+            "120": 49.53125,
+            "500": 205.578125
+        },
+        "code_filepath": "outputs/reevo/bpp_offline_aco/details/iter4_response3_solution.py",
+        "output_filepath": "outputs/reevo/bpp_offline_aco/details/iter4_response3_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 176,
+        "total_function_evals": 111,
+        "total_valid_responses": 171,
+        "best_obj_overall": 127.4140625,
+        "metrics": {
+            "120": 49.578125,
+            "500": 205.25
+        },
+        "code_filepath": "outputs/reevo/bpp_offline_aco/details/iter13_response3_solution.py",
+        "output_filepath": "outputs/reevo/bpp_offline_aco/details/iter13_response3_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 248,
+        "total_function_evals": 151,
+        "total_valid_responses": 241,
+        "best_obj_overall": 127.3359375,
+        "metrics": {
+            "120": 49.453125,
+            "500": 205.21875
+        },
+        "code_filepath": "outputs/reevo/bpp_offline_aco/details/iter18_response2_solution.py",
+        "output_filepath": "outputs/reevo/bpp_offline_aco/details/iter18_response2_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 254,
+        "total_function_evals": 156,
+        "total_valid_responses": 247,
+        "best_obj_overall": 127.171875,
+        "metrics": {
+            "120": 49.46875,
+            "500": 204.875
+        },
+        "code_filepath": "outputs/reevo/bpp_offline_aco/details/iter19_response0_solution.py",
+        "output_filepath": "outputs/reevo/bpp_offline_aco/details/iter19_response0_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 300,
+        "total_function_evals": 181,
+        "total_valid_responses": 292,
+        "best_obj_overall": 127.1484375,
+        "metrics": {
+            "120": 49.4375,
+            "500": 204.859375
+        },
+        "code_filepath": "outputs/reevo/bpp_offline_aco/details/iter22_response9_solution.py",
+        "output_filepath": "outputs/reevo/bpp_offline_aco/details/iter22_response9_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 306,
+        "total_function_evals": 186,
+        "total_valid_responses": 298,
+        "best_obj_overall": 127.125,
+        "metrics": {
+            "120": 49.453125,
+            "500": 204.796875
+        },
+        "code_filepath": "outputs/reevo/bpp_offline_aco/details/iter23_response3_solution.py",
+        "output_filepath": "outputs/reevo/bpp_offline_aco/details/iter23_response3_stdout.txt"
+    },
+    {
+        "iteration": 26,
+        "total_responses": 352,
+        "total_function_evals": 211,
+        "total_valid_responses": 343,
+        "best_obj_overall": 127.09375,
+        "metrics": {
+            "120": 49.390625,
+            "500": 204.796875
+        },
+        "code_filepath": "outputs/reevo/bpp_offline_aco/details/iter26_response6_solution.py",
+        "output_filepath": "outputs/reevo/bpp_offline_aco/details/iter26_response6_stdout.txt"
+    }
+]

@@ -1,0 +1,17 @@
+Number of research rounds: 36
+Solution count: 799
+Total number of LLM calls: 799
+Total number of valid responses: 791
+Total number of function evaluations: 488
+Current best objective value: 23.393171559343433
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+○ Node [132 (22.86), 124 (23.20)]: ["Augment the competition factor computation in Node 118 with a feasibility-aware competitor set defined by residual budget proxies: for each node j, competitors are not just geometrically proximate nodes but those reachable from j *and* allowing return to depot within maxlen, approximated via precomputed min_return_distance[j] = shortest_path(j, depot). Only include node k in j’s competitor set if distance[j,k] + min_return_distance[k] ≤ maxlen - current_min_cost_to_j (approximated as shortest_path(depot, j)). This embeds lightweight tour feasibility into competition calculation, preventing overestimation of competitive pressure from infeasible nodes, directly addressing the core limitation in long-term reflection about premature inclusion of unreachable high-prize nodes.", "Develop a hybrid competition model that combines local geometric proximity with prize-based ranking: Instead of defining competitors solely by distance thresholds or global accessibility, construct for each node j a competitor set comprising the k nearest nodes (k = max(3, n/20)) AND the k highest-prize nodes within a radius of maxlen/2. Compute two competition scores—one based on local prize density among geometric neighbors, another based on relative prize rank among high-value nodes—and fuse them using an instance-adaptive weight derived from n/maxlen (favoring geometric competition in dense instances, prize-rank competition in sparse ones). This approach leverages both spatial structure and prize distribution heterogeneity, complementing ongoing investigations into similarity measures (Node 116) while avoiding the pitfalls of overly complex budget proxies."]
+========================================
+Total nodes: 1 | Total expanded solutions: 0 | Total pending leaves: 1 | Total terminal leaves: 0

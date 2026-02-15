@@ -1,0 +1,319 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: min
+
+ISLAND 0:
+  Number of clusters: 5
+  Total solutions: 43
+  Best score in island: 5.985635721722112
+
+  CLUSTER 0:
+    Features: (3, 6, 10)
+    Cluster score: 7.006381
+    Number of solutions: 4
+      Solution 0:
+        Score: 6.940356
+        Code length: 137
+        ID: 0
+
+      Solution 1:
+        Score: 7.016886
+        Code length: 2585
+        ID: 5
+
+      Solution 2:
+        Score: 6.965262
+        Code length: 2633
+        ID: 9
+
+      Solution 3:
+        Score: 7.103022
+        Code length: 1480
+        ID: 17
+
+  CLUSTER 1:
+    Features: (3, 6, 8)
+    Cluster score: 6.165978
+    Number of solutions: 5
+      Solution 0:
+        Score: 6.187916
+        Code length: 1303
+        ID: 1
+
+      Solution 1:
+        Score: 6.112161
+        Code length: 3288
+        ID: 47
+
+      Solution 2:
+        Score: 6.173055
+        Code length: 4285
+        ID: 51
+
+      Solution 3:
+        Score: 6.182180
+        Code length: 4334
+        ID: 56
+
+      Solution 4:
+        Score: 6.174577
+        Code length: 6266
+        ID: 137
+
+  CLUSTER 2:
+    Features: (4, 9, 18)
+    Cluster score: 10.633133
+    Number of solutions: 1
+      Solution 0:
+        Score: 10.633133
+        Code length: 2514
+        ID: 13
+
+  CLUSTER 3:
+    Features: (3, 5, 8)
+    Cluster score: 6.028470
+    Number of solutions: 32
+      Solution 0:
+        Score: 6.029214
+        Code length: 4284
+        ID: 27
+
+      Solution 1:
+        Score: 6.014684
+        Code length: 2717
+        ID: 32
+
+      Solution 2:
+        Score: 6.016935
+        Code length: 1426
+        ID: 33
+
+      Solution 3:
+        Score: 6.048967
+        Code length: 1454
+        ID: 35
+
+      Solution 4:
+        Score: 6.123126
+        Code length: 4161
+        ID: 38
+
+      Solution 5:
+        Score: 6.122160
+        Code length: 4944
+        ID: 39
+
+      Solution 6:
+        Score: 6.131947
+        Code length: 3282
+        ID: 40
+
+      Solution 7:
+        Score: 6.061445
+        Code length: 5971
+        ID: 44
+
+      Solution 8:
+        Score: 6.055787
+        Code length: 4823
+        ID: 45
+
+      Solution 9:
+        Score: 6.047586
+        Code length: 3918
+        ID: 50
+
+      Solution 10:
+        Score: 6.079252
+        Code length: 6415
+        ID: 53
+
+      Solution 11:
+        Score: 6.119399
+        Code length: 4140
+        ID: 55
+
+      Solution 12:
+        Score: 6.121966
+        Code length: 3934
+        ID: 62
+
+      Solution 13:
+        Score: 5.999244
+        Code length: 3185
+        ID: 64
+
+      Solution 14:
+        Score: 6.011017
+        Code length: 3350
+        ID: 67
+
+      Solution 15:
+        Score: 5.993411
+        Code length: 3621
+        ID: 71
+
+      Solution 16:
+        Score: 5.995377
+        Code length: 3733
+        ID: 74
+
+      Solution 17:
+        Score: 5.994388
+        Code length: 4188
+        ID: 81
+
+      Solution 18:
+        Score: 6.000699
+        Code length: 2776
+        ID: 82
+
+      Solution 19:
+        Score: 6.011060
+        Code length: 4456
+        ID: 83
+
+      Solution 20:
+        Score: 6.015858
+        Code length: 4674
+        ID: 85
+
+      Solution 21:
+        Score: 6.000252
+        Code length: 4094
+        ID: 86
+
+      Solution 22:
+        Score: 5.986405
+        Code length: 4633
+        ID: 101
+
+      Solution 23:
+        Score: 5.990343
+        Code length: 4173
+        ID: 108
+
+      Solution 24:
+        Score: 5.987469
+        Code length: 5531
+        ID: 109
+
+      Solution 25:
+        Score: 5.990520
+        Code length: 3602
+        ID: 114
+
+      Solution 26:
+        Score: 5.994641
+        Code length: 3806
+        ID: 115
+
+      Solution 27:
+        Score: 5.994745
+        Code length: 4121
+        ID: 122
+
+      Solution 28:
+        Score: 5.991961
+        Code length: 4315
+        ID: 123
+
+      Solution 29:
+        Score: 5.997196
+        Code length: 4522
+        ID: 124
+
+      Solution 30:
+        Score: 5.985636
+        Code length: 4427
+        ID: 125
+
+      Solution 31:
+        Score: 5.998342
+        Code length: 2896
+        ID: 128
+
+  CLUSTER 4:
+    Features: (3, 6, 9)
+    Cluster score: 6.709459
+    Number of solutions: 1
+      Solution 0:
+        Score: 6.709459
+        Code length: 3897
+        ID: 59
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 1
+  Total solutions: 1
+  Best score in island: 5.985635721722112
+
+  CLUSTER 0:
+    Features: (3, 5, 8)
+    Cluster score: 5.985636
+    Number of solutions: 1
+      Solution 0:
+        Score: 5.985636
+        Code length: 4427
+        ID: 125
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 1
+  Total solutions: 4
+  Best score in island: 5.9864050966035895
+
+  CLUSTER 0:
+    Features: (3, 5, 8)
+    Cluster score: 5.993559
+    Number of solutions: 4
+      Solution 0:
+        Score: 5.986405
+        Code length: 4633
+        ID: 101
+
+      Solution 1:
+        Score: 5.992343
+        Code length: 5429
+        ID: 130
+
+      Solution 2:
+        Score: 5.997604
+        Code length: 3765
+        ID: 131
+
+      Solution 3:
+        Score: 5.997885
+        Code length: 4159
+        ID: 133
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 1
+  Total solutions: 2
+  Best score in island: 5.985635721722112
+
+  CLUSTER 0:
+    Features: (3, 5, 8)
+    Cluster score: 5.990967
+    Number of solutions: 2
+      Solution 0:
+        Score: 5.985636
+        Code length: 4427
+        ID: 125
+
+      Solution 1:
+        Score: 5.996297
+        Code length: 3703
+        ID: 139
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 50
+Total clusters across all islands: 8
+Average cluster size: 6.25
+Best overall score: 5.985636 (Island 0)
+========================================

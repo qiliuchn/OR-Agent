@@ -1,0 +1,212 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 6.943067948568479,
+        "metrics": {
+            "20": 3.8694983960814344,
+            "50": 6.7480479332761405,
+            "100": 10.21165751634786
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 20,
+        "best_obj_overall": 6.180395838259005,
+        "metrics": {
+            "20": 3.8176040062272962,
+            "50": 6.04562049323539,
+            "100": 8.67796301531433
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter1_response1_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter1_response1_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 29,
+        "total_function_evals": 30,
+        "total_valid_responses": 29,
+        "best_obj_overall": 6.062570691475506,
+        "metrics": {
+            "20": 3.8172345030068158,
+            "50": 5.961766381491502,
+            "100": 8.4087111899282
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter10_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter10_response0_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 32,
+        "total_function_evals": 33,
+        "total_valid_responses": 31,
+        "best_obj_overall": 6.054656891277595,
+        "metrics": {
+            "20": 3.819163156482051,
+            "50": 5.9609600469568225,
+            "100": 8.383847470393913
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter12_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter12_response0_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 44,
+        "total_function_evals": 45,
+        "total_valid_responses": 41,
+        "best_obj_overall": 6.053243446394641,
+        "metrics": {
+            "20": 3.815408203930268,
+            "50": 5.955344293552221,
+            "100": 8.388977841701436
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter22_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter22_response0_stdout.txt"
+    },
+    {
+        "iteration": 48,
+        "total_responses": 71,
+        "total_function_evals": 72,
+        "total_valid_responses": 67,
+        "best_obj_overall": 6.046416162071005,
+        "metrics": {
+            "20": 3.813564748529815,
+            "50": 5.954310536446869,
+            "100": 8.371373201236333
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter48_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter48_response0_stdout.txt"
+    },
+    {
+        "iteration": 51,
+        "total_responses": 74,
+        "total_function_evals": 75,
+        "total_valid_responses": 70,
+        "best_obj_overall": 6.029616190559801,
+        "metrics": {
+            "20": 3.8255464511891257,
+            "50": 5.950213385107287,
+            "100": 8.31308873538299
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter51_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter51_response0_stdout.txt"
+    },
+    {
+        "iteration": 68,
+        "total_responses": 91,
+        "total_function_evals": 92,
+        "total_valid_responses": 87,
+        "best_obj_overall": 6.023694419560719,
+        "metrics": {
+            "20": 3.8176720079288917,
+            "50": 5.940087615336698,
+            "100": 8.313323635416566
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter68_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter68_response0_stdout.txt"
+    },
+    {
+        "iteration": 126,
+        "total_responses": 155,
+        "total_function_evals": 156,
+        "total_valid_responses": 145,
+        "best_obj_overall": 6.018996060712513,
+        "metrics": {
+            "20": 3.8170065147510566,
+            "50": 5.938440530722939,
+            "100": 8.30154113666354
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter126_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter126_response0_stdout.txt"
+    },
+    {
+        "iteration": 145,
+        "total_responses": 175,
+        "total_function_evals": 176,
+        "total_valid_responses": 164,
+        "best_obj_overall": 6.018859627210994,
+        "metrics": {
+            "20": 3.8207848145714918,
+            "50": 5.941104405397071,
+            "100": 8.294689661664421
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter145_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter145_response0_stdout.txt"
+    },
+    {
+        "iteration": 165,
+        "total_responses": 199,
+        "total_function_evals": 200,
+        "total_valid_responses": 184,
+        "best_obj_overall": 6.013267489482239,
+        "metrics": {
+            "20": 3.8263254274804996,
+            "50": 5.948722460706789,
+            "100": 8.264754580259428
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter165_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter165_response0_stdout.txt"
+    },
+    {
+        "iteration": 216,
+        "total_responses": 251,
+        "total_function_evals": 252,
+        "total_valid_responses": 235,
+        "best_obj_overall": 6.0109324179939705,
+        "metrics": {
+            "20": 3.821038659574761,
+            "50": 5.930149769344107,
+            "100": 8.281608825063046
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter216_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter216_response0_stdout.txt"
+    },
+    {
+        "iteration": 289,
+        "total_responses": 334,
+        "total_function_evals": 335,
+        "total_valid_responses": 308,
+        "best_obj_overall": 6.006376435039582,
+        "metrics": {
+            "20": 3.8232495579815753,
+            "50": 5.943115080729852,
+            "100": 8.252764666407321
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter289_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter289_response0_stdout.txt"
+    },
+    {
+        "iteration": 426,
+        "total_responses": 473,
+        "total_function_evals": 474,
+        "total_valid_responses": 445,
+        "best_obj_overall": 6.006160554710199,
+        "metrics": {
+            "20": 3.8191201076351975,
+            "50": 5.929400443887684,
+            "100": 8.269961112607714
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter426_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter426_response0_stdout.txt"
+    },
+    {
+        "iteration": 449,
+        "total_responses": 498,
+        "total_function_evals": 499,
+        "total_valid_responses": 468,
+        "best_obj_overall": 6.005223186756102,
+        "metrics": {
+            "20": 3.8208551733540563,
+            "50": 5.9463988513238855,
+            "100": 8.248415535590366
+        },
+        "code_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter449_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_aco/funsearch_run2/details/iter449_response0_stdout.txt"
+    }
+]

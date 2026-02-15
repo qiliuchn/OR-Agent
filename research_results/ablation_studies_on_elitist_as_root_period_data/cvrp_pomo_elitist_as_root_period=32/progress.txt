@@ -1,0 +1,27 @@
+Number of research rounds: 65
+Solution count: 680
+Total number of LLM calls: 680
+Total number of valid responses: 646
+Total number of function evaluations: 447
+Current best objective value: 61.5373280843099
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [112 (68.37)]
+    ├── ⊕ Node 117 (68.37)
+    │       └── ⊕ Node 126 (68.37)
+    │               └── ✓ Node 127 (68.00)
+    ├── ⊕ Node 118 (65.34)
+    │       └── ✓ Node 121 (61.54)
+    ├── ⊕ Node 119 (68.71)
+    │       └── ⊕ Node 130 (68.43)
+    │               ├── ✓ Node 131 (67.00)
+    │               └── ✓ Node 132 (66.69)
+    └── ○ Node 120 (71.46)
+========================================
+Total nodes: 11 | Total expanded solutions: 6 | Total pending leaves: 1 | Total terminal leaves: 4

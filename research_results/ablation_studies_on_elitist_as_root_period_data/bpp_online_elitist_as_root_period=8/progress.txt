@@ -1,0 +1,21 @@
+Number of research rounds: 41
+Solution count: 652
+Total number of LLM calls: 652
+Total number of valid responses: 624
+Total number of function evaluations: 438
+Current best objective value: 2026.6
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [105 (2026.60)]: ["Enhance buffer management by implementing a dynamic buffer size that adapts based on the detected variability (IQR) of recent items—using a smaller buffer (e.g., 4–6) during high-variability phases to reduce noise and a larger buffer (e.g., 8–12) during stable, low-variability phases to capture consistent trends. This directly addresses the research reflection's suggestion to refine buffer management while maintaining the robust quantile-based approach."]
+    ├── ○ Node 127 (2026.60): "Replace the current entropy-based fragmentation metric with a packing efficiency proxy based on the inverse of the number of bins with residual capacity below the median recent item size. This directly addresses the reflection's suggestion that entropy is a poor proxy and focuses on a more actionable measure of wasted space."
+    ├── ○ Node 128 (2079.20): "Revise the future utility calculation to use quantile regression instead of simple averaging: for each feasible bin's residual capacity, compute its percentile rank within the recent item distribution (using IQR-normalized distances) and assign utility proportional to the probability that a future item will fit, rather than summing raw fits across recent items."
+    ├── ○ Node 129 (2026.60): "Introduce a lightweight, instance-specific calibration of the 0.6/0.4 base weight ratio by tracking the historical success rate of best-fit vs. future-utility decisions over the last 10 placements, then nudging weights toward the more successful strategy without full dynamic adaptation—maintaining stability while allowing minimal feedback."
+    └── ○ Node 130 (2026.60): "Implement a corrected alignment scoring mechanism that evaluates residual capacity not against individual recent items, but against the lower quartile (Q25) of recent items as a threshold for 'useful' space, thereby reducing noise from outlier small items and focusing on consistently packable residual capacities."
+========================================
+Total nodes: 5 | Total expanded solutions: 1 | Total pending leaves: 4 | Total terminal leaves: 0

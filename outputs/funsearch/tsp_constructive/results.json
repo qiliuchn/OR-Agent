@@ -1,0 +1,450 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 7.034353925627436,
+        "metrics": {
+            "20": 4.450265933717864,
+            "50": 7.066327190059413,
+            "100": 9.586468653105033
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 20,
+        "best_obj_overall": 7.023371412803197,
+        "metrics": {
+            "20": 4.4735137526525275,
+            "50": 7.039827986086057,
+            "100": 9.556772499671006
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter1_response16_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter1_response16_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 26,
+        "total_function_evals": 27,
+        "total_valid_responses": 23,
+        "best_obj_overall": 7.0143140467611,
+        "metrics": {
+            "20": 4.42838875036989,
+            "50": 7.056226253758371,
+            "100": 9.558327136155036
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter4_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter4_response0_stdout.txt"
+    },
+    {
+        "iteration": 42,
+        "total_responses": 82,
+        "total_function_evals": 83,
+        "total_valid_responses": 61,
+        "best_obj_overall": 6.987032013597182,
+        "metrics": {
+            "20": 4.39290243978928,
+            "50": 7.021378668153205,
+            "100": 9.546814932849061
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter42_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter42_response0_stdout.txt"
+    },
+    {
+        "iteration": 51,
+        "total_responses": 93,
+        "total_function_evals": 94,
+        "total_valid_responses": 70,
+        "best_obj_overall": 6.958140284298232,
+        "metrics": {
+            "20": 4.444405023660002,
+            "50": 6.903172491140804,
+            "100": 9.526843338093892
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter51_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter51_response0_stdout.txt"
+    },
+    {
+        "iteration": 95,
+        "total_responses": 155,
+        "total_function_evals": 156,
+        "total_valid_responses": 114,
+        "best_obj_overall": 6.953551999837166,
+        "metrics": {
+            "20": 4.31704572698489,
+            "50": 6.927627511451956,
+            "100": 9.615982761074651
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter95_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter95_response0_stdout.txt"
+    },
+    {
+        "iteration": 99,
+        "total_responses": 162,
+        "total_function_evals": 163,
+        "total_valid_responses": 118,
+        "best_obj_overall": 6.929375357631293,
+        "metrics": {
+            "20": 4.315404586575622,
+            "50": 6.909374552647435,
+            "100": 9.563346933670822
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter99_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter99_response0_stdout.txt"
+    },
+    {
+        "iteration": 108,
+        "total_responses": 171,
+        "total_function_evals": 172,
+        "total_valid_responses": 127,
+        "best_obj_overall": 6.8984765725238875,
+        "metrics": {
+            "20": 4.273842666998096,
+            "50": 6.870637365603377,
+            "100": 9.550949684970188
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter108_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter108_response0_stdout.txt"
+    },
+    {
+        "iteration": 109,
+        "total_responses": 172,
+        "total_function_evals": 173,
+        "total_valid_responses": 128,
+        "best_obj_overall": 6.881579255042457,
+        "metrics": {
+            "20": 4.221294133152469,
+            "50": 6.855976218891062,
+            "100": 9.56746741308384
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter109_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter109_response0_stdout.txt"
+    },
+    {
+        "iteration": 132,
+        "total_responses": 204,
+        "total_function_evals": 205,
+        "total_valid_responses": 151,
+        "best_obj_overall": 6.854752800745779,
+        "metrics": {
+            "20": 4.202715769418367,
+            "50": 6.845193379797349,
+            "100": 9.516349253021623
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter132_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter132_response0_stdout.txt"
+    },
+    {
+        "iteration": 134,
+        "total_responses": 207,
+        "total_function_evals": 208,
+        "total_valid_responses": 153,
+        "best_obj_overall": 6.8465211974982845,
+        "metrics": {
+            "20": 4.201340574040898,
+            "50": 6.837966878899911,
+            "100": 9.500256139554047
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter134_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter134_response0_stdout.txt"
+    },
+    {
+        "iteration": 136,
+        "total_responses": 209,
+        "total_function_evals": 210,
+        "total_valid_responses": 155,
+        "best_obj_overall": 6.8290650072448384,
+        "metrics": {
+            "20": 4.201328628483022,
+            "50": 6.8070960277220856,
+            "100": 9.478770365529408
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter136_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter136_response0_stdout.txt"
+    },
+    {
+        "iteration": 141,
+        "total_responses": 214,
+        "total_function_evals": 215,
+        "total_valid_responses": 160,
+        "best_obj_overall": 6.828724870195276,
+        "metrics": {
+            "20": 4.199587896025794,
+            "50": 6.84427926311777,
+            "100": 9.442307451442264
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter141_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter141_response0_stdout.txt"
+    },
+    {
+        "iteration": 142,
+        "total_responses": 215,
+        "total_function_evals": 216,
+        "total_valid_responses": 161,
+        "best_obj_overall": 6.8205549778822006,
+        "metrics": {
+            "20": 4.196749786729707,
+            "50": 6.802920499507547,
+            "100": 9.46199464740935
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter142_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter142_response0_stdout.txt"
+    },
+    {
+        "iteration": 148,
+        "total_responses": 223,
+        "total_function_evals": 224,
+        "total_valid_responses": 167,
+        "best_obj_overall": 6.8039322180104085,
+        "metrics": {
+            "20": 4.175153014004374,
+            "50": 6.829346978729048,
+            "100": 9.407296661297803
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter148_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter148_response0_stdout.txt"
+    },
+    {
+        "iteration": 155,
+        "total_responses": 230,
+        "total_function_evals": 231,
+        "total_valid_responses": 174,
+        "best_obj_overall": 6.80190983784457,
+        "metrics": {
+            "20": 4.175485013910496,
+            "50": 6.8248378227823725,
+            "100": 9.405406676840842
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter155_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter155_response0_stdout.txt"
+    },
+    {
+        "iteration": 173,
+        "total_responses": 252,
+        "total_function_evals": 253,
+        "total_valid_responses": 192,
+        "best_obj_overall": 6.797690727391391,
+        "metrics": {
+            "20": 4.174221947614505,
+            "50": 6.8215410633952125,
+            "100": 9.397309171164457
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter173_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter173_response0_stdout.txt"
+    },
+    {
+        "iteration": 205,
+        "total_responses": 286,
+        "total_function_evals": 287,
+        "total_valid_responses": 224,
+        "best_obj_overall": 6.796175258076562,
+        "metrics": {
+            "20": 4.167884973749922,
+            "50": 6.825642702989987,
+            "100": 9.394998097489776
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter205_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter205_response0_stdout.txt"
+    },
+    {
+        "iteration": 230,
+        "total_responses": 314,
+        "total_function_evals": 315,
+        "total_valid_responses": 249,
+        "best_obj_overall": 6.787741828493998,
+        "metrics": {
+            "20": 4.167884973749922,
+            "50": 6.825642702989987,
+            "100": 9.369697808742085
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter230_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter230_response0_stdout.txt"
+    },
+    {
+        "iteration": 241,
+        "total_responses": 325,
+        "total_function_evals": 326,
+        "total_valid_responses": 260,
+        "best_obj_overall": 6.770934927319313,
+        "metrics": {
+            "20": 3.940342616200086,
+            "50": 6.7267149583241,
+            "100": 9.645747207433754
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter241_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter241_response0_stdout.txt"
+    },
+    {
+        "iteration": 259,
+        "total_responses": 343,
+        "total_function_evals": 344,
+        "total_valid_responses": 278,
+        "best_obj_overall": 6.746450441262425,
+        "metrics": {
+            "20": 4.034313884556354,
+            "50": 6.71157017660437,
+            "100": 9.493467262626552
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter259_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter259_response0_stdout.txt"
+    },
+    {
+        "iteration": 302,
+        "total_responses": 387,
+        "total_function_evals": 388,
+        "total_valid_responses": 321,
+        "best_obj_overall": 6.717453494001066,
+        "metrics": {
+            "20": 3.940342616200086,
+            "50": 6.678839686180904,
+            "100": 9.533178179622205
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter302_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter302_response0_stdout.txt"
+    },
+    {
+        "iteration": 303,
+        "total_responses": 388,
+        "total_function_evals": 389,
+        "total_valid_responses": 322,
+        "best_obj_overall": 6.678066436219846,
+        "metrics": {
+            "20": 3.940342616200086,
+            "50": 6.656447858011739,
+            "100": 9.43740883444771
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter303_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter303_response0_stdout.txt"
+    },
+    {
+        "iteration": 312,
+        "total_responses": 397,
+        "total_function_evals": 398,
+        "total_valid_responses": 331,
+        "best_obj_overall": 6.591883897211235,
+        "metrics": {
+            "20": 3.9883181784200525,
+            "50": 6.527087169339692,
+            "100": 9.26024634387396
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter312_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter312_response0_stdout.txt"
+    },
+    {
+        "iteration": 325,
+        "total_responses": 413,
+        "total_function_evals": 414,
+        "total_valid_responses": 344,
+        "best_obj_overall": 6.518448546541226,
+        "metrics": {
+            "20": 3.946664616998758,
+            "50": 6.396418026762172,
+            "100": 9.212262995862748
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter325_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter325_response0_stdout.txt"
+    },
+    {
+        "iteration": 330,
+        "total_responses": 418,
+        "total_function_evals": 419,
+        "total_valid_responses": 349,
+        "best_obj_overall": 6.476455604725376,
+        "metrics": {
+            "20": 3.9883181784200525,
+            "50": 6.348043810851921,
+            "100": 9.09300482490415
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter330_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter330_response0_stdout.txt"
+    },
+    {
+        "iteration": 331,
+        "total_responses": 419,
+        "total_function_evals": 420,
+        "total_valid_responses": 350,
+        "best_obj_overall": 6.45108695497149,
+        "metrics": {
+            "20": 3.9453635657836528,
+            "50": 6.301135667061931,
+            "100": 9.106761632068887
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter331_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter331_response0_stdout.txt"
+    },
+    {
+        "iteration": 350,
+        "total_responses": 439,
+        "total_function_evals": 440,
+        "total_valid_responses": 369,
+        "best_obj_overall": 6.428801996831635,
+        "metrics": {
+            "20": 3.946664616998758,
+            "50": 6.3297066061659715,
+            "100": 9.010034767330175
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter350_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter350_response0_stdout.txt"
+    },
+    {
+        "iteration": 352,
+        "total_responses": 444,
+        "total_function_evals": 445,
+        "total_valid_responses": 371,
+        "best_obj_overall": 6.398918336516008,
+        "metrics": {
+            "20": 4.055339806784665,
+            "50": 6.287724262599205,
+            "100": 8.853690940164153
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter352_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter352_response0_stdout.txt"
+    },
+    {
+        "iteration": 354,
+        "total_responses": 448,
+        "total_function_evals": 449,
+        "total_valid_responses": 373,
+        "best_obj_overall": 6.3215902408168985,
+        "metrics": {
+            "20": 4.055339806784665,
+            "50": 6.287724262599205,
+            "100": 8.621706653066822
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter354_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter354_response0_stdout.txt"
+    },
+    {
+        "iteration": 362,
+        "total_responses": 462,
+        "total_function_evals": 463,
+        "total_valid_responses": 381,
+        "best_obj_overall": 6.30328775246582,
+        "metrics": {
+            "20": 4.020327320583031,
+            "50": 6.290198299068389,
+            "100": 8.599337637746041
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter362_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter362_response0_stdout.txt"
+    },
+    {
+        "iteration": 390,
+        "total_responses": 492,
+        "total_function_evals": 493,
+        "total_valid_responses": 409,
+        "best_obj_overall": 6.297879326213679,
+        "metrics": {
+            "20": 3.946664616998758,
+            "50": 6.3297066061659715,
+            "100": 8.61726675547631
+        },
+        "code_filepath": "outputs/funsearch/tsp_constructive/details/iter390_response0_solution.py",
+        "output_filepath": "outputs/funsearch/tsp_constructive/details/iter390_response0_stdout.txt"
+    }
+]

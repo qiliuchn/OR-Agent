@@ -1,0 +1,818 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 20,
+        "best_obj_overall": 2080.0,
+        "metrics": {
+            "val_0": 2087,
+            "val_1": 2083,
+            "val_2": 2077,
+            "val_3": 2065,
+            "val_4": 2088
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 30,
+        "total_function_evals": 30,
+        "total_valid_responses": 30,
+        "best_obj_overall": 2079.0,
+        "metrics": {
+            "val_0": 2085,
+            "val_1": 2082,
+            "val_2": 2079,
+            "val_3": 2064,
+            "val_4": 2085
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 40,
+        "total_function_evals": 40,
+        "total_valid_responses": 39,
+        "best_obj_overall": 2079.0,
+        "metrics": {
+            "val_0": 2085,
+            "val_1": 2082,
+            "val_2": 2079,
+            "val_3": 2064,
+            "val_4": 2085
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 50,
+        "total_function_evals": 50,
+        "total_valid_responses": 49,
+        "best_obj_overall": 2077.4,
+        "metrics": {
+            "val_0": 2082,
+            "val_1": 2080,
+            "val_2": 2076,
+            "val_3": 2064,
+            "val_4": 2085
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter3_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter3_response2_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 60,
+        "total_function_evals": 60,
+        "total_valid_responses": 59,
+        "best_obj_overall": 2077.4,
+        "metrics": {
+            "val_0": 2082,
+            "val_1": 2080,
+            "val_2": 2076,
+            "val_3": 2064,
+            "val_4": 2085
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter3_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter3_response2_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 70,
+        "total_function_evals": 70,
+        "total_valid_responses": 69,
+        "best_obj_overall": 2077.4,
+        "metrics": {
+            "val_0": 2082,
+            "val_1": 2080,
+            "val_2": 2076,
+            "val_3": 2064,
+            "val_4": 2085
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter3_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter3_response2_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 80,
+        "total_function_evals": 80,
+        "total_valid_responses": 78,
+        "best_obj_overall": 2077.4,
+        "metrics": {
+            "val_0": 2082,
+            "val_1": 2080,
+            "val_2": 2076,
+            "val_3": 2064,
+            "val_4": 2085
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter3_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter3_response2_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 90,
+        "total_function_evals": 90,
+        "total_valid_responses": 88,
+        "best_obj_overall": 2062.2,
+        "metrics": {
+            "val_0": 2070,
+            "val_1": 2070,
+            "val_2": 2063,
+            "val_3": 2045,
+            "val_4": 2063
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter7_response8_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter7_response8_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 100,
+        "total_function_evals": 100,
+        "total_valid_responses": 98,
+        "best_obj_overall": 2062.2,
+        "metrics": {
+            "val_0": 2070,
+            "val_1": 2070,
+            "val_2": 2063,
+            "val_3": 2045,
+            "val_4": 2063
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter7_response8_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter7_response8_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 110,
+        "total_function_evals": 110,
+        "total_valid_responses": 108,
+        "best_obj_overall": 2050.8,
+        "metrics": {
+            "val_0": 2057,
+            "val_1": 2059,
+            "val_2": 2050,
+            "val_3": 2035,
+            "val_4": 2053
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter9_response4_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter9_response4_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 120,
+        "total_function_evals": 120,
+        "total_valid_responses": 118,
+        "best_obj_overall": 2050.8,
+        "metrics": {
+            "val_0": 2057,
+            "val_1": 2059,
+            "val_2": 2050,
+            "val_3": 2035,
+            "val_4": 2053
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter9_response4_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter9_response4_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 130,
+        "total_function_evals": 130,
+        "total_valid_responses": 125,
+        "best_obj_overall": 2050.8,
+        "metrics": {
+            "val_0": 2057,
+            "val_1": 2059,
+            "val_2": 2050,
+            "val_3": 2035,
+            "val_4": 2053
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter9_response4_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter9_response4_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 140,
+        "total_function_evals": 140,
+        "total_valid_responses": 134,
+        "best_obj_overall": 2045.8,
+        "metrics": {
+            "val_0": 2054,
+            "val_1": 2048,
+            "val_2": 2045,
+            "val_3": 2035,
+            "val_4": 2047
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter12_response8_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter12_response8_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 150,
+        "total_function_evals": 150,
+        "total_valid_responses": 144,
+        "best_obj_overall": 2045.8,
+        "metrics": {
+            "val_0": 2054,
+            "val_1": 2048,
+            "val_2": 2045,
+            "val_3": 2035,
+            "val_4": 2047
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter12_response8_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter12_response8_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 160,
+        "total_function_evals": 160,
+        "total_valid_responses": 154,
+        "best_obj_overall": 2045.8,
+        "metrics": {
+            "val_0": 2054,
+            "val_1": 2048,
+            "val_2": 2045,
+            "val_3": 2035,
+            "val_4": 2047
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter12_response8_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter12_response8_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 170,
+        "total_function_evals": 170,
+        "total_valid_responses": 164,
+        "best_obj_overall": 2045.8,
+        "metrics": {
+            "val_0": 2054,
+            "val_1": 2048,
+            "val_2": 2045,
+            "val_3": 2035,
+            "val_4": 2047
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter12_response8_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter12_response8_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 180,
+        "total_function_evals": 180,
+        "total_valid_responses": 171,
+        "best_obj_overall": 2045.8,
+        "metrics": {
+            "val_0": 2054,
+            "val_1": 2048,
+            "val_2": 2045,
+            "val_3": 2035,
+            "val_4": 2047
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter12_response8_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter12_response8_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 190,
+        "total_function_evals": 190,
+        "total_valid_responses": 181,
+        "best_obj_overall": 2045.8,
+        "metrics": {
+            "val_0": 2054,
+            "val_1": 2048,
+            "val_2": 2045,
+            "val_3": 2035,
+            "val_4": 2047
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter12_response8_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter12_response8_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 200,
+        "total_function_evals": 200,
+        "total_valid_responses": 191,
+        "best_obj_overall": 2045.8,
+        "metrics": {
+            "val_0": 2054,
+            "val_1": 2048,
+            "val_2": 2045,
+            "val_3": 2035,
+            "val_4": 2047
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter12_response8_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter12_response8_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 210,
+        "total_function_evals": 210,
+        "total_valid_responses": 201,
+        "best_obj_overall": 2045.4,
+        "metrics": {
+            "val_0": 2052,
+            "val_1": 2050,
+            "val_2": 2045,
+            "val_3": 2029,
+            "val_4": 2051
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter19_response3_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter19_response3_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 220,
+        "total_function_evals": 220,
+        "total_valid_responses": 211,
+        "best_obj_overall": 2045.4,
+        "metrics": {
+            "val_0": 2052,
+            "val_1": 2050,
+            "val_2": 2045,
+            "val_3": 2029,
+            "val_4": 2051
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter19_response3_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter19_response3_stdout.txt"
+    },
+    {
+        "iteration": 21,
+        "total_responses": 230,
+        "total_function_evals": 230,
+        "total_valid_responses": 214,
+        "best_obj_overall": 2045.4,
+        "metrics": {
+            "val_0": 2052,
+            "val_1": 2050,
+            "val_2": 2045,
+            "val_3": 2029,
+            "val_4": 2051
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter19_response3_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter19_response3_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 240,
+        "total_function_evals": 240,
+        "total_valid_responses": 222,
+        "best_obj_overall": 2045.4,
+        "metrics": {
+            "val_0": 2052,
+            "val_1": 2050,
+            "val_2": 2045,
+            "val_3": 2029,
+            "val_4": 2051
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter19_response3_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter19_response3_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 250,
+        "total_function_evals": 250,
+        "total_valid_responses": 231,
+        "best_obj_overall": 2045.4,
+        "metrics": {
+            "val_0": 2052,
+            "val_1": 2050,
+            "val_2": 2045,
+            "val_3": 2029,
+            "val_4": 2051
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter19_response3_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter19_response3_stdout.txt"
+    },
+    {
+        "iteration": 24,
+        "total_responses": 260,
+        "total_function_evals": 260,
+        "total_valid_responses": 241,
+        "best_obj_overall": 2045.2,
+        "metrics": {
+            "val_0": 2051,
+            "val_1": 2050,
+            "val_2": 2046,
+            "val_3": 2029,
+            "val_4": 2050
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter24_response1_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter24_response1_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 270,
+        "total_function_evals": 270,
+        "total_valid_responses": 251,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 26,
+        "total_responses": 280,
+        "total_function_evals": 280,
+        "total_valid_responses": 254,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 27,
+        "total_responses": 290,
+        "total_function_evals": 290,
+        "total_valid_responses": 261,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 300,
+        "total_function_evals": 300,
+        "total_valid_responses": 271,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 29,
+        "total_responses": 310,
+        "total_function_evals": 310,
+        "total_valid_responses": 281,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 30,
+        "total_responses": 320,
+        "total_function_evals": 320,
+        "total_valid_responses": 291,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 31,
+        "total_responses": 330,
+        "total_function_evals": 330,
+        "total_valid_responses": 297,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 32,
+        "total_responses": 340,
+        "total_function_evals": 340,
+        "total_valid_responses": 303,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 33,
+        "total_responses": 350,
+        "total_function_evals": 350,
+        "total_valid_responses": 313,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 360,
+        "total_function_evals": 360,
+        "total_valid_responses": 323,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 35,
+        "total_responses": 370,
+        "total_function_evals": 370,
+        "total_valid_responses": 333,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 36,
+        "total_responses": 380,
+        "total_function_evals": 380,
+        "total_valid_responses": 339,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 37,
+        "total_responses": 390,
+        "total_function_evals": 390,
+        "total_valid_responses": 349,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 38,
+        "total_responses": 400,
+        "total_function_evals": 400,
+        "total_valid_responses": 358,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 39,
+        "total_responses": 410,
+        "total_function_evals": 410,
+        "total_valid_responses": 368,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 40,
+        "total_responses": 420,
+        "total_function_evals": 420,
+        "total_valid_responses": 378,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 41,
+        "total_responses": 430,
+        "total_function_evals": 430,
+        "total_valid_responses": 383,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 42,
+        "total_responses": 440,
+        "total_function_evals": 440,
+        "total_valid_responses": 393,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 43,
+        "total_responses": 450,
+        "total_function_evals": 450,
+        "total_valid_responses": 403,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 44,
+        "total_responses": 460,
+        "total_function_evals": 460,
+        "total_valid_responses": 413,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 45,
+        "total_responses": 470,
+        "total_function_evals": 470,
+        "total_valid_responses": 423,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 46,
+        "total_responses": 480,
+        "total_function_evals": 480,
+        "total_valid_responses": 429,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 47,
+        "total_responses": 490,
+        "total_function_evals": 490,
+        "total_valid_responses": 435,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 48,
+        "total_responses": 500,
+        "total_function_evals": 500,
+        "total_valid_responses": 445,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 49,
+        "total_responses": 510,
+        "total_function_evals": 510,
+        "total_valid_responses": 455,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 50,
+        "total_responses": 520,
+        "total_function_evals": 520,
+        "total_valid_responses": 465,
+        "best_obj_overall": 2029.8,
+        "metrics": {
+            "val_0": 2035,
+            "val_1": 2040,
+            "val_2": 2035,
+            "val_3": 2011,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/eoh/bpp_online/details/iter25_response2_solution.py",
+        "output_filepath": "outputs/eoh/bpp_online/details/iter25_response2_stdout.txt"
+    }
+]

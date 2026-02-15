@@ -1,0 +1,41 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 17,
+        "best_obj_overall": 29.43348979949951,
+        "metrics": {
+            "200": 20.628450393676758,
+            "500": 38.238529205322266
+        },
+        "code_filepath": "outputs/ael/cvrp_lehd/eval_updated/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/ael/cvrp_lehd/eval_updated/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 35,
+        "total_function_evals": 35,
+        "total_valid_responses": 23,
+        "best_obj_overall": 29.40087127685547,
+        "metrics": {
+            "200": 20.600383758544922,
+            "500": 38.201358795166016
+        },
+        "code_filepath": "outputs/ael/cvrp_lehd/eval_updated/details/iter1_response2_solution.py",
+        "output_filepath": "outputs/ael/cvrp_lehd/eval_updated/details/iter1_response2_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 225,
+        "total_function_evals": 225,
+        "total_valid_responses": 136,
+        "best_obj_overall": 29.38886833190918,
+        "metrics": {
+            "200": 20.569252014160156,
+            "500": 38.2084846496582
+        },
+        "code_filepath": "outputs/ael/cvrp_lehd/eval_updated/details/iter14_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_lehd/eval_updated/details/iter14_response3_stdout.txt"
+    }
+]

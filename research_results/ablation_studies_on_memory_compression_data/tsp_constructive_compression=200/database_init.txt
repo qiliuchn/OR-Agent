@@ -1,0 +1,193 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: min
+
+ISLAND 0:
+  Number of clusters: 4
+  Total solutions: 6
+  Best score in island: 7.034353925627436
+
+  CLUSTER 0:
+    Features: (4, 7, 9)
+    Cluster score: 7.034354
+    Number of solutions: 1
+      Solution 0:
+        Score: 7.034354
+        Code length: 797
+        ID: 0
+
+  CLUSTER 1:
+    Features: (5, 8, 11)
+    Cluster score: 8.384514
+    Number of solutions: 1
+      Solution 0:
+        Score: 8.384514
+        Code length: 2319
+        ID: 1
+
+  CLUSTER 2:
+    Features: (4, 7, 10)
+    Cluster score: 7.478514
+    Number of solutions: 3
+      Solution 0:
+        Score: 7.477510
+        Code length: 4052
+        ID: 5
+
+      Solution 1:
+        Score: 7.447077
+        Code length: 2863
+        ID: 9
+
+      Solution 2:
+        Score: 7.510954
+        Code length: 4024
+        ID: 13
+
+  CLUSTER 3:
+    Features: (5, 11, 18)
+    Cluster score: 11.927851
+    Number of solutions: 1
+      Solution 0:
+        Score: 11.927851
+        Code length: 3214
+        ID: 17
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 4
+  Total solutions: 5
+  Best score in island: 7.046530462618876
+
+  CLUSTER 0:
+    Features: (4, 7, 9)
+    Cluster score: 7.167362
+    Number of solutions: 2
+      Solution 0:
+        Score: 7.046530
+        Code length: 2610
+        ID: 2
+
+      Solution 1:
+        Score: 7.288193
+        Code length: 3981
+        ID: 18
+
+  CLUSTER 1:
+    Features: (4, 7, 10)
+    Cluster score: 7.717363
+    Number of solutions: 1
+      Solution 0:
+        Score: 7.717363
+        Code length: 2555
+        ID: 6
+
+  CLUSTER 2:
+    Features: (6, 10, 14)
+    Cluster score: 10.684807
+    Number of solutions: 1
+      Solution 0:
+        Score: 10.684807
+        Code length: 4155
+        ID: 10
+
+  CLUSTER 3:
+    Features: (5, 8, 11)
+    Cluster score: 8.384514
+    Number of solutions: 1
+      Solution 0:
+        Score: 8.384514
+        Code length: 2346
+        ID: 14
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 2
+  Total solutions: 5
+  Best score in island: 7.073465750129263
+
+  CLUSTER 0:
+    Features: (4, 7, 10)
+    Cluster score: 7.530882
+    Number of solutions: 3
+      Solution 0:
+        Score: 7.839525
+        Code length: 2978
+        ID: 3
+
+      Solution 1:
+        Score: 7.365475
+        Code length: 2357
+        ID: 11
+
+      Solution 2:
+        Score: 7.387646
+        Code length: 2788
+        ID: 19
+
+  CLUSTER 1:
+    Features: (4, 7, 9)
+    Cluster score: 7.173707
+    Number of solutions: 2
+      Solution 0:
+        Score: 7.273949
+        Code length: 2598
+        ID: 7
+
+      Solution 1:
+        Score: 7.073466
+        Code length: 2793
+        ID: 15
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 4
+  Total solutions: 4
+  Best score in island: 6.980902556849602
+
+  CLUSTER 0:
+    Features: (4, 6, 9)
+    Cluster score: 6.980903
+    Number of solutions: 1
+      Solution 0:
+        Score: 6.980903
+        Code length: 4619
+        ID: 4
+
+  CLUSTER 1:
+    Features: (5, 8, 11)
+    Cluster score: 8.586401
+    Number of solutions: 1
+      Solution 0:
+        Score: 8.586401
+        Code length: 2248
+        ID: 8
+
+  CLUSTER 2:
+    Features: (5, 9, 12)
+    Cluster score: 9.361133
+    Number of solutions: 1
+      Solution 0:
+        Score: 9.361133
+        Code length: 4003
+        ID: 12
+
+  CLUSTER 3:
+    Features: (4, 7, 10)
+    Cluster score: 7.318187
+    Number of solutions: 1
+      Solution 0:
+        Score: 7.318187
+        Code length: 2922
+        ID: 16
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 20
+Total clusters across all islands: 14
+Average cluster size: 1.43
+Best overall score: 6.980903 (Island 3)
+========================================

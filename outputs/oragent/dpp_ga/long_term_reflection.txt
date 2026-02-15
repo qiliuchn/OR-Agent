@@ -1,0 +1,24 @@
+The Decap Placement Problem (DPP) crossover research has converged on a highly refined and empirically validated recombination architecture, while simultaneously exposing the hard limits of what is achievable without richer problem context. Recent experiments (#1–#5) have not only confirmed but quantitatively reinforced the canonical 'common-positions + SBX (eta=5.0) + Manhattan repair' pipeline as the performance ceiling under current constraints—consistently yielding scores between 13.30 and 13.34, with Experiment #3 achieving 13.3416 through improved unique-position pairing logic. This represents near-saturation of the blindfolded crossover paradigm: no structural tweak, adaptive mechanism, or vectorization effort has surpassed this range without access to instance-specific metadata.
+
+Three core principles now stand as robust, generalizable foundations:
+
+1. **Exact motif preservation is non-negotiable**—common decap positions between parents encode high-value spatial motifs that must be inherited without alteration. Any deviation (e.g., probabilistic inheritance or interpolation over overlaps) degrades impedance performance.
+
+2. **SBX with fixed eta=5.0 in 2D coordinate space is optimal for unique positions**—adaptive eta schemes based on parent similarity (Exp #3) introduced unnecessary complexity without gains, confirming that the exploration-exploitation balance at eta=5.0 is intrinsic to the DPP’s impedance landscape. Critically, row and column coordinates must be interpolated independently with separate random numbers to preserve geometric integrity.
+
+3. **Manhattan-distance-based duplicate repair is functionally essential, not just corrective**—it actively maintains local decap density patterns that directly influence impedance. Random or global replacement strategies consistently underperform because they disrupt the fine-grained spatial coherence required for effective decoupling.
+
+New evidence further clarifies prior ambiguities: (a) **Vectorization alone cannot compensate for poor recombination semantics**—Exp #4 showed that even efficient NumPy broadcasting failed to improve scores when the underlying logic remained unchanged, proving that algorithmic fidelity trumps computational speed; (b) **Simulated constraint masks are harmful without ground truth**—Exp #5 demonstrated that heuristic forbidden zones based on boundary averages actively mislead offspring generation, reinforcing that partial or inaccurate metadata is worse than none; (c) **Instance heterogeneity is deterministic, not stochastic**—the consistent >16.0 score on Instance 3 across all high-performing crossovers confirms that certain geometric configurations relative to hidden probe locations are inherently more responsive to decap placement, yet remain unreachable by blind operators.
+
+Persistent gaps now crystallize into three interdependent bottlenecks:
+- **The Metadata Gap**: Crossover operates without knowledge of probe locations or prohibited zones, forcing it to rediscover high-impact regions through inefficient spatial search. This is the primary ceiling preventing scores from exceeding ~13.35.
+- **The Discretization-Repair Loop**: Continuous SBX interpolation inevitably generates infeasible grid coordinates, necessitating post-hoc repair that can inadvertently undo beneficial interpolations. True discrete-space recombination remains elusive.
+- **The Offspring Diversity-Quality Tradeoff**: While random pairing of unique positions (Exp #5) improved mixing, excessive diversity risks diluting high-fitness building blocks. The optimal balance appears fixed but fragile.
+
+These insights recalibrate research priorities with surgical precision:
+(1) **Lock the canonical baseline**: All future crossover variants must exceed 13.34 to claim meaningful progress—this threshold now defines the frontier of blind recombination.
+(2) **Demand architectural evolution**: The highest-leverage intervention is modifying the function signature to accept a binary validity mask (even if simulated per-instance during evaluation). Without this, crossover remains fundamentally handicapped.
+(3) **Decouple physics-awareness from crossover**: Mutation or selection should handle impedance-gradient-guided refinement, preserving crossover’s role as a structure-preserving recombiner.
+(4) **Explore post-crossover local search**: Lightweight hill-climbing on offspring using available fitness feedback could bridge the discretization gap without violating crossover’s design contract.
+
+In essence, the field has matured from 'designing better crossovers' to 'enabling crossovers to see.' The current operator is nearly optimal given its sensory deprivation; true advancement requires lifting the blindfold—not refining the hands.

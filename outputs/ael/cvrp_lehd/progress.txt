@@ -1,0 +1,6 @@
+Iteration: 34
+Total number of LLM calls: 513
+Total number of valid responses: 309
+Total number of function evaluations: 513
+Current best objective value: 29.38886833190918
+Just finished one round of evolution

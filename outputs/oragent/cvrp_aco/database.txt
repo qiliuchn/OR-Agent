@@ -1,0 +1,108 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: min
+
+ISLAND 0:
+  Number of clusters: 1
+  Total solutions: 1
+  Best score in island: 7.035791669723914
+
+  CLUSTER 0:
+    Features: (4, 9)
+    Cluster score: 7.035792
+    Number of solutions: 1
+      Solution 0:
+        Score: 7.035792
+        Code length: 11989
+        ID: 141
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 1
+  Total solutions: 7
+  Best score in island: 7.0312310786281635
+
+  CLUSTER 0:
+    Features: (4, 9)
+    Cluster score: 7.037498
+    Number of solutions: 7
+      Solution 0:
+        Score: 7.037196
+        Code length: 11687
+        ID: 121
+
+      Solution 1:
+        Score: 7.044186
+        Code length: 11670
+        ID: 140
+
+      Solution 2:
+        Score: 7.035792
+        Code length: 11989
+        ID: 141
+
+      Solution 3:
+        Score: 7.031231
+        Code length: 11738
+        ID: 142
+
+      Solution 4:
+        Score: 7.042854
+        Code length: 11370
+        ID: 150
+
+      Solution 5:
+        Score: 7.036520
+        Code length: 12654
+        ID: 154
+
+      Solution 6:
+        Score: 7.034709
+        Code length: 11708
+        ID: 155
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 1
+  Total solutions: 1
+  Best score in island: 7.035791669723914
+
+  CLUSTER 0:
+    Features: (4, 9)
+    Cluster score: 7.035792
+    Number of solutions: 1
+      Solution 0:
+        Score: 7.035792
+        Code length: 11989
+        ID: 141
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 1
+  Total solutions: 2
+  Best score in island: 7.037195504806151
+
+  CLUSTER 0:
+    Features: (4, 9)
+    Cluster score: 7.045279
+    Number of solutions: 2
+      Solution 0:
+        Score: 7.037196
+        Code length: 11687
+        ID: 121
+
+      Solution 1:
+        Score: 7.053362
+        Code length: 11999
+        ID: 139
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 11
+Total clusters across all islands: 4
+Average cluster size: 2.75
+Best overall score: 7.031231 (Island 1)
+========================================

@@ -1,0 +1,190 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: min
+
+ISLAND 0:
+  Number of clusters: 9
+  Total solutions: 18
+  Best score in island: 2011.8
+
+  CLUSTER 0:
+    Features: (2062, 2043, 2070, 2044, 2057)
+    Cluster score: 2055.200000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2055.200000
+        Code length: 3001
+        ID: 85
+
+  CLUSTER 1:
+    Features: (2038, 2032, 2035, 2019, 2030)
+    Cluster score: 2030.800000
+    Number of solutions: 2
+      Solution 0:
+        Score: 2030.800000
+        Code length: 4872
+        ID: 92
+
+      Solution 1:
+        Score: 2030.800000
+        Code length: 6789
+        ID: 93
+
+  CLUSTER 2:
+    Features: (2030, 2021, 2017, 2008, 2023)
+    Cluster score: 2019.800000
+    Number of solutions: 5
+      Solution 0:
+        Score: 2019.800000
+        Code length: 4963
+        ID: 95
+
+      Solution 1:
+        Score: 2019.800000
+        Code length: 5042
+        ID: 111
+
+      Solution 2:
+        Score: 2019.800000
+        Code length: 4948
+        ID: 117
+
+      Solution 3:
+        Score: 2019.800000
+        Code length: 4963
+        ID: 119
+
+      Solution 4:
+        Score: 2019.800000
+        Code length: 4903
+        ID: 120
+
+  CLUSTER 3:
+    Features: (2041, 2029, 2034, 2017, 2022)
+    Cluster score: 2028.600000
+    Number of solutions: 2
+      Solution 0:
+        Score: 2028.600000
+        Code length: 5370
+        ID: 96
+
+      Solution 1:
+        Score: 2028.600000
+        Code length: 5370
+        ID: 138
+
+  CLUSTER 4:
+    Features: (2029, 2021, 2033, 2012, 2018)
+    Cluster score: 2022.600000
+    Number of solutions: 2
+      Solution 0:
+        Score: 2022.600000
+        Code length: 4750
+        ID: 104
+
+      Solution 1:
+        Score: 2022.600000
+        Code length: 7811
+        ID: 110
+
+  CLUSTER 5:
+    Features: (2034, 2035, 2029, 2018, 2026)
+    Cluster score: 2028.400000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2028.400000
+        Code length: 4901
+        ID: 107
+
+  CLUSTER 6:
+    Features: (2024, 2019, 2014, 2003, 2017)
+    Cluster score: 2015.400000
+    Number of solutions: 3
+      Solution 0:
+        Score: 2015.400000
+        Code length: 5821
+        ID: 118
+
+      Solution 1:
+        Score: 2015.400000
+        Code length: 6015
+        ID: 140
+
+      Solution 2:
+        Score: 2015.400000
+        Code length: 5821
+        ID: 142
+
+  CLUSTER 7:
+    Features: (2020, 2015, 2013, 2000, 2013)
+    Cluster score: 2012.200000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2012.200000
+        Code length: 6698
+        ID: 144
+
+  CLUSTER 8:
+    Features: (2022, 2016, 2010, 1998, 2013)
+    Cluster score: 2011.800000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2011.800000
+        Code length: 9474
+        ID: 151
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 1
+  Total solutions: 1
+  Best score in island: 2015.4
+
+  CLUSTER 0:
+    Features: (2024, 2019, 2014, 2003, 2017)
+    Cluster score: 2015.400000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2015.400000
+        Code length: 5821
+        ID: 118
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 1
+  Total solutions: 1
+  Best score in island: 2015.4
+
+  CLUSTER 0:
+    Features: (2024, 2019, 2014, 2003, 2017)
+    Cluster score: 2015.400000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2015.400000
+        Code length: 5821
+        ID: 118
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 1
+  Total solutions: 1
+  Best score in island: 2015.4
+
+  CLUSTER 0:
+    Features: (2024, 2019, 2014, 2003, 2017)
+    Cluster score: 2015.400000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2015.400000
+        Code length: 5821
+        ID: 118
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 21
+Total clusters across all islands: 12
+Average cluster size: 1.75
+Best overall score: 2011.800000 (Island 0)
+========================================

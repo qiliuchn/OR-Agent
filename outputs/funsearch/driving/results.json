@@ -1,0 +1,74 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": -77.917902,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "teleports": 4.0,
+            "speed_variance": 2.56,
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 155.0,
+            "collisions": 2.0,
+            "avg_speed": 0.32
+        },
+        "code_filepath": "outputs/funsearch/driving/standard_model14/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/driving/standard_model14/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 16,
+        "best_obj_overall": -10.099804000000006,
+        "metrics": {
+            "critical_ttc_count": 53.0,
+            "collisions": 0.0,
+            "teleports": 4.5,
+            "avg_speed": 0.25,
+            "emergencyBraking": 0.0,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.02
+        },
+        "code_filepath": "outputs/funsearch/driving/standard_model14/details/iter1_response13_solution.py",
+        "output_filepath": "outputs/funsearch/driving/standard_model14/details/iter1_response13_stdout.txt"
+    },
+    {
+        "iteration": 89,
+        "total_responses": 119,
+        "total_function_evals": 120,
+        "total_valid_responses": 104,
+        "best_obj_overall": 7.944104999999999,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "emergencyStops": 0.0,
+            "critical_ttc_count": 71.5,
+            "speed_variance": 1.9649999999999999,
+            "teleports": 3.0,
+            "collisions": 0.0,
+            "avg_speed": 0.315
+        },
+        "code_filepath": "outputs/funsearch/driving/standard_model14/details/iter89_response0_solution.py",
+        "output_filepath": "outputs/funsearch/driving/standard_model14/details/iter89_response0_stdout.txt"
+    },
+    {
+        "iteration": 276,
+        "total_responses": 343,
+        "total_function_evals": 344,
+        "total_valid_responses": 291,
+        "best_obj_overall": 10.457097999999998,
+        "metrics": {
+            "critical_ttc_count": 61.5,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.125,
+            "avg_speed": 0.32,
+            "collisions": 0.0,
+            "emergencyBraking": 0.0,
+            "teleports": 3.0
+        },
+        "code_filepath": "outputs/funsearch/driving/standard_model14/details/iter276_response0_solution.py",
+        "output_filepath": "outputs/funsearch/driving/standard_model14/details/iter276_response0_stdout.txt"
+    }
+]

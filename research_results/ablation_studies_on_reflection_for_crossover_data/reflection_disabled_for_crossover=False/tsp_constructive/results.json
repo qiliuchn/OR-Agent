@@ -1,0 +1,142 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 7.034353925627436,
+        "metrics": {
+            "20": 4.450265933717864,
+            "50": 7.066327190059413,
+            "100": 9.586468653105033
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 23,
+        "total_function_evals": 23,
+        "total_valid_responses": 21,
+        "best_obj_overall": 6.387662593484585,
+        "metrics": {
+            "20": 4.082887986664705,
+            "50": 6.345497758723644,
+            "100": 8.734602035065407
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round0_count15_id15_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round0_count15_id15_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 57,
+        "total_function_evals": 51,
+        "total_valid_responses": 52,
+        "best_obj_overall": 6.26085204916046,
+        "metrics": {
+            "20": 4.023092280657228,
+            "50": 6.261408130436986,
+            "100": 8.498055736387167
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round1_count1_id22_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round1_count1_id22_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 181,
+        "total_function_evals": 130,
+        "total_valid_responses": 170,
+        "best_obj_overall": 6.256484939876889,
+        "metrics": {
+            "20": 4.026393333024142,
+            "50": 6.258539257199678,
+            "100": 8.484522229406846
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round16_count0_id44_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round16_count0_id44_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 351,
+        "total_function_evals": 239,
+        "total_valid_responses": 331,
+        "best_obj_overall": 6.253940139714213,
+        "metrics": {
+            "20": 4.017689834816381,
+            "50": 6.259798325960412,
+            "100": 8.484332258365843
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round34_count3_id70_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round34_count3_id70_stdout.txt"
+    },
+    {
+        "iteration": 46,
+        "total_responses": 452,
+        "total_function_evals": 304,
+        "total_valid_responses": 431,
+        "best_obj_overall": 6.2509065590194055,
+        "metrics": {
+            "20": 4.011588602116116,
+            "50": 6.257525455748158,
+            "100": 8.483605619193941
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round46_count0_id87_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round46_count0_id87_stdout.txt"
+    },
+    {
+        "iteration": 50,
+        "total_responses": 477,
+        "total_function_evals": 320,
+        "total_valid_responses": 456,
+        "best_obj_overall": 6.246107111469297,
+        "metrics": {
+            "20": 4.0167299301468224,
+            "50": 6.259423384066849,
+            "100": 8.462168020194218
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round50_count0_id91_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round50_count0_id91_stdout.txt"
+    },
+    {
+        "iteration": 66,
+        "total_responses": 592,
+        "total_function_evals": 383,
+        "total_valid_responses": 571,
+        "best_obj_overall": 6.245660258494591,
+        "metrics": {
+            "20": 4.009285067725928,
+            "50": 6.247418598787494,
+            "100": 8.480277108970352
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round66_count0_id111_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round66_count0_id111_stdout.txt"
+    },
+    {
+        "iteration": 67,
+        "total_responses": 616,
+        "total_function_evals": 396,
+        "total_valid_responses": 593,
+        "best_obj_overall": 6.2447654810693765,
+        "metrics": {
+            "20": 4.008598229566432,
+            "50": 6.245746205649484,
+            "100": 8.479952007992214
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round67_count4_id116_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round67_count4_id116_stdout.txt"
+    },
+    {
+        "iteration": 74,
+        "total_responses": 666,
+        "total_function_evals": 431,
+        "total_valid_responses": 643,
+        "best_obj_overall": 6.244647151764223,
+        "metrics": {
+            "20": 4.009730309771463,
+            "50": 6.246120432946692,
+            "100": 8.478090712574513
+        },
+        "code_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round74_count0_id123_solution.py",
+        "output_filepath": "outputs/oragent/tsp_constructive/imitate_reevo7/details/lead1_round74_count0_id123_stdout.txt"
+    }
+]

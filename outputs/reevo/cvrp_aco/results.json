@@ -1,0 +1,431 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 13.739743788614108,
+        "metrics": {
+            "20": 9.005754067735168,
+            "50": 18.473733509493048
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter0_response0_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 20,
+        "best_obj_overall": 9.182085359511083,
+        "metrics": {
+            "20": 5.981760608218902,
+            "50": 12.382410110803264
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter1_response12_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter1_response12_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 46,
+        "total_function_evals": 36,
+        "total_valid_responses": 46,
+        "best_obj_overall": 9.120142458141586,
+        "metrics": {
+            "20": 6.261646228579332,
+            "50": 11.978638687703839
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter3_response4_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter3_response4_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 66,
+        "total_function_evals": 46,
+        "total_valid_responses": 66,
+        "best_obj_overall": 8.91850855212683,
+        "metrics": {
+            "20": 6.311887045602601,
+            "50": 11.52513005865106
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter4_response8_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter4_response8_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 72,
+        "total_function_evals": 51,
+        "total_valid_responses": 72,
+        "best_obj_overall": 8.628144296946257,
+        "metrics": {
+            "20": 5.905121169637328,
+            "50": 11.351167424255188
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter5_response2_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter5_response2_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 98,
+        "total_function_evals": 66,
+        "total_valid_responses": 98,
+        "best_obj_overall": 8.382002545804013,
+        "metrics": {
+            "20": 5.716536768853886,
+            "50": 11.047468322754142
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter7_response1_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter7_response1_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 124,
+        "total_function_evals": 81,
+        "total_valid_responses": 124,
+        "best_obj_overall": 8.378484753848223,
+        "metrics": {
+            "20": 5.617473480572153,
+            "50": 11.139496027124295
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter9_response2_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter9_response2_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 144,
+        "total_function_evals": 91,
+        "total_valid_responses": 143,
+        "best_obj_overall": 8.376668985942418,
+        "metrics": {
+            "20": 5.576271694688196,
+            "50": 11.17706627719664
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter10_response3_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter10_response3_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 170,
+        "total_function_evals": 106,
+        "total_valid_responses": 168,
+        "best_obj_overall": 8.313952727961523,
+        "metrics": {
+            "20": 5.517536091091686,
+            "50": 11.11036936483136
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter12_response0_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter12_response0_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 222,
+        "total_function_evals": 136,
+        "total_valid_responses": 220,
+        "best_obj_overall": 8.292119912832916,
+        "metrics": {
+            "20": 5.451655416120225,
+            "50": 11.132584409545608
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter16_response3_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter16_response3_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 228,
+        "total_function_evals": 141,
+        "total_valid_responses": 226,
+        "best_obj_overall": 8.072264532257114,
+        "metrics": {
+            "20": 5.376501283593956,
+            "50": 10.76802778092027
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter17_response0_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter17_response0_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 248,
+        "total_function_evals": 151,
+        "total_valid_responses": 246,
+        "best_obj_overall": 8.032497069732251,
+        "metrics": {
+            "20": 5.367680301825218,
+            "50": 10.697313837639284
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter18_response4_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter18_response4_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 254,
+        "total_function_evals": 156,
+        "total_valid_responses": 252,
+        "best_obj_overall": 7.990995300870056,
+        "metrics": {
+            "20": 5.389939019086945,
+            "50": 10.592051582653166
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter19_response2_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter19_response2_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 274,
+        "total_function_evals": 166,
+        "total_valid_responses": 272,
+        "best_obj_overall": 7.832701059976346,
+        "metrics": {
+            "20": 5.221663616175343,
+            "50": 10.443738503777348
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter20_response3_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter20_response3_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 300,
+        "total_function_evals": 181,
+        "total_valid_responses": 298,
+        "best_obj_overall": 7.806910717466864,
+        "metrics": {
+            "20": 5.188553710238919,
+            "50": 10.425267724694809
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter22_response7_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter22_response7_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 306,
+        "total_function_evals": 186,
+        "total_valid_responses": 304,
+        "best_obj_overall": 7.699007477659435,
+        "metrics": {
+            "20": 5.047140156490965,
+            "50": 10.350874798827904
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter23_response2_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter23_response2_stdout.txt"
+    },
+    {
+        "iteration": 24,
+        "total_responses": 326,
+        "total_function_evals": 196,
+        "total_valid_responses": 324,
+        "best_obj_overall": 7.61808767090428,
+        "metrics": {
+            "20": 5.022885296153396,
+            "50": 10.213290045655164
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter24_response9_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter24_response9_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 332,
+        "total_function_evals": 201,
+        "total_valid_responses": 330,
+        "best_obj_overall": 7.564791007632773,
+        "metrics": {
+            "20": 4.9560854623061275,
+            "50": 10.173496552959419
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter25_response2_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter25_response2_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 378,
+        "total_function_evals": 226,
+        "total_valid_responses": 375,
+        "best_obj_overall": 7.550234378887078,
+        "metrics": {
+            "20": 4.908384179847219,
+            "50": 10.192084577926938
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter28_response8_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter28_response8_stdout.txt"
+    },
+    {
+        "iteration": 29,
+        "total_responses": 384,
+        "total_function_evals": 231,
+        "total_valid_responses": 381,
+        "best_obj_overall": 7.508776038706509,
+        "metrics": {
+            "20": 4.867174581343967,
+            "50": 10.150377496069051
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter29_response2_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter29_response2_stdout.txt"
+    },
+    {
+        "iteration": 30,
+        "total_responses": 404,
+        "total_function_evals": 241,
+        "total_valid_responses": 400,
+        "best_obj_overall": 7.289317545495637,
+        "metrics": {
+            "20": 4.811096099875364,
+            "50": 9.76753899111591
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter30_response9_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter30_response9_stdout.txt"
+    },
+    {
+        "iteration": 31,
+        "total_responses": 410,
+        "total_function_evals": 246,
+        "total_valid_responses": 406,
+        "best_obj_overall": 7.265764884898457,
+        "metrics": {
+            "20": 4.800547298272965,
+            "50": 9.730982471523948
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter31_response0_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter31_response0_stdout.txt"
+    },
+    {
+        "iteration": 32,
+        "total_responses": 430,
+        "total_function_evals": 256,
+        "total_valid_responses": 426,
+        "best_obj_overall": 7.235139087173804,
+        "metrics": {
+            "20": 4.829960274847665,
+            "50": 9.640317899499944
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter32_response7_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter32_response7_stdout.txt"
+    },
+    {
+        "iteration": 33,
+        "total_responses": 436,
+        "total_function_evals": 261,
+        "total_valid_responses": 432,
+        "best_obj_overall": 7.21329426968519,
+        "metrics": {
+            "20": 4.817501152885869,
+            "50": 9.60908738648451
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter33_response1_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter33_response1_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 456,
+        "total_function_evals": 271,
+        "total_valid_responses": 452,
+        "best_obj_overall": 7.19208181742405,
+        "metrics": {
+            "20": 4.816607290045667,
+            "50": 9.567556344802433
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter34_response4_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter34_response4_stdout.txt"
+    },
+    {
+        "iteration": 35,
+        "total_responses": 462,
+        "total_function_evals": 276,
+        "total_valid_responses": 458,
+        "best_obj_overall": 7.156466904355341,
+        "metrics": {
+            "20": 4.806363963981782,
+            "50": 9.5065698447289
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter35_response0_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter35_response0_stdout.txt"
+    },
+    {
+        "iteration": 36,
+        "total_responses": 482,
+        "total_function_evals": 286,
+        "total_valid_responses": 478,
+        "best_obj_overall": 7.148818094318261,
+        "metrics": {
+            "20": 4.792917988700323,
+            "50": 9.5047181999362
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter36_response1_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter36_response1_stdout.txt"
+    },
+    {
+        "iteration": 40,
+        "total_responses": 534,
+        "total_function_evals": 316,
+        "total_valid_responses": 530,
+        "best_obj_overall": 7.130140364765801,
+        "metrics": {
+            "20": 4.821694104768965,
+            "50": 9.438586624762637
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter40_response7_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter40_response7_stdout.txt"
+    },
+    {
+        "iteration": 41,
+        "total_responses": 540,
+        "total_function_evals": 321,
+        "total_valid_responses": 536,
+        "best_obj_overall": 7.1298472325962505,
+        "metrics": {
+            "20": 4.827002209148942,
+            "50": 9.432692256043559
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter41_response3_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter41_response3_stdout.txt"
+    },
+    {
+        "iteration": 43,
+        "total_responses": 566,
+        "total_function_evals": 336,
+        "total_valid_responses": 562,
+        "best_obj_overall": 7.129562706172157,
+        "metrics": {
+            "20": 4.820396783065711,
+            "50": 9.438728629278604
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter43_response1_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter43_response1_stdout.txt"
+    },
+    {
+        "iteration": 44,
+        "total_responses": 586,
+        "total_function_evals": 346,
+        "total_valid_responses": 582,
+        "best_obj_overall": 7.115873364215607,
+        "metrics": {
+            "20": 4.8020822720233,
+            "50": 9.429664456407913
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter44_response8_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter44_response8_stdout.txt"
+    },
+    {
+        "iteration": 45,
+        "total_responses": 592,
+        "total_function_evals": 351,
+        "total_valid_responses": 588,
+        "best_obj_overall": 7.092443439009026,
+        "metrics": {
+            "20": 4.789789695580249,
+            "50": 9.395097182437802
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter45_response3_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter45_response3_stdout.txt"
+    },
+    {
+        "iteration": 51,
+        "total_responses": 670,
+        "total_function_evals": 396,
+        "total_valid_responses": 664,
+        "best_obj_overall": 7.0821977341559155,
+        "metrics": {
+            "20": 4.797338272736034,
+            "50": 9.367057195575796
+        },
+        "code_filepath": "outputs/reevo/cvrp_aco/iter51_response2_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_aco/iter51_response2_stdout.txt"
+    }
+]

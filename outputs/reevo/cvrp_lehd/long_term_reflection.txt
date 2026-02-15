@@ -1,0 +1,6 @@
+**Constructive Hints:**
+- Simplify heuristics: focus on distance-demand ratios and depot connectivity
+- Reduce complex penalties, use moderate depot bonuses
+- Emphasize spatial clustering of low-demand customers
+- Balance capacity utilization with distance efficiency
+- Prioritize clean proximity guidance over elaborate schemes

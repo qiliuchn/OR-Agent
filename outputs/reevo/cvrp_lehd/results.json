@@ -1,0 +1,54 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 29.520633697509766,
+        "metrics": {
+            "200": 20.670467376708984,
+            "500": 38.37080001831055
+        },
+        "code_filepath": "outputs/reevo/cvrp_lehd/eval_updated/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_lehd/eval_updated/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 8,
+        "best_obj_overall": 29.434621810913086,
+        "metrics": {
+            "200": 20.658058166503906,
+            "500": 38.211185455322266
+        },
+        "code_filepath": "outputs/reevo/cvrp_lehd/eval_updated/details/iter1_response12_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_lehd/eval_updated/details/iter1_response12_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 202,
+        "total_function_evals": 126,
+        "total_valid_responses": 185,
+        "best_obj_overall": 29.41672134399414,
+        "metrics": {
+            "200": 20.636470794677734,
+            "500": 38.19697189331055
+        },
+        "code_filepath": "outputs/reevo/cvrp_lehd/eval_updated/details/iter15_response3_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_lehd/eval_updated/details/iter15_response3_stdout.txt"
+    },
+    {
+        "iteration": 58,
+        "total_responses": 768,
+        "total_function_evals": 451,
+        "total_valid_responses": 727,
+        "best_obj_overall": 29.407015800476074,
+        "metrics": {
+            "200": 20.639745712280273,
+            "500": 38.174285888671875
+        },
+        "code_filepath": "outputs/reevo/cvrp_lehd/eval_updated/details/iter58_response7_solution.py",
+        "output_filepath": "outputs/reevo/cvrp_lehd/eval_updated/details/iter58_response7_stdout.txt"
+    }
+]

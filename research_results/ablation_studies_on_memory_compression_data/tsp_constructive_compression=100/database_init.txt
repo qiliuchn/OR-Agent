@@ -1,0 +1,193 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: min
+
+ISLAND 0:
+  Number of clusters: 4
+  Total solutions: 6
+  Best score in island: 7.034353925627436
+
+  CLUSTER 0:
+    Features: (4, 7, 9)
+    Cluster score: 7.034354
+    Number of solutions: 3
+      Solution 0:
+        Score: 7.034354
+        Code length: 797
+        ID: 0
+
+      Solution 1:
+        Score: 7.034354
+        Code length: 2101
+        ID: 5
+
+      Solution 2:
+        Score: 7.034354
+        Code length: 3001
+        ID: 13
+
+  CLUSTER 1:
+    Features: (5, 8, 11)
+    Cluster score: 8.384514
+    Number of solutions: 1
+      Solution 0:
+        Score: 8.384514
+        Code length: 2121
+        ID: 1
+
+  CLUSTER 2:
+    Features: (8, 19, 37)
+    Cluster score: 21.616289
+    Number of solutions: 1
+      Solution 0:
+        Score: 21.616289
+        Code length: 1971
+        ID: 9
+
+  CLUSTER 3:
+    Features: (4, 8, 11)
+    Cluster score: 8.068465
+    Number of solutions: 1
+      Solution 0:
+        Score: 8.068465
+        Code length: 2578
+        ID: 17
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 4
+  Total solutions: 4
+  Best score in island: 7.034353925627436
+
+  CLUSTER 0:
+    Features: (4, 7, 10)
+    Cluster score: 7.426027
+    Number of solutions: 1
+      Solution 0:
+        Score: 7.426027
+        Code length: 2238
+        ID: 2
+
+  CLUSTER 1:
+    Features: (5, 9, 12)
+    Cluster score: 9.017157
+    Number of solutions: 1
+      Solution 0:
+        Score: 9.017157
+        Code length: 2298
+        ID: 6
+
+  CLUSTER 2:
+    Features: (5, 8, 11)
+    Cluster score: 8.643855
+    Number of solutions: 1
+      Solution 0:
+        Score: 8.643855
+        Code length: 3070
+        ID: 14
+
+  CLUSTER 3:
+    Features: (4, 7, 9)
+    Cluster score: 7.034354
+    Number of solutions: 1
+      Solution 0:
+        Score: 7.034354
+        Code length: 2902
+        ID: 18
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 4
+  Total solutions: 5
+  Best score in island: 7.117649487767589
+
+  CLUSTER 0:
+    Features: (6, 10, 14)
+    Cluster score: 10.219154
+    Number of solutions: 1
+      Solution 0:
+        Score: 10.219154
+        Code length: 2772
+        ID: 3
+
+  CLUSTER 1:
+    Features: (5, 8, 11)
+    Cluster score: 8.384514
+    Number of solutions: 1
+      Solution 0:
+        Score: 8.384514
+        Code length: 2700
+        ID: 7
+
+  CLUSTER 2:
+    Features: (4, 7, 10)
+    Cluster score: 7.478308
+    Number of solutions: 2
+      Solution 0:
+        Score: 7.419292
+        Code length: 2859
+        ID: 11
+
+      Solution 1:
+        Score: 7.537324
+        Code length: 2962
+        ID: 15
+
+  CLUSTER 3:
+    Features: (4, 7, 9)
+    Cluster score: 7.117649
+    Number of solutions: 1
+      Solution 0:
+        Score: 7.117649
+        Code length: 3022
+        ID: 19
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 2
+  Total solutions: 5
+  Best score in island: 7.024129836483593
+
+  CLUSTER 0:
+    Features: (4, 7, 9)
+    Cluster score: 7.052051
+    Number of solutions: 4
+      Solution 0:
+        Score: 7.103463
+        Code length: 3612
+        ID: 4
+
+      Solution 1:
+        Score: 7.034354
+        Code length: 3341
+        ID: 8
+
+      Solution 2:
+        Score: 7.046258
+        Code length: 4156
+        ID: 12
+
+      Solution 3:
+        Score: 7.024130
+        Code length: 3413
+        ID: 16
+
+  CLUSTER 1:
+    Features: (7, 14, 24)
+    Cluster score: 15.489471
+    Number of solutions: 1
+      Solution 0:
+        Score: 15.489471
+        Code length: 5918
+        ID: 20
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 20
+Total clusters across all islands: 14
+Average cluster size: 1.43
+Best overall score: 7.024130 (Island 3)
+========================================

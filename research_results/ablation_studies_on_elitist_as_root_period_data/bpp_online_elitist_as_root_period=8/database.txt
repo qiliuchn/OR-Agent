@@ -1,0 +1,218 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: min
+
+ISLAND 0:
+  Number of clusters: 1
+  Total solutions: 4
+  Best score in island: 2033.2
+
+  CLUSTER 0:
+    Features: (2035, 2027, 2037, 2031, 2036)
+    Cluster score: 2033.200000
+    Number of solutions: 4
+      Solution 0:
+        Score: 2033.200000
+        Code length: 6901
+        ID: 81
+
+      Solution 1:
+        Score: 2033.200000
+        Code length: 6512
+        ID: 98
+
+      Solution 2:
+        Score: 2033.200000
+        Code length: 6512
+        ID: 119
+
+      Solution 3:
+        Score: 2033.200000
+        Code length: 6512
+        ID: 126
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 1
+  Total solutions: 3
+  Best score in island: 2026.6
+
+  CLUSTER 0:
+    Features: (2031, 2035, 2023, 2020, 2024)
+    Cluster score: 2026.600000
+    Number of solutions: 3
+      Solution 0:
+        Score: 2026.600000
+        Code length: 9635
+        ID: 105
+
+      Solution 1:
+        Score: 2026.600000
+        Code length: 9583
+        ID: 120
+
+      Solution 2:
+        Score: 2026.600000
+        Code length: 9376
+        ID: 121
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 1
+  Total solutions: 2
+  Best score in island: 2026.6
+
+  CLUSTER 0:
+    Features: (2031, 2035, 2023, 2020, 2024)
+    Cluster score: 2026.600000
+    Number of solutions: 2
+      Solution 0:
+        Score: 2026.600000
+        Code length: 9635
+        ID: 105
+
+      Solution 1:
+        Score: 2026.600000
+        Code length: 9164
+        ID: 124
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 11
+  Total solutions: 16
+  Best score in island: 2026.6
+
+  CLUSTER 0:
+    Features: (2074, 2074, 2071, 2053, 2065)
+    Cluster score: 2067.400000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2067.400000
+        Code length: 5374
+        ID: 36
+
+  CLUSTER 1:
+    Features: (2084, 2083, 2077, 2064, 2085)
+    Cluster score: 2078.600000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2078.600000
+        Code length: 5527
+        ID: 54
+
+  CLUSTER 2:
+    Features: (2060, 2063, 2053, 2035, 2050)
+    Cluster score: 2052.200000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2052.200000
+        Code length: 7417
+        ID: 78
+
+  CLUSTER 3:
+    Features: (2031, 2039, 2036, 2021, 2025)
+    Cluster score: 2030.400000
+    Number of solutions: 3
+      Solution 0:
+        Score: 2030.400000
+        Code length: 9609
+        ID: 82
+
+      Solution 1:
+        Score: 2030.400000
+        Code length: 8696
+        ID: 85
+
+      Solution 2:
+        Score: 2030.400000
+        Code length: 10055
+        ID: 86
+
+  CLUSTER 4:
+    Features: (2034, 2036, 2035, 2023, 2025)
+    Cluster score: 2030.600000
+    Number of solutions: 2
+      Solution 0:
+        Score: 2030.600000
+        Code length: 8900
+        ID: 87
+
+      Solution 1:
+        Score: 2030.600000
+        Code length: 10179
+        ID: 122
+
+  CLUSTER 5:
+    Features: (2041, 2038, 2033, 2017, 2031)
+    Cluster score: 2032.000000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2032.000000
+        Code length: 10985
+        ID: 96
+
+  CLUSTER 6:
+    Features: (2029, 2042, 2029, 2014, 2024)
+    Cluster score: 2027.600000
+    Number of solutions: 3
+      Solution 0:
+        Score: 2027.600000
+        Code length: 9620
+        ID: 101
+
+      Solution 1:
+        Score: 2027.600000
+        Code length: 9936
+        ID: 106
+
+      Solution 2:
+        Score: 2027.600000
+        Code length: 10097
+        ID: 108
+
+  CLUSTER 7:
+    Features: (3070, 2990, 3055, 3001, 2988)
+    Cluster score: 3020.800000
+    Number of solutions: 1
+      Solution 0:
+        Score: 3020.800000
+        Code length: 10647
+        ID: 103
+
+  CLUSTER 8:
+    Features: (2031, 2035, 2023, 2020, 2024)
+    Cluster score: 2026.600000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2026.600000
+        Code length: 9635
+        ID: 105
+
+  CLUSTER 9:
+    Features: (2029, 2034, 2037, 2012, 2024)
+    Cluster score: 2027.200000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2027.200000
+        Code length: 12047
+        ID: 113
+
+  CLUSTER 10:
+    Features: (2030, 2031, 2044, 2022, 2024)
+    Cluster score: 2030.200000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2030.200000
+        Code length: 9472
+        ID: 125
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 25
+Total clusters across all islands: 14
+Average cluster size: 1.79
+Best overall score: 2026.600000 (Island 1)
+========================================

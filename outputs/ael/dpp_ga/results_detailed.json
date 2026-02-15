@@ -1,0 +1,530 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 20,
+        "best_obj_overall": 12.57924454433398,
+        "metrics": {
+            "0": 13.43612449741548,
+            "1": 12.216266758473619,
+            "2": 11.55888458021864,
+            "3": 13.68952183919059,
+            "4": 11.995425046371569
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter0_response16_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter0_response16_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 33,
+        "total_function_evals": 33,
+        "total_valid_responses": 30,
+        "best_obj_overall": 13.064347141393592,
+        "metrics": {
+            "0": 12.905936420681678,
+            "1": 12.18400311902747,
+            "2": 12.346484293656586,
+            "3": 15.59695906096513,
+            "4": 12.288352812637084
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter1_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter1_response0_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 49,
+        "total_function_evals": 49,
+        "total_valid_responses": 39,
+        "best_obj_overall": 13.211075346879559,
+        "metrics": {
+            "0": 13.404341043885088,
+            "1": 12.140421085477655,
+            "2": 12.326921797290082,
+            "3": 15.869757814988521,
+            "4": 12.313934992756439
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter2_response2_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter2_response2_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 64,
+        "total_function_evals": 64,
+        "total_valid_responses": 48,
+        "best_obj_overall": 13.211075346879559,
+        "metrics": {
+            "0": 13.404341043885088,
+            "1": 12.140421085477655,
+            "2": 12.326921797290082,
+            "3": 15.869757814988521,
+            "4": 12.313934992756439
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter2_response2_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter2_response2_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 78,
+        "total_function_evals": 78,
+        "total_valid_responses": 58,
+        "best_obj_overall": 13.2161811035066,
+        "metrics": {
+            "0": 13.449110512695507,
+            "1": 12.175280737382785,
+            "2": 12.315374008860157,
+            "3": 15.85171438437421,
+            "4": 12.289425874220338
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter4_response3_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter4_response3_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 93,
+        "total_function_evals": 93,
+        "total_valid_responses": 67,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 106,
+        "total_function_evals": 106,
+        "total_valid_responses": 74,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 118,
+        "total_function_evals": 118,
+        "total_valid_responses": 84,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 137,
+        "total_function_evals": 137,
+        "total_valid_responses": 93,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 154,
+        "total_function_evals": 154,
+        "total_valid_responses": 101,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 170,
+        "total_function_evals": 170,
+        "total_valid_responses": 109,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 184,
+        "total_function_evals": 184,
+        "total_valid_responses": 118,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 199,
+        "total_function_evals": 199,
+        "total_valid_responses": 127,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 213,
+        "total_function_evals": 213,
+        "total_valid_responses": 137,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 229,
+        "total_function_evals": 229,
+        "total_valid_responses": 146,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 244,
+        "total_function_evals": 244,
+        "total_valid_responses": 156,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 16,
+        "total_responses": 261,
+        "total_function_evals": 261,
+        "total_valid_responses": 165,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 275,
+        "total_function_evals": 275,
+        "total_valid_responses": 175,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 18,
+        "total_responses": 292,
+        "total_function_evals": 292,
+        "total_valid_responses": 184,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 307,
+        "total_function_evals": 307,
+        "total_valid_responses": 194,
+        "best_obj_overall": 13.239208289472236,
+        "metrics": {
+            "0": 13.535743202333341,
+            "1": 12.086377204924577,
+            "2": 12.363925602473827,
+            "3": 15.888192395638265,
+            "4": 12.321803041991178
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 20,
+        "total_responses": 322,
+        "total_function_evals": 322,
+        "total_valid_responses": 204,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 21,
+        "total_responses": 337,
+        "total_function_evals": 337,
+        "total_valid_responses": 214,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 22,
+        "total_responses": 353,
+        "total_function_evals": 353,
+        "total_valid_responses": 223,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 370,
+        "total_function_evals": 370,
+        "total_valid_responses": 232,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 24,
+        "total_responses": 383,
+        "total_function_evals": 383,
+        "total_valid_responses": 241,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 25,
+        "total_responses": 399,
+        "total_function_evals": 399,
+        "total_valid_responses": 251,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 26,
+        "total_responses": 416,
+        "total_function_evals": 416,
+        "total_valid_responses": 261,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 27,
+        "total_responses": 431,
+        "total_function_evals": 431,
+        "total_valid_responses": 269,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 446,
+        "total_function_evals": 446,
+        "total_valid_responses": 279,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 29,
+        "total_responses": 460,
+        "total_function_evals": 460,
+        "total_valid_responses": 289,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 30,
+        "total_responses": 477,
+        "total_function_evals": 477,
+        "total_valid_responses": 299,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 31,
+        "total_responses": 491,
+        "total_function_evals": 491,
+        "total_valid_responses": 308,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    },
+    {
+        "iteration": 32,
+        "total_responses": 504,
+        "total_function_evals": 504,
+        "total_valid_responses": 317,
+        "best_obj_overall": 13.248342675940169,
+        "metrics": {
+            "0": 13.415289559101812,
+            "1": 12.189776231691354,
+            "2": 12.36557417379717,
+            "3": 15.93729820565134,
+            "4": 12.33377520945917
+        },
+        "code_filepath": "outputs/ael/dpp_ga/details/iter20_response0_solution.py",
+        "output_filepath": "outputs/ael/dpp_ga/details/iter20_response0_stdout.txt"
+    }
+]

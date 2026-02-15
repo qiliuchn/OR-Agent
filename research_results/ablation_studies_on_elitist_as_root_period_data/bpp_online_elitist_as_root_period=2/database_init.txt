@@ -1,0 +1,170 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: min
+
+ISLAND 0:
+  Number of clusters: 1
+  Total solutions: 6
+  Best score in island: 2080.0
+
+  CLUSTER 0:
+    Features: (2087, 2083, 2077, 2065, 2088)
+    Cluster score: 2080.000000
+    Number of solutions: 6
+      Solution 0:
+        Score: 2080.000000
+        Code length: 551
+        ID: 0
+
+      Solution 1:
+        Score: 2080.000000
+        Code length: 3099
+        ID: 1
+
+      Solution 2:
+        Score: 2080.000000
+        Code length: 2110
+        ID: 5
+
+      Solution 3:
+        Score: 2080.000000
+        Code length: 2796
+        ID: 9
+
+      Solution 4:
+        Score: 2080.000000
+        Code length: 2027
+        ID: 13
+
+      Solution 5:
+        Score: 2080.000000
+        Code length: 2154
+        ID: 17
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 1
+  Total solutions: 5
+  Best score in island: 2080.0
+
+  CLUSTER 0:
+    Features: (2087, 2083, 2077, 2065, 2088)
+    Cluster score: 2080.000000
+    Number of solutions: 5
+      Solution 0:
+        Score: 2080.000000
+        Code length: 2032
+        ID: 2
+
+      Solution 1:
+        Score: 2080.000000
+        Code length: 2112
+        ID: 6
+
+      Solution 2:
+        Score: 2080.000000
+        Code length: 3425
+        ID: 10
+
+      Solution 3:
+        Score: 2080.000000
+        Code length: 2173
+        ID: 14
+
+      Solution 4:
+        Score: 2080.000000
+        Code length: 1702
+        ID: 18
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 2
+  Total solutions: 5
+  Best score in island: 2080.0
+
+  CLUSTER 0:
+    Features: (2087, 2083, 2077, 2065, 2088)
+    Cluster score: 2080.000000
+    Number of solutions: 4
+      Solution 0:
+        Score: 2080.000000
+        Code length: 2551
+        ID: 3
+
+      Solution 1:
+        Score: 2080.000000
+        Code length: 3312
+        ID: 7
+
+      Solution 2:
+        Score: 2080.000000
+        Code length: 2244
+        ID: 15
+
+      Solution 3:
+        Score: 2080.000000
+        Code length: 2020
+        ID: 19
+
+  CLUSTER 1:
+    Features: (2102, 2104, 2099, 2087, 2110)
+    Cluster score: 2100.400000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2100.400000
+        Code length: 2092
+        ID: 11
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 3
+  Total solutions: 5
+  Best score in island: 2080.0
+
+  CLUSTER 0:
+    Features: (2087, 2083, 2077, 2065, 2088)
+    Cluster score: 2080.000000
+    Number of solutions: 3
+      Solution 0:
+        Score: 2080.000000
+        Code length: 2806
+        ID: 4
+
+      Solution 1:
+        Score: 2080.000000
+        Code length: 2819
+        ID: 12
+
+      Solution 2:
+        Score: 2080.000000
+        Code length: 2919
+        ID: 20
+
+  CLUSTER 1:
+    Features: (2088, 2083, 2079, 2065, 2088)
+    Cluster score: 2080.600000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2080.600000
+        Code length: 3380
+        ID: 8
+
+  CLUSTER 2:
+    Features: (2318, 2306, 2309, 2286, 2309)
+    Cluster score: 2305.600000
+    Number of solutions: 1
+      Solution 0:
+        Score: 2305.600000
+        Code length: 2849
+        ID: 16
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 21
+Total clusters across all islands: 7
+Average cluster size: 3.00
+Best overall score: 2080.000000 (Island 0)
+========================================

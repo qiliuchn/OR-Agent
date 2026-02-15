@@ -1,0 +1,113 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: max
+
+ISLAND 0:
+  Number of clusters: 1
+  Total solutions: 5
+  Best score in island: 35.76430869630522
+
+  CLUSTER 0:
+    Features: (17, 54)
+    Cluster score: 35.756337
+    Number of solutions: 5
+      Solution 0:
+        Score: 35.758340
+        Code length: 3700
+        ID: 90
+
+      Solution 1:
+        Score: 35.760046
+        Code length: 3011
+        ID: 137
+
+      Solution 2:
+        Score: 35.750096
+        Code length: 4039
+        ID: 144
+
+      Solution 3:
+        Score: 35.748893
+        Code length: 4438
+        ID: 147
+
+      Solution 4:
+        Score: 35.764309
+        Code length: 4699
+        ID: 148
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 1
+  Total solutions: 3
+  Best score in island: 35.75834005453851
+
+  CLUSTER 0:
+    Features: (17, 54)
+    Cluster score: 35.724402
+    Number of solutions: 3
+      Solution 0:
+        Score: 35.758340
+        Code length: 3700
+        ID: 90
+
+      Solution 1:
+        Score: 35.739873
+        Code length: 3285
+        ID: 124
+
+      Solution 2:
+        Score: 35.674993
+        Code length: 4717
+        ID: 129
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 1
+  Total solutions: 1
+  Best score in island: 35.75834005453851
+
+  CLUSTER 0:
+    Features: (17, 54)
+    Cluster score: 35.758340
+    Number of solutions: 1
+      Solution 0:
+        Score: 35.758340
+        Code length: 3700
+        ID: 90
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 1
+  Total solutions: 3
+  Best score in island: 35.75834005453851
+
+  CLUSTER 0:
+    Features: (17, 54)
+    Cluster score: 35.725460
+    Number of solutions: 3
+      Solution 0:
+        Score: 35.758340
+        Code length: 3700
+        ID: 90
+
+      Solution 1:
+        Score: 35.712507
+        Code length: 3801
+        ID: 125
+
+      Solution 2:
+        Score: 35.705532
+        Code length: 6326
+        ID: 128
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 12
+Total clusters across all islands: 4
+Average cluster size: 3.00
+Best overall score: 35.764309 (Island 0)
+========================================

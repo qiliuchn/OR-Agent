@@ -1,0 +1,119 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 29.520633697509766,
+        "metrics": {
+            "200": 20.670467376708984,
+            "500": 38.37080001831055
+        },
+        "code_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 110,
+        "total_responses": 149,
+        "total_function_evals": 150,
+        "total_valid_responses": 120,
+        "best_obj_overall": 29.497139930725098,
+        "metrics": {
+            "200": 20.692598342895508,
+            "500": 38.30168151855469
+        },
+        "code_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter110_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter110_response0_stdout.txt"
+    },
+    {
+        "iteration": 159,
+        "total_responses": 200,
+        "total_function_evals": 201,
+        "total_valid_responses": 169,
+        "best_obj_overall": 29.48253345489502,
+        "metrics": {
+            "200": 20.654817581176758,
+            "500": 38.31024932861328
+        },
+        "code_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter159_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter159_response0_stdout.txt"
+    },
+    {
+        "iteration": 170,
+        "total_responses": 211,
+        "total_function_evals": 212,
+        "total_valid_responses": 180,
+        "best_obj_overall": 29.460756301879883,
+        "metrics": {
+            "200": 20.654117584228516,
+            "500": 38.26739501953125
+        },
+        "code_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter170_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter170_response0_stdout.txt"
+    },
+    {
+        "iteration": 228,
+        "total_responses": 278,
+        "total_function_evals": 279,
+        "total_valid_responses": 238,
+        "best_obj_overall": 29.446078300476074,
+        "metrics": {
+            "200": 20.59638786315918,
+            "500": 38.29576873779297
+        },
+        "code_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter228_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter228_response0_stdout.txt"
+    },
+    {
+        "iteration": 280,
+        "total_responses": 340,
+        "total_function_evals": 341,
+        "total_valid_responses": 290,
+        "best_obj_overall": 29.434574127197266,
+        "metrics": {
+            "200": 20.70095443725586,
+            "500": 38.16819381713867
+        },
+        "code_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter280_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter280_response0_stdout.txt"
+    },
+    {
+        "iteration": 284,
+        "total_responses": 344,
+        "total_function_evals": 345,
+        "total_valid_responses": 294,
+        "best_obj_overall": 29.42280673980713,
+        "metrics": {
+            "200": 20.588510513305664,
+            "500": 38.257102966308594
+        },
+        "code_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter284_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter284_response0_stdout.txt"
+    },
+    {
+        "iteration": 357,
+        "total_responses": 422,
+        "total_function_evals": 423,
+        "total_valid_responses": 367,
+        "best_obj_overall": 29.422762870788574,
+        "metrics": {
+            "200": 20.63172721862793,
+            "500": 38.21379852294922
+        },
+        "code_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter357_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter357_response0_stdout.txt"
+    },
+    {
+        "iteration": 406,
+        "total_responses": 480,
+        "total_function_evals": 481,
+        "total_valid_responses": 416,
+        "best_obj_overall": 29.409374237060547,
+        "metrics": {
+            "200": 20.639934539794922,
+            "500": 38.17881393432617
+        },
+        "code_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter406_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_lehd/funsearch_run2/details/iter406_response0_stdout.txt"
+    }
+]

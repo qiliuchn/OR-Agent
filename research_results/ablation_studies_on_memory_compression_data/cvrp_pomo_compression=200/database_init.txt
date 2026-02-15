@@ -1,0 +1,185 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: min
+
+ISLAND 0:
+  Number of clusters: 3
+  Total solutions: 5
+  Best score in island: 72.29576365152995
+
+  CLUSTER 0:
+    Features: (22, 50, 147)
+    Cluster score: 73.326532
+    Number of solutions: 2
+      Solution 0:
+        Score: 73.324585
+        Code length: 196
+        ID: 0
+
+      Solution 1:
+        Score: 73.328480
+        Code length: 2751
+        ID: 5
+
+  CLUSTER 1:
+    Features: (22, 50, 146)
+    Cluster score: 73.142882
+    Number of solutions: 2
+      Solution 0:
+        Score: 73.144989
+        Code length: 1810
+        ID: 9
+
+      Solution 1:
+        Score: 73.140776
+        Code length: 3884
+        ID: 13
+
+  CLUSTER 2:
+    Features: (22, 50, 143)
+    Cluster score: 72.295764
+    Number of solutions: 1
+      Solution 0:
+        Score: 72.295764
+        Code length: 2907
+        ID: 17
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 3
+  Total solutions: 5
+  Best score in island: 71.4373041788737
+
+  CLUSTER 0:
+    Features: (22, 50, 144)
+    Cluster score: 72.572081
+    Number of solutions: 2
+      Solution 0:
+        Score: 72.598566
+        Code length: 3171
+        ID: 2
+
+      Solution 1:
+        Score: 72.545596
+        Code length: 4604
+        ID: 6
+
+  CLUSTER 1:
+    Features: (22, 50, 146)
+    Cluster score: 73.134743
+    Number of solutions: 2
+      Solution 0:
+        Score: 73.241723
+        Code length: 3617
+        ID: 10
+
+      Solution 1:
+        Score: 73.027763
+        Code length: 2434
+        ID: 14
+
+  CLUSTER 2:
+    Features: (22, 51, 140)
+    Cluster score: 71.437304
+    Number of solutions: 1
+      Solution 0:
+        Score: 71.437304
+        Code length: 2338
+        ID: 18
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 2
+  Total solutions: 5
+  Best score in island: 72.95370483398438
+
+  CLUSTER 0:
+    Features: (22, 50, 147)
+    Cluster score: 73.469358
+    Number of solutions: 2
+      Solution 0:
+        Score: 73.466667
+        Code length: 1829
+        ID: 3
+
+      Solution 1:
+        Score: 73.472049
+        Code length: 4112
+        ID: 19
+
+  CLUSTER 1:
+    Features: (22, 50, 146)
+    Cluster score: 73.086503
+    Number of solutions: 3
+      Solution 0:
+        Score: 73.049230
+        Code length: 2465
+        ID: 7
+
+      Solution 1:
+        Score: 72.953705
+        Code length: 2076
+        ID: 11
+
+      Solution 2:
+        Score: 73.256575
+        Code length: 3564
+        ID: 15
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 4
+  Total solutions: 5
+  Best score in island: 72.89828618367513
+
+  CLUSTER 0:
+    Features: (213, 528, 1038)
+    Cluster score: 593.501623
+    Number of solutions: 1
+      Solution 0:
+        Score: 593.501623
+        Code length: 1895
+        ID: 4
+
+  CLUSTER 1:
+    Features: (69, 526, 1038)
+    Cluster score: 544.838153
+    Number of solutions: 1
+      Solution 0:
+        Score: 544.838153
+        Code length: 4699
+        ID: 8
+
+  CLUSTER 2:
+    Features: (22, 50, 146)
+    Cluster score: 73.200857
+    Number of solutions: 2
+      Solution 0:
+        Score: 72.960303
+        Code length: 2185
+        ID: 12
+
+      Solution 1:
+        Score: 73.441412
+        Code length: 3014
+        ID: 20
+
+  CLUSTER 3:
+    Features: (22, 50, 145)
+    Cluster score: 72.898286
+    Number of solutions: 1
+      Solution 0:
+        Score: 72.898286
+        Code length: 5238
+        ID: 16
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 20
+Total clusters across all islands: 12
+Average cluster size: 1.67
+Best overall score: 71.437304 (Island 1)
+========================================

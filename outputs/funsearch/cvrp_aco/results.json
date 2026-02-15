@@ -1,0 +1,119 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 13.683016930532965,
+        "metrics": {
+            "20": 8.958982616327168,
+            "50": 18.407051244738764
+        },
+        "code_filepath": "outputs/funsearch/cvrp_aco/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_aco/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 20,
+        "best_obj_overall": 8.972062357782352,
+        "metrics": {
+            "20": 5.851039282972504,
+            "50": 12.093085432592199
+        },
+        "code_filepath": "outputs/funsearch/cvrp_aco/iter1_response2_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_aco/iter1_response2_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 30,
+        "total_function_evals": 31,
+        "total_valid_responses": 30,
+        "best_obj_overall": 8.769598543624056,
+        "metrics": {
+            "20": 6.26249868551575,
+            "50": 11.276698401732364
+        },
+        "code_filepath": "outputs/funsearch/cvrp_aco/iter11_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_aco/iter11_response0_stdout.txt"
+    },
+    {
+        "iteration": 39,
+        "total_responses": 59,
+        "total_function_evals": 60,
+        "total_valid_responses": 58,
+        "best_obj_overall": 7.628727022163551,
+        "metrics": {
+            "20": 4.904834531254135,
+            "50": 10.352619513072966
+        },
+        "code_filepath": "outputs/funsearch/cvrp_aco/iter39_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_aco/iter39_response0_stdout.txt"
+    },
+    {
+        "iteration": 126,
+        "total_responses": 150,
+        "total_function_evals": 151,
+        "total_valid_responses": 145,
+        "best_obj_overall": 7.428742499227499,
+        "metrics": {
+            "20": 4.833526898582976,
+            "50": 10.023958099872022
+        },
+        "code_filepath": "outputs/funsearch/cvrp_aco/iter126_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_aco/iter126_response0_stdout.txt"
+    },
+    {
+        "iteration": 333,
+        "total_responses": 358,
+        "total_function_evals": 359,
+        "total_valid_responses": 352,
+        "best_obj_overall": 7.309463815937428,
+        "metrics": {
+            "20": 4.851764850917876,
+            "50": 9.76716278095698
+        },
+        "code_filepath": "outputs/funsearch/cvrp_aco/iter333_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_aco/iter333_response0_stdout.txt"
+    },
+    {
+        "iteration": 357,
+        "total_responses": 382,
+        "total_function_evals": 383,
+        "total_valid_responses": 376,
+        "best_obj_overall": 7.252180837355594,
+        "metrics": {
+            "20": 4.824508173625637,
+            "50": 9.67985350108555
+        },
+        "code_filepath": "outputs/funsearch/cvrp_aco/iter357_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_aco/iter357_response0_stdout.txt"
+    },
+    {
+        "iteration": 373,
+        "total_responses": 398,
+        "total_function_evals": 399,
+        "total_valid_responses": 392,
+        "best_obj_overall": 7.238413798811395,
+        "metrics": {
+            "20": 4.839917258367673,
+            "50": 9.636910339255117
+        },
+        "code_filepath": "outputs/funsearch/cvrp_aco/iter373_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_aco/iter373_response0_stdout.txt"
+    },
+    {
+        "iteration": 377,
+        "total_responses": 402,
+        "total_function_evals": 403,
+        "total_valid_responses": 396,
+        "best_obj_overall": 7.196845079299885,
+        "metrics": {
+            "20": 4.851845191069083,
+            "50": 9.541844967530686
+        },
+        "code_filepath": "outputs/funsearch/cvrp_aco/iter377_response0_solution.py",
+        "output_filepath": "outputs/funsearch/cvrp_aco/iter377_response0_stdout.txt"
+    }
+]

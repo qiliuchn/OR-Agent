@@ -1,0 +1,119 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 34.209345379066804,
+        "metrics": {
+            "100": 16.882628085384333,
+            "300": 51.53606267274928
+        },
+        "code_filepath": "outputs/funsearch/mkp_aco/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/mkp_aco/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 20,
+        "best_obj_overall": 35.57128471193377,
+        "metrics": {
+            "100": 17.06759741368294,
+            "300": 54.0749720101846
+        },
+        "code_filepath": "outputs/funsearch/mkp_aco/details/iter1_response3_solution.py",
+        "output_filepath": "outputs/funsearch/mkp_aco/details/iter1_response3_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 25,
+        "total_function_evals": 26,
+        "total_valid_responses": 25,
+        "best_obj_overall": 35.57523986704291,
+        "metrics": {
+            "100": 17.07585394267765,
+            "300": 54.074625791408174
+        },
+        "code_filepath": "outputs/funsearch/mkp_aco/details/iter6_response0_solution.py",
+        "output_filepath": "outputs/funsearch/mkp_aco/details/iter6_response0_stdout.txt"
+    },
+    {
+        "iteration": 11,
+        "total_responses": 30,
+        "total_function_evals": 31,
+        "total_valid_responses": 30,
+        "best_obj_overall": 35.697391039803954,
+        "metrics": {
+            "100": 17.09745597845734,
+            "300": 54.29732610115057
+        },
+        "code_filepath": "outputs/funsearch/mkp_aco/details/iter11_response0_solution.py",
+        "output_filepath": "outputs/funsearch/mkp_aco/details/iter11_response0_stdout.txt"
+    },
+    {
+        "iteration": 58,
+        "total_responses": 77,
+        "total_function_evals": 78,
+        "total_valid_responses": 77,
+        "best_obj_overall": 35.7368953817339,
+        "metrics": {
+            "100": 17.11557345819636,
+            "300": 54.358217305271445
+        },
+        "code_filepath": "outputs/funsearch/mkp_aco/details/iter58_response0_solution.py",
+        "output_filepath": "outputs/funsearch/mkp_aco/details/iter58_response0_stdout.txt"
+    },
+    {
+        "iteration": 89,
+        "total_responses": 109,
+        "total_function_evals": 110,
+        "total_valid_responses": 108,
+        "best_obj_overall": 35.76141674158847,
+        "metrics": {
+            "100": 17.10379098488687,
+            "300": 54.41904249829007
+        },
+        "code_filepath": "outputs/funsearch/mkp_aco/details/iter89_response0_solution.py",
+        "output_filepath": "outputs/funsearch/mkp_aco/details/iter89_response0_stdout.txt"
+    },
+    {
+        "iteration": 219,
+        "total_responses": 241,
+        "total_function_evals": 242,
+        "total_valid_responses": 238,
+        "best_obj_overall": 35.77940686346209,
+        "metrics": {
+            "100": 17.12238327897446,
+            "300": 54.436430447949725
+        },
+        "code_filepath": "outputs/funsearch/mkp_aco/details/iter219_response0_solution.py",
+        "output_filepath": "outputs/funsearch/mkp_aco/details/iter219_response0_stdout.txt"
+    },
+    {
+        "iteration": 244,
+        "total_responses": 266,
+        "total_function_evals": 267,
+        "total_valid_responses": 263,
+        "best_obj_overall": 35.78944044116387,
+        "metrics": {
+            "100": 17.12945900064244,
+            "300": 54.449421881685296
+        },
+        "code_filepath": "outputs/funsearch/mkp_aco/details/iter244_response0_solution.py",
+        "output_filepath": "outputs/funsearch/mkp_aco/details/iter244_response0_stdout.txt"
+    },
+    {
+        "iteration": 433,
+        "total_responses": 460,
+        "total_function_evals": 461,
+        "total_valid_responses": 452,
+        "best_obj_overall": 35.79314841280464,
+        "metrics": {
+            "100": 17.141265079473204,
+            "300": 54.44503174613608
+        },
+        "code_filepath": "outputs/funsearch/mkp_aco/details/iter433_response0_solution.py",
+        "output_filepath": "outputs/funsearch/mkp_aco/details/iter433_response0_stdout.txt"
+    }
+]

@@ -1,0 +1,1 @@
+Focus on simple Best Fit with smooth utilization scoring (0.7-0.9 thresholds). Combine tight fit prioritization with light strategic bonuses. Avoid complex fragmentation penalties that overcomplicate core strategy. Use clean exponentiation for utilization efficiency.

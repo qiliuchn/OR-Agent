@@ -1,0 +1,218 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": -77.917902,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "emergencyStops": 0.0,
+            "speed_variance": 2.56,
+            "teleports": 4.0,
+            "critical_ttc_count": 155.0,
+            "avg_speed": 0.32,
+            "collisions": 2.0
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 13,
+        "best_obj_overall": -28.599804,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "speed_variance": 2.205,
+            "teleports": 3.5,
+            "collisions": 0.5,
+            "critical_ttc_count": 137.0,
+            "avg_speed": 0.25,
+            "emergencyStops": 0.0
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter1_response17_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter1_response17_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 40,
+        "total_function_evals": 31,
+        "total_valid_responses": 32,
+        "best_obj_overall": -4.612797000000006,
+        "metrics": {
+            "collisions": 0.0,
+            "emergencyStops": 0.0,
+            "emergencyBraking": 0.0,
+            "teleports": 4.0,
+            "avg_speed": 0.245,
+            "critical_ttc_count": 61.0,
+            "speed_variance": 1.7650000000000001
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter2_response2_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter2_response2_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 46,
+        "total_function_evals": 36,
+        "total_valid_responses": 38,
+        "best_obj_overall": -0.7637830000000072,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.75,
+            "critical_ttc_count": 45.5,
+            "teleports": 4.0,
+            "avg_speed": 0.23500000000000001,
+            "collisions": 0.0
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter3_response0_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter3_response0_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 66,
+        "total_function_evals": 46,
+        "total_valid_responses": 58,
+        "best_obj_overall": -0.6387830000000072,
+        "metrics": {
+            "speed_variance": 1.685,
+            "collisions": 0.0,
+            "critical_ttc_count": 45.0,
+            "avg_speed": 0.23500000000000001,
+            "emergencyStops": 0.0,
+            "emergencyBraking": 0.0,
+            "teleports": 4.0
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter4_response5_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter4_response5_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 118,
+        "total_function_evals": 76,
+        "total_valid_responses": 105,
+        "best_obj_overall": 4.426181999999998,
+        "metrics": {
+            "avg_speed": 0.26,
+            "collisions": 0.0,
+            "emergencyStops": 0.0,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.855,
+            "critical_ttc_count": 55.0,
+            "teleports": 3.5
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter8_response5_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter8_response5_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 144,
+        "total_function_evals": 91,
+        "total_valid_responses": 130,
+        "best_obj_overall": 14.762202999999992,
+        "metrics": {
+            "emergencyStops": 0.0,
+            "collisions": 0.0,
+            "speed_variance": 1.58,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.245,
+            "critical_ttc_count": 43.5
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter10_response4_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter10_response4_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 378,
+        "total_function_evals": 226,
+        "total_valid_responses": 352,
+        "best_obj_overall": 14.848223999999995,
+        "metrics": {
+            "critical_ttc_count": 43.0,
+            "emergencyBraking": 0.0,
+            "avg_speed": 0.23,
+            "collisions": 0.0,
+            "emergencyStops": 0.0,
+            "teleports": 3.0,
+            "speed_variance": 1.395
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter28_response2_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter28_response2_stdout.txt"
+    },
+    {
+        "iteration": 34,
+        "total_responses": 456,
+        "total_function_evals": 271,
+        "total_valid_responses": 428,
+        "best_obj_overall": 15.098223999999995,
+        "metrics": {
+            "emergencyBraking": 0.0,
+            "critical_ttc_count": 42.0,
+            "emergencyStops": 0.0,
+            "avg_speed": 0.23,
+            "speed_variance": 1.36,
+            "teleports": 3.0,
+            "collisions": 0.0
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter34_response8_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter34_response8_stdout.txt"
+    },
+    {
+        "iteration": 36,
+        "total_responses": 482,
+        "total_function_evals": 286,
+        "total_valid_responses": 454,
+        "best_obj_overall": 15.348223999999995,
+        "metrics": {
+            "collisions": 0.0,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.3900000000000001,
+            "critical_ttc_count": 41.0,
+            "teleports": 3.0,
+            "emergencyStops": 0.0,
+            "avg_speed": 0.23
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter36_response8_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter36_response8_stdout.txt"
+    },
+    {
+        "iteration": 40,
+        "total_responses": 534,
+        "total_function_evals": 316,
+        "total_valid_responses": 506,
+        "best_obj_overall": 15.611216999999995,
+        "metrics": {
+            "critical_ttc_count": 40.0,
+            "emergencyBraking": 0.0,
+            "speed_variance": 1.415,
+            "emergencyStops": 0.0,
+            "teleports": 3.0,
+            "avg_speed": 0.23500000000000001,
+            "collisions": 0.0
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter40_response0_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter40_response0_stdout.txt"
+    },
+    {
+        "iteration": 62,
+        "total_responses": 820,
+        "total_function_evals": 481,
+        "total_valid_responses": 775,
+        "best_obj_overall": 16.098223999999995,
+        "metrics": {
+            "collisions": 0.0,
+            "speed_variance": 1.37,
+            "critical_ttc_count": 38.0,
+            "avg_speed": 0.23,
+            "emergencyStops": 0.0,
+            "teleports": 3.0,
+            "emergencyBraking": 0.0
+        },
+        "code_filepath": "outputs/reevo/driving/standard_model14/details/iter62_response5_solution.py",
+        "output_filepath": "outputs/reevo/driving/standard_model14/details/iter62_response5_stdout.txt"
+    }
+]

@@ -1,0 +1,119 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 20,
+        "best_obj_overall": 21.944366319444445,
+        "metrics": {
+            "50": 14.82535984848485,
+            "100": 29.06337279040404
+        },
+        "code_filepath": "outputs/eoh/op_aco/iter0_response14_solution.py",
+        "output_filepath": "outputs/eoh/op_aco/iter0_response14_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 50,
+        "total_function_evals": 50,
+        "total_valid_responses": 47,
+        "best_obj_overall": 22.013702651515153,
+        "metrics": {
+            "50": 14.943983585858586,
+            "100": 29.083421717171717
+        },
+        "code_filepath": "outputs/eoh/op_aco/iter3_response5_solution.py",
+        "output_filepath": "outputs/eoh/op_aco/iter3_response5_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 110,
+        "total_function_evals": 110,
+        "total_valid_responses": 106,
+        "best_obj_overall": 22.47229245580808,
+        "metrics": {
+            "50": 15.078416982323233,
+            "100": 29.86616792929293
+        },
+        "code_filepath": "outputs/eoh/op_aco/iter9_response2_solution.py",
+        "output_filepath": "outputs/eoh/op_aco/iter9_response2_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 160,
+        "total_function_evals": 160,
+        "total_valid_responses": 155,
+        "best_obj_overall": 22.626168718434343,
+        "metrics": {
+            "50": 15.106439393939395,
+            "100": 30.145898042929293
+        },
+        "code_filepath": "outputs/eoh/op_aco/iter14_response4_solution.py",
+        "output_filepath": "outputs/eoh/op_aco/iter14_response4_stdout.txt"
+    },
+    {
+        "iteration": 19,
+        "total_responses": 210,
+        "total_function_evals": 210,
+        "total_valid_responses": 205,
+        "best_obj_overall": 22.690179924242425,
+        "metrics": {
+            "50": 15.197665719696971,
+            "100": 30.18269412878788
+        },
+        "code_filepath": "outputs/eoh/op_aco/iter19_response0_solution.py",
+        "output_filepath": "outputs/eoh/op_aco/iter19_response0_stdout.txt"
+    },
+    {
+        "iteration": 28,
+        "total_responses": 300,
+        "total_function_evals": 300,
+        "total_valid_responses": 289,
+        "best_obj_overall": 22.75573863636364,
+        "metrics": {
+            "50": 15.18588226010101,
+            "100": 30.325595012626266
+        },
+        "code_filepath": "outputs/eoh/op_aco/iter28_response8_solution.py",
+        "output_filepath": "outputs/eoh/op_aco/iter28_response8_stdout.txt"
+    },
+    {
+        "iteration": 38,
+        "total_responses": 400,
+        "total_function_evals": 400,
+        "total_valid_responses": 386,
+        "best_obj_overall": 22.797480271464647,
+        "metrics": {
+            "50": 15.222561553030303,
+            "100": 30.37239898989899
+        },
+        "code_filepath": "outputs/eoh/op_aco/iter38_response4_solution.py",
+        "output_filepath": "outputs/eoh/op_aco/iter38_response4_stdout.txt"
+    },
+    {
+        "iteration": 43,
+        "total_responses": 450,
+        "total_function_evals": 450,
+        "total_valid_responses": 435,
+        "best_obj_overall": 22.81529908459596,
+        "metrics": {
+            "50": 15.248590593434344,
+            "100": 30.382007575757576
+        },
+        "code_filepath": "outputs/eoh/op_aco/iter43_response0_solution.py",
+        "output_filepath": "outputs/eoh/op_aco/iter43_response0_stdout.txt"
+    },
+    {
+        "iteration": 44,
+        "total_responses": 460,
+        "total_function_evals": 460,
+        "total_valid_responses": 445,
+        "best_obj_overall": 22.835412720959596,
+        "metrics": {
+            "50": 15.2046875,
+            "100": 30.466137941919193
+        },
+        "code_filepath": "outputs/eoh/op_aco/iter44_response6_solution.py",
+        "output_filepath": "outputs/eoh/op_aco/iter44_response6_stdout.txt"
+    }
+]

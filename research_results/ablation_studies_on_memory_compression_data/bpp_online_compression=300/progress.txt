@@ -1,0 +1,21 @@
+Number of research rounds: 56
+Solution count: 929
+Total number of LLM calls: 929
+Total number of valid responses: 916
+Total number of function evaluations: 531
+Current best objective value: 2027.4
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [138 (2027.40)]: ["Replace fixed percentage-based bonuses (matching, efficiency, consolidation) with residual space utilization ratios that measure how 'useful' the remaining space is relative to typical item sizes observed in the current instance. Implement an instance-local histogram of recent item sizes (using a resettable circular buffer of last N=20 items) to estimate the probability distribution of future item sizes, then compute expected utility of each residual capacity as the probability that it can accommodate a future item. Use this expected utility as a dynamic bonus instead of fixed percentages, while retaining the entropy-modulated gap penalty framework from the parent solutions."]
+    ├── ✓ Node 147 (2027.40): "Replace entropy-based fragmentation measurement with Gini impurity or capacity variance to better capture bin heterogeneity; test whether these alternative metrics provide more sensitive scaling for gap penalties and bonuses, potentially improving responsiveness to fragmented states without adding computational overhead."
+    ├── ✓ Node 148 (2027.40): "Implement a lightweight, stateless estimator of item size distribution using only the current item and a fixed reference (e.g., running median approximated via quantile sketching over last N=10 items stored in a compact circular buffer), then use this to compute expected residual utility—assigning higher priority to bins whose leftover space aligns with likely future item sizes—while ensuring O(1) per-item complexity to avoid timeouts."
+    ├── ✓ Node 149 (2027.40): "Design an adaptive consolidation bonus coefficient that dynamically scales between 0.08–0.15 based on both bin entropy and the relative size of the current item (e.g., larger items trigger stronger consolidation pressure); this would allow the heuristic to modulate packing aggressiveness according to situational context rather than using a fixed weight."
+    └── ✓ Node 150 (2027.60): "Develop an ensemble selector that chooses among 2–3 specialized priority functions (e.g., one optimized for uniform items, one for skewed distributions, one for high-fragmentation scenarios) based on early-instance statistics (first 10–15 items); the selector uses simple thresholds on item variance or max/min ratios to switch policies, enabling adaptation without maintaining online history beyond initialization."
+========================================
+Total nodes: 5 | Total expanded solutions: 1 | Total pending leaves: 0 | Total terminal leaves: 4

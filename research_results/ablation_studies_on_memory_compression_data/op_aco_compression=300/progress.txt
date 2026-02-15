@@ -1,0 +1,18 @@
+Number of research rounds: 38
+Solution count: 834
+Total number of LLM calls: 834
+Total number of valid responses: 829
+Total number of function evaluations: 502
+Current best objective value: 22.86770754419192
+Current flow graph:
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [66 (21.96), 102 (22.27)]: ["Replace the fixed power exponent (currently 1.5) in the feasibility transformation with an instance-adaptive non-linear scaling function derived from global problem characteristics. Compute a base exponent p using a sigmoid mapping over features like (maxlen / diameter) and prize entropy, then apply a local modulation per row i based on the 'typical' remaining budget after reaching i—approximated as maxlen - distance[0][i] - min_return_distance[i]. This creates a smooth, context-sensitive emphasis on feasibility that is stronger in tight-budget regions and milder in flexible early stages, leveraging the insight that 'squaring yields gains' but recognizing that optimal non-linearity varies by instance structure and tour phase—all while remaining fully precomputable and compatible with existing sparsity and normalization pipelines.", "Introduce a lightweight, precomputed reweighting layer during heuristic construction that adjusts edge desirability based on residual-budget proxies without violating the static matrix requirement. Specifically, after computing the base ensemble heuristic, modulate each entry heuristics[i][j] by a feasibility-aware correction factor derived from min_return_distance[j] and an estimated 'remaining budget at node i' proxy = maxlen − α ⋅ avg_distance ⋅ current_step_estimate, where current_step_estimate is approximated as (n_prize_rich_nodes / n) ⋅ expected_steps. This embeds a pseudo-state-dependent signal into the static matrix using only instance-level metadata, directly addressing the ~0.5-point gap caused by ignoring partial tour state while preserving computational efficiency and ACO compatibility."]
+    └── ✓ Node 142 (10.22): "Develop a hybrid heuristic construction that decouples global prize potential from local feasibility constraints by computing two separate matrices—one encoding long-range prize accessibility (e.g., prize weighted by inverse distance to high-value clusters) and another encoding step-wise tour completion safety (using improved return-cost estimates like k-hop shortest paths or MST-based lower bounds)—then combine them via a learnable, instance-adaptive gating mechanism based on features like budget slack (maxlen / total_min_tour_length) and prize distribution skewness. This approach directly addresses the static heuristic limitation by embedding structural awareness of both 'where the prizes are' and 'how safely you can get back,' without requiring online state tracking."
+========================================
+Total nodes: 2 | Total expanded solutions: 1 | Total pending leaves: 0 | Total terminal leaves: 1

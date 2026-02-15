@@ -1,0 +1,1 @@
+Focus on conservative safety parameters, simplified logic, and reduced computational overhead. Prioritize essential safety measures over complex features. Use longer cooldowns, stricter collision avoidance, and balanced acceleration profiles for stable traffic flow.

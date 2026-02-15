@@ -1,0 +1,162 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 2080.0,
+        "metrics": {
+            "val_0": 2087,
+            "val_1": 2083,
+            "val_2": 2077,
+            "val_3": 2065,
+            "val_4": 2088
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter0_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter0_response0_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 20,
+        "total_function_evals": 21,
+        "total_valid_responses": 20,
+        "best_obj_overall": 2079.8,
+        "metrics": {
+            "val_0": 2085,
+            "val_1": 2082,
+            "val_2": 2079,
+            "val_3": 2066,
+            "val_4": 2087
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter1_response5_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter1_response5_stdout.txt"
+    },
+    {
+        "iteration": 42,
+        "total_responses": 61,
+        "total_function_evals": 62,
+        "total_valid_responses": 61,
+        "best_obj_overall": 2052.4,
+        "metrics": {
+            "val_0": 2060,
+            "val_1": 2058,
+            "val_2": 2051,
+            "val_3": 2037,
+            "val_4": 2056
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter42_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter42_response0_stdout.txt"
+    },
+    {
+        "iteration": 54,
+        "total_responses": 73,
+        "total_function_evals": 74,
+        "total_valid_responses": 73,
+        "best_obj_overall": 2031.4,
+        "metrics": {
+            "val_0": 2037,
+            "val_1": 2037,
+            "val_2": 2033,
+            "val_3": 2018,
+            "val_4": 2032
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter54_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter54_response0_stdout.txt"
+    },
+    {
+        "iteration": 249,
+        "total_responses": 275,
+        "total_function_evals": 276,
+        "total_valid_responses": 268,
+        "best_obj_overall": 2027.0,
+        "metrics": {
+            "val_0": 2029,
+            "val_1": 2040,
+            "val_2": 2025,
+            "val_3": 2013,
+            "val_4": 2028
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter249_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter249_response0_stdout.txt"
+    },
+    {
+        "iteration": 257,
+        "total_responses": 283,
+        "total_function_evals": 284,
+        "total_valid_responses": 276,
+        "best_obj_overall": 2025.4,
+        "metrics": {
+            "val_0": 2032,
+            "val_1": 2032,
+            "val_2": 2028,
+            "val_3": 2011,
+            "val_4": 2024
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter257_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter257_response0_stdout.txt"
+    },
+    {
+        "iteration": 270,
+        "total_responses": 296,
+        "total_function_evals": 297,
+        "total_valid_responses": 289,
+        "best_obj_overall": 2022.2,
+        "metrics": {
+            "val_0": 2027,
+            "val_1": 2033,
+            "val_2": 2024,
+            "val_3": 2010,
+            "val_4": 2017
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter270_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter270_response0_stdout.txt"
+    },
+    {
+        "iteration": 296,
+        "total_responses": 323,
+        "total_function_evals": 324,
+        "total_valid_responses": 315,
+        "best_obj_overall": 2021.0,
+        "metrics": {
+            "val_0": 2023,
+            "val_1": 2030,
+            "val_2": 2024,
+            "val_3": 2009,
+            "val_4": 2019
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter296_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter296_response0_stdout.txt"
+    },
+    {
+        "iteration": 304,
+        "total_responses": 331,
+        "total_function_evals": 332,
+        "total_valid_responses": 323,
+        "best_obj_overall": 2018.8,
+        "metrics": {
+            "val_0": 2020,
+            "val_1": 2024,
+            "val_2": 2020,
+            "val_3": 2011,
+            "val_4": 2019
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter304_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter304_response0_stdout.txt"
+    },
+    {
+        "iteration": 379,
+        "total_responses": 406,
+        "total_function_evals": 407,
+        "total_valid_responses": 398,
+        "best_obj_overall": 2017.0,
+        "metrics": {
+            "val_0": 2022,
+            "val_1": 2023,
+            "val_2": 2018,
+            "val_3": 2004,
+            "val_4": 2018
+        },
+        "code_filepath": "outputs/funsearch/bpp_online/details/iter379_response0_solution.py",
+        "output_filepath": "outputs/funsearch/bpp_online/details/iter379_response0_stdout.txt"
+    }
+]

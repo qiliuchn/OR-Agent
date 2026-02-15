@@ -1,0 +1,197 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 20,
+        "total_function_evals": 20,
+        "total_valid_responses": 20,
+        "best_obj_overall": 8.396320827172758,
+        "metrics": {
+            "20": 5.70218287191941,
+            "50": 11.090458782426106
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter0_response14_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter0_response14_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 38,
+        "total_function_evals": 38,
+        "total_valid_responses": 29,
+        "best_obj_overall": 7.837524995326962,
+        "metrics": {
+            "20": 5.32644075786196,
+            "50": 10.348609232791965
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter1_response0_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter1_response0_stdout.txt"
+    },
+    {
+        "iteration": 2,
+        "total_responses": 54,
+        "total_function_evals": 54,
+        "total_valid_responses": 38,
+        "best_obj_overall": 7.585498931980939,
+        "metrics": {
+            "20": 5.185212199199686,
+            "50": 9.985785664762192
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter2_response1_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter2_response1_stdout.txt"
+    },
+    {
+        "iteration": 3,
+        "total_responses": 69,
+        "total_function_evals": 69,
+        "total_valid_responses": 48,
+        "best_obj_overall": 7.534909556739708,
+        "metrics": {
+            "20": 5.134209291837573,
+            "50": 9.935609821641844
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter3_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter3_response3_stdout.txt"
+    },
+    {
+        "iteration": 4,
+        "total_responses": 84,
+        "total_function_evals": 84,
+        "total_valid_responses": 58,
+        "best_obj_overall": 7.469558625107814,
+        "metrics": {
+            "20": 5.0671507792971475,
+            "50": 9.87196647091848
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter4_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter4_response3_stdout.txt"
+    },
+    {
+        "iteration": 5,
+        "total_responses": 101,
+        "total_function_evals": 101,
+        "total_valid_responses": 68,
+        "best_obj_overall": 7.373223261698619,
+        "metrics": {
+            "20": 4.970423141209476,
+            "50": 9.776023382187761
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter5_response4_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter5_response4_stdout.txt"
+    },
+    {
+        "iteration": 6,
+        "total_responses": 114,
+        "total_function_evals": 114,
+        "total_valid_responses": 77,
+        "best_obj_overall": 7.253403387374034,
+        "metrics": {
+            "20": 4.904149744769332,
+            "50": 9.602657029978735
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter6_response7_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter6_response7_stdout.txt"
+    },
+    {
+        "iteration": 7,
+        "total_responses": 126,
+        "total_function_evals": 126,
+        "total_valid_responses": 87,
+        "best_obj_overall": 7.243016149326921,
+        "metrics": {
+            "20": 4.885698195665661,
+            "50": 9.600334102988182
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter7_response1_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter7_response1_stdout.txt"
+    },
+    {
+        "iteration": 8,
+        "total_responses": 140,
+        "total_function_evals": 140,
+        "total_valid_responses": 96,
+        "best_obj_overall": 7.235606152429005,
+        "metrics": {
+            "20": 4.9029290571278175,
+            "50": 9.568283247730193
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter8_response5_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter8_response5_stdout.txt"
+    },
+    {
+        "iteration": 9,
+        "total_responses": 156,
+        "total_function_evals": 156,
+        "total_valid_responses": 106,
+        "best_obj_overall": 7.212549900561654,
+        "metrics": {
+            "20": 4.879446115263816,
+            "50": 9.545653685859492
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter9_response5_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter9_response5_stdout.txt"
+    },
+    {
+        "iteration": 10,
+        "total_responses": 170,
+        "total_function_evals": 170,
+        "total_valid_responses": 116,
+        "best_obj_overall": 7.203744260530351,
+        "metrics": {
+            "20": 4.87863002606425,
+            "50": 9.528858494996452
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter10_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter10_response3_stdout.txt"
+    },
+    {
+        "iteration": 13,
+        "total_responses": 221,
+        "total_function_evals": 221,
+        "total_valid_responses": 146,
+        "best_obj_overall": 7.149084539060052,
+        "metrics": {
+            "20": 4.92250065733833,
+            "50": 9.375668420781775
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter13_response6_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter13_response6_stdout.txt"
+    },
+    {
+        "iteration": 14,
+        "total_responses": 237,
+        "total_function_evals": 237,
+        "total_valid_responses": 156,
+        "best_obj_overall": 7.111918429775755,
+        "metrics": {
+            "20": 4.873819036790534,
+            "50": 9.350017822760975
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter14_response3_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter14_response3_stdout.txt"
+    },
+    {
+        "iteration": 15,
+        "total_responses": 251,
+        "total_function_evals": 251,
+        "total_valid_responses": 166,
+        "best_obj_overall": 7.103045285000948,
+        "metrics": {
+            "20": 4.902707441146834,
+            "50": 9.303383128855062
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter15_response1_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter15_response1_stdout.txt"
+    },
+    {
+        "iteration": 17,
+        "total_responses": 281,
+        "total_function_evals": 281,
+        "total_valid_responses": 186,
+        "best_obj_overall": 7.098541670508558,
+        "metrics": {
+            "20": 4.903111634911667,
+            "50": 9.293971706105449
+        },
+        "code_filepath": "outputs/ael/cvrp_aco/iter17_response0_solution.py",
+        "output_filepath": "outputs/ael/cvrp_aco/iter17_response0_stdout.txt"
+    }
+]

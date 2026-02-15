@@ -1,0 +1,6 @@
+Iteration: 79
+Total number of LLM calls: 800
+Total number of valid responses: 789
+Total number of function evaluations: 800
+Current best objective value: 6.953198722368973
+Current operator: m2

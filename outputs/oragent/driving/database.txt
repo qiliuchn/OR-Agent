@@ -1,0 +1,201 @@
+========================================
+SOLUTION DATABASE VISUALIZATION
+========================================
+Total islands: 4
+Objective type: max
+
+ISLAND 0:
+  Number of clusters: 3
+  Total solutions: 14
+  Best score in island: 7.6031539999999955
+
+  CLUSTER 0:
+    Features: (0, 0, 3)
+    Cluster score: -52.315528
+    Number of solutions: 12
+      Solution 0:
+        Score: -77.917902
+        Code length: 11386
+        ID: 0
+
+      Solution 1:
+        Score: -17.388783
+        Code length: 28368
+        ID: 5
+
+      Solution 2:
+        Score: -42.875790
+        Code length: 21230
+        ID: 9
+
+      Solution 3:
+        Score: -123.201951
+        Code length: 19112
+        ID: 13
+
+      Solution 4:
+        Score: -27.495860
+        Code length: 28182
+        ID: 21
+
+      Solution 5:
+        Score: -17.901776
+        Code length: 27611
+        ID: 23
+
+      Solution 6:
+        Score: -8.969874
+        Code length: 18075
+        ID: 30
+
+      Solution 7:
+        Score: -7.748993
+        Code length: 29369
+        ID: 35
+
+      Solution 8:
+        Score: -25.438958
+        Code length: 26446
+        ID: 38
+
+      Solution 9:
+        Score: -13.375790
+        Code length: 29744
+        ID: 40
+
+      Solution 10:
+        Score: 7.603154
+        Code length: 23163
+        ID: 46
+
+      Solution 11:
+        Score: -273.073818
+        Code length: 26089
+        ID: 50
+
+  CLUSTER 1:
+    Features: (0, 0, 2)
+    Cluster score: -4460.090168
+    Number of solutions: 1
+      Solution 0:
+        Score: -4460.090168
+        Code length: 17335
+        ID: 1
+
+  CLUSTER 2:
+    Features: (0, 0, 1)
+    Cluster score: -4198.868065
+    Number of solutions: 1
+      Solution 0:
+        Score: -4198.868065
+        Code length: 22234
+        ID: 17
+
+----------------------------------------
+ISLAND 1:
+  Number of clusters: 1
+  Total solutions: 4
+  Best score in island: -20.146846000000004
+
+  CLUSTER 0:
+    Features: (0, 0, 3)
+    Cluster score: -171.120198
+    Number of solutions: 4
+      Solution 0:
+        Score: -20.146846
+        Code length: 19790
+        ID: 16
+
+      Solution 1:
+        Score: -134.664769
+        Code length: 24775
+        ID: 48
+
+      Solution 2:
+        Score: -110.068084
+        Code length: 28905
+        ID: 49
+
+      Solution 3:
+        Score: -419.601091
+        Code length: 27615
+        ID: 53
+
+----------------------------------------
+ISLAND 2:
+  Number of clusters: 1
+  Total solutions: 2
+  Best score in island: -20.146846000000004
+
+  CLUSTER 0:
+    Features: (0, 0, 3)
+    Cluster score: -213.618395
+    Number of solutions: 2
+      Solution 0:
+        Score: -20.146846
+        Code length: 19790
+        ID: 16
+
+      Solution 1:
+        Score: -407.089944
+        Code length: 24072
+        ID: 51
+
+----------------------------------------
+ISLAND 3:
+  Number of clusters: 1
+  Total solutions: 8
+  Best score in island: -16.573818000000003
+
+  CLUSTER 0:
+    Features: (0, 0, 3)
+    Cluster score: -70.664478
+    Number of solutions: 8
+      Solution 0:
+        Score: -82.261986
+        Code length: 24452
+        ID: 8
+
+      Solution 1:
+        Score: -70.258189
+        Code length: 21465
+        ID: 12
+
+      Solution 2:
+        Score: -20.146846
+        Code length: 19790
+        ID: 16
+
+      Solution 3:
+        Score: -30.612797
+        Code length: 17278
+        ID: 20
+
+      Solution 4:
+        Score: -156.693888
+        Code length: 28178
+        ID: 47
+
+      Solution 5:
+        Score: -107.618322
+        Code length: 24864
+        ID: 52
+
+      Solution 6:
+        Score: -16.573818
+        Code length: 33492
+        ID: 54
+
+      Solution 7:
+        Score: -81.149979
+        Code length: 17716
+        ID: 55
+
+----------------------------------------
+
+SUMMARY STATISTICS:
+Total solutions across all islands: 28
+Total clusters across all islands: 6
+Average cluster size: 4.67
+Best overall score: 7.603154 (Island 0)
+========================================

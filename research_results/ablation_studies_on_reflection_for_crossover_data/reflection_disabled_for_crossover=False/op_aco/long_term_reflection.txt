@@ -1,0 +1,25 @@
+The cumulative evidence from all experimental series—including the most recent attempts to embed metadata (Exp #1, score: 22.45), dual-channel heuristics (Exp #2, score: 22.38), connectivity-preserving corrections (Exp #3, score: 22.42), global scaling (Exp #4, score: 22.39), and prize-density adjustment (Exp #5, score: 22.42)—has decisively and irreversibly confirmed a foundational principle: **the static heuristic matrix must be exactly prize[j] / distance[i,j]² with fixed top-k sparsification (k = min(max(4, n//4 + 1), n-1)) and nothing else**. Every deviation—regardless of theoretical elegance, computational efficiency, or intuitive appeal—degrades performance relative to the elite baseline (~22.59). This consistency across diverse modification strategies validates that 'static heuristics should bias, not decide.'
+
+Three empirical laws now stand as bedrock principles:
+
+1. **Simplicity Enables Emergence**: The pheromone-heuristic feedback loop in ACO is exquisitely sensitive to any perturbation in the static incentive landscape. Even lightweight, instance-invariant enhancements—such as depot-aware scaling, connectivity guarantees, normalization, selective boosting, dual-matrix architectures, or metadata embedding—fragment ant consensus, suppress emergent coordination, and degrade solution quality. The system thrives on a clean, unambiguous signal.
+
+2. **Sparsity is a Calibrated Constant**: The rule k ≈ n/4 is not a tunable hyperparameter but an evolutionarily stable mechanism that balances exploration and exploitation at the population level. Attempts to adapt sparsification based on feasibility, prize density, global structure, multi-tier pruning, or even minimal connectivity restoration consistently fail, proving its robustness across heterogeneous OP instances.
+
+3. **Implementation Fidelity Equals Performance**: Bit-for-bit reproducibility matters profoundly. Minor differences in diagonal handling (1e-9 vs. inf), selection algorithms (argpartition vs. argsort), vectorization patterns, loop structures, or even auxiliary metadata embedding can cause statistically significant score drops. ACO’s stochasticity amplifies low-level numerical and algorithmic effects into macroscopic performance variance.
+
+Critically, all experiments converge on the same architectural imperative: **the `heuristics` function must remain a pure, static, vectorizable bias generator**, while **all adaptive, budget-aware, or strategic intelligence must reside exclusively in the ant’s runtime transition rule**. This separation preserves the stability required for effective pheromone learning while enabling dynamic responsiveness to problem constraints.
+
+Despite this clarity, three fundamental challenges remain unsolvable by any static approach:
+- **Essential long jumps** to high-prize distant nodes are systematically suppressed by the squared-distance penalty, even when clearly feasible within the budget.
+- **Static rigidity** prevents adaptation to clustered node layouts, skewed prize distributions, or varying distance scales.
+- **Evaluation reliability** is compromised by ACO’s inherent stochasticity, necessitating ≥5 independent runs for trustworthy validation.
+
+The path forward is now unequivocally clear: **innovation must shift entirely from the heuristic matrix to the transition rule**. The consistent failure of all matrix-based alternatives strongly supports four promising directions:
+
+1. **Selective relaxation during construction**: Temporarily switch to prize[j]/distance[i,j] (linear) for the top-m prize nodes (m = max(1, n//10)) only when remaining_budget ≥ distance[current][j] + distance[j][0].
+2. **Hybrid transition policies**: Blend standard and relaxed heuristics using a smooth, budget-proportional weight (e.g., weight = remaining_budget / maxlen).
+3. **Pheromone-informed eligibility**: Use early-iteration visitation frequency to dynamically boost high-prize nodes that are being neglected despite feasibility.
+4. **Instance-level precomputation of m or k**—but applied as fixed parameters to the transition rule, never modifying the returned heuristic matrix.
+
+Any future solution must satisfy three non-negotiable criteria: (i) preserve the exact prize[j]/distance[i,j]² structure with fixed k-sparsification in the returned matrix, (ii) implement all adaptive logic externally in the ACO loop, and (iii) validate against the 22.59 baseline across ≥5 independent runs. The overarching lesson, now validated across ten distinct experimental paradigms spanning normalization, sparsification, boosting, dual-heuristics, feasibility masking, metadata embedding, and connectivity fixes, is that **in ACO for OP, simplicity enables emergence, while complexity disrupts coordination**. The next breakthrough will not come from a richer heuristic—but from a smarter, conditional use of the simplest one.
