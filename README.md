@@ -551,8 +551,10 @@ op_aco           : reevo (1.000), ael (0.916), oragent (0.839), funsearch (0.653
 -----------------------------------------------------------------------------------------------
 ```
 
+
+
 ### Performance on Driving Problem
-OR-Agent significantly outperforms other algorithms.
+
 OR-Agent significantly outperforms all baseline algorithms under constrained running time, achieving a score of 48.00 compared to the highest baseline score of 16.10.
 OR-Agent is the only algorithm can found a solution (score: 90.24) that outperform the SUMO default driving model (score: 85.25) after extended running.
 
@@ -610,8 +612,12 @@ Under heavy traffic case, driving models found baseline algorithms suffers from 
 | Teleports | 0.0 | 0.0 |
 
 
+
+
 ### Solutions found by OR-Agent
-The solutions found be OR-Agent are shared at [oragent best solutions](research_results/oragent_best_solutions/oragent_best_solutions.ipynb). Check [spaghetti code example](research_results/spaghetti_code_example.ipynb) for "spaghetti code" example. Check `research_results/oragent_best_solutions/` for the best solutions found by OR-Agent.
+The solutions found be OR-Agent are shared at [oragent best solutions](research_results/oragent_best_solutions.ipynb). Check [spaghetti code example](research_results/spaghetti_code_example.ipynb) for "spaghetti code" example.
+
+
 
 
 ### Ablations
@@ -647,6 +653,23 @@ We tested four compression levels: 100, 200, and 400 words, plus no explicit com
 
 When parent solutions are randomly sampled from the solution database, we investigate whether long-term reflection should be used during crossover. The supporting view argues that leveraging accumulated knowledge through reflection can accelerate search by building on past insights. The opposing view suggests disabling reflection for crossover, as setting aside past experimental reflections may foster more innovative thinking—akin to scientists thinking "outside the box". We tested both approaches across six problems: (1) using long-term reflection during crossover, and (2) disabling long-term reflection for crossover. Results show each approach outperforms the other in three cases, with no definitive conclusion on the optimal setting.
 ![ablations on long-term reflection usage for crossover](assets/ablation_reflection_for_crossover.png)
+
+
+
+## Share files on experiment result analysis
+- Check [performance comparison on 12 Operation Research Benchmark Problems](research_results/performance_comparision_summary.ipynb) for more details on the performance comparison.
+- Check [metrics, feature and score definition for driving problem](research_results/metrics_feature_score_definitions_for_driving_problem.ipynb) for more details on metrics, features and score definition for driving problem.
+- Check [performance comparisons on driving problem](research_results/performance_comparison_driving.ipynb) for more details.
+- Check [research tree sizes](research_results/research_tree_example.ipynb) for more details on the research tree sizes varying with the branching factor.
+- Check [long-term reflection analysis](research_results/long_term_reflection_analysis.ipynb) for analysis on the long term reflection length.
+- Check [soft reversion example](research_results/soft_reversion_driving_example.ipynb) for sorted reversion example on the driving problem by OR-Agent.
+- Check [termination of unpromising directions](research_results/termination_of_unpromising_directions.ipynb) for analysis on the termination of unpromising directions by OR-Agent.
+- Check [parameter tuning](research_results/parameter_tuning_example.ipynb) for example on parameter tuning by OR-Agent.
+- Check [independent vs coordinated idea generation](research_results/independent_vs_coordinated_idea_generation.ipynb) for comparison between independent and coordinated idea generation by OR-Agent.
+- Check [environment exploration](research_results/environment_exploration_example.ipynb) for example on environment exploration by OR-Agent.
+
+
+
 
 
 
