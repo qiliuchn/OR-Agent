@@ -27,13 +27,8 @@ The OR-Agent framework is illustrated below:
 
 
 
-### Contributors
-Qi Liu, Wanjing Ma
-
-MAGIC Lab, College of Transportation, Tongji University
-
 ### How to cite
-> Liu, Q., and Ma, W., 2026. [TBD]
+> [TBD]
 
 
 ## How It Works
