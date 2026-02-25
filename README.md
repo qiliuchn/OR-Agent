@@ -16,6 +16,12 @@ This is an ongoing project that is continuously being improved. It is open-sourc
 
 
 
+### How to cite
+> Liu, Q., Hao R., Li, C. and Ma, W., 2026. OR-Agent: Bridging Evolutionary Search and Structured Research for Automated Algorithm Discovery. arXiv preprint arXiv:2602.13769.
+
+
+
+
 ## Core Features
 - A multi-agent research framework with **exploratory capabilities** in complex environment, enabling automated scientific discovery in domains with rich experimental settings.
 - A structured **tree-based research workflow** that captures branching hypothesis exploration and systematic backtracking, enabling explicit management of research trajectories rather than relying solely on mutation and crossover iterations.
@@ -27,8 +33,6 @@ The OR-Agent framework is illustrated below:
 
 
 
-### How to cite
-> [TBD]
 
 
 ## How It Works
