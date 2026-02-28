@@ -489,6 +489,7 @@ Note: Baseline models are only provided for benchmarking purposes at `[project_r
 
 
 ### Research Tree Example
+The final research tree during experiment for problem `TPS_POMO`is shown below:
 
 ```
 >[LeadAgent] Final research tree for research round #12:
