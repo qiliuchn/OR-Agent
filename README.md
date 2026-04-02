@@ -31,7 +31,7 @@ This is an ongoing project that is continuously being improved. It is open-sourc
 The OR-Agent framework is illustrated below:
 ![OR-Agent framework](assets/framework.png)
 
-
+The operations research benchmark is shared as [huggingface dataset](https://huggingface.co/datasets/qiliuchn/operations-research).
 
 
 
