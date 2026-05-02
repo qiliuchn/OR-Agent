@@ -521,6 +521,50 @@ Total nodes: 14 | Total expanded solutions: 7 | Total pending leaves: 0 | Total 
 ```
 
 
+### Population Ruin Phenomenon
+
+Without an evolutionary population database, we sometimes observe a phenomenon called "population ruin". In this scenario, a single "good" solution dominates the entire population, but this solution leads to invalid outcomes. For example, improving such a "good" solution would likely result in excessive computation time, causing timeouts hence invalid solutions. This phenomenon has also been observed in AEL and ReEvo, as illustrated in the figure below.
+
+![population ruin](assets/population_ruin.png)
+
+A key motivation for maintaining a persistent evolutionary database is an empirically observed failure mode that we term population ruin. Without an explicit mechanism to preserve diversity and prevent over-concentration, a single seemingly strong solution can rapidly dominate the population, even if it is brittle or invalid under refinement. In practice, such dominance is hazardous because the dominating solution may exhibit degenerate behaviors (e.g., excessive computation leading to timeouts or invalid outputs), and subsequent mutations around this solution can wipe out the remaining viable population, yielding a large fraction of invalid candidates.
+
+This phenomenon is especially pronounced in fixed-size-population evolutionary loops, where elite solutions generate a disproportionately large number of descendants. Consider an extreme setting in which, at every iteration, the current elite produces a fraction $m\in(0,1)$ of the next generation (e.g., via mutation), after which the population is downsampled back to a fixed size. Even under random downsampling, the expected fraction $p_n$ of individuals that are direct elite descendants can be modeled by the recurrence:
+
+$p_{n+1} \;=\; \frac{p_n + m}{1+m}$
+
+Solving yields:
+
+$p_n \;=\; 1 - (1-p_0)\left(\frac{1}{1+m}\right)^n$
+
+which converges exponentially fast to $1$ for any $m>0$. For the illustrative case $m=\tfrac{1}{2}$ and $p_0 \approx 0$, one obtains $p_n \approx 1 - \left(\tfrac{2}{3}\right)^n$, implying that the population can become almost entirely composed of elite descendants within only a few iterations. Figure~\ref{fig:population_ruin.png} shows a representative instance of this failure mode observed in our experiments.  By contrast, the structured database mitigates this collapse by separating populations into islands, clustering solutions into feature bins, and controlling resurfacing via temperature-based sampling.
+
+
+### Default Configuration
+```bash
+python -u src/oragent/cli.py \
+    --algorithm "$ALGORITHM" \
+    --problem "$PROBLEM" \
+    --max-evolutions 500 \
+    --init-pop-size 20 \
+    --num-children 2 \
+    --max-tree-depth 3 \
+    --fast-exploration-for-crossover \
+    --max-debug-rounds 2 \
+    --max-experiment-repeats 3 \
+    --elitist-as-root-period 11 \
+    --elitist-enlargement-factor 2.5 \
+    --reflection-period 0 \
+    --reflection-disabled-for-crossover \
+    --reflection-elitist-synchro \
+    --timeout-seconds 300 \
+```
+
+Check scripts in `tests/` for more details.
+
+
+
+
 ### Results on 12 Operations Research Benchmark Problems
 
 Experiment data is shared at `outputs/` and `research_results/`. Test scripts are available at `tests/` for reproducibility. For detailed results analysis, see the Jupyter notebooks in `research_results/`.
@@ -653,13 +697,6 @@ The solutions found be OR-Agent are shared at [oragent best solutions](research_
 
 
 ### Ablations
-
-**Population Ruin Phenomenon**
-
-Without an evolutionary population database, we sometimes observe a phenomenon called "population ruin". In this scenario, a single "good" solution dominates the entire population, but this solution leads to invalid outcomes. For example, improving such a "good" solution would likely result in excessive computation time, causing timeouts hence invalid solutions. This phenomenon has also been observed in AEL and ReEvo, as illustrated in the figure below.
-
-![population ruin](assets/population_ruin.png)
-
 
 **Ablations on Thinking Depth**
 
