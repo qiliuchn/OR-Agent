@@ -563,6 +563,74 @@ python -u src/oragent/cli.py \
 Check scripts in `tests/` for more details.
 
 
+### Behavioral Observations
+
+Algorithms without deep refinement mechanisms (e.g., FunSearch, AEL) tend to obtain most performance gains within the first 20–50 generations. Initial heuristics are relatively weak and easy to improve upon, but subsequent gains become marginal.
+
+FunSearch, relying primarily on crossovers, exhibits the largest performance variance across problems. In contrast, OR-Agent periodically performs in-depth refinements, resulting in step-like improvements in performance curves.
+
+
+### Computation Characteristics
+
+Compared to prior methods, OR-Agent makes more LLM calls per evaluation because it performs multiple iterative revisions for each candidate solution (approximately three revisions per solution under our experimental configuration).
+
+In our experiments:
+
+* Mutation/crossover-driven baselines (FunSearch, AEL, EoH): ~1:1 ratio between LLM calls and evaluations
+* ReEvo: ~7:5
+* OR-Agent: ~8:5
+
+The increased LLM usage in OR-Agent reflects the additional computational effort required for corrective updates and hierarchical reasoning.
+
+
+### Research Tree Size and Computational Scaling
+
+When research tree depth is unconstrained, completing a full research tree may require substantial runtime, as tree expansion continues as long as performance-improving directions can be identified.
+
+The size of the research tree grows exponentially with the branching factor (i.e., the number of children per node).
+
+* Total solutions generated: all solutions produced during the search process, including those later discarded
+* Total tree nodes: all nodes retained in the tree structure, including those superseded by better solutions
+
+As shown below, increasing num_children from 1 to 4 leads to exponential growth in both tree size and computational time.
+
+All measurements were conducted on a system with:
+
+* 4 × Intel(R) Xeon(R) CPU Max 9468 processors
+* 16 GB RAM
+
+
+Recommendation
+
+* Use num_children = 2–3 for simpler problems
+* Use num_children = 4–5 for more complex problems
+* Scale hardware resources accordingly
+
+In practice:
+
+* Run multiple lead agents in parallel
+* Balance:
+    * Deep exploitation (refinement-focused agents)
+    * Broad exploration (fast-search agents)
+
+
+### Controlling Tree Growth
+
+Tree size can be reduced by retaining only directions that demonstrate sufficiently significant improvement. However, this requires defining a task-dependent threshold, introducing additional hyperparameters.
+
+To avoid such tuning, this work adopts a simpler strategy:
+
+> Impose a maximum tree depth, applied uniformly across all benchmark problems.
+
+
+
+### Effect of Branching Factor on Computational Cost
+
+| num_children | Total solutions generated | Total tree nodes | Returned solutions | Time (hours) |
+|--------------|--------------------------|------------------|--------------------|--------------|
+| 1            | 5–10                     | 2–4              | 1                  | 0.5–1        |
+| 2            | 10–30                    | 4–8              | 2–4                | 1–4          |
+| 4            | 30–80                    | 8–16             | 4–8                | 4–16         |
 
 
 ### Results on 12 Operations Research Benchmark Problems
