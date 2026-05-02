@@ -5,6 +5,43 @@
 ![OR-Agent Overview](assets/overview.png)
 
 
+## Contents
+
+- [Overview](#overview)
+- [Core Features](#core-features)
+- [How It Works](#how-it-works)
+  - [Lead Agent Workflow](#lead-agent-workflow)
+  - [Hierarchical Reflections](#hierarchical-reflections)
+  - [Solution Database Management](#solution-database-management)
+  - [Flow Graph Representation](#flow-graph-representation)
+  - [Experiment Agent Workflow](#experiment-agent-workflow)
+  - [Experiment Agent Interaction with the Problem Environment](#experiment-agent-interaction-with-the-problem-environment)
+  - [Research Modes](#research-modes)
+- [Project Structure](#project-structure)
+- [How To Use](#how-to-use)
+  - [Setup Environment](#setup-environment)
+  - [Specify Your Own Problem](#specify-your-own-problem)
+  - [Configuration](#configuration)
+  - [Run Web UI](#run-web-ui)
+  - [Run Backend](#run-backend)
+  - [Use Package](#use-package)
+- [Research Results](#research-results)
+  - [Benchmark Problems](#benchmark-problems)
+  - [Baseline Algorithms](#baseline-algorithms)
+  - [Research Tree Example](#research-tree-example)
+  - [Population Ruin Phenomenon](#population-ruin-phenomenon)
+  - [Default Configuration](#default-configuration)
+  - [Behavioral Observations](#behavioral-observations)
+  - [Computation Characteristics](#computation-characteristics)
+  - [Research Tree Size and Computational Scaling](#research-tree-size-and-computational-scaling)
+  - [Controlling Tree Growth](#controlling-tree-growth)
+  - [Effect of Branching Factor on Computational Cost](#effect-of-branching-factor-on-computational-cost)
+  - [Results on 12 Operations Research Benchmark Problems](#results-on-12-operations-research-benchmark-problems)
+  - [Performance on Driving Problem](#performance-on-driving-problem)
+  - [Solutions found by OR-Agent](#solutions-found-by-or-agent)
+  - [Ablations](#ablations)
+  - [Experiment Result Analysis Files](#experiment-result-analysis-files)
+- [Open Research Questions and Future Work](#open-research-questions-and-future-work)
 
 
 ## Overview
@@ -793,7 +830,7 @@ When parent solutions are randomly sampled from the solution database, we invest
 
 
 
-## Experiment Result Analysis Files
+### Experiment Result Analysis Files
 - Check [performance comparison on 12 Operation Research Benchmark Problems](research_results/performance_comparision_summary.ipynb) for more details on the performance comparison on 12 Operation Research Benchmark Problems.
 - Check [metrics, feature and score definition for driving problem](research_results/metrics_feature_score_definitions_for_driving_problem.ipynb) for more details on metrics, features and score definition for driving problem.
 - Check [performance comparisons on driving problem](research_results/performance_comparison_driving.ipynb) for more details on the performance comparison on driving problem.
