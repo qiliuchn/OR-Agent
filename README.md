@@ -637,6 +637,19 @@ All measurements were conducted on a system with:
 * 16 GB RAM
 
 
+Table: Effect of branching factor (number of children) on computational requirements for one complete research round.
+
+| num_children | Total solutions generated | Total tree nodes | Returned solutions | Time (h) |
+|--------------|--------------------------|------------------|--------------------|----------|
+| 1            | 5–10                     | 2–4              | 1                  | 0.5–1    |
+| 2            | 10–30                    | 4–8              | 2–4                | 1–4      |
+| 4            | 30–80                    | 8–16             | 4–8                | 4–16     |
+
+
+Figure: Illustration of how research tree sizes vary with branching factor num_children when tree depth is not explicitly constrained
+
+![fig:research tree sizes](assets/research_tree_sizes.png)
+
 Recommendation
 
 * Use num_children = 2–3 for simpler problems
