@@ -4,6 +4,8 @@
 
 This benchmark is adapted from [**ReEvo**](https://ai4co.github.io/reevo/)[1], which originally consists of six types of combinatorial optimization problems (COPs). We have extended the benchmark by adding a cooperative driving problem that involves complex simulation environments using [SUMO](https://eclipse.dev/sumo/).
 
+This benchmark is also shared at [Huggingface](https://huggingface.co/datasets/qiliuchn/operations-research).
+
 ## Table of Contents
 
 1. [Types of Functions to Evolve](#types-of-functions-to-evolve)
