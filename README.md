@@ -54,7 +54,7 @@ This is an ongoing project that is continuously being improved. It is open-sourc
 
 
 ### How to cite
-> Liu, Q., Hao R., Li, C. and Ma, W., 2026. OR-Agent: Bridging Evolutionary Search and Structured Research for Automated Algorithm Discovery. arXiv preprint arXiv:2602.13769.
+[TBD]
 
 
 
