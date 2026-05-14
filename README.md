@@ -50,7 +50,7 @@ Open Research Agent (OR-Agent) is a research agent originally developed for solv
 This work is inspired by [FunSearch](https://github.com/google-deepmind/funsearch/tree/main), [ReEvo](https://ai4co.github.io/reevo/), [AI Researcher](https://github.com/HKUDS/AI-Researcher), and [AI Scientist](https://github.com/SakanaAI/AI-Scientist). 
 This is an ongoing project that is continuously being improved. It is open-sourced under the `Apache 2.0` license, and contributions from practitioners are warmly welcome!
 
-The benchmark for this paper is placed at `problems/`, and it's also shared at [HuggingFace OR Benchmark](https://huggingface.co/datasets/qiliuchn/operations-research).
+The benchmark for this paper is available locally at `problems/` and on [HuggingFace OR Benchmark](https://huggingface.co/datasets/qiliuchn/operations-research). The local copy is archived, while the HuggingFace version will continue to be updated.
 
 
 ### How to cite
