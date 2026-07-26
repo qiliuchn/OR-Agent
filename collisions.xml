@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-07-24T19:12:55.744775+08:00 by Eclipse SUMO sumo 1.27.1
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/Users/liuqi/Desktop/or_agent/problems/driving/dataset/case_1.net.xml"/>
+        <route-files value="/Users/liuqi/Desktop/or_agent/problems/driving/dataset/case_1.rou.xml,/Users/liuqi/Desktop/or_agent/problems/driving/dataset/ case_1_demand.rou.xml"/>
+    </input>
+
+    <output>
+        <collision-output value="collisions.xml"/>
+        <statistic-output value="stats.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="600"/>
+        <step-length value="1.0"/>
+    </time>
+
+    <processing>
+        <collision.action value="warn"/>
+    </processing>
+
+    <report>
+        <no-warnings value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <ssm_device>
+        <device.ssm.probability value="1.0"/>
+        <device.ssm.measures value="TTC"/>
+        <device.ssm.thresholds value="1.5"/>
+        <device.ssm.file value="/Users/liuqi/Desktop/or_agent/ssm.xml"/>
+    </ssm_device>
+
+    <traci_server>
+        <remote-port value="53362"/>
+    </traci_server>
+
+</sumoConfiguration>
+-->
+
+<collisions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/collision_file.xsd">
+    <collision time="56.00" type="collision" lane="E0_1" pos="40.97" collider="veh_4_44_0" victim="veh_6_43_0" colliderType="truck" victimType="truck" colliderSpeed="7.35" victimSpeed="5.51" colliderFront="54.57,-4.80" colliderBack="47.47,-4.80" victimFront="63.89,-4.80" victimBack="56.79,-4.80"/>
+    <collision time="281.00" type="side" lane="E0_1" pos="37.62" collider="veh_1_271_0" victim="veh_3_269_0" colliderType="passenger" victimType="passenger" colliderSpeed="13.89" victimSpeed="8.23" colliderFront="51.22,-4.80" colliderBack="46.22,-4.80" victimFront="56.58,-4.80" victimBack="51.58,-4.80"/>
+    <collision time="316.00" type="side" lane="E0_1" pos="63.83" collider="veh_3_303_0" victim="veh_0_305_0" colliderType="passenger" victimType="passenger" colliderSpeed="7.19" victimSpeed="4.89" colliderFront="77.43,-4.80" colliderBack="72.43,-4.80" victimFront="82.17,-4.80" victimBack="77.17,-4.80"/>
+    <collision time="327.00" type="side" lane="E0_1" pos="50.17" collider="veh_6_313_0" victim="veh_0_316_0" colliderType="truck" victimType="passenger" colliderSpeed="7.71" victimSpeed="8.14" colliderFront="63.77,-4.80" colliderBack="56.67,-4.80" victimFront="70.90,-4.80" victimBack="65.90,-4.80"/>
+    <collision time="394.00" type="side" lane="E0_1" pos="24.60" collider="veh_1_365_0" victim="veh_5_367_0" colliderType="passenger" victimType="truck" colliderSpeed="10.73" victimSpeed="4.85" colliderFront="38.20,-4.80" colliderBack="33.20,-4.80" victimFront="45.49,-4.80" victimBack="38.39,-4.80"/>
+    <collision time="404.00" type="side" lane="E0_1" pos="45.79" collider="veh_4_386_0" victim="veh_6_367_0" colliderType="passenger" victimType="passenger" colliderSpeed="4.13" victimSpeed="0.00" colliderFront="59.39,-4.80" colliderBack="54.39,-4.80" victimFront="65.50,-4.80" victimBack="60.50,-4.80"/>
+    <collision time="433.00" type="side" lane="E0_1" pos="42.47" collider="veh_0_417_1" victim="veh_5_398_0" colliderType="passenger" victimType="passenger" colliderSpeed="7.32" victimSpeed="4.47" colliderFront="56.07,-4.80" colliderBack="51.07,-4.80" victimFront="63.54,-4.80" victimBack="58.54,-4.80"/>
+</collisions>
