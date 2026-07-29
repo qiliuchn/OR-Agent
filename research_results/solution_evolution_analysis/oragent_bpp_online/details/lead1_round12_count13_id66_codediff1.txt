@@ -1,0 +1,7 @@
+<<<<<<< SEARCH
+        # Find which bins have post-placement capacities in the relevant range
+        relevant_bin_mask = (relevant_caps >= min_relevant) | (relevant_caps <= max_relevant)
+=======
+        # Find which bins have post-placement capacities in the relevant range
+        relevant_bin_mask = (relevant_caps >= min_relevant) & (relevant_caps <= max_relevant)
+>>>>>>> REPLACE

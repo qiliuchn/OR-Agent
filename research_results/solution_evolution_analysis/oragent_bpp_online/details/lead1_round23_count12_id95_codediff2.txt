@@ -1,0 +1,16 @@
+<<<<<<< SEARCH
+    # Calculate adaptive penalty strength based on both entropy and fragmentation index
+    # High entropy suggests scattered capacities (more fragmentation risk)
+    # High fragmentation index means many bins already in problematic range
+    # Use a more conservative approach: start with the proven 0.1 and make small adjustments
+    base_penalty = 0.1
+    entropy_factor = min(normalized_entropy * 0.3, 0.2)  # Limit impact of entropy
+    frag_factor = min(current_fragmentation_index * 0.4, 0.2)  # Limit impact of current fragmentation
+    adaptive_penalty_strength = base_penalty * (1.0 + entropy_factor - frag_factor * 0.5)  # Reduce penalty when current fragmentation is high
+    
+    # Cap the penalty strength to prevent it from becoming too dominant
+    adaptive_penalty_strength = min(max(adaptive_penalty_strength, 0.05), 0.25)
+=======
+    # Use fixed penalty strength based on parent solution's success
+    adaptive_penalty_strength = 0.1
+>>>>>>> REPLACE

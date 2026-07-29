@@ -1,0 +1,41 @@
+<<<<<<< SEARCH
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Use exponential decay function exp(-distance) to create a score that's high when distance is low
+        distances_to_multiples = np.min([
+            np.abs(feasible_post_caps - n * common_size) 
+            for n in range(0, int(np.max(feasible_post_caps) // common_size) + 2)
+        ], axis=0)
+        
+        # Add to the score (higher score for closer matches)
+        # Use exponential decay for smoother gradient
+        feasible_scores += np.exp(-distances_to_multiples * 0.1)  # Scale factor of 0.1 to control decay rate
+    
+    # Also add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -post_placement_caps  # Higher score for less remaining space
+    
+    # Combine both components with adjusted weights
+    combined_scores = feasible_scores + 0.05 * best_fit_component  # Slightly reduced weight for best fit
+=======
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Use exponential decay function exp(-distance) to create a score that's high when distance is low
+        distances_to_multiples = np.min([
+            np.abs(feasible_post_caps - n * common_size) 
+            for n in range(0, int(np.max(feasible_post_caps) // common_size) + 2)
+        ], axis=0)
+        
+        # Add to the score (higher score for closer matches)
+        # Use exponential decay for smoother gradient
+        feasible_scores += np.exp(-distances_to_multiples * 0.05)  # Reduced scale factor for slower decay
+    
+    # Also add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -post_placement_caps  # Higher score for less remaining space
+    
+    # Combine both components with adjusted weights
+    combined_scores = feasible_scores + 0.08 * best_fit_component  # Slightly increased weight for best fit
+>>>>>>> REPLACE

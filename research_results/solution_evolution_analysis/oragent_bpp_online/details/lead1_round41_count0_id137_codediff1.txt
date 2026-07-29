@@ -1,0 +1,63 @@
+<<<<<<< SEARCH
+    # Calculate multiple fit score based on dynamic common sizes using piecewise scoring
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples_list = []
+                for n in range(0, max_multiplier):
+                    distances_to_multiples_list.append(np.abs(feasible_post_caps - n * common_size))
+                
+                if distances_to_multiples_list:
+                    distances_to_multiples = np.min(distances_to_multiples_list, axis=0)
+                    
+                    # Define threshold as 5% of the common size
+                    tau = 0.05 * common_size
+                    
+                    # Piecewise scoring function with continuity at threshold
+                    # For distances <= tau, use exponential decay: exp(-alpha * distance)
+                    # For distances > tau, use linear decay starting from the exponential value at tau
+                    small_gap_mask = distances_to_multiples <= tau
+                    
+                    # Calculate scores for small gaps (exponential decay)
+                    small_gap_scores = np.exp(-alpha * distances_to_multiples[small_gap_mask])
+                    
+                    # Calculate scores for large gaps (linear decay starting from the value at tau boundary)
+                    # To ensure continuity, start from the exponential value at tau and apply a shifted linear decay
+                    exp_at_tau = np.exp(-alpha * tau)
+                    large_gap_scores = exp_at_tau / (1.0 + (distances_to_multiples[~small_gap_mask] - tau))
+                    
+                    # Create full scores array
+                    temp_scores = np.zeros_like(distances_to_multiples, dtype=float)
+                    temp_scores[small_gap_mask] = small_gap_scores
+                    temp_scores[~small_gap_mask] = large_gap_scores
+                    
+                    # Add to the total score
+                    multiple_fit_score += temp_scores
+=======
+    # Calculate multiple fit score based on dynamic common sizes using standard inverse-distance scoring
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples_list = []
+                for n in range(0, max_multiplier):
+                    distances_to_multiples_list.append(np.abs(feasible_post_caps - n * common_size))
+                
+                if distances_to_multiples_list:
+                    distances_to_multiples = np.min(distances_to_multiples_list, axis=0)
+                    
+                    # Use standard inverse-distance scoring as in Parent #2
+                    # Add to the score (higher score for closer matches)
+                    multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

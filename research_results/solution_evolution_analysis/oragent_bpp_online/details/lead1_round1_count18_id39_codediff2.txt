@@ -1,0 +1,21 @@
+<<<<<<< SEARCH
+    # Combine both components
+    # Using smaller weight for best fit component to balance between multiple-based scoring and best fit
+    # Based on parent solution analysis, 0.05 worked well, but let's try slightly different values
+    feasible_scores = multiple_fit_score + 0.04 * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+=======
+    # Combine both components
+    # Using smaller weight for best fit component to balance between multiple-based scoring and best fit
+    # Based on recent experiments showing 0.04 works better than 0.05, let's try 0.035
+    feasible_scores = multiple_fit_score + 0.035 * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+>>>>>>> REPLACE

@@ -1,0 +1,34 @@
+<<<<<<< SEARCH
+    # Estimate common item sizes based on the current item
+    # Consider the current item size and its common fractions/multiples
+    current_item = item
+    estimated_common_sizes = [
+        current_item, 
+        current_item * 0.5,   # half size
+        current_item * 0.75,  # three quarters
+        current_item * 0.9,   # 90% size
+        current_item * 1.1,   # 110% size
+        current_item * 1.25,  # 1.25x size
+        current_item * 1.5,   # 1.5x size
+        current_item * 0.25,  # quarter size
+        current_item * 2.0    # double size
+    ]
+=======
+    # Estimate common item sizes based on the current item
+    # Consider the current item size and its common fractions/multiples
+    current_item = item
+    estimated_common_sizes = [
+        current_item, 
+        current_item * 0.5,   # half size
+        current_item * 0.75,  # three quarters
+        current_item * 0.9,   # 90% size
+        current_item * 1.1,   # 110% size
+        current_item * 1.25,  # 1.25x size
+        current_item * 1.5,   # 1.5x size
+        current_item * 0.25,  # quarter size
+        current_item * 2.0,   # double size
+        current_item * 0.33,  # one third
+        current_item * 0.66,  # two thirds
+        current_item * 1.33   # four thirds
+    ]
+>>>>>>> REPLACE

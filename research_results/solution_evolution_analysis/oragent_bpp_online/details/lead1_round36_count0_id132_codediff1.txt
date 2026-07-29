@@ -1,0 +1,142 @@
+<<<<<<< SEARCH
+    # Simulate detection of dominant item sizes in the instance
+    # Since we don't have access to previous items directly, we'll infer likely modes
+    # from the current state of bins and item size
+    inferred_modes = []
+    
+    # Look for potential common sizes in the current bin state
+    if len(bins_remain_cap) > 0:
+        # Find common divisors in the remaining capacities
+        unique_caps = np.unique(bins_remain_cap[bins_remain_cap > 1e-9])  # Filter out near-zero capacities
+        
+        # If there are some meaningful remaining capacities, try to find common patterns
+        if len(unique_caps) > 0:
+            # Look for dominant sizes that might indicate common item sizes
+            # We'll add some common fractions/multiples of the current item and typical bin sizes
+            typical_bin_size = np.mean(bins_remain_cap) if len(bins_remain_cap) > 0 else 100
+            inferred_modes.extend([
+                typical_bin_size * 0.1,  # Common small fraction
+                typical_bin_size * 0.25, # Quarter
+                typical_bin_size * 0.5,  # Half
+                typical_bin_size * 0.33, # Third
+                typical_bin_size * 0.67, # Two-thirds
+                item * 0.5,              # Half of current item
+                item * 0.25,             # Quarter of current item
+                item * 0.75,             # Three-quarters of current item
+                item * 1.5,              # 1.5x current item
+                item * 2.0,              # 2x current item
+            ])
+    
+    # Augment the base embeddings with inferred modes
+    augmented_embeddings = {
+        'large': base_embeddings['large'].copy(),
+        'small': base_embeddings['small'].copy(),
+        'medium': base_embeddings['medium'].copy()
+    }
+    
+    # Add inferred modes and their fractions/multiples to the embedding for each category
+    for mode in inferred_modes:
+        if mode > 1e-9:  # Avoid adding very small values
+            augmented_embeddings['large'].extend([
+                mode, mode * 0.5, mode * 0.25, mode * 0.75, 
+                mode * 0.33, mode * 0.67, mode * 1.5, mode * 2.0,
+                mode * 0.125, mode * 0.167, mode * 0.833
+            ])
+            augmented_embeddings['small'].extend([
+                mode, mode * 0.5, mode * 0.25, mode * 0.75, 
+                mode * 0.33, mode * 0.67, mode * 1.5, mode * 2.0,
+                mode * 0.125, mode * 0.167, mode * 0.833
+            ])
+            augmented_embeddings['medium'].extend([
+                mode, mode * 0.5, mode * 0.25, mode * 0.75, 
+                mode * 0.33, mode * 0.67, mode * 1.5, mode * 2.0,
+                mode * 0.125, mode * 0.167, mode * 0.833
+            ])
+
+    # Adaptive weights based on the current item category
+    adaptive_weights = {
+        'large': (0.25, 0.75),   
+        'small': (0.0005, 1.195),  
+        'medium': (0.07, 0.93)   
+    }
+    
+    # Select the appropriate multipliers and weights based on the determined category
+    selected_common_sizes = augmented_embeddings[item_category]
+    best_fit_weight, multiple_fit_weight = adaptive_weights[item_category]
+=======
+    # Adaptive weights based on the current item category
+    adaptive_weights = {
+        'large': (0.25, 0.75),   
+        'small': (0.0005, 1.195),  
+        'medium': (0.07, 0.93)   
+    }
+    
+    # Select the appropriate multipliers and weights based on the determined category
+    selected_common_sizes = base_embeddings[item_category]
+    best_fit_weight, multiple_fit_weight = adaptive_weights[item_category]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # To avoid performance issues, limit the number of common sizes considered
+    # Take only the first N elements of the augmented embeddings to keep performance reasonable
+    limited_common_sizes = selected_common_sizes[:min(len(selected_common_sizes), 100)]
+    
+    for common_size in limited_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                # Use a small epsilon to avoid division by zero
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine both components with adaptive weights
+    feasible_scores = multiple_fit_weight * multiple_fit_score + best_fit_weight * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+=======
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in selected_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                # Use a small epsilon to avoid division by zero
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine both components with adaptive weights
+    feasible_scores = multiple_fit_weight * multiple_fit_score + best_fit_weight * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+>>>>>>> REPLACE

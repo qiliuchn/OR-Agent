@@ -1,0 +1,50 @@
+<<<<<<< SEARCH
+    # Calculate entropy of the remaining capacity distribution to measure fragmentation risk
+    # First, normalize the capacities to create a probability distribution
+    positive_caps = feasible_post_caps[feasible_post_caps > 0]  # Only consider positive capacities
+    if len(positive_caps) > 0:
+        # Create a normalized distribution by dividing by sum
+        cap_sum = np.sum(positive_caps)
+        if cap_sum > 0:
+            prob_dist = positive_caps / cap_sum
+            # Calculate entropy H = -sum(p * log(p)) where p > 0
+            non_zero_probs = prob_dist[prob_dist > 0]
+            entropy = -np.sum(non_zero_probs * np.log(non_zero_probs + 1e-10))  # Add small epsilon to prevent log(0)
+            # Normalize entropy by max possible entropy (log(n)) to keep in [0, 1] range
+            max_possible_entropy = np.log(len(positive_caps)) if len(positive_caps) > 1 else 1e-10
+            normalized_entropy = entropy / max_possible_entropy if max_possible_entropy > 0 else 0
+        else:
+            normalized_entropy = 0
+    else:
+        # When all remaining capacities are zero or no feasible bins exist beyond those already checked
+        normalized_entropy = 0
+    
+    # Original feasible post placement caps for calculations
+    feasible_post_caps = post_placement_caps[feasible_bins]
+=======
+    # Calculate post-placement remaining capacities for the feasible bins
+    feasible_post_caps_original = post_placement_caps[feasible_bins]
+    
+    # Calculate entropy of the remaining capacity distribution to measure fragmentation risk
+    # First, normalize the capacities to create a probability distribution
+    positive_caps = feasible_post_caps_original[feasible_post_caps_original > 0]  # Only consider positive capacities
+    if len(positive_caps) > 0:
+        # Create a normalized distribution by dividing by sum
+        cap_sum = np.sum(positive_caps)
+        if cap_sum > 0:
+            prob_dist = positive_caps / cap_sum
+            # Calculate entropy H = -sum(p * log(p)) where p > 0
+            non_zero_probs = prob_dist[prob_dist > 0]
+            entropy = -np.sum(non_zero_probs * np.log(non_zero_probs + 1e-10))  # Add small epsilon to prevent log(0)
+            # Normalize entropy by max possible entropy (log(n)) to keep in [0, 1] range
+            max_possible_entropy = np.log(len(positive_caps)) if len(positive_caps) > 1 else 1e-10
+            normalized_entropy = entropy / max_possible_entropy if max_possible_entropy > 0 else 0
+        else:
+            normalized_entropy = 0
+    else:
+        # When all remaining capacities are zero or no feasible bins exist beyond those already checked
+        normalized_entropy = 0
+    
+    # Keep the original feasible post placement caps for later calculations
+    feasible_post_caps = feasible_post_caps_original
+>>>>>>> REPLACE

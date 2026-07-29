@@ -1,0 +1,165 @@
+<<<<<<< SEARCH
+    # Compute context-sensitive uncertainty indicators
+    non_empty_caps = bins_remain_cap[bins_remain_cap > 0]
+    
+    # Uncertainty indicator 1: Coefficient of variation of bin remainders
+    if len(non_empty_caps) > 1:
+        cap_std = np.std(non_empty_caps)
+        cap_mean = np.mean(non_empty_caps)
+        cv_remainders = cap_std / cap_mean if cap_mean > 0 else 0
+    else:
+        cv_remainders = 0  # Low uncertainty if few bins
+    
+    # Uncertainty indicator 2: Item size relative to typical bin capacity
+    if len(non_empty_caps) > 0:
+        typical_capacity = np.median(non_empty_caps)
+        # Calculate how much the item deviates from typical capacity
+        item_ratio = item / typical_capacity
+        # Use log to make the scale more meaningful for very large or small items
+        item_z_score = abs(np.log(item_ratio + 1e-8))  # Adding small value to avoid log(0)
+    else:
+        item_z_score = 0
+    
+    # Compute sigmoidal gate value based on uncertainty indicators
+    # Higher uncertainty leads to more Best-Fit influence
+    # Scale the uncertainty indicators to be more meaningful
+    normalized_cv = np.clip(cv_remainders, 0, 2.0)  # Cap coefficient of variation
+    normalized_z_score = np.clip(item_z_score, 0, 2.0)  # Cap z-score
+    uncertainty_score = 0.5 * normalized_cv + 0.5 * normalized_z_score
+    
+    # Sigmoid to get gate value between 0 and 1
+    # Using a standard sigmoid: gate_value = 1 / (1 + exp(-k*(x-threshold)))
+    # Where k controls steepness and threshold centers the transition
+    gate_value = 1 / (1 + np.exp(-4 * (uncertainty_score - 0.8)))  # Steeper curve, centered at 0.8
+    # Clamp gate value to [0, 1] to ensure proper interpolation
+    gate_value = np.clip(gate_value, 0, 1)
+    
+    # Determine strategy weights based on the gate value
+    # When gate_value is high (high uncertainty), lean towards Best Fit
+    # When gate_value is low (low uncertainty), lean towards adaptive strategy
+    best_fit_blend_factor = gate_value
+    adaptive_blend_factor = 1 - gate_value
+=======
+    # Detect uncertainty conditions similar to parent solution
+    # Condition 1: High fragmentation - variance in bin capacities is high
+    non_empty_caps = bins_remain_cap[bins_remain_cap > 0]
+    if len(non_empty_caps) > 1:
+        cap_variance = np.var(non_empty_caps)
+        cap_mean = np.mean(non_empty_caps)
+        # Normalize variance to detect high fragmentation
+        normalized_variance = cap_variance / (cap_mean**2) if cap_mean > 0 else 0
+        high_fragmentation = normalized_variance > 0.5  # Same threshold as parent solution
+    else:
+        high_fragmentation = False
+    
+    # Calculate a measure of how much the current item deviates from typical remaining capacity
+    if len(non_empty_caps) > 0:
+        typical_capacity = np.median(non_empty_caps)
+        item_outlier = item > 3 * typical_capacity or item < 0.1 * typical_capacity
+    else:
+        item_outlier = False
+    
+    # Adjust strategy based on uncertainty conditions, similar to parent solution
+    if high_fragmentation or item_outlier:
+        # High uncertainty: fall back to more conservative Best Fit
+        # Reduce reliance on common-size matching, emphasize immediate fit
+        
+        # Conservative common sizes for uncertain situations
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25
+        ]
+        
+        # Increase Best Fit weight, decrease multiple fit weight
+        best_fit_weight_adaptive = 0.3  # Higher emphasis on immediate fit
+        # Reduce emphasis on predictive matching
+        multiple_fit_weight_adaptive = 0.7  # Reduced emphasis on predictive matching
+        
+        # Also modify the pure Best Fit approach for consistency
+        best_fit_component_fallback = -feasible_post_caps  # Higher score for less remaining space after placement
+        best_fit_score = best_fit_component_fallback
+        
+        # Blend with more emphasis on Best Fit in uncertain situations
+        best_fit_blend_factor = 0.6
+        adaptive_blend_factor = 0.4
+        
+    else:
+        # Normal conditions: use adaptive quantile-based strategy from parent solution
+        if item_percentile > 0.75:  # Item is relatively large compared to remaining capacities
+            # Focus on best-fit strategy with emphasis on avoiding fragmentation
+            estimated_common_sizes = [
+                item,
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25,
+                item * 0.33,
+                item * 0.67,
+                item * 2.0,
+                item * 0.25   # Add smaller fraction for better utilization
+            ]
+            
+            # Weight for best-fit component should be higher for large items
+            best_fit_weight_adaptive = 0.20
+            # Reduce emphasis on multiple fitting since we prioritize filling bins
+            multiple_fit_weight_adaptive = 0.80
+            
+        elif item_percentile < 0.25:  # Item is relatively small compared to remaining capacities
+            # Focus on fine-grained fractional multipliers to optimize space usage
+            estimated_common_sizes = [
+                item, 
+                item * 0.5, 
+                item * 0.25, 
+                item * 0.75, 
+                item * 0.33, 
+                item * 0.67,
+                item * 1.5,
+                item * 0.125,  # Very fine granularity for small items
+                item * 0.875,   
+                item * 0.167,   # 1/6 fraction
+                item * 0.833,   # 5/6 fraction
+                item * 0.2,     # 1/5 fraction
+                item * 0.4,     # 2/5 fraction
+                item * 0.6,     # 3/5 fraction
+                item * 0.8,     # 4/5 fraction
+                item * 0.1,     # Even finer granularity
+                item * 0.9,     # 9/10 fraction
+                item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                item * 0.375    # 3/8 fraction
+            ]
+            
+            # For small items, reduce best-fit emphasis and increase multiple fitting
+            best_fit_weight_adaptive = 0.003
+            multiple_fit_weight_adaptive = 1.17
+            
+        else:  # Item is medium-sized relative to remaining capacities
+            # Balanced approach with moderate granularity
+            estimated_common_sizes = [
+                item,
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25,
+                item * 0.33,
+                item * 0.67,
+                item * 0.25,
+                item * 0.1,   
+                item * 1.75,   
+                item * 0.2,
+                item * 0.4,
+                item * 0.6,
+                item * 0.8,
+                item * 1.1     # Slightly over 1x for near-full bins
+            ]
+            
+            # Balanced weights
+            best_fit_weight_adaptive = 0.06
+            multiple_fit_weight_adaptive = 0.94
+        
+        # In normal conditions, blend more toward adaptive strategy
+        best_fit_blend_factor = 0.4
+        adaptive_blend_factor = 0.6
+>>>>>>> REPLACE

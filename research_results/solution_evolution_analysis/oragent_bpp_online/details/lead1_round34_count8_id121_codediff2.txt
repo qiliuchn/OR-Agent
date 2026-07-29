@@ -1,0 +1,5 @@
+<<<<<<< SEARCH
+        max_multiplier = min(max_multiplier, 10)  # Limit for efficiency
+=======
+        max_multiplier = min(max_multiplier, 20)  # Increase back to original limit
+>>>>>>> REPLACE

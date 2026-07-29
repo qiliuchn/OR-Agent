@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round45_count9_id150_eval.py", line 11, in <module>
+    import lead1_round45_count9_id150_solution as solution_module  # Note: solution module script is generated and saved on the fly
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round45_count9_id150_solution.py", line 100
+    =======
+    ^
+SyntaxError: invalid syntax

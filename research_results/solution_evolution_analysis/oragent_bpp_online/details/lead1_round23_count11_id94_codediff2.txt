@@ -1,0 +1,42 @@
+<<<<<<< SEARCH
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine both components with enhanced weights
+    feasible_scores = multiple_fit_weight * multiple_fit_score + best_fit_weight * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+=======
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Add utilization-based penalty to discourage mid-sized gaps
+    # Calculate utilization ratio (how much of the bin capacity is used)
+    bin_utilization = (item / (bins_remain_cap[feasible_bins] + item))
+    
+    # Penalize moderate utilization ratios that create inefficient gaps
+    # High penalty for utilization around 0.3-0.7 where bins become partially filled
+    # but not efficiently utilized
+    utilization_penalty = np.where(
+        (bin_utilization > 0.3) & (bin_utilization < 0.7),
+        -0.1 * np.abs(bin_utilization - 0.5),  # Penalty increases as utilization moves away from 0.5
+        0.0
+    )
+    
+    # Combine all components with enhanced weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component +
+        0.05 * utilization_penalty  # Small weight for utilization penalty
+    )
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+>>>>>>> REPLACE

@@ -1,0 +1,18 @@
+<<<<<<< SEARCH
+        # Use a Gaussian-like function for scoring to give higher importance to very close matches
+        # sigma controls the width of the function - smaller sigma gives sharper decay
+        sigma = common_size * 0.1  # 10% of the common size as the standard deviation
+        gaussian_scores = np.exp(-0.5 * (distances_to_multiples / sigma) ** 2)
+        
+        # Add to the score (higher score for closer matches to multiples)
+        feasible_scores += gaussian_scores
+=======
+        # Use a Gaussian-like function for scoring to give higher importance to very close matches
+        # sigma controls the width of the function - smaller sigma gives sharper decay
+        # Using a smaller sigma for tighter focus on very close matches
+        sigma = common_size * 0.05  # 5% of the common size as the standard deviation (tighter focus)
+        gaussian_scores = np.exp(-0.5 * (distances_to_multiples / sigma) ** 2)
+        
+        # Add to the score (higher score for closer matches to multiples)
+        feasible_scores += gaussian_scores
+>>>>>>> REPLACE

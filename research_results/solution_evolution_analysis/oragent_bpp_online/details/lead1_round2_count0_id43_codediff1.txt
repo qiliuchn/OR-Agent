@@ -1,0 +1,182 @@
+<<<<<<< SEARCH
+import numpy as np
+from typing import Dict, Tuple, List, Any
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Adaptive priority function that dynamically switches between multiple heuristic strategies
+    (Best Fit, Worst Fit, and piecewise linear approach) based on real-time packing density
+    and item size distribution statistics. Tracks the variance of bin remaining capacities
+    and the ratio of small-to-large items seen so far; uses these metrics to weight different
+    scoring components, favoring tight packing when items are large and uniform, and preserving
+    space when many small items are expected.
+    
+    Implementation idea:
+    - Compute statistics about the current state: variance of remaining capacities, 
+      distribution of item sizes seen
+    - Combine multiple heuristics with adaptive weights based on these statistics
+    - Best Fit component: favors bins with least remaining space after placement
+    - Worst Fit component: favors bins with most remaining space (preserves flexibility)
+    - Piecewise component: balances between tight and loose fits based on remaining capacity
+    
+    Args:
+        item: Size of the item to be placed
+        bins_remain_cap: Array of remaining capacities of available bins
+        
+    Returns:
+        Array of priority scores for each bin (higher score means higher priority)
+    """
+    # Initialize the scores array
+    scores = np.zeros_like(bins_remain_cap, dtype=float)
+    
+    # Check which bins are feasible (can fit the item)
+    feasible = bins_remain_cap >= item
+    
+    # If no bins are feasible, return scores with -inf for all positions
+    if not np.any(feasible):
+        return np.full_like(bins_remain_cap, -np.inf)
+    
+    # Calculate remaining space after placing the item
+    remaining_after_placement = bins_remain_cap - item
+    
+    # --- Compute adaptive weights based on current state ---
+    
+    # Variance of remaining capacities - high variance means uneven packing
+    if len(bins_remain_cap) > 1:
+        cap_variance = np.var(bins_remain_cap)
+        max_cap = np.max(bins_remain_cap)
+        # Normalize variance relative to max capacity
+        normalized_variance = cap_variance / (max_cap ** 2) if max_cap > 0 else 0
+    else:
+        normalized_variance = 0
+    
+    # Heuristic: when variance is high, prefer worst-fit to balance capacities
+    # when variance is low, either tight packing (best-fit) or the piecewise approach might work
+    variance_based_weight = min(0.5, normalized_variance)  # Limit influence
+    
+    # --- Calculate individual heuristic components ---
+    
+    # Component 1: Best Fit (minimize remaining space after placement)
+    # Higher priority for bins with less space left after placing item
+    best_fit_scores = np.where(feasible, -remaining_after_placement, -np.inf)
+    
+    # Component 2: Worst Fit (maximize remaining space after placement)
+    # Higher priority for bins with more space left after placing item
+    worst_fit_scores = np.where(feasible, remaining_after_placement, -np.inf)
+    
+    # Component 3: Piecewise linear approach (from Parent #1 concept)
+    # Prioritize bins with moderate remaining space after placement
+    piecewise_scores = np.zeros_like(bins_remain_cap, dtype=float)
+    
+    # Define thresholds for the piecewise function
+    optimal_fit_threshold = item * 0.5  # Allow buffer beyond item size
+    very_tight_threshold = item * 0.1   # Very tight fits get lower priority
+    
+    for i in range(len(bins_remain_cap)):
+        if feasible[i]:
+            remaining = remaining_after_placement[i]
+            
+            # If remaining space is very small (tight fit), give low priority
+            if remaining <= very_tight_threshold:
+                piecewise_scores[i] = remaining  # Low score proportional to remaining space
+            
+            # If remaining space is moderate (optimal range), give high priority
+            elif remaining <= optimal_fit_threshold:
+                # Higher score for more remaining space in this range
+                piecewise_scores[i] = remaining + 1.0  # Boost score in optimal range
+            
+            # If remaining space is large (loose fit), give medium priority
+            else:
+                # Medium score that decreases as space gets larger
+                piecewise_scores[i] = 1.0 / (1.0 + remaining)  # Decreasing function of remaining space
+    
+    # --- Combine the components adaptively ---
+    # Use variance-based weight to adjust between strategies
+    # When variance is high, prefer worst-fit to even out bin usage
+    # When variance is low, blend best-fit and piecewise approaches
+    
+    # Base weights
+    best_fit_weight = 0.4 - variance_based_weight * 0.3  # Reduce best-fit weight when variance is high
+    worst_fit_weight = 0.3 + variance_based_weight * 0.4  # Increase worst-fit weight when variance is high
+    piecewise_weight = 0.3 + variance_based_weight * 0.3  # Adjust piecewise weight accordingly
+    
+    # Ensure weights sum to 1.0
+    total_weight = best_fit_weight + worst_fit_weight + piecewise_weight
+    if total_weight > 0:
+        best_fit_weight /= total_weight
+        worst_fit_weight /= total_weight
+        piecewise_weight /= total_weight
+    
+    # Combine the scores using the computed weights
+    combined_scores = (
+        best_fit_weight * best_fit_scores +
+        worst_fit_weight * worst_fit_scores +
+        piecewise_weight * piecewise_scores
+    )
+    
+    # For infeasible bins, assign negative infinity to ensure they're never chosen
+    scores = np.where(feasible, combined_scores, -np.inf)
+    
+    return scores
+=======
+import numpy as np
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Adaptive priority function based on parent solution #2 with improved randomness control.
+    Uses Best Fit as the base heuristic with controlled randomness to escape local optima,
+    but with a more sophisticated approach to determine when to add randomness based on
+    packing density and bin utilization.
+    
+    This approach combines the effectiveness of Best Fit heuristic with controlled randomness 
+    to explore alternative packing configurations when beneficial, potentially leading to 
+    better global packing efficiency.
+    
+    Args:
+        item: Size of the item to be placed
+        bins_remain_cap: Array of remaining capacities for available bins
+        
+    Returns:
+        Array of priority scores for each bin (higher score means higher priority)
+    """
+    # Calculate initial statistics
+    initial_capacity = np.max(bins_remain_cap) if len(bins_remain_cap) > 0 else item
+    active_bins_count = len(bins_remain_cap)  # Number of bins that can fit the current item
+    
+    # Calculate packing density: how full the available bins are on average
+    if len(bins_remain_cap) > 0:
+        avg_remaining_ratio = np.mean(bins_remain_cap) / initial_capacity
+        packing_density = 1.0 - avg_remaining_ratio  # How much of the capacity is used
+    else:
+        packing_density = 0.0
+    
+    scores = np.zeros_like(bins_remain_cap, dtype=float)
+    
+    # Determine feasibility
+    feasible = bins_remain_cap >= item
+    
+    # Apply Best Fit as base heuristic (higher priority to bins with less remaining space)
+    remaining_after_placement = bins_remain_cap - item
+    base_scores = np.where(feasible, -remaining_after_placement, -np.inf)
+    
+    # Determine when to add randomness based on multiple factors
+    # Factor 1: Number of available bins (more bins = more opportunity for exploration)
+    # Factor 2: Packing density (high density may benefit from exploration)
+    # Factor 3: Relative item size (small items in nearly full bins may benefit from exploration)
+    should_add_randomness = (
+        active_bins_count > 3 and  # At least a few bins to choose from
+        (packing_density > 0.6 or active_bins_count > 10)  # High density or many bins active
+    )
+    
+    if should_add_randomness:
+        # Add small random perturbation to break ties and explore alternatives
+        # Make noise scale dependent on bin capacity and current state
+        noise_scale = 0.02 * initial_capacity * (1.0 + packing_density)  # Scale with density
+        random_noise = np.random.uniform(-noise_scale, noise_scale, size=bins_remain_cap.shape)
+        scores = base_scores + np.where(feasible, random_noise, 0.0)
+    else:
+        # Use pure Best Fit heuristic when conditions don't warrant randomness
+        scores = base_scores
+    
+    return scores
+>>>>>>> REPLACE

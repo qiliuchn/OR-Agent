@@ -1,0 +1,49 @@
+<<<<<<< SEARCH
+    # For feasible bins, calculate priority based on how close the remaining capacity is to common sizes
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Consider multiples: 0, 1x, 2x, 3x, etc. of the common size
+        max_multiple = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiple <= 0:
+            continue  # Skip if no multiples make sense
+            
+        # Calculate distances to all relevant multiples
+        distance_matrix = np.zeros((max_multiple, len(feasible_post_caps)))
+        for n in range(0, max_multiple):
+            distance_matrix[n] = np.abs(feasible_post_caps - n * common_size)
+        
+        # Find minimum distance across all multiples
+        distances_to_multiples = np.min(distance_matrix, axis=0)
+        
+        # Use the proven 1/(1+distance) scoring function from parent solution
+        # Higher score for closer matches to multiples
+        feasible_scores += 1.0 / (1.0 + distances_to_multiples)
+=======
+    # For feasible bins, calculate priority based on how close the remaining capacity is to common sizes
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Consider multiples: 0, 1x, 2x, 3x, etc. of the common size
+        max_multiple = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiple <= 0:
+            continue  # Skip if no multiples make sense
+            
+        # Calculate distances to all relevant multiples
+        distance_matrix = np.zeros((max_multiple, len(feasible_post_caps)))
+        for n in range(0, max_multiple):
+            distance_matrix[n] = np.abs(feasible_post_caps - n * common_size)
+        
+        # Find minimum distance across all multiples
+        distances_to_multiples = np.min(distance_matrix, axis=0)
+        
+        # Use the proven 1/(1+distance) scoring function from parent solution
+        # Higher score for closer matches to multiples
+        feasible_scores += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

@@ -1,0 +1,20 @@
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/oragent/bpp_online/standard_mode14/details/lead1_round1_count19_id40_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2033.8
+	 Lower bound on optimum: 1996.4
+	 Excess: 1.87%
+[*] Average:
+1.873372069725499
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2039.0, 'val_1': 2039.0, 'val_2': 2036.0, 'val_3': 2020.0, 'val_4': 2035.0}
+__METRICS_END__
+__FEATURES_START__
+(2039, 2039, 2036, 2020, 2035)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2033.8)
+__SCORE_END__
+__SANDBOX_SUCCESS__

@@ -1,0 +1,17 @@
+<<<<<<< SEARCH
+    # Combine all components with appropriate weights
+    # Based on parent solution analysis, balancing different heuristics works well
+    combined_scores = (
+        0.7 * best_fit_scores +      # Best fit remains important
+        0.4 * mode_scores +          # Mode detection for adaptive patterns
+        0.1 * diversity_scores       # Mild diversity encouragement
+    )
+=======
+    # Combine all components with appropriate weights
+    # Increase weight of mode detection based on parent solution success with multiple matching
+    combined_scores = (
+        0.5 * best_fit_scores +      # Reduced best fit to allow more exploration
+        0.7 * mode_scores +          # Increased mode detection weight like parent's multiple matching
+        0.1 * diversity_scores       # Mild diversity encouragement
+    )
+>>>>>>> REPLACE

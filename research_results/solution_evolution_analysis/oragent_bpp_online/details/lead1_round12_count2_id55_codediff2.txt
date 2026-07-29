@@ -1,0 +1,35 @@
+<<<<<<< SEARCH
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiplier > 0:
+            # Calculate distances to all possible multiples
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_multiplier)
+            ], axis=0)
+            
+            # Add to the score (higher score for closer matches)
+            # Use a small epsilon to avoid division by zero
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+=======
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiplier > 0:
+            # Calculate distances to all possible multiples
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_multiplier)
+            ], axis=0)
+            
+            # Use exponential decay for smoother scoring - closer matches get exponentially higher scores
+            # This provides better differentiation than the inverse linear function
+            multiple_fit_score += np.exp(-distances_to_multiples / (common_size * 0.1))
+>>>>>>> REPLACE

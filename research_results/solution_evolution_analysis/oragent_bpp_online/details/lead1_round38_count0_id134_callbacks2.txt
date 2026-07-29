@@ -1,0 +1,7 @@
+# Determine where the current item fits relative to these quartiles
+if item <= q25:
+    item_category = 'small'
+elif item <= q75:
+    item_category = 'medium'
+else:
+    item_category = 'large'

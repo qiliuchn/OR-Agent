@@ -1,0 +1,79 @@
+<<<<<<< SEARCH
+    # 2. Mode detection component: identify useful capacity patterns from existing bins
+    mode_scores = np.zeros(n_feasible)
+    
+    if n_feasible > 0:
+        # Identify quantiles of current bin capacities to find common patterns
+        # Use 0.25, 0.5, 0.75 quantiles to find common capacity patterns
+        unique_caps = np.unique(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+        
+        if len(unique_caps) > 0:
+            # Identify meaningful capacity levels that appear frequently
+            # Use quantiles to find natural groupings
+            q25 = np.quantile(unique_caps, 0.25) if len(unique_caps) > 1 else np.mean(unique_caps)
+            q50 = np.quantile(unique_caps, 0.50) if len(unique_caps) > 1 else np.mean(unique_caps)
+            q75 = np.quantile(unique_caps, 0.75) if len(unique_caps) > 1 else np.mean(unique_caps)
+            
+            # Define target capacity levels based on observed patterns
+            target_levels = [q25, q50, q75]
+            # Also include some common ratios that might emerge
+            max_cap = np.max(unique_caps)
+            target_levels.extend([max_cap * 0.1, max_cap * 0.2, max_cap * 0.3, 
+                                  max_cap * 0.4, max_cap * 0.6, max_cap * 0.8, 
+                                  max_cap * 0.9])
+            
+            # Remove duplicates and zeros
+            target_levels = list(set([level for level in target_levels if level > 0]))
+            
+            # For each feasible bin, calculate how well its post-placement capacity matches targets
+            for target in target_levels:
+                # Distance to target - closer is better
+                distances = np.abs(feasible_post_caps - target)
+                # Convert to similarity scores (higher for closer matches)
+                similarities = 1.0 / (1.0 + distances)
+                # Add to mode scores
+                mode_scores += similarities
+=======
+    # 2. Mode detection component: identify useful capacity patterns from existing bins
+    # This combines information from both current bin patterns and the current item
+    mode_scores = np.zeros(n_feasible)
+    
+    if n_feasible > 0:
+        # Identify quantiles of current bin capacities to find common patterns
+        # Use 0.25, 0.5, 0.75 quantiles to find common capacity patterns
+        unique_caps = np.unique(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+        
+        if len(unique_caps) > 0:
+            # Identify meaningful capacity levels that appear frequently
+            # Use quantiles to find natural groupings
+            q25 = np.quantile(unique_caps, 0.25) if len(unique_caps) > 1 else np.mean(unique_caps)
+            q50 = np.quantile(unique_caps, 0.50) if len(unique_caps) > 1 else np.mean(unique_caps)
+            q75 = np.quantile(unique_caps, 0.75) if len(unique_caps) > 1 else np.mean(unique_caps)
+            
+            # Define target capacity levels based on observed patterns
+            target_levels = [q25, q50, q75]
+            # Also include some common ratios that might emerge
+            max_cap = np.max(unique_caps)
+            target_levels.extend([max_cap * 0.1, max_cap * 0.2, max_cap * 0.3, 
+                                  max_cap * 0.4, max_cap * 0.6, max_cap * 0.8, 
+                                  max_cap * 0.9])
+            
+            # Additionally, include patterns based on the current item to match parent solution effectiveness
+            # Consider common multiples of the current item that might be useful for future packing
+            current_item = item
+            item_based_targets = [current_item, current_item * 0.9, current_item * 1.1, 
+                                  current_item * 0.5, current_item * 1.5, current_item * 0.75, current_item * 1.25]
+            target_levels.extend([target for target in item_based_targets if target > 0])
+            
+            # Remove duplicates and zeros
+            target_levels = list(set([level for level in target_levels if level > 0]))
+            
+            # For each feasible bin, calculate how well its post-placement capacity matches targets
+            for target in target_levels:
+                # Distance to target - closer is better
+                distances = np.abs(feasible_post_caps - target)
+                # Convert to similarity scores (higher for closer matches)
+                similarities = 1.0 / (1.0 + distances)
+                # Add to mode scores
+                mode_scores += similarities
+>>>>>>> REPLACE

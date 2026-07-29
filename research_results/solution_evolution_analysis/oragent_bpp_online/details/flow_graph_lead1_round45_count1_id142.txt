@@ -1,0 +1,14 @@
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [92 (2014.60)]
+    ├── ✓ Node 141 (2014.60)
+    ├── ○ Node 142 (2071.20)
+    ├── ✓ Node 143 (2014.60)
+    └── ○ Node 144 (2074.00)
+========================================
+Total nodes: 5 | Total expanded solutions: 1 | Total pending leaves: 2 | Total terminal leaves: 2

@@ -1,0 +1,36 @@
+<<<<<<< SEARCH
+    # Combine all components with appropriate weights
+    # Empirically chosen weights to balance the different strategies
+    combined_scores = (
+        1.0 * best_fit_scores +     # Best fit is important
+        0.3 * diversity_scores +    # Moderate diversity encouragement  
+        0.5 * multiple_matching_scores  # Support for useful capacity multiples
+    )
+=======
+    # Combine all components with appropriate weights
+    # Adjusted weights based on parent solution performance
+    combined_scores = (
+        0.8 * best_fit_scores +     # Best fit is important but not dominant
+        0.2 * diversity_scores +    # Moderate diversity encouragement  
+        0.7 * multiple_matching_scores  # Increased weight for multiple matching like parent
+    )
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # Instead of O(n^2) pairwise comparisons, use statistical measures
+    diversity_scores = np.zeros(n_feasible)
+    if n_feasible > 1:
+        mean_cap = np.mean(feasible_post_caps)
+        # Bins with capacities far from the mean get higher diversity scores
+        # This encourages spreading out remaining capacities
+        diversity_scores = np.abs(feasible_post_caps - mean_cap)
+=======
+    # Instead of O(n^2) pairwise comparisons, use statistical measures
+    diversity_scores = np.zeros(n_feasible)
+    if n_feasible > 1:
+        mean_cap = np.mean(feasible_post_caps)
+        # Bins with capacities far from the mean get higher diversity scores
+        # This encourages spreading out remaining capacities
+        # Normalize to prevent dominance over other components
+        std_cap = np.std(feasible_post_caps) if np.std(feasible_post_caps) > 0 else 1.0
+        diversity_scores = np.abs(feasible_post_caps - mean_cap) / (std_cap + 1e-8)
+>>>>>>> REPLACE

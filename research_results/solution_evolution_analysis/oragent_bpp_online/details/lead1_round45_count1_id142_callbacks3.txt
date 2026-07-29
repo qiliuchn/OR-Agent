@@ -1,0 +1,2 @@
+if len(unique_caps) <= 10:  # Only use remainder fractions if not too many unique caps
+    # ... code to populate remainder_fractions

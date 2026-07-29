@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+                # Calculate scores for large gaps (linear decay starting from the value at tau boundary)
+                large_gap_scores = 1.0 / (1.0 + distances_to_multiples[~small_gap_mask])
+                
+                # Create full scores array
+                temp_scores = np.zeros_like(distances_to_multiples, dtype=float)
+=======
+                # Calculate scores for large gaps (linear decay starting from the value at tau boundary)
+                # To ensure continuity, start from the exponential value at tau and apply a shifted linear decay
+                exp_at_tau = np.exp(-alpha * tau)
+                large_gap_scores = exp_at_tau / (1.0 + (distances_to_multiples[~small_gap_mask] - tau))
+                
+                # Create full scores array
+                temp_scores = np.zeros_like(distances_to_multiples, dtype=float)
+>>>>>>> REPLACE

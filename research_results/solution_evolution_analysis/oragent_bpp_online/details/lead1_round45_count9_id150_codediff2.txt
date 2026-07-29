@@ -1,0 +1,39 @@
+<<<<<<< SEARCH
+        # Create common sizes based on item and Farey fractions of remaining capacities
+        # Focus on more relevant common sizes for the expensive path
+        common_sizes = [item, np.mean(feasible_caps) if len(feasible_caps) > 0 else item]
+        for fraction in farey_sequence:
+            if fraction > 0:  # Avoid zero-sized elements
+                common_sizes.extend([
+                    item * fraction,
+                    item * (1 + fraction),
+                    item * (1 - fraction) if fraction < 1 else item,
+                    np.mean(feasible_caps) * fraction if len(feasible_caps) > 0 else item,
+                    np.median(feasible_caps) * fraction if len(feasible_caps) > 0 else item
+                ])
+        common_sizes = np.array(common_sizes)
+        common_sizes = common_sizes[common_sizes > 1e-6]  # Remove very small values
+=======
+        # Generate Farey sequence up to adaptive order - optimized version
+        farey_sequence = []
+        for q in range(1, farey_order + 1):
+            for p in range(0, q + 1):
+                if np.gcd(p, q) == 1:  # Only include reduced fractions
+                    farey_sequence.append(p / q)
+        farey_sequence = np.array(list(set(farey_sequence)))  # Remove duplicates
+        
+        # Create common sizes based on item and Farey fractions of remaining capacities
+        # Focus on more relevant common sizes for the expensive path
+        common_sizes = [item, np.mean(feasible_caps) if len(feasible_caps) > 0 else item]
+        for fraction in farey_sequence:
+            if fraction > 0 and fraction <= 1:  # Avoid zero-sized elements and keep reasonable ranges
+                common_sizes.extend([
+                    item * fraction,
+                    item * (1 + fraction),
+                    item * (1 - fraction) if fraction < 1 else item,
+                    np.mean(feasible_caps) * fraction if len(feasible_caps) > 0 else item,
+                    np.median(feasible_caps) * fraction if len(feasible_caps) > 0 else item
+                ])
+        common_sizes = np.array(common_sizes)
+        common_sizes = common_sizes[common_sizes > 1e-6]  # Remove very small values
+>>>>>>> REPLACE

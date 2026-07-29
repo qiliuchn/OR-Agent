@@ -1,0 +1,11 @@
+if len(feasible_post_caps) > 0:
+    # Filter positive remainders
+    pos_caps = feasible_post_caps[feasible_post_caps > 1e-9]
+    
+    if len(pos_caps) > 0:
+        # ... logic that creates dynamic_common_sizes
+    else:
+        # If no positive caps, use fallback
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5, 100.0])
+else:
+    dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5, 100.0])

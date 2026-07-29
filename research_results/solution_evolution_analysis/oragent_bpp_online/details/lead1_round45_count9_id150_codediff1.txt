@@ -1,0 +1,199 @@
+<<<<<<< SEARCH
+        # Generate Farey sequence up to adaptive order
+        farey_sequence = []
+        for q in range(1, farey_order + 1):
+            for p in range(0, q + 1):
+                if np.gcd(p, q) == 1:  # Only include reduced fractions
+                    farey_sequence.append(p / q)
+        farey_sequence = np.array(list(set(farey_sequence)))  # Remove duplicates
+        
+        # Create common sizes based on item and Farey fractions of remaining capacities
+        common_sizes = []
+        for fraction in farey_sequence:
+            common_sizes.extend([
+                item,
+                item * fraction,
+                item * (1 + fraction),
+                item * (1 - fraction) if fraction < 1 else item,
+                np.mean(feasible_caps) * fraction if len(feasible_caps) > 0 else item
+            ])
+        common_sizes = np.array(common_sizes)
+        common_sizes = common_sizes[common_sizes > 1e-6]  # Remove very small values
+=======
+        # Generate Farey sequence up to adaptive order - optimized version
+        farey_sequence = []
+        for q in range(1, farey_order + 1):
+            for p in range(0, q + 1):
+                if np.gcd(p, q) == 1:  # Only include reduced fractions
+                    farey_sequence.append(p / q)
+        farey_sequence = np.array(list(set(farey_sequence)))  # Remove duplicates
+        
+        # Create common sizes based on item and Farey fractions of remaining capacities
+        # Focus on more relevant common sizes for the expensive path
+        common_sizes = [item, np.mean(feasible_caps) if len(feasible_caps) > 0 else item]
+        for fraction in farey_sequence:
+            if fraction > 0:  # Avoid zero-sized elements
+                common_sizes.extend([
+                    item * fraction,
+                    item * (1 + fraction),
+                    item * (1 - fraction) if fraction < 1 else item,
+                    np.mean(feasible_caps) * fraction if len(feasible_caps) > 0 else item,
+                    np.median(feasible_caps) * fraction if len(feasible_caps) > 0 else item
+                ])
+        common_sizes = np.array(common_sizes)
+        common_sizes = common_sizes[common_sizes > 1e-6]  # Remove very small values
+=======
+        # Generate Farey sequence up to adaptive order - optimized version
+        farey_sequence = []
+        for q in range(1, farey_order + 1):
+            for p in range(0, q + 1):
+                if np.gcd(p, q) == 1:  # Only include reduced fractions
+                    farey_sequence.append(p / q)
+        farey_sequence = np.array(list(set(farey_sequence)))  # Remove duplicates
+        
+        # Create common sizes based on item and Farey fractions of remaining capacities
+        # Focus on more relevant common sizes for the expensive path
+        common_sizes = [item, np.mean(feasible_caps) if len(feasible_caps) > 0 else item]
+        for fraction in farey_sequence:
+            if fraction > 0 and fraction <= 1:  # Avoid zero-sized elements and keep reasonable ranges
+                common_sizes.extend([
+                    item * fraction,
+                    item * (1 + fraction),
+                    item * (1 - fraction) if fraction < 1 else item,
+                    np.mean(feasible_caps) * fraction if len(feasible_caps) > 0 else item,
+                    np.median(feasible_caps) * fraction if len(feasible_caps) > 0 else item
+                ])
+        common_sizes = np.array(common_sizes)
+        common_sizes = common_sizes[common_sizes > 1e-6]  # Remove very small values
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        # Multiple-fit scoring using Farey-based common sizes
+        multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+        
+        for common_size in common_sizes:
+            # Calculate distance to nearest multiple of the common size
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 3 if common_size > 0 else 0
+            max_multiplier = min(max_multiplier, 8)  # Limit computation
+            
+            if max_multiplier > 0:
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier + 1)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+=======
+        # Multiple-fit scoring using Farey-based common sizes
+        multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+        
+        # More efficient multiple-fit scoring with reduced computation
+        for common_size in common_sizes:
+            # Calculate distance to nearest multiple of the common size
+            max_multiplier = min(int(np.max(feasible_post_caps) // common_size) + 2, 6) if common_size > 0 else 0  # Reduced from 8 to 6
+            
+            if max_multiplier > 0:
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier + 1)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    else:
+        # Fast-path: Simplified Node 92 heuristic for routine placements
+        # Calculate item percentile among all bins
+        sorted_all_caps = np.sort(bins_remain_cap)
+        item_percentile = np.searchsorted(sorted_all_caps, item) / len(sorted_all_caps) if len(sorted_all_caps) > 0 else 0.5
+        
+        # Simple scoring components
+        best_fit_component = -feasible_post_caps  # Higher score for less remaining space after placement
+        
+        # Simplified multiple-fit scoring using basic common sizes
+        basic_common_sizes = np.array([
+            item, item * 0.5, item * 1.5, item * 0.25, item * 0.75, item * 1.25,
+            item * 2.0, np.mean(feasible_caps) * 0.5 if len(feasible_caps) > 0 else item
+        ])
+        basic_common_sizes = basic_common_sizes[basic_common_sizes > 1e-6]
+        
+        multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+        
+        for common_size in basic_common_sizes:
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, 4)  # Limited range for speed
+            ], axis=0)
+            
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+        
+        # Weight determination based on item percentile
+        if item_percentile > 0.82:  # Very large item
+            best_fit_weight, multiple_fit_weight = 0.25, 0.75
+        elif item_percentile < 0.18:  # Very small item
+            best_fit_weight, multiple_fit_weight = 0.001, 1.194
+        elif item_percentile > 0.62:  # Large-medium item
+            best_fit_weight, multiple_fit_weight = 0.14, 0.86
+        elif item_percentile < 0.38:  # Small-medium item
+            best_fit_weight, multiple_fit_weight = 0.025, 1.055
+        else:  # True medium item
+            best_fit_weight, multiple_fit_weight = 0.08, 0.92
+        
+        # Combine components for fast-path case
+        feasible_scores = best_fit_weight * best_fit_component + multiple_fit_weight * multiple_fit_score
+=======
+    else:
+        # Fast-path: Simplified Node 92 heuristic for routine placements
+        # Calculate item percentile among all bins
+        sorted_all_caps = np.sort(bins_remain_cap)
+        item_percentile = np.searchsorted(sorted_all_caps, item) / len(sorted_all_caps) if len(sorted_all_caps) > 0 else 0.5
+        
+        # Simple scoring components
+        best_fit_component = -feasible_post_caps  # Higher score for less remaining space after placement
+        
+        # Simplified multiple-fit scoring using basic common sizes
+        basic_common_sizes = np.array([
+            item, item * 0.5, item * 1.5, item * 0.25, item * 0.75, item * 1.25,
+            item * 2.0, np.mean(feasible_caps) * 0.5 if len(feasible_caps) > 0 else item,
+            np.median(feasible_caps) * 0.5 if len(feasible_caps) > 0 else item
+        ])
+        basic_common_sizes = basic_common_sizes[basic_common_sizes > 1e-6]
+        
+        multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+        
+        for common_size in basic_common_sizes:
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, 3)  # Reduced from 4 to 3 for speed
+            ], axis=0)
+            
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+        
+        # Weight determination based on item percentile - adjusted for better balance
+        if item_percentile > 0.82:  # Very large item
+            best_fit_weight, multiple_fit_weight = 0.30, 0.70  # Increased best-fit weight for large items
+        elif item_percentile < 0.18:  # Very small item
+            best_fit_weight, multiple_fit_weight = 0.002, 1.192  # Slightly adjusted
+        elif item_percentile > 0.62:  # Large-medium item
+            best_fit_weight, multiple_fit_weight = 0.16, 0.84  # Slightly adjusted
+        elif item_percentile < 0.38:  # Small-medium item
+            best_fit_weight, multiple_fit_weight = 0.03, 1.05  # Slightly adjusted
+        else:  # True medium item
+            best_fit_weight, multiple_fit_weight = 0.10, 0.90  # Slightly adjusted
+        
+        # Combine components for fast-path case
+        feasible_scores = best_fit_weight * best_fit_component + multiple_fit_weight * multiple_fit_score
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # Determine if this is a high-leverage scenario requiring expensive computation
+    # High leverage if item is large relative to typical bin capacity or few feasible bins
+    item_ratio = item / np.mean(bins_remain_cap) if len(bins_remain_cap) > 0 else 0
+    is_high_leverage = item_ratio > 0.4 or len(feasible_post_caps) < 3
+=======
+    # Determine if this is a high-leverage scenario requiring expensive computation
+    # High leverage if item is large relative to typical bin capacity or few feasible bins
+    item_ratio = item / np.mean(bins_remain_cap) if len(bins_remain_cap) > 0 else 0
+    # Adjusted threshold to better target problematic instances
+    is_high_leverage = item_ratio > 0.35 or len(feasible_post_caps) < 4  # Changed from 0.4 to 0.35 and 3 to 4
+>>>>>>> REPLACE

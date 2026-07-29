@@ -1,0 +1,20 @@
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/oragent/bpp_online/standard_mode14/details/lead1_round12_count18_id71_file_
+mode: val
+weibull_5k_val.pickle
+	 Average number of bins: 2020.6
+	 Lower bound on optimum: 1996.4
+	 Excess: 1.21%
+[*] Average:
+1.2121819274694359
+__SANDBOX_RESULT__
+__METRICS_START__
+{'val_0': 2026.0, 'val_1': 2026.0, 'val_2': 2023.0, 'val_3': 2007.0, 'val_4': 2021.0}
+__METRICS_END__
+__FEATURES_START__
+(2026, 2026, 2023, 2007, 2021)
+__FEATURES_END__
+__SCORE_START__
+np.float64(2020.6)
+__SCORE_END__
+__SANDBOX_SUCCESS__

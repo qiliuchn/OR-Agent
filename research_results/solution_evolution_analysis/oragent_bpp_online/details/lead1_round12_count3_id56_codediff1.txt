@@ -1,0 +1,75 @@
+<<<<<<< SEARCH
+    # Detect uncertainty conditions
+    # Condition 1: High fragmentation - variance in bin capacities is high
+    non_empty_caps = bins_remain_cap[bins_remain_cap > 0]
+    if len(non_empty_caps) > 1:
+        cap_variance = np.var(non_empty_caps)
+        cap_mean = np.mean(non_empty_caps)
+        # Normalize variance to detect high fragmentation
+        normalized_variance = cap_variance / (cap_mean**2) if cap_mean > 0 else 0
+        high_fragmentation = normalized_variance > 0.5  # Threshold for high fragmentation
+    else:
+        high_fragmentation = False
+    
+    # Calculate a measure of how much the current item deviates from typical remaining capacity
+    if len(non_empty_caps) > 0:
+        typical_capacity = np.median(non_empty_caps)
+        item_outlier = item > 3 * typical_capacity or item < 0.1 * typical_capacity
+    else:
+        item_outlier = False
+=======
+    # Detect uncertainty conditions
+    # Condition 1: High fragmentation - variance in bin capacities is high
+    non_empty_caps = bins_remain_cap[bins_remain_cap > 0]
+    if len(non_empty_caps) > 1:
+        cap_variance = np.var(non_empty_caps)
+        cap_mean = np.mean(non_empty_caps)
+        # Normalize variance to detect high fragmentation
+        normalized_variance = cap_variance / (cap_mean**2) if cap_mean > 0 else 0
+        high_fragmentation = normalized_variance > 0.7  # Increased threshold for high fragmentation
+    else:
+        high_fragmentation = False
+    
+    # Calculate a measure of how much the current item deviates from typical remaining capacity
+    if len(non_empty_caps) > 0:
+        typical_capacity = np.median(non_empty_caps)
+        item_outlier = item > 4 * typical_capacity or item < 0.05 * typical_capacity  # Stricter outlier detection
+    else:
+        item_outlier = False
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # Adjust strategy based on uncertainty conditions
+    if high_fragmentation or item_outlier:
+        # High uncertainty: fall back to more conservative Best Fit
+        # Reduce reliance on common-size matching, emphasize immediate fit
+        
+        # Conservative common sizes for uncertain situations
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25
+        ]
+        
+        # Increase Best Fit weight, decrease multiple fit weight
+        best_fit_weight = 0.3  # Higher emphasis on immediate fit
+        multiple_fit_weight = 0.7  # Reduced emphasis on predictive matching
+=======
+    # Adjust strategy based on uncertainty conditions
+    if high_fragmentation or item_outlier:
+        # High uncertainty: fall back to more conservative Best Fit
+        # Reduce reliance on common-size matching, emphasize immediate fit
+        
+        # Conservative common sizes for uncertain situations
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 0.75,
+            item * 1.25
+        ]
+        
+        # Increase Best Fit weight, decrease multiple fit weight
+        best_fit_weight = 0.4  # Even higher emphasis on immediate fit
+        multiple_fit_weight = 0.6  # Further reduced emphasis on predictive matching
+>>>>>>> REPLACE

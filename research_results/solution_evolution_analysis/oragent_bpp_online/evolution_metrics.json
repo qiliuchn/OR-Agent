@@ -1,0 +1,55 @@
+{
+  "run_totals": {
+    "research_rounds": 45,
+    "solution_count": 802,
+    "llm_calls": 802,
+    "valid_responses": 775,
+    "function_evaluations": 544
+  },
+  "objective": {
+    "lower_bound": 1996.4,
+    "initial_incumbent": 2080.0,
+    "final_incumbent": 2014.6,
+    "absolute_improvement": 65.40000000000009,
+    "initial_excess_percent": 4.187537567621714,
+    "final_excess_percent": 0.9116409537166809,
+    "fraction_of_initial_gap_closed_percent": 78.22966507177053,
+    "largest_single_improvement": 39.0
+  },
+  "timing": {
+    "first_solution_creation_time": "2026-01-19T23:01:51+08:00",
+    "final_best_creation_time": "2026-01-20T20:48:47+08:00",
+    "last_detail_artifact_creation_time": "2026-01-21T15:53:33+08:00",
+    "run_artifact_span_hours": 40.861666666666665,
+    "final_best_elapsed_hours": 21.782222222222224,
+    "post_final_best_hours": 19.079444444444444,
+    "post_final_best_llm_calls": 363,
+    "post_final_best_function_evaluations": 239
+  },
+  "code_artifacts": {
+    "saved_solution_files": 157,
+    "parseable_solution_files": 156,
+    "syntax_invalid_files": [
+      "lead1_round45_count9_id150_solution.py"
+    ],
+    "unique_whole_ast_structures": 135,
+    "duplicate_ast_groups": 16,
+    "files_in_duplicate_ast_groups": 37
+  },
+  "principal_tree_edges": {
+    "rounds": [
+      1,
+      12,
+      23,
+      34,
+      45
+    ],
+    "edges_in_graphs": 51,
+    "parseable_parent_child_edges": 50,
+    "skipped_edges": 1,
+    "mean_ast_similarity": 0.7680654733698937,
+    "median_ast_similarity": 0.7642744958962407,
+    "minimum_ast_similarity": 0.28524945770065074,
+    "maximum_ast_similarity": 1.0
+  }
+}

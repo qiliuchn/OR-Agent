@@ -1,0 +1,107 @@
+<<<<<<< SEARCH
+    # Monte Carlo lookahead simulation: estimate future costs for each feasible bin
+    lookahead_scores = np.zeros_like(post_placement_caps, dtype=float)
+    
+    # Number of synthetic future items to simulate for lookahead
+    num_lookahead_items = 3
+    # Sample synthetic items from a distribution based on current remainders
+    if len(non_zero_caps) > 0:
+        # Create a distribution of synthetic items based on current remainder profile
+        # Using a simple approach: sample from the non-zero capacities as they represent typical item sizes
+        for i in range(len(post_placement_caps)):
+            # Simulate placing the current item in bin i
+            temp_bins = np.copy(bins_remain_cap)
+            temp_bins[feasible_bins][i] -= item  # Place current item in this bin
+            
+            # Run lookahead simulation
+            total_future_bins_used = 0
+            
+            for sim_idx in range(num_lookahead_items):
+                # Sample a synthetic item based on current remainder profile
+                # Use KDE-inspired approach: sample from existing non-zero remainders with some noise
+                if len(temp_bins[temp_bins > 0]) > 0:
+                    # Sample from current non-zero bin capacities with some variation
+                    synthetic_item = np.random.choice(temp_bins[temp_bins > 0]) * np.random.uniform(0.3, 0.8)
+                    # Ensure synthetic item is positive and not too large
+                    synthetic_item = max(min(synthetic_item, np.max(temp_bins)), 1e-6)
+                else:
+                    # Fallback to a reasonable value based on original capacity
+                    original_capacity = np.max(bins_remain_cap) if len(bins_remain_cap) > 0 else 100.0
+                    synthetic_item = original_capacity * np.random.uniform(0.1, 0.5)
+                
+                # Simulate placement of synthetic item using a simple proxy heuristic (best-fit)
+                valid_bins_for_synthetic = temp_bins >= synthetic_item
+                if np.any(valid_bins_for_synthetic):
+                    # Best-fit proxy: select bin with minimum remaining capacity after placement
+                    temp_remaining_after_placement = np.where(valid_bins_for_synthetic, 
+                                                              temp_bins - synthetic_item, 
+                                                              np.inf)
+                    best_bin_idx = np.argmin(temp_remaining_after_placement)
+                    temp_bins[best_bin_idx] -= synthetic_item
+                    total_future_bins_used += 1
+                else:
+                    # Need a new bin for the synthetic item
+                    total_future_bins_used += 1
+            
+            # The lookahead score is inversely related to future bin usage (fewer bins is better)
+            # So we subtract this cost from our base priority
+            lookahead_scores[i] = -total_future_bins_used  # Negative because more future bins = worse choice
+    
+    # Apply lookahead with a weight
+    lookahead_weight = 0.1  # Adjust this weight to balance lookahead importance
+    final_scores = base_priority + lookahead_weight * lookahead_scores
+=======
+    # Deterministic lookahead simulation: estimate future costs for each feasible bin
+    lookahead_scores = np.zeros_like(post_placement_caps, dtype=float)
+    
+    # Number of synthetic future items to simulate for lookahead
+    num_lookahead_items = 2  # Reduce to make it faster
+    
+    # Create deterministic synthetic items based on current remainder profile
+    # Use quantiles of non-zero capacities to generate representative future items
+    if len(non_zero_caps) > 0:
+        # Generate fixed synthetic items instead of random sampling
+        synthetic_items = np.array([])
+        if len(non_zero_caps) >= 3:
+            # Use quantiles of current non-zero capacities
+            synthetic_items = np.quantile(non_zero_caps, [0.25, 0.5, 0.75])
+        else:
+            # Fallback: use common fractions of max capacity
+            max_capacity = np.max(bins_remain_cap)
+            synthetic_items = np.array([max_capacity * 0.25, max_capacity * 0.5])
+        
+        # Limit to num_lookahead_items
+        synthetic_items = synthetic_items[:num_lookahead_items]
+        
+        for i in range(len(post_placement_caps)):
+            # Simulate placing the current item in bin i
+            # Instead of copying the whole array, just track the changes
+            simulated_bins = bins_remain_cap.copy()
+            simulated_bins[feasible_bins][i] -= item  # Place current item in this bin
+            
+            # Run lookahead simulation deterministically
+            total_future_bins_used = 0
+            
+            for synthetic_item in synthetic_items:
+                # Simulate placement of synthetic item using a simple proxy heuristic (best-fit)
+                valid_bins_for_synthetic = simulated_bins >= synthetic_item
+                if np.any(valid_bins_for_synthetic):
+                    # Best-fit proxy: select bin with minimum remaining capacity after placement
+                    temp_remaining_after_placement = np.where(valid_bins_for_synthetic, 
+                                                              simulated_bins - synthetic_item, 
+                                                              np.inf)
+                    best_bin_idx = np.argmin(temp_remaining_after_placement)
+                    simulated_bins[best_bin_idx] -= synthetic_item
+                    total_future_bins_used += 1
+                else:
+                    # Need a new bin for the synthetic item
+                    total_future_bins_used += 1
+            
+            # The lookahead score is inversely related to future bin usage (fewer bins is better)
+            # So we subtract this cost from our base priority
+            lookahead_scores[i] = -total_future_bins_used  # Negative because more future bins = worse choice
+    
+    # Apply lookahead with a weight
+    lookahead_weight = 0.1  # Adjust this weight to balance lookahead importance
+    final_scores = base_priority + lookahead_weight * lookahead_scores
+>>>>>>> REPLACE

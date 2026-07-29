@@ -1,0 +1,67 @@
+<<<<<<< SEARCH
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Use inverse-square kernel instead of inverse-linear for stronger penalty on intermediate values
+                # Add a small epsilon to avoid division by zero
+                epsilon = 1e-9
+                inverse_square_distances = 1.0 / (epsilon + distances_to_multiples ** 2)
+                
+                # Cap the maximum value to prevent overflow for very small distances
+                inverse_square_distances = np.minimum(inverse_square_distances, 1e9)
+                
+                # Add to the score (higher score for closer matches with stronger penalty for intermediates)
+                multiple_fit_score += inverse_square_distances
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine all components with category-specific weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component
+    )
+=======
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Use inverse-linear kernel (more numerically stable than inverse-square)
+                # Add a small epsilon to avoid division by zero
+                inverse_linear_distances = 1.0 / (1.0 + distances_to_multiples)
+                
+                # Add to the score (higher score for closer matches)
+                multiple_fit_score += inverse_linear_distances
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine all components with category-specific weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component
+    )
+>>>>>>> REPLACE

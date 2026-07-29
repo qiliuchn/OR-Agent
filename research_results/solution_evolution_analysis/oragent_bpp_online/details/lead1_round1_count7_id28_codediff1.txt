@@ -1,0 +1,211 @@
+<<<<<<< SEARCH
+import numpy as np
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic with hybrid bin-opening trigger that selectively creates new bins
+    when the best available existing bin would leave a 'wasteful' residual capacity.
+    The wasteful residual capacity is defined as a gap that is both small (e.g., < 0.1 * bin capacity)
+    and not aligned with any estimated common size. This modifies the decision boundary
+    between using existing bins vs. opening new ones, potentially reducing fragmentation
+    without altering the core priority scoring. The implementation leverages the existing
+    multiple-based scoring infrastructure from parent solutions while introducing a
+    strategic bin opening mechanism.
+    
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    # For feasible bins, calculate priority based on how close the remaining capacity is to multiples of common sizes
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Estimate common item sizes based on the current item
+    current_item = item
+    estimated_common_sizes = [
+        current_item, 
+        current_item * 0.5,   # half
+        current_item * 0.75,  # three quarters
+        current_item * 0.9,   # 90%
+        current_item * 1.1,   # 110%
+        current_item * 1.25,  # 1.25 times
+        current_item * 1.5,   # 1.5 times
+        current_item * 2.0    # double
+    ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+    
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        max_multiple = max(1, int(np.max(feasible_post_caps) // common_size) + 2)
+        
+        # Compute distances to nearest multiples efficiently
+        distances_to_multiples = np.full_like(feasible_post_caps, np.inf)
+        
+        for n in range(0, max_multiple):
+            candidate_distances = np.abs(feasible_post_caps - n * common_size)
+            distances_to_multiples = np.minimum(distances_to_multiples, candidate_distances)
+        
+        # Add to the score (higher score for closer matches)
+        # Use a sigmoid-like function to make scores meaningful
+        feasible_scores += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Calculate best-fit component: prefer bins with less remaining space after placement
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space after placement
+    
+    # Determine adaptive weights based on item size relative to average bin capacity
+    # For larger items, emphasize best-fit to prevent fragmentation
+    if len(bins_remain_cap) > 0:
+        avg_capacity = np.mean(bins_remain_cap)
+        item_relative_size = item / avg_capacity if avg_capacity > 0 else 0.5
+    else:
+        item_relative_size = 0.5
+    
+    # Use fixed best-fit weight that was found to work well in parent solution
+    best_fit_weight = 0.07  
+    multiple_weight = 1.0  # Keep multiple-based scoring at baseline
+    
+    # Combine both components with fixed balance
+    combined_scores = multiple_weight * feasible_scores + best_fit_weight * best_fit_component
+    
+    # Implement hybrid bin-opening trigger
+    # Check if the best available bin would leave a 'wasteful' residual capacity
+    if len(combined_scores) > 0:
+        best_idx_in_feasible = np.argmax(combined_scores)
+        best_remaining_after_placement = feasible_post_caps[best_idx_in_feasible]
+        
+        # Identify the actual index in the original array
+        best_original_idx = np.where(feasible_bins)[0][best_idx_in_feasible]
+        best_original_remaining = post_placement_caps[best_original_idx]
+        
+        # Define threshold for 'wasteful' residual capacity (e.g., < 0.1 * original bin capacity)
+        # We need to estimate original bin capacity - assume all bins started with same capacity
+        # So we can use the maximum initial capacity as proxy
+        if len(bins_remain_cap) > 0:
+            # Estimate original capacity by looking at maximum possible capacity in this context
+            # In online setting, we may not know original capacity directly, so use a reasonable estimate
+            # If all bins are full, we can't estimate. If we have at least one bin that's not full,
+            # we might estimate from that. But a safer approach is to use item size relative to what we see.
+            
+            # Instead, let's define waste threshold relative to the remaining capacity before placement
+            original_bin_cap_estimate = np.max(bins_remain_cap) + item  # Rough estimate
+            waste_threshold = 0.1 * original_bin_cap_estimate
+            
+            # Check if best option leaves a small residual that's not well-aligned with common sizes
+            is_small_residual = best_original_remaining < waste_threshold
+            is_wasteful = is_small_residual and best_original_remaining > 0
+            
+            # If residual is small and not well-aligned with common sizes, reduce score
+            # to encourage opening a new bin instead
+            if is_wasteful:
+                # Check alignment with common sizes more explicitly
+                min_distance_to_common = float('inf')
+                for common_size in estimated_common_sizes:
+                    if common_size > 0:
+                        distance = abs(best_original_remaining - common_size)
+                        min_distance_to_common = min(min_distance_to_common, distance)
+                
+                # If the residual is small and not close to any common size, penalize
+                if is_small_residual and min_distance_to_common > 0.05 * original_bin_cap_estimate:
+                    # Add a penalty to discourage using this bin
+                    combined_scores[best_idx_in_feasible] -= 10.0  # Significant penalty
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+    
+    return scores
+=======
+import numpy as np
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Simplified priority heuristic with basic adaptive weighting based on item size relative to bin capacity.
+    Combines best-fit principle with multiple-based scoring, with simplified adaptation.
+    
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    # For feasible bins, calculate priority based on how close the remaining capacity is to multiples of common sizes
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Estimate common item sizes based on the current item
+    current_item = item
+    estimated_common_sizes = [
+        current_item, 
+        current_item * 0.5,   # half
+        current_item * 0.75,  # three quarters
+        current_item * 0.9,   # 90%
+        current_item * 1.1,   # 110%
+        current_item * 1.25,  # 1.25 times
+        current_item * 1.5,   # 1.5 times
+        current_item * 2.0    # double
+    ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+    
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        max_multiple = max(1, int(np.max(feasible_post_caps) // common_size) + 2)
+        
+        # Compute distances to nearest multiples efficiently
+        distances_to_multiples = np.full_like(feasible_post_caps, np.inf)
+        
+        for n in range(0, max_multiple):
+            candidate_distances = np.abs(feasible_post_caps - n * common_size)
+            distances_to_multiples = np.minimum(distances_to_multiples, candidate_distances)
+        
+        # Add to the score (higher score for closer matches)
+        # Use a sigmoid-like function to make scores meaningful
+        feasible_scores += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Calculate best-fit component: prefer bins with less remaining space after placement
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space after placement
+    
+    # Use fixed best-fit weight that was found to work well in parent solution
+    best_fit_weight = 0.07  
+    multiple_weight = 1.0  # Keep multiple-based scoring at baseline
+    
+    # Combine both components with fixed balance
+    combined_scores = multiple_weight * feasible_scores + best_fit_weight * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+    
+    return scores
+>>>>>>> REPLACE

@@ -1,0 +1,29 @@
+<<<<<<< SEARCH
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Consider multiples: 0, 1x, 2x, 3x, etc. of the common size
+        max_multiple = int(np.max(feasible_post_caps) // common_size) + 2
+        distances_to_multiples = np.min([
+            np.abs(feasible_post_caps - n * common_size) 
+            for n in range(0, max_multiple)
+        ], axis=0)
+        
+        # Add to the score (higher score for closer matches to multiples)
+        # Use a function that gives significant scores only for close matches
+        feasible_scores += 1.0 / (1.0 + distances_to_multiples)
+=======
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Consider multiples: 0, 1x, 2x, 3x, etc. of the common size
+        max_multiple = int(np.max(feasible_post_caps) // common_size) + 2
+        distances_to_multiples = np.min([
+            np.abs(feasible_post_caps - n * common_size) 
+            for n in range(0, max_multiple)
+        ], axis=0)
+        
+        # Add to the score (higher score for closer matches to multiples)
+        # Use a sharper exponential decay function to better differentiate close vs distant matches
+        feasible_scores += np.exp(-distances_to_multiples / common_size)  # Normalize by common_size for scale invariance
+>>>>>>> REPLACE

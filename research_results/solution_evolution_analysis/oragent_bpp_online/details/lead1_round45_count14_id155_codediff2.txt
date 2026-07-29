@@ -1,0 +1,17 @@
+<<<<<<< SEARCH
+    # Detect adversarial state based on combination of features
+    is_adversarial = (
+        remainder_entropy > 3.0 or  # High diversity in remainders
+        (0.4 < item_to_median_ratio < 0.8 and feasible_proportion < 0.3) or  # Medium item with few options
+        (item > 0.5 * np.max(bins_remain_cap) and feasible_proportion < 0.2) or  # Large item with scarce options
+        avg_utilization > 0.8  # Bins are highly utilized
+    )
+=======
+    # Detect adversarial state based on combination of features
+    is_adversarial = (
+        remainder_entropy > 2.5 or  # Increased sensitivity to remainder diversity
+        (0.3 < item_to_median_ratio < 0.9 and feasible_proportion < 0.4) or  # Medium item with fewer options
+        (item > 0.4 * np.max(bins_remain_cap) and feasible_proportion < 0.25) or  # Large item with scarce options
+        avg_utilization > 0.7  # Bins are highly utilized
+    )
+>>>>>>> REPLACE

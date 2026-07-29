@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    # Combine both components with appropriate weighting
+    # Give more weight to the multiple-based scoring since it's more sophisticated
+    feasible_scores = multiple_fit_score + 0.5 * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+=======
+    # Combine both components
+    # Use smaller weight for best fit component to balance between multiple-based scoring and best fit
+    combined_scores = multiple_fit_score + 0.1 * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+>>>>>>> REPLACE

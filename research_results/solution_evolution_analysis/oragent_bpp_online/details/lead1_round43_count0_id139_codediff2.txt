@@ -1,0 +1,12 @@
+<<<<<<< SEARCH
+    # Define Farey sequence of order 16 for small items
+    farey_16 = farey_sequence(16)
+=======
+    # Define Farey sequence of order 24 for small items (increased from 16 for better coverage)
+    farey_24 = farey_sequence(24)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        'small': [item * frac for frac in farey_16],  # Dynamic Farey-based multipliers
+=======
+        'small': [item * frac for frac in farey_24],  # Dynamic Farey-based multipliers with higher order
+>>>>>>> REPLACE

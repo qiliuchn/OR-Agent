@@ -1,0 +1,6 @@
+# Adaptive bandwidth based on item size regime
+# Smaller items need more precise fits (narrower bandwidth)
+# Larger items need more flexibility (wider bandwidth)
+base_bandwidth = 1.0  # Base bandwidth
+item_size_factor = 1.0 + 0.5 * (current_item / 100.0)  # Normalize by typical bin size
+adaptive_bandwidth = base_bandwidth / item_size_factor  # Inverse relationship for precision

@@ -1,0 +1,9 @@
+<<<<<<< SEARCH
+    # Use fixed best-fit weight that was found to work well in parent solution
+    best_fit_weight = 0.08  # Try the value that was found to be better than 0.07 in parent analysis
+    multiple_weight = 1.0  # Keep multiple-based scoring at baseline
+=======
+    # Use fixed best-fit weight that was found to work well in parent solution
+    best_fit_weight = 0.06  # Try a value slightly different to see if we can find a better optimum
+    multiple_weight = 1.0  # Keep multiple-based scoring at baseline
+>>>>>>> REPLACE

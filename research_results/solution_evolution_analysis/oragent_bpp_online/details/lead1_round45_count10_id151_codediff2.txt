@@ -1,0 +1,68 @@
+<<<<<<< SEARCH
+        # Weight determination based on item percentile
+        if item_percentile > 0.82:  # Very large item
+            best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99
+        elif item_percentile < 0.18:  # Very small item
+            best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01
+        elif item_percentile > 0.62:  # Large-medium item
+            best_fit_weight, multiple_fit_weight = 0.14, 0.86
+        elif item_percentile < 0.38:  # Small-medium item
+            best_fit_weight, multiple_fit_weight = 0.025, 1.055
+        else:  # True medium item
+            best_fit_weight, multiple_fit_weight = 0.08, 0.92
+=======
+        # Weight determination based on item percentile
+        if item_percentile > 0.82:  # Very large item
+            best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99
+        elif item_percentile < 0.18:  # Very small item
+            best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01
+        elif item_percentile > 0.62:  # Large-medium item
+            best_fit_weight, multiple_fit_weight = 0.14, 0.86
+        elif item_percentile < 0.38:  # Small-medium item
+            best_fit_weight, multiple_fit_weight = 0.025, 1.055
+        else:  # True medium item
+            best_fit_weight, multiple_fit_weight = 0.08, 0.92
+        
+        # For high-leverage cases, adjust weights based on bin dispersion to handle different scenarios
+        if cap_dispersion > 0.3:  # High dispersion in bin capacities
+            # When bins have very different remaining capacities, prioritize best fit
+            best_fit_weight *= 1.1
+            multiple_fit_weight *= 0.9
+        else:  # Low dispersion - bins are similar
+            # When bins are similar, prioritize multiple fit patterns
+            best_fit_weight *= 0.9
+            multiple_fit_weight *= 1.1
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        # Weight determination based on item percentile
+        if item_percentile > 0.82:  # Very large item
+            best_fit_weight, multiple_fit_weight = 0.25, 0.75
+        elif item_percentile < 0.18:  # Very small item
+            best_fit_weight, multiple_fit_weight = 0.001, 1.194
+        elif item_percentile > 0.62:  # Large-medium item
+            best_fit_weight, multiple_fit_weight = 0.14, 0.86
+        elif item_percentile < 0.38:  # Small-medium item
+            best_fit_weight, multiple_fit_weight = 0.025, 1.055
+        else:  # True medium item
+            best_fit_weight, multiple_fit_weight = 0.08, 0.92
+=======
+        # Weight determination based on item percentile
+        if item_percentile > 0.82:  # Very large item
+            best_fit_weight, multiple_fit_weight = 0.25, 0.75
+        elif item_percentile < 0.18:  # Very small item
+            best_fit_weight, multiple_fit_weight = 0.001, 1.194
+        elif item_percentile > 0.62:  # Large-medium item
+            best_fit_weight, multiple_fit_weight = 0.14, 0.86
+        elif item_percentile < 0.38:  # Small-medium item
+            best_fit_weight, multiple_fit_weight = 0.025, 1.055
+        else:  # True medium item
+            best_fit_weight, multiple_fit_weight = 0.08, 0.92
+        
+        # For fast-path, also adapt based on bin dispersion
+        if cap_dispersion > 0.3:  # High dispersion in bin capacities
+            best_fit_weight *= 1.05
+            multiple_fit_weight *= 0.95
+        else:  # Low dispersion - bins are similar
+            best_fit_weight *= 0.95
+            multiple_fit_weight *= 1.05
+>>>>>>> REPLACE

@@ -1,0 +1,11 @@
+# Infer additional common sizes from bin distribution if possible
+if len(sorted_remaining) > 1:
+    # Look for common gaps/patterns in remaining capacities
+    # These might represent frequently occurring item sizes
+    for i in range(min(3, len(sorted_remaining))):
+        cap = sorted_remaining[i]
+        if cap > 0.01:  # Avoid very small values
+            # Add this capacity as a potentially common size
+            estimated_common_sizes.append(cap)
+            # Add some variations around this observed capacity
+            estimated_common_sizes.extend([cap * 0.8, cap * 1.2])

@@ -1,0 +1,5 @@
+unique_caps, counts = np.unique(bins_remain_cap[bins_remain_cap > 0], return_counts=True)
+# Add capacities that appear multiple times as potential common sizes
+for cap, count in zip(unique_caps, counts):
+    if count > 1 and cap not in estimated_common_sizes:
+        estimated_common_sizes.append(cap)

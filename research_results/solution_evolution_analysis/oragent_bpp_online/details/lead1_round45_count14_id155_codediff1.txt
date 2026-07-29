@@ -1,0 +1,29 @@
+<<<<<<< SEARCH
+        # Weighted combination for adversarial state
+        feasible_scores = 0.3 * best_fit_score + 0.7 * multiple_fit_score
+=======
+        # For adversarial states, use more sophisticated scoring since these are critical decisions
+        # Calculate a more nuanced item percentile for adversarial state
+        if len(bins_remain_cap) > 0:
+            sorted_caps = np.sort(bins_remain_cap)
+            item_percentile_adv = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+        else:
+            item_percentile_adv = 0.5
+
+        # Use the same percentile-based weighting as in the parent solution for consistency
+        if item_percentile_adv > 0.82:  # Very large item
+            best_fit_weight_adv, multiple_fit_weight_adv = 0.25 * 1.07, 0.75 * 0.99
+        elif item_percentile_adv < 0.18:  # Very small item
+            best_fit_weight_adv, multiple_fit_weight_adv = 0.001 * 0.93, 1.194 * 1.01
+        elif item_percentile_adv > 0.62:  # Large-medium item
+            best_fit_weight_adv, multiple_fit_weight_adv = 0.14, 0.86
+        elif item_percentile_adv < 0.38:  # Small-medium item
+            best_fit_weight_adv, multiple_fit_weight_adv = 0.025, 1.055
+        else:  # True medium item
+            best_fit_weight_adv, multiple_fit_weight_adv = 0.08, 0.92
+
+        feasible_scores = (
+            multiple_fit_weight_adv * multiple_fit_score + 
+            best_fit_weight_adv * best_fit_score
+        )
+>>>>>>> REPLACE

@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    # Use fixed best-fit weight based on parent solution analysis
+    best_fit_weight = 0.08  # Slightly below parent's optimal of 0.1
+    multiple_weight = 1.0  # Keep multiple-based scoring at baseline
+    
+    # Combine both components with fixed balance
+    combined_scores = multiple_weight * feasible_scores + best_fit_weight * best_fit_component
+=======
+    # Use fixed best-fit weight based on recent experiment showing 0.08 is better than parent's 0.1
+    best_fit_weight = 0.07  # Trying slightly below the current best of 0.08
+    multiple_weight = 1.0  # Keep multiple-based scoring at baseline
+    
+    # Combine both components with fixed balance
+    combined_scores = multiple_weight * feasible_scores + best_fit_weight * best_fit_component
+>>>>>>> REPLACE

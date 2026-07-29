@@ -1,0 +1,11 @@
+<<<<<<< SEARCH
+            # Add to the score (higher score for closer matches)
+            # Use exponential decay instead of simple inverse for smoother gradients
+            # tau controls the rate of decay - smaller tau means sharper decay
+            tau = 1.0  # This could be tuned further
+            multiple_fit_score += np.exp(-distances_to_multiples / tau)
+=======
+            # Add to the score (higher score for closer matches)
+            # Use a small epsilon to avoid division by zero
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

@@ -1,0 +1,16 @@
+<<<<<<< SEARCH
+    # Combine all components with appropriate weights
+    combined_scores = (
+        0.7 * best_fit_scores +      # Best fit is primary consideration
+        0.2 * diversity_scores +     # Small weight for diversity  
+        0.1 * multiple_matching_scores  # Small weight for multiple matching
+    )
+=======
+    # Combine all components with appropriate weights
+    # Using weights similar to the parent solution that showed better performance
+    combined_scores = (
+        0.8 * best_fit_scores +      # Best fit is important but not dominant
+        0.2 * diversity_scores +     # Moderate diversity encouragement  
+        0.7 * multiple_matching_scores  # Higher weight for multiple matching like parent
+    )
+>>>>>>> REPLACE

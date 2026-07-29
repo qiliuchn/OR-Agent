@@ -1,0 +1,45 @@
+<<<<<<< SEARCH
+    # Adjust weights based on how well the item fits in the available bins
+    # Calculate utilization ratio to inform weight adjustment
+    if len(available_caps) > 0:
+        mean_available_cap = np.mean(available_caps)
+        utilization_ratio = item / mean_available_cap
+        
+        if item_category == 'large':
+            # For very large items relative to available bins, emphasize best fit more
+            # to ensure the item fits without leaving too much space
+            ratio_to_q75 = item / q75 if q75 > 0 else 1.0
+            best_fit_weight = min(0.45, best_fit_weight * (1.0 + 0.2 * (ratio_to_q75 - 1.0)))
+            multiple_fit_weight = max(0.55, multiple_fit_weight * (1.0 - 0.15 * (ratio_to_q75 - 1.0)))
+        elif item_category == 'small':
+            # For very small items relative to available bins, emphasize multiple fit more
+            # to leave room for future items of similar size
+            ratio_to_q25 = item / q25 if q25 > 0 else 1.0
+            best_fit_weight = max(0.0001, best_fit_weight * min(0.8, 0.8 * ratio_to_q25))
+            multiple_fit_weight = min(1.3, multiple_fit_weight * max(1.15, 1.15/ratio_to_q25))
+        else:  # medium
+            # For medium items, adjust based on how efficiently they fill available space
+            if utilization_ratio > 0.8:  # Item fills bin well
+                best_fit_weight *= 1.1
+                multiple_fit_weight *= 0.9
+            elif utilization_ratio < 0.3:  # Item leaves lot of space
+                best_fit_weight *= 0.7
+                multiple_fit_weight *= 1.3
+            # Otherwise, keep original weights
+    else:
+        # If no bins can accommodate the item, this shouldn't happen due to feasibility check
+        pass
+=======
+    # Adjust weights slightly based on the item's position in the quartile range
+    if item_category == 'large':
+        # For very large items relative to current bins, emphasize best fit more
+        ratio_to_q75 = item / q75 if q75 > 0 else 1.0
+        best_fit_weight = min(0.4, best_fit_weight * (1.0 + 0.1 * (ratio_to_q75 - 1.0)))
+        multiple_fit_weight = max(0.6, multiple_fit_weight * (1.0 - 0.1 * (ratio_to_q75 - 1.0)))
+    elif item_category == 'small':
+        # For very small items relative to current bins, emphasize multiple fit more
+        ratio_to_q25 = item / q25 if q25 > 0 else 1.0
+        best_fit_weight = max(0.0001, best_fit_weight * min(1.0, ratio_to_q25))
+        multiple_fit_weight = min(1.25, multiple_fit_weight * max(1.0, 1.0/ratio_to_q25))
+    # For medium items, keep original weights as they're already well-tuned
+>>>>>>> REPLACE

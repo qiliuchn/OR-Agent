@@ -1,0 +1,39 @@
+<<<<<<< SEARCH
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_caps = bins_remain_cap[feasible_bins]
+    
+    # Determine if this is a high-leverage scenario requiring expensive computation
+    # High leverage if item is large relative to typical bin capacity or few feasible bins
+    item_ratio = item / np.mean(bins_remain_cap) if len(bins_remain_cap) > 0 else 0
+    is_high_leverage = item_ratio > 0.4 or len(feasible_post_caps) < 3
+    
+    if is_high_leverage:
+        # Apply computationally expensive Farey sequence analysis for high-leverage cases
+        
+        # Calculate item percentile among feasible capacities
+        sorted_caps = np.sort(feasible_caps)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps) if len(sorted_caps) > 0 else 0.5
+        
+        # Use adaptive Farey sequence based on current bin dispersion
+        cap_dispersion = np.std(feasible_caps) / (np.mean(feasible_caps) + 1e-9) if len(feasible_caps) > 0 else 0
+=======
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_caps = bins_remain_cap[feasible_bins]
+    
+    # Calculate bin dispersion for adaptive weighting in both paths
+    cap_dispersion = np.std(feasible_caps) / (np.mean(feasible_caps) + 1e-9) if len(feasible_caps) > 0 else 0
+    
+    # Determine if this is a high-leverage scenario requiring expensive computation
+    # High leverage if item is large relative to typical bin capacity or few feasible bins
+    item_ratio = item / np.mean(bins_remain_cap) if len(bins_remain_cap) > 0 else 0
+    is_high_leverage = item_ratio > 0.4 or len(feasible_post_caps) < 3
+    
+    if is_high_leverage:
+        # Apply computationally expensive Farey sequence analysis for high-leverage cases
+        
+        # Calculate item percentile among feasible capacities
+        sorted_caps = np.sort(feasible_caps)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps) if len(sorted_caps) > 0 else 0.5
+        
+        # Use adaptive Farey sequence based on current bin dispersion
+>>>>>>> REPLACE

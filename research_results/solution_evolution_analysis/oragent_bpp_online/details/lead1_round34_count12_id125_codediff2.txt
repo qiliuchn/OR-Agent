@@ -1,0 +1,124 @@
+<<<<<<< SEARCH
+    # 2. Mode of recent small items from the sliding window
+    if len(priority.recent_items) > 0:
+        recent_array = np.array(priority.recent_items)
+        # Estimate mode by finding the most frequent value or using KDE approach
+        # For better accuracy, use histogram-based mode estimation
+        if len(recent_array) >= 4:
+            # Use histogram to find the most frequent range of values
+            hist, bin_edges = np.histogram(recent_array, bins=min(5, len(recent_array)), density=True)
+            bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+            # Find the bin with highest density as the mode of small items
+            mode_idx = np.argmax(hist)
+            small_item_mode = bin_centers[mode_idx]
+            if small_item_mode > 1e-9:  # Only add if not too small
+                common_sizes.append(small_item_mode)
+    
+    # 3. Dominant scale in current remainder distribution (lightweight peak detection)
+    if len(feasible_post_caps) > 1:
+        # Use histogram-based peak detection for dominant scale
+        # Adjust number of bins based on data size for better resolution
+        n_bins = min(max(3, len(feasible_post_caps)//3), 10)  # Adaptive binning
+        hist, bin_edges = np.histogram(feasible_post_caps, bins=n_bins, density=True)
+        bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+        # Find the bin with highest density as dominant scale
+        dominant_idx = np.argmax(hist)
+        dominant_scale = bin_centers[dominant_idx]
+        if dominant_scale > 1e-9:  # Only add if not too small
+            common_sizes.append(dominant_scale)
+    
+    # Convert to numpy array
+    common_sizes = np.array(common_sizes)
+    
+    # Calculate multiple fit score based on nearest multiple of minimal common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Find the nearest multiplier
+            multipliers = np.round(feasible_post_caps / common_size)
+            nearest_multiples = multipliers * common_size
+            distances_to_nearest_multiple = np.abs(feasible_post_caps - nearest_multiples)
+            
+            # Add to the score (higher score for closer matches)
+            multiple_fit_score += 1.0 / (1.0 + distances_to_nearest_multiple)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Calculate recyclability metric based on proximity to small item mode
+    recyclability_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Get the small item mode from the sliding window if available
+    if len(priority.recent_items) >= 4:
+        recent_array = np.array(priority.recent_items)
+        # Use the same histogram-based mode estimation as above for consistency
+        hist, bin_edges = np.histogram(recent_array, bins=min(5, len(recent_array)), density=True)
+        bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+        mode_idx = np.argmax(hist)
+        small_item_mode = bin_centers[mode_idx]
+        if small_item_mode > 1e-9:
+            # Calculate distance to the small item mode
+            distances_to_small_mode = np.abs(feasible_post_caps - small_item_mode)
+            # Higher recyclability score for remainders closer to common small item sizes
+            recyclability_score = 1.0 / (1.0 + distances_to_small_mode)
+=======
+    # 2. Median of recent small items from the sliding window as proxy for mode
+    if len(priority.recent_items) > 0:
+        recent_array = np.array(priority.recent_items)
+        if len(recent_array) >= 4:
+            # Use the median of the smallest half as proxy for small item mode
+            sorted_recent = np.sort(recent_array)
+            # Take the median of the first half as proxy for small item mode
+            half_size = max(1, len(sorted_recent) // 2)
+            small_half = sorted_recent[:half_size]
+            if len(small_half) > 0:
+                small_item_mode = np.median(small_half)
+                if small_item_mode > 1e-9:  # Only add if not too small
+                    common_sizes.append(small_item_mode)
+    
+    # 3. Dominant scale in current remainder distribution (simple median)
+    if len(feasible_post_caps) > 1:
+        # Use median as a robust measure of central tendency for the dominant scale
+        remainder_median = np.median(feasible_post_caps)
+        if remainder_median > 1e-9:
+            common_sizes.append(remainder_median)
+    
+    # Convert to numpy array
+    common_sizes = np.array(common_sizes)
+    
+    # Calculate multiple fit score based on nearest multiple of minimal common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Find the nearest multiplier
+            multipliers = np.round(feasible_post_caps / common_size)
+            nearest_multiples = multipliers * common_size
+            distances_to_nearest_multiple = np.abs(feasible_post_caps - nearest_multiples)
+            
+            # Add to the score (higher score for closer matches)
+            multiple_fit_score += 1.0 / (1.0 + distances_to_nearest_multiple)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Calculate recyclability metric based on proximity to small item mode
+    recyclability_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Get the small item mode from the sliding window if available
+    if len(priority.recent_items) >= 4:
+        recent_array = np.array(priority.recent_items)
+        sorted_recent = np.sort(recent_array)
+        half_size = max(1, len(sorted_recent) // 2)
+        small_half = sorted_recent[:half_size]
+        if len(small_half) > 0:
+            small_item_mode = np.median(small_half)
+            if small_item_mode > 1e-9:
+                # Calculate distance to the small item mode
+                distances_to_small_mode = np.abs(feasible_post_caps - small_item_mode)
+                # Higher recyclability score for remainders closer to common small item sizes
+                recyclability_score = 1.0 / (1.0 + distances_to_small_mode)
+>>>>>>> REPLACE

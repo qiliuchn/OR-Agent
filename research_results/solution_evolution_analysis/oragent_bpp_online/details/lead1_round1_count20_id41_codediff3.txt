@@ -1,0 +1,21 @@
+<<<<<<< SEARCH
+    # 2. Simple diversity component: promote variety by considering how different the remaining capacity is
+    # from the mean remaining capacity of feasible bins
+    diversity_scores = np.zeros(n_feasible)
+    if n_feasible > 1:
+        mean_cap = np.mean(feasible_post_caps)
+        # Higher diversity score for capacities further from the mean
+        # This encourages more diverse remaining capacities after placement
+        diversity_scores = -np.abs(feasible_post_caps - mean_cap)
+=======
+    # 2. Simple diversity component: promote variety by considering how different the remaining capacity is
+    # from the mean remaining capacity of feasible bins
+    diversity_scores = np.zeros(n_feasible)
+    if n_feasible > 1:
+        mean_cap = np.mean(feasible_post_caps)
+        # Bins with capacities far from the mean get higher diversity scores
+        # This encourages spreading out remaining capacities
+        # Normalize to prevent dominance over other components
+        std_cap = np.std(feasible_post_caps) if np.std(feasible_post_caps) > 0 else 1.0
+        diversity_scores = np.abs(feasible_post_caps - mean_cap) / (std_cap + 1e-8)
+>>>>>>> REPLACE

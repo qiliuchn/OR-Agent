@@ -1,0 +1,157 @@
+<<<<<<< SEARCH
+    # Enhanced weights based on size category with fine-tuned parameters
+    enhanced_weights = {
+        'large': (0.25, 0.75),   # Slightly increased best-fit weight for large items
+        'small': (0.0005, 1.195),  # Further reduced best-fit weight for small items
+        'medium': (0.07, 0.93)   # Slightly adjusted balanced weights for medium items
+    }
+    
+    # Determine the size category based on refined percentile thresholds
+    if item_percentile > 0.82:  # Very large item
+        selected_common_sizes = enhanced_embeddings['large']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['large']
+        # Slightly increase best-fit weight for very large items to ensure they fit
+        best_fit_weight *= 1.07
+        multiple_fit_weight *= 0.99
+    elif item_percentile < 0.18:  # Very small item
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduce best-fit weight for very small items
+        best_fit_weight *= 0.93
+        multiple_fit_weight *= 1.01
+    elif item_percentile > 0.62:  # Large-medium item
+        # Interpolate between medium and large strategies
+        selected_common_sizes = enhanced_embeddings['medium']
+        # Adjust weights to be between medium and large values
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        # Interpolate between medium and small strategies
+        selected_common_sizes = enhanced_embeddings['small']  # Use small's rich multiplier set
+        # Adjust weights to be between medium and small values
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        selected_common_sizes = enhanced_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['medium']
+    
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in selected_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                # Use a small epsilon to avoid division by zero
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Calculate the learnable dead-zone penalty based on current bin remainder distribution
+    dead_zone_penalty = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    if len(feasible_post_caps) > 1:
+        # Use histogram-based mode detection to find the dominant remainder value
+        # Create a histogram of feasible post-placement remainders
+        hist, bin_edges = np.histogram(feasible_post_caps, bins=min(len(feasible_post_caps), 20), density=True)
+        
+        # Find the bin with the highest density (mode)
+        if len(hist) > 0:
+            mode_bin_idx = np.argmax(hist)
+            mode_lower = bin_edges[mode_bin_idx]
+            mode_upper = bin_edges[mode_bin_idx + 1]
+            mode_value = (mode_lower + mode_upper) / 2
+            
+            # Define dead zone as the range from near-zero to the primary mode
+            # This penalizes bins that would create remainders in the problematic mode range
+            dead_zone_start = 0.0
+            dead_zone_end = mode_value
+            
+            # Apply penalty to bins whose post-placement remainder falls in the dead zone
+            in_dead_zone = (feasible_post_caps >= dead_zone_start) & (feasible_post_caps <= dead_zone_end)
+            # Only apply penalty if the remainder is not already very small (near 0)
+            in_dead_zone = in_dead_zone & (feasible_post_caps > 1e-6)
+            
+            # The penalty should be proportional to how much the remainder contributes to fragmentation
+            dead_zone_penalty[in_dead_zone] = -abs(feasible_post_caps[in_dead_zone] - dead_zone_start)
+    
+    # Combine all components with weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component +
+        0.15 * dead_zone_penalty  # Weight for dead zone penalty
+    )
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+=======
+    # Determine the size category based on refined percentile thresholds
+    if item_percentile > 0.82:  # Very large item
+        selected_common_sizes = enhanced_embeddings['large']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['large']
+        # Slightly increase best-fit weight for very large items to ensure they fit
+        best_fit_weight *= 1.07
+        multiple_fit_weight *= 0.99
+    elif item_percentile < 0.18:  # Very small item
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduce best-fit weight for very small items
+        best_fit_weight *= 0.93
+        multiple_fit_weight *= 1.01
+    elif item_percentile > 0.62:  # Large-medium item
+        # Interpolate between medium and large strategies
+        selected_common_sizes = enhanced_embeddings['medium']
+        # Adjust weights to be between medium and large values
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        # Interpolate between medium and small strategies
+        selected_common_sizes = enhanced_embeddings['small']  # Use small's rich multiplier set
+        # Adjust weights to be between medium and small values
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        selected_common_sizes = enhanced_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['medium']
+
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in selected_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                # Use a small epsilon to avoid division by zero
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine components with weights (removing dead zone penalty as it degraded performance)
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component
+    )
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+>>>>>>> REPLACE

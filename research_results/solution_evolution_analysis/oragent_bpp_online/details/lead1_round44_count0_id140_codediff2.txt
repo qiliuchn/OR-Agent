@@ -1,0 +1,223 @@
+<<<<<<< SEARCH
+    def worst_fit_heuristic():
+        """Worst-fit: prefer bins with most remaining space (to prevent fragmentation)"""
+        return feasible_post_caps
+    
+    # Enhanced multiplier sets based on parent solutions
+    large_item_multipliers = [
+        item, item * 0.5, item * 1.5, item * 0.75, item * 1.25, item * 0.33, item * 0.67,
+        item * 2.0, item * 0.25, item * 1.75, item * 0.125, item * 2.5, item * 0.2,
+        item * 0.167, item * 0.833, item * 0.4, item * 0.6, item * 0.375, item * 0.625,
+        item * 0.143, item * 0.286, item * 0.429, item * 0.571, item * 0.714, item * 0.857,
+        item * 0.111, item * 0.222, item * 0.333, item * 0.667, item * 0.778, item * 0.889,
+        item * 0.1, item * 0.9, item * 0.0625, item * 0.1875, item * 0.3125, item * 0.4375,
+        item * 0.5625, item * 0.6875, item * 0.8125, item * 0.9375
+    ]
+    
+    small_item_multipliers = [
+        item, item * 0.5, item * 0.25, item * 0.75, item * 0.33, item * 0.67, item * 1.5,
+        item * 0.125, item * 0.875, item * 0.167, item * 0.833, item * 0.2, item * 0.4,
+        item * 0.6, item * 0.8, item * 0.1, item * 0.9, item * 0.0625, item * 0.375,
+        item * 0.143, item * 0.286, item * 0.429, item * 0.571, item * 0.714, item * 0.857,
+        item * 0.111, item * 0.333, item * 0.667, item * 0.167, item * 0.833, item * 0.0625,
+        item * 0.1875, item * 0.3125, item * 0.4375, item * 0.5625, item * 0.6875,
+        item * 0.8125, item * 0.9375, item * 0.143, item * 0.222, item * 0.444,
+        item * 0.556, item * 0.778, item * 0.889, item * 0.03125, item * 0.09375,
+        item * 0.15625, item * 0.21875, item * 0.28125, item * 0.34375, item * 0.40625,
+        item * 0.46875, item * 0.53125, item * 0.59375, item * 0.65625, item * 0.71875,
+        item * 0.78125, item * 0.84375, item * 0.90625, item * 0.96875
+    ]
+    
+    medium_item_multipliers = [
+        item, item * 0.5, item * 1.5, item * 0.75, item * 1.25, item * 0.33, item * 0.67,
+        item * 0.25, item * 0.1, item * 1.75, item * 0.2, item * 0.4, item * 0.6,
+        item * 0.8, item * 1.1, item * 0.167, item * 0.833, item * 0.375, item * 0.625,
+        item * 0.75, item * 1.333, item * 1.667, item * 0.429, item * 0.571, item * 0.125,
+        item * 0.375, item * 0.625, item * 0.875, item * 0.111, item * 0.222, item * 0.444,
+        item * 0.556, item * 0.778, item * 0.889, item * 0.143, item * 0.286, item * 0.429,
+        item * 0.571, item * 0.714, item * 0.857, item * 0.1, item * 0.3, item * 0.7,
+        item * 0.9, item * 0.0625, item * 0.1875, item * 0.3125, item * 0.4375, item * 0.5625,
+        item * 0.6875, item * 0.8125, item * 0.9375
+    ]
+    
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        sorted_caps = np.sort(bins_remain_cap)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+    else:
+        item_percentile = 0.5
+    
+    # Select multiplier set based on item size percentile
+    if item_percentile > 0.82:
+        selected_multipliers = large_item_multipliers
+    elif item_percentile < 0.18:
+        selected_multipliers = small_item_multipliers
+    else:
+        selected_multipliers = medium_item_multipliers
+    
+    # Calculate individual heuristic scores
+    best_fit_score = best_fit_heuristic()
+    multiple_fit_score = multiple_fit_heuristic(selected_multipliers)
+    harmonic_fit_score = harmonic_fit_heuristic()
+    worst_fit_score = worst_fit_heuristic()
+    
+    # Calculate advanced packing state metrics for dynamic adaptation
+    # 1. Fragmentation index based on coefficient of variation of remaining capacities
+    if len(bins_remain_cap) > 1 and np.mean(bins_remain_cap) > 1e-9:
+        cv = np.std(bins_remain_cap) / (np.mean(bins_remain_cap) + 1e-9)
+        fragmentation_index = 1 - np.exp(-cv)  # Compress higher values
+    else:
+        fragmentation_index = 0.0
+
+    # 2. Average utilization of bins that can fit the current item
+    if len(bins_remain_cap) > 0:
+        avg_capacity = np.mean(bins_remain_cap)
+        avg_utilization = 1 - (np.mean(bins_remain_cap) / avg_capacity) if avg_capacity > 1e-9 else 0.0
+    else:
+        avg_utilization = 0.0
+
+    # 3. Density of available space - ratio of space that can fit current item to total space
+    if np.sum(bins_remain_cap) > 1e-9:
+        space_density = np.sum(bins_remain_cap[bins_remain_cap >= item]) / np.sum(bins_remain_cap)
+    else:
+        space_density = 0.0
+
+    # Determine base weights based on item characteristics
+    if item_percentile > 0.82:  # Large item
+        base_weights = [0.25, 0.75, 0.05, 0.05]  # Emphasize best-fit and multiple-fit
+    elif item_percentile < 0.18:  # Small item
+        base_weights = [0.001, 1.194, 0.8, 0.05]  # Emphasize multiple-fit and harmonic-fit
+    else:  # Medium item
+        base_weights = [0.08, 0.92, 0.1, 0.05]  # Balance best-fit and multiple-fit
+
+    # Dynamic weight adjustment based on multiple packing state factors
+    # When fragmentation is high, prioritize best-fit to consolidate space
+    # When utilization is low, allow more multiple-fit opportunities
+    best_fit_boost = fragmentation_index * 0.3 + (1 - avg_utilization) * 0.1 + (1 - space_density) * 0.1
+    multiple_fit_boost = (1 - fragmentation_index) * 0.1 + avg_utilization * 0.1 + space_density * 0.05
+    harmonic_fit_boost = fragmentation_index * 0.05  # Slight boost when fragmentation is high
+    worst_fit_boost = (1 - space_density) * 0.05  # Slight boost when space is sparse
+
+    # Apply dynamic adjustments to weights
+    adjusted_weights = [
+        base_weights[0] * (1 + best_fit_boost),
+        base_weights[1] * (1 + multiple_fit_boost),
+        base_weights[2] * (1 + harmonic_fit_boost),
+        base_weights[3] * (1 + worst_fit_boost)
+    ]
+
+    # Combine heuristics with determined weights
+    combined_score = (
+        adjusted_weights[0] * best_fit_score +
+        adjusted_weights[1] * multiple_fit_score +
+        adjusted_weights[2] * harmonic_fit_score +
+        adjusted_weights[3] * worst_fit_score
+    )
+=======
+    # Enhanced multiplier sets based on parent solutions
+    large_item_multipliers = [
+        item, item * 0.5, item * 1.5, item * 0.75, item * 1.25, item * 0.33, item * 0.67,
+        item * 2.0, item * 0.25, item * 1.75, item * 0.125, item * 2.5, item * 0.2,
+        item * 0.167, item * 0.833, item * 0.4, item * 0.6, item * 0.375, item * 0.625,
+        item * 0.143, item * 0.286, item * 0.429, item * 0.571, item * 0.714, item * 0.857,
+        item * 0.111, item * 0.222, item * 0.333, item * 0.667, item * 0.778, item * 0.889,
+        item * 0.1, item * 0.9, item * 0.0625, item * 0.1875, item * 0.3125, item * 0.4375,
+        item * 0.5625, item * 0.6875, item * 0.8125, item * 0.9375
+    ]
+    
+    small_item_multipliers = [
+        item, item * 0.5, item * 0.25, item * 0.75, item * 0.33, item * 0.67, item * 1.5,
+        item * 0.125, item * 0.875, item * 0.167, item * 0.833, item * 0.2, item * 0.4,
+        item * 0.6, item * 0.8, item * 0.1, item * 0.9, item * 0.0625, item * 0.375,
+        item * 0.143, item * 0.286, item * 0.429, item * 0.571, item * 0.714, item * 0.857,
+        item * 0.111, item * 0.333, item * 0.667, item * 0.167, item * 0.833, item * 0.0625,
+        item * 0.1875, item * 0.3125, item * 0.4375, item * 0.5625, item * 0.6875,
+        item * 0.8125, item * 0.9375, item * 0.143, item * 0.222, item * 0.444,
+        item * 0.556, item * 0.778, item * 0.889, item * 0.03125, item * 0.09375,
+        item * 0.15625, item * 0.21875, item * 0.28125, item * 0.34375, item * 0.40625,
+        item * 0.46875, item * 0.53125, item * 0.59375, item * 0.65625, item * 0.71875,
+        item * 0.78125, item * 0.84375, item * 0.90625, item * 0.96875
+    ]
+    
+    medium_item_multipliers = [
+        item, item * 0.5, item * 1.5, item * 0.75, item * 1.25, item * 0.33, item * 0.67,
+        item * 0.25, item * 0.1, item * 1.75, item * 0.2, item * 0.4, item * 0.6,
+        item * 0.8, item * 1.1, item * 0.167, item * 0.833, item * 0.375, item * 0.625,
+        item * 0.75, item * 1.333, item * 1.667, item * 0.429, item * 0.571, item * 0.125,
+        item * 0.375, item * 0.625, item * 0.875, item * 0.111, item * 0.222, item * 0.444,
+        item * 0.556, item * 0.778, item * 0.889, item * 0.143, item * 0.286, item * 0.429,
+        item * 0.571, item * 0.714, item * 0.857, item * 0.1, item * 0.3, item * 0.7,
+        item * 0.9, item * 0.0625, item * 0.1875, item * 0.3125, item * 0.4375, item * 0.5625,
+        item * 0.6875, item * 0.8125, item * 0.9375
+    ]
+    
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        sorted_caps = np.sort(bins_remain_cap)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+    else:
+        item_percentile = 0.5
+    
+    # Select multiplier set based on item size percentile
+    if item_percentile > 0.82:
+        selected_multipliers = large_item_multipliers
+    elif item_percentile < 0.18:
+        selected_multipliers = small_item_multipliers
+    else:
+        selected_multipliers = medium_item_multipliers
+    
+    # Calculate individual heuristic scores
+    best_fit_score = best_fit_heuristic()
+    multiple_fit_score = multiple_fit_heuristic(selected_multipliers)
+    harmonic_fit_score = harmonic_fit_heuristic()
+    
+    # Calculate advanced packing state metrics for dynamic adaptation
+    # 1. Fragmentation index based on coefficient of variation of remaining capacities
+    if len(bins_remain_cap) > 1 and np.mean(bins_remain_cap) > 1e-9:
+        cv = np.std(bins_remain_cap) / (np.mean(bins_remain_cap) + 1e-9)
+        fragmentation_index = 1 - np.exp(-cv)  # Compress higher values
+    else:
+        fragmentation_index = 0.0
+
+    # 2. Average utilization of bins that can fit the current item
+    if len(bins_remain_cap) > 0:
+        avg_capacity = np.mean(bins_remain_cap)
+        avg_utilization = 1 - (np.mean(bins_remain_cap) / avg_capacity) if avg_capacity > 1e-9 else 0.0
+    else:
+        avg_utilization = 0.0
+
+    # 3. Density of available space - ratio of space that can fit current item to total space
+    if np.sum(bins_remain_cap) > 1e-9:
+        space_density = np.sum(bins_remain_cap[bins_remain_cap >= item]) / np.sum(bins_remain_cap)
+    else:
+        space_density = 0.0
+
+    # Determine base weights based on item characteristics
+    if item_percentile > 0.82:  # Large item
+        base_weights = [0.25, 0.75, 0.05]  # Emphasize best-fit and multiple-fit
+    elif item_percentile < 0.18:  # Small item
+        base_weights = [0.001, 1.194, 0.8]  # Emphasize multiple-fit and harmonic-fit
+    else:  # Medium item
+        base_weights = [0.08, 0.92, 0.1]  # Balance best-fit and multiple-fit
+
+    # Dynamic weight adjustment based on multiple packing state factors
+    # When fragmentation is high, prioritize best-fit to consolidate space
+    # When utilization is low, allow more multiple-fit opportunities
+    best_fit_boost = fragmentation_index * 0.3 + (1 - avg_utilization) * 0.1 + (1 - space_density) * 0.1
+    multiple_fit_boost = (1 - fragmentation_index) * 0.1 + avg_utilization * 0.1 + space_density * 0.05
+    harmonic_fit_boost = fragmentation_index * 0.05  # Slight boost when fragmentation is high
+
+    # Apply dynamic adjustments to weights
+    adjusted_weights = [
+        base_weights[0] * (1 + best_fit_boost),
+        base_weights[1] * (1 + multiple_fit_boost),
+        base_weights[2] * (1 + harmonic_fit_boost)
+    ]
+
+    # Combine heuristics with determined weights
+    combined_score = (
+        adjusted_weights[0] * best_fit_score +
+        adjusted_weights[1] * multiple_fit_score +
+        adjusted_weights[2] * harmonic_fit_score
+    )
+>>>>>>> REPLACE

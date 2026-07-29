@@ -1,0 +1,9 @@
+<<<<<<< SEARCH
+    # Combine both components with appropriate weights
+    # Give more weight to the common size matching since it was the key insight from parent solution
+    combined_scores = feasible_scores + 0.15 * best_fit_component  # Increased weight for best fit component
+=======
+    # Combine both components with appropriate weights
+    # Give more weight to the common size matching since it was the key insight from parent solution
+    combined_scores = feasible_scores + 0.05 * best_fit_component  # Optimal weight found in previous experiment
+>>>>>>> REPLACE

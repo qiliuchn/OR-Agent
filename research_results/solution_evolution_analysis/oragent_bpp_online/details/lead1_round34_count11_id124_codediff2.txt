@@ -1,0 +1,43 @@
+<<<<<<< SEARCH
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate the percentile of the current item in the context of remaining capacities
+        sorted_caps = np.sort(bins_remain_cap)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+    else:
+        item_percentile = 0.5  # Default if no bins exist
+    
+    # Define category-specific weights based on refined percentile thresholds
+    # Remove recyclability component since it was incorrectly implemented
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92
+=======
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate the percentile of the current item in the context of remaining capacities
+        sorted_caps = np.sort(bins_remain_cap)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+    else:
+        item_percentile = 0.5  # Default if no bins exist
+    
+    # Define category-specific weights based on refined percentile thresholds
+    # Simplified approach based on successful parent solutions
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25, 0.75
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001, 1.194
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92
+>>>>>>> REPLACE

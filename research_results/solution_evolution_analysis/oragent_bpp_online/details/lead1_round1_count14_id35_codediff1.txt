@@ -1,0 +1,79 @@
+<<<<<<< SEARCH
+        if high_capacity_ratio > 0.5:  # Likely in small items phase
+            # Focus on smaller, more granular multiples
+            estimated_common_sizes = [
+                item, 
+                item * 0.5, 
+                item * 0.25, 
+                item * 0.75, 
+                item * 0.33, 
+                item * 0.67,
+                item * 1.5,
+                item * 2.0
+            ]
+        else:  # Mixed or larger items phase
+            # Focus on standard multiples
+            estimated_common_sizes = [
+                item,
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25,
+                item * 0.33,
+                item * 0.67,
+                item * 2.0
+            ]
+    else:
+        # Fallback if bins array is empty (shouldn't happen in practice)
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25
+        ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+=======
+        if high_capacity_ratio > 0.5:  # Likely in small items phase
+            # Focus on smaller, more granular multiples
+            estimated_common_sizes = [
+                item, 
+                item * 0.5, 
+                item * 0.25, 
+                item * 0.75, 
+                item * 0.33, 
+                item * 0.67,
+                item * 1.5,
+                item * 0.125,  # Adding even smaller fractions for very fine granularity
+                item * 0.875   # And some intermediate values
+            ]
+        else:  # Mixed or larger items phase
+            # Focus on standard multiples
+            estimated_common_sizes = [
+                item,
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25,
+                item * 0.33,
+                item * 0.67,
+                item * 2.0,
+                item * 0.1,   # Adding small fraction for edge cases
+                item * 1.75   # And some other values
+            ]
+    else:
+        # Fallback if bins array is empty (shouldn't happen in practice)
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.25
+        ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+>>>>>>> REPLACE

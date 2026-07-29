@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    # Refined adaptive weights based on category
+    refined_weights = {
+        'large': (0.28, 0.72),   # Slightly more best-fit weight for large items
+        'small': (0.0003, 1.1997),  # Even less best-fit weight for small items
+        'medium': (0.09, 0.91)   # Slightly more balanced weights for medium items
+    }
+=======
+    # Adaptive weights based on the current item category - using proven effective values from parent solution
+    adaptive_weights = {
+        'large': (0.25, 0.75),   # Slightly increased best-fit weight for large items
+        'small': (0.0005, 1.195),  # Further reduced best-fit weight for small items
+        'medium': (0.07, 0.93)   # Slightly adjusted balanced weights for medium items
+    }
+>>>>>>> REPLACE

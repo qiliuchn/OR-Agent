@@ -1,0 +1,306 @@
+<<<<<<< SEARCH
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic that implements a robust, outlier-resistant scoring mechanism
+    replacing fragile percentile-based categorization with adaptive statistical 
+    features derived from the current bin state. Instead of fixed thresholds on 
+    item percentile rank, compute real-time metrics such as: (a) the Gini coefficient 
+    or entropy of feasible remainders to measure dispersion, (b) the proportion of 
+    bins with capacity < 2×item (indicating tight fit opportunities), and (c) the 
+    kurtosis of post-placement remainders to detect multi-modality. Use these to 
+    dynamically modulate the balance between best-fit and multiple-fit components 
+    via a learned or evolved mapping (e.g., piecewise linear weights), making the 
+    heuristic more resilient to distributional shifts in val_0/val_1 without 
+    requiring cross-call memory.
+
+    This approach addresses the sensitivity to distributional variations found in 
+    previous solutions by using state-dependent statistics instead of fixed thresholds.
+
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Compute adaptive statistical features from the current bin state
+    if len(feasible_post_caps) > 0:
+        # Calculate entropy of feasible remainders to measure dispersion
+        # Normalize the remainders to get a probability-like distribution
+        pos_caps = feasible_post_caps[feasible_post_caps > 0]
+        if len(pos_caps) > 0:
+            # Normalize to create probability distribution
+            norm_caps = pos_caps / np.sum(pos_caps)
+            # Calculate entropy (higher entropy means more dispersed)
+            entropy = -np.sum(norm_caps * np.log(norm_caps + 1e-9)) / np.log(len(norm_caps) + 1e-9) if len(norm_caps) > 1 else 0.0
+        else:
+            entropy = 0.0
+            
+        # Proportion of bins with capacity < 2×item (tight fit opportunities)
+        tight_fit_prop = np.sum(feasible_post_caps < 2 * item) / len(feasible_post_caps) if len(feasible_post_caps) > 0 else 0.0
+        
+        # Kurtosis of post-placement remainders (measures tailedness/modality)
+        if len(feasible_post_caps) > 1:
+            mean_val = np.mean(feasible_post_caps)
+            std_val = np.std(feasible_post_caps)
+            if std_val > 1e-9:  # Avoid division by zero
+                kurtosis = np.mean(((feasible_post_caps - mean_val) / std_val) ** 4) - 3
+            else:
+                kurtosis = 0.0
+        else:
+            kurtosis = 0.0
+            
+        # Use the statistical features to determine weights
+        # Adjust weights based on the state of the system
+        # Higher entropy suggests more dispersed remainders, might favor multiple-fit
+        # Higher tight_fit_prop suggests good opportunities for best-fit
+        # Higher kurtosis indicates more peaked/multi-modal distribution
+        
+        # Create a composite score based on these features
+        # Use learned or evolved relationships between features and optimal weights
+        # These relationships are based on analysis of successful parent solutions
+        entropy_factor = 1.0 + 0.5 * entropy  # Boost multiple-fit with higher entropy
+        tight_fit_factor = 1.0 + 0.8 * tight_fit_prop  # Boost best-fit with more tight fits
+        kurtosis_factor = 1.0 + 0.3 * max(0, kurtosis)  # Slight boost for multi-modality
+        
+        # Base weights from parent solution adjusted by statistical features
+        base_best_weight = 0.08
+        base_multiple_weight = 0.92
+        
+        # Dynamic adjustment based on statistical features
+        adjusted_best_weight = base_best_weight * tight_fit_factor
+        adjusted_multiple_weight = base_multiple_weight * entropy_factor
+        
+        # Normalize weights to keep the scale similar to parent solution
+        total_weight = adjusted_best_weight + adjusted_multiple_weight
+        if total_weight > 0:
+            final_best_weight = adjusted_best_weight / total_weight
+            final_multiple_weight = adjusted_multiple_weight / total_weight
+        else:
+            final_best_weight = base_best_weight
+            final_multiple_weight = base_multiple_weight
+    else:
+        # Default weights if no feasible bins
+        final_best_weight = 0.08
+        final_multiple_weight = 0.92
+    
+    # Generate dynamic common sizes using context-aware sampling
+    if len(feasible_post_caps) > 0:
+        # Identify important scales from the current distribution
+        unique_caps = np.unique(feasible_post_caps)
+        if len(unique_caps) > 0:
+            # Sample key values from the current distribution as common sizes
+            quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+            quantile_values = np.quantile(unique_caps, quantiles)
+            
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75
+            ])
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                quantile_values,
+                item_ratios,
+                remainder_fractions
+            ])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                max_multiplier = min(max_multiplier, 5)  # Limit to prevent excessive computation
+                
+                if max_multiplier > 0:
+                    # Calculate distances to all possible multiples
+                    distances_to_multiples = np.min([
+                        np.abs(feasible_post_caps - n * common_size) 
+                        for n in range(0, max_multiplier)
+                    ], axis=0)
+                    
+                    # Add to the score (higher score for closer matches)
+                    multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine all components with dynamically adjusted weights
+    feasible_scores = (
+        final_multiple_weight * multiple_fit_score + 
+        final_best_weight * best_fit_component
+    )
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+=======
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic that implements a percentile-based categorization
+    approach similar to the successful parent solution, but with refined
+    parameters based on the analysis of performance patterns.
+    
+    The approach maintains the percentile-based item categorization from the
+    parent solution but adjusts the weight parameters based on lessons
+    learned from performance on different instance types.
+
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate the percentile of the current item in the context of remaining capacities
+        sorted_caps = np.sort(bins_remain_cap)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+    else:
+        item_percentile = 0.5  # Default if no bins exist
+    
+    # Define category-specific weights based on refined percentile thresholds
+    # Using insights from parent solution with slight adjustments
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+    
+    # Generate dynamic common sizes using context-aware sampling
+    # Use a kernel density-based approach to identify important remainder values
+    if len(feasible_post_caps) > 0:
+        # Identify important scales from the current remainder distribution
+        # Use a simplified approach: sample quantiles and key ratios from the distribution
+        unique_caps = np.unique(feasible_post_caps)
+        if len(unique_caps) > 0:
+            # Sample key values from the current distribution as common sizes
+            # Quantiles provide good coverage of the distribution
+            quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+            quantile_values = np.quantile(unique_caps, quantiles)
+            
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75
+            ])
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                quantile_values,
+                item_ratios,
+                remainder_fractions
+            ])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                max_multiplier = min(max_multiplier, 5)  # Limit to prevent excessive computation
+                
+                if max_multiplier > 0:
+                    # Calculate distances to all possible multiples
+                    distances_to_multiples = np.min([
+                        np.abs(feasible_post_caps - n * common_size) 
+                        for n in range(0, max_multiplier)
+                    ], axis=0)
+                    
+                    # Add to the score (higher score for closer matches)
+                    multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine all components with category-specific weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component
+    )
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+>>>>>>> REPLACE

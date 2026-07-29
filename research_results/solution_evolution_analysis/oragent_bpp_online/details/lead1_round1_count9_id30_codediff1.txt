@@ -1,0 +1,29 @@
+<<<<<<< SEARCH
+    # Component 2: Multiple-based scoring (faster version)
+    # Instead of checking all multipliers, just look at a few key multiples
+    estimated_common_sizes = [item, item * 0.5, item * 2.0]
+    multiple_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        if common_size > 0:
+            # Calculate distance to nearest multiple
+            quotients = feasible_post_caps / common_size
+            rounded_quotients = np.round(quotients)
+            distances_to_multiples = np.abs(feasible_post_caps - rounded_quotients * common_size)
+            # Add to the score (higher score for closer matches)
+            multiple_scores += 1.0 / (1.0 + distances_to_multiples)
+=======
+    # Component 2: Multiple-based scoring (enhanced version)
+    # Use a broader range of estimated common sizes based on the parent solution approach
+    estimated_common_sizes = [item, item * 0.9, item * 1.1, item * 0.5, item * 1.5, item * 0.75, item * 1.25]
+    multiple_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        if common_size > 0:
+            # Calculate distance to nearest multiple
+            quotients = feasible_post_caps / common_size
+            rounded_quotients = np.round(quotients)
+            distances_to_multiples = np.abs(feasible_post_caps - rounded_quotients * common_size)
+            # Add to the score (higher score for closer matches)
+            multiple_scores += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

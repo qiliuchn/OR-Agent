@@ -1,0 +1,161 @@
+<<<<<<< SEARCH
+    # Determine if we're likely in a "small items" vs "large items" phase
+    # based on the current state
+    if len(bins_remain_cap) > 0:
+        # If most bins still have high capacity, assume small items dominate
+        high_capacity_ratio = np.sum(bins_remain_cap > 0.7 * max_remaining) / len(bins_remain_cap)
+        
+        # Adjust strategy based on context
+        if high_capacity_ratio > 0.5:  # Likely in small items phase
+            # Focus on smaller, more granular multiples
+            estimated_common_sizes = [
+                item, 
+                item * 0.5, 
+                item * 0.25, 
+                item * 0.75, 
+                item * 0.33, 
+                item * 0.67,
+                item * 1.5,
+                item * 0.125,  # Adding even smaller fractions for very fine granularity
+                item * 0.875   # And some intermediate values
+            ]
+        else:  # Mixed or larger items phase
+            # Focus on standard multiples
+            estimated_common_sizes = [
+                item,
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25,
+                item * 0.33,
+                item * 0.67,
+                item * 2.0,
+                item * 0.1,   # Adding small fraction for edge cases
+                item * 1.75   # And some other values
+            ]
+    else:
+        # Fallback if bins array is empty (shouldn't happen in practice)
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.25
+        ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+    
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiplier > 0:
+            # Calculate distances to all possible multiples
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_multiplier)
+            ], axis=0)
+            
+            # Add to the score (higher score for closer matches)
+            # Use a small epsilon to avoid division by zero
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Adaptive weight for best fit based on context
+    # In scenarios with high variance in remaining capacities, 
+    # best fit might be more important
+    if std_remaining > 0.2 * max_remaining:
+        best_fit_weight = 0.1
+    else:
+        best_fit_weight = 0.05
+    
+    # Combine both components
+    feasible_scores = multiple_fit_score + best_fit_weight * best_fit_component
+=======
+    # Determine if we're likely in a "small items" vs "large items" phase
+    # based on the current state
+    if len(bins_remain_cap) > 0:
+        # If most bins still have high capacity, assume small items dominate
+        high_capacity_ratio = np.sum(bins_remain_cap > 0.6 * max_remaining) / len(bins_remain_cap)
+        
+        # Adjust strategy based on context
+        if high_capacity_ratio > 0.4:  # Likely in small items phase - adjusted threshold
+            # Focus on smaller, more granular multiples
+            estimated_common_sizes = [
+                item, 
+                item * 0.5, 
+                item * 0.25, 
+                item * 0.75, 
+                item * 0.33, 
+                item * 0.67,
+                item * 1.5,
+                item * 0.125,  # Adding even smaller fractions for very fine granularity
+                item * 0.875   # And some intermediate values
+            ]
+        else:  # Mixed or larger items phase
+            # Focus on standard multiples
+            estimated_common_sizes = [
+                item,
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25,
+                item * 0.33,
+                item * 0.67,
+                item * 2.0,
+                item * 0.1,   # Adding small fraction for edge cases
+                item * 1.75   # And some other values
+            ]
+    else:
+        # Fallback if bins array is empty (shouldn't happen in practice)
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.25
+        ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+    
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiplier > 0:
+            # Calculate distances to all possible multiples
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_multiplier)
+            ], axis=0)
+            
+            # Add to the score (higher score for closer matches)
+            # Use a small epsilon to avoid division by zero
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Adaptive weight for best fit based on context
+    # In scenarios with high variance in remaining capacities, 
+    # best fit might be more important
+    if std_remaining > 0.15 * max_remaining:
+        best_fit_weight = 0.08
+    else:
+        best_fit_weight = 0.04
+    
+    # Combine both components
+    feasible_scores = multiple_fit_score + best_fit_weight * best_fit_component
+>>>>>>> REPLACE

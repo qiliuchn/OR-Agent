@@ -1,0 +1,105 @@
+<<<<<<< SEARCH
+    # Compute adaptive thresholds based on current bin state and item
+    # Consider the item size relative to the distribution of available bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate quartiles of current available bin capacities to adaptively determine thresholds
+        available_caps = bins_remain_cap[bins_remain_cap >= item]  # Only consider bins that can fit the item
+        if len(available_caps) > 0:
+            # Sort the available bin capacities
+            sorted_available_caps = np.sort(available_caps)
+            q25 = np.percentile(sorted_available_caps, 25)
+            q50 = np.percentile(sorted_available_caps, 50)
+            q75 = np.percentile(sorted_available_caps, 75)
+            
+            # Determine item category based on how the item size relates to available bin capacities
+            # This is more context-aware than just looking at all bin capacities
+            if item <= q25:
+                item_category = 'small'
+            elif item <= q75:
+                item_category = 'medium'
+            else:
+                item_category = 'large'
+        else:
+            # If no bins can fit the item (shouldn't happen since we check feasible_bins earlier),
+            # or if there are no available bins, use the item size relative to all bin capacities
+            sorted_all_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])
+            if len(sorted_all_caps) > 0:
+                q25 = np.percentile(sorted_all_caps, 25)
+                q50 = np.percentile(sorted_all_caps, 50)
+                q75 = np.percentile(sorted_all_caps, 75)
+                
+                if item <= q25:
+                    item_category = 'small'
+                elif item <= q75:
+                    item_category = 'medium'
+                else:
+                    item_category = 'large'
+            else:
+                item_category = 'medium'  # Default if no context available
+    else:
+        item_category = 'medium'  # Default if no bins exist
+=======
+    # Compute adaptive thresholds based on current bin state and item
+    # Consider the item size relative to the distribution of available bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate adaptive percentiles based on the variance of available bin capacities
+        available_caps = bins_remain_cap[bins_remain_cap >= item]  # Only consider bins that can fit the item
+        if len(available_caps) > 0:
+            # Sort the available bin capacities
+            sorted_available_caps = np.sort(available_caps)
+            
+            # Calculate coefficient of variation to determine adaptive percentiles
+            mean_cap = np.mean(sorted_available_caps)
+            std_cap = np.std(sorted_available_caps)
+            cv = std_cap / mean_cap if mean_cap > 0 else 0  # Coefficient of variation
+            
+            # Adjust percentiles based on coefficient of variation
+            # Higher CV means more spread out capacities, use wider percentiles
+            # Lower CV means more uniform capacities, use narrower percentiles
+            base_lower_pct = 20  # Base lower percentile
+            base_upper_pct = 80  # Base upper percentile
+            
+            # Adjust percentiles based on variation (within reasonable bounds)
+            lower_pct = max(5, min(35, base_lower_pct * (1 + cv * 0.5)))
+            upper_pct = max(65, min(95, base_upper_pct * (1 - cv * 0.2)))
+            
+            low_threshold = np.percentile(sorted_available_caps, lower_pct)
+            high_threshold = np.percentile(sorted_available_caps, upper_pct)
+            
+            # Determine item category based on how the item size relates to available bin capacities
+            # This is more context-aware than just looking at all bin capacities
+            if item <= low_threshold:
+                item_category = 'small'
+            elif item <= high_threshold:
+                item_category = 'medium'
+            else:
+                item_category = 'large'
+        else:
+            # If no bins can fit the item (shouldn't happen since we check feasible_bins earlier),
+            # or if there are no available bins, use the item size relative to all bin capacities
+            sorted_all_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])
+            if len(sorted_all_caps) > 0:
+                # Use adaptive percentiles for all caps too
+                mean_cap = np.mean(sorted_all_caps)
+                std_cap = np.std(sorted_all_caps)
+                cv = std_cap / mean_cap if mean_cap > 0 else 0
+                
+                base_lower_pct = 20
+                base_upper_pct = 80
+                lower_pct = max(5, min(35, base_lower_pct * (1 + cv * 0.5)))
+                upper_pct = max(65, min(95, base_upper_pct * (1 - cv * 0.2)))
+                
+                low_threshold = np.percentile(sorted_all_caps, lower_pct)
+                high_threshold = np.percentile(sorted_all_caps, upper_pct)
+                
+                if item <= low_threshold:
+                    item_category = 'small'
+                elif item <= high_threshold:
+                    item_category = 'medium'
+                else:
+                    item_category = 'large'
+            else:
+                item_category = 'medium'  # Default if no context available
+    else:
+        item_category = 'medium'  # Default if no bins exist
+>>>>>>> REPLACE

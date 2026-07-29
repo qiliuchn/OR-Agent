@@ -1,0 +1,42 @@
+<<<<<<< SEARCH
+    # Use adaptive thresholding based on current bin state and item
+    # Use quartiles of current bin capacities to determine thresholds
+    # This is similar to the parent solution but keeping the online clustering concept
+    sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+    if len(sorted_caps) > 0:
+        q25 = np.percentile(sorted_caps, 25)
+        q50 = np.percentile(sorted_caps, 50)
+        q75 = np.percentile(sorted_caps, 75)
+        
+        # Determine where the current item fits relative to these quartiles
+        if item <= q25:
+            item_category = 'small'
+        elif item <= q75:
+            item_category = 'medium'
+        else:
+            item_category = 'large'
+    else:
+        # If all bins are empty, use the item size relative to itself as reference
+        item_category = 'medium'  # Default to medium if no context available
+=======
+    # Use adaptive thresholding based on current bin state and item
+    # Use quartiles of current feasible bin capacities to determine thresholds
+    # Using only bins that can accommodate the current item for more relevant thresholds
+    feasible_caps = bins_remain_cap[bins_remain_cap >= item]  # Only consider bins that can fit the item
+    if len(feasible_caps) > 0:
+        sorted_caps = np.sort(feasible_caps)
+        q25 = np.percentile(sorted_caps, 25)
+        q50 = np.percentile(sorted_caps, 50)
+        q75 = np.percentile(sorted_caps, 75)
+        
+        # Determine where the current item fits relative to these quartiles
+        if item <= q25:
+            item_category = 'small'
+        elif item <= q75:
+            item_category = 'medium'
+        else:
+            item_category = 'large'
+    else:
+        # If no bins can fit the item, default to medium category
+        item_category = 'medium'  # Default to medium if no context available
+>>>>>>> REPLACE

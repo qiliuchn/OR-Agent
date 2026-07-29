@@ -1,0 +1,10 @@
+<<<<<<< SEARCH
+        # Use Gaussian kernel with adaptive bandwidth for scoring
+        # Higher score for closer matches to multiples
+        gaussian_scores = np.exp(-0.5 * (distances_to_multiples / adaptive_bandwidth) ** 2)
+        feasible_scores += gaussian_scores
+=======
+        # Use the proven 1/(1+distance) scoring function from parent solution
+        # Higher score for closer matches to multiples
+        feasible_scores += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

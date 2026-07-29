@@ -1,0 +1,51 @@
+<<<<<<< SEARCH
+    else:  # Item is medium-sized relative to remaining capacities
+        # Balanced approach with moderate granularity
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 0.25,
+            item * 0.1,   
+            item * 1.75,   
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 1.1     # Slightly over 1x for near-full bins
+        ]
+        
+        # Balanced weights, adjusted based on density
+        # In high density, slightly increase best-fit to fill bins efficiently
+        density_factor = 1.0 + (0.5 * packing_density)  # Increase slightly in high density
+        best_fit_weight = 0.06 * density_factor
+        multiple_fit_weight = 0.94 * (2.0 - density_factor)  # Adjust to maintain balance
+=======
+    else:  # Item is medium-sized relative to remaining capacities
+        # Balanced approach with moderate granularity
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 0.25,
+            item * 0.1,   
+            item * 1.75,   
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 1.1     # Slightly over 1x for near-full bins
+        ]
+        
+        # Balanced weights (same as Parent #2 for consistency)
+        best_fit_weight = 0.06
+        multiple_fit_weight = 0.94
+>>>>>>> REPLACE

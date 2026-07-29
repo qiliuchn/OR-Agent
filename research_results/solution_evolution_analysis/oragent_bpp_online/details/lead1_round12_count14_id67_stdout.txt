@@ -1,0 +1,19 @@
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/oragent/bpp_online/standard_mode14/details/lead1_round12_count14_id67_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: OverflowError
+Error message: math range error
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round12_count14_id67_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round12_count14_id67_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round12_count14_id67_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round12_count14_id67_solution.py", line 197, in priority
+    skew_factor_right = smooth_threshold_transition(skewness, 0.45, 0.05)  # How much right-skewed
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round12_count14_id67_solution.py", line 106, in smooth_threshold_transition
+    return 1.0 / (1.0 + math.exp(-normalized_distance))
+OverflowError: math range error

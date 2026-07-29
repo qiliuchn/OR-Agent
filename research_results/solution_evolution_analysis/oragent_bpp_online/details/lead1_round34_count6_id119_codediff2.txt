@@ -1,0 +1,25 @@
+<<<<<<< SEARCH
+    # Define category-specific base weights based on refined percentile thresholds
+    if item_percentile > 0.82:  # Very large item
+        base_best_fit_weight, base_multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        base_best_fit_weight, base_multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        base_best_fit_weight, base_multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        base_best_fit_weight, base_multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        base_best_fit_weight, base_multiple_fit_weight = 0.08, 0.92  # Medium weights
+=======
+    # Define category-specific base weights based on refined percentile thresholds
+    if item_percentile > 0.82:  # Very large item
+        base_best_fit_weight, base_multiple_fit_weight = 0.30 * 1.07, 0.70 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        base_best_fit_weight, base_multiple_fit_weight = 0.0005 * 0.93, 1.199 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        base_best_fit_weight, base_multiple_fit_weight = 0.16, 0.84  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        base_best_fit_weight, base_multiple_fit_weight = 0.020, 1.060  # Between medium and small
+    else:  # True medium item
+        base_best_fit_weight, base_multiple_fit_weight = 0.07, 0.93  # Medium weights
+>>>>>>> REPLACE

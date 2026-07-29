@@ -1,0 +1,27 @@
+<<<<<<< SEARCH
+        # For large items, emphasize best-fit but maintain some focus on common-size matching
+        best_fit_weight = 0.22  # Slightly reduced from 0.25
+        multiple_fit_weight = 0.78  # Slightly increased from 0.75
+=======
+        # For large items, emphasize best-fit but maintain some focus on common-size matching
+        best_fit_weight = 0.25  # Increased back to original better value
+        multiple_fit_weight = 0.75  # Reduced back to original better value
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        # For small items, reduce best-fit emphasis and increase multiple fitting
+        best_fit_weight = 0.0025  # Slightly increased from 0.002 to add a tiny best-fit component
+        multiple_fit_weight = 1.175  # Slightly decreased from 1.18
+=======
+        # For small items, reduce best-fit emphasis and increase multiple fitting
+        best_fit_weight = 0.002  # Return to previous better value
+        multiple_fit_weight = 1.18  # Return to previous better value
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        # Balanced weights for medium items
+        best_fit_weight = 0.055  # Slightly increased from 0.05
+        multiple_fit_weight = 0.945  # Slightly decreased from 0.95
+=======
+        # Balanced weights for medium items
+        best_fit_weight = 0.05  # Return to previous better value
+        multiple_fit_weight = 0.95  # Return to previous better value
+>>>>>>> REPLACE

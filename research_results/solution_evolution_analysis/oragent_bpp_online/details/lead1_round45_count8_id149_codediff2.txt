@@ -1,0 +1,26 @@
+<<<<<<< SEARCH
+    # Generate dynamic common sizes that represent current state patterns
+    dynamic_common_sizes = np.concatenate([
+        feasible_post_caps,  # Current remainders
+        np.array([item]),   # Current item
+        feasible_post_caps / 2,  # Halves of remainders
+        feasible_post_caps / 3,  # Thirds of remainders
+        feasible_post_caps * 2,  # Doubles of remainders (if within reason)
+        np.array([1.0, 2.0, 5.0, 10.0, 25.0, 50.0])  # Common values
+    ])
+=======
+    # Generate dynamic common sizes that represent current state patterns
+    # Using a combination of item-based and remainder-based common sizes
+    dynamic_common_sizes = np.concatenate([
+        # Item-based common sizes (from parent solution approach)
+        np.array([item]),                    # Item itself
+        item * np.array([0.5, 1.5, 0.25, 0.75, 1.25, 2.0, 0.33, 0.67, 0.125, 0.875]),  # Fractional items
+        # Remainder-based common sizes
+        feasible_post_caps,  # Current remainders
+        feasible_post_caps / 2,  # Halves of remainders
+        feasible_post_caps / 3,  # Thirds of remainders
+        feasible_post_caps * 2,  # Doubles of remainders (if within reason)
+        # Common bin capacity fractions
+        np.array([1.0, 2.0, 5.0, 10.0, 25.0, 50.0, 75.0])  # Common values
+    ])
+>>>>>>> REPLACE

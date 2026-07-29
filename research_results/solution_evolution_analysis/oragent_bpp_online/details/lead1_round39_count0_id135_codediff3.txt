@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    # Adaptive weights based on the current item category
+    adaptive_weights = {
+        'large': (0.25, 0.75),
+        'small': (0.0005, 1.195),
+        'medium': (0.07, 0.93)
+    }
+=======
+    # Adaptive weights based on the current item category
+    adaptive_weights = {
+        'large': (0.25, 0.75),
+        'small': (0.0005, 1.195),
+        'medium': (0.07, 0.93)
+    }
+>>>>>>> REPLACE

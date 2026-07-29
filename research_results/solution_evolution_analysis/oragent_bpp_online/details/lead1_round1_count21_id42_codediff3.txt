@@ -1,0 +1,93 @@
+<<<<<<< SEARCH
+    # 2. Mode detection component: identify useful capacity patterns from existing bins
+    # This combines information from both current bin patterns and the current item
+    mode_scores = np.zeros(n_feasible)
+    
+    if n_feasible > 0:
+        # Identify quantiles of current bin capacities to find common patterns
+        # Use 0.25, 0.5, 0.75 quantiles to find common capacity patterns
+        unique_caps = np.unique(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+        
+        if len(unique_caps) > 0:
+            # Identify meaningful capacity levels that appear frequently
+            # Use quantiles to find natural groupings
+            q25 = np.quantile(unique_caps, 0.25) if len(unique_caps) > 1 else np.mean(unique_caps)
+            q50 = np.quantile(unique_caps, 0.50) if len(unique_caps) > 1 else np.mean(unique_caps)
+            q75 = np.quantile(unique_caps, 0.75) if len(unique_caps) > 1 else np.mean(unique_caps)
+            
+            # Define target capacity levels based on observed patterns
+            target_levels = [q25, q50, q75]
+            # Also include some common ratios that might emerge
+            max_cap = np.max(unique_caps)
+            target_levels.extend([max_cap * 0.1, max_cap * 0.2, max_cap * 0.3, 
+                                  max_cap * 0.4, max_cap * 0.6, max_cap * 0.8, 
+                                  max_cap * 0.9])
+            
+            # Additionally, include patterns based on the current item to match parent solution effectiveness
+            # Consider common multiples of the current item that might be useful for future packing
+            current_item = item
+            item_based_targets = [current_item, current_item * 0.9, current_item * 1.1, 
+                                  current_item * 0.5, current_item * 1.5, current_item * 0.75, current_item * 1.25]
+            target_levels.extend([target for target in item_based_targets if target > 0])
+            
+            # Remove duplicates and zeros
+            target_levels = list(set([level for level in target_levels if level > 0]))
+            
+            # For each feasible bin, calculate how well its post-placement capacity matches targets
+            for target in target_levels:
+                # Distance to target - closer is better
+                distances = np.abs(feasible_post_caps - target)
+                # Convert to similarity scores (higher for closer matches)
+                similarities = 1.0 / (1.0 + distances)
+                # Add to mode scores
+                mode_scores += similarities
+=======
+    # 2. Mode detection component: identify useful capacity patterns from existing bins
+    # Focus on finding recurring patterns in existing bin remainders that indicate useful capacities
+    mode_scores = np.zeros(n_feasible)
+    
+    if n_feasible > 0:
+        # Find meaningful capacity levels from current bins using histogram-based peak detection
+        # This identifies commonly occurring capacity levels that might be useful for future items
+        positive_caps = bins_remain_cap[bins_remain_cap > 0]
+        
+        if len(positive_caps) > 0:
+            # Use histogram to find peaks in capacity distribution
+            # Create bins for histogram based on reasonable granularity
+            cap_min, cap_max = np.min(positive_caps), np.max(positive_caps)
+            if cap_max > cap_min:
+                # Create histogram to find common capacity levels
+                hist, bin_edges = np.histogram(positive_caps, bins=min(20, len(positive_caps)//2 + 1) if len(positive_caps) > 1 else 1)
+                bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+                
+                # Find bins with above-average counts (potential modes)
+                threshold = np.mean(hist) if len(hist) > 0 else 0
+                mode_candidates = bin_centers[hist > threshold]
+                
+                # Also include some key ratios of the maximum capacity that often appear in good packings
+                max_possible_cap = 100.0  # Assuming bin capacity is 100 based on problem description
+                # Use patterns based on common fractions that emerge in efficient packings
+                fraction_targets = [max_possible_cap * f for f in [0.1, 0.2, 0.25, 0.33, 0.5, 0.67, 0.75, 0.8, 0.9]]
+                
+                # Combine detected modes with fraction-based targets
+                target_levels = list(mode_candidates) + fraction_targets
+                
+                # Additionally, include patterns based on the current item as in parent solution
+                current_item = item
+                item_based_targets = [current_item, current_item * 0.9, current_item * 1.1, 
+                                      current_item * 0.5, current_item * 1.5, current_item * 0.75, current_item * 1.25]
+                target_levels.extend([target for target in item_based_targets if target > 0])
+                
+                # Remove duplicates and zeros
+                target_levels = list(set([level for level in target_levels if level > 0]))
+                
+                # For each feasible bin, calculate how well its post-placement capacity matches targets
+                if target_levels:  # Only proceed if we have targets
+                    for target in target_levels:
+                        # Distance to target - closer is better
+                        distances = np.abs(feasible_post_caps - target)
+                        # Convert to similarity scores (higher for closer matches)
+                        similarities = 1.0 / (1.0 + distances)
+                        # Add to mode scores
+                        mode_scores += similarities
+>>>>>>> REPLACE

@@ -1,0 +1,36 @@
+<<<<<<< SEARCH
+    # Compute sigmoidal gate value based on uncertainty indicators
+    # Higher uncertainty leads to more Best-Fit influence
+    uncertainty_score = 0.5 * cv_remainders + 0.5 * item_z_score
+    # Sigmoid to get gate value between 0 and 1
+    # Using a scaled sigmoid: gate_value = 1 / (1 + exp(-2*(x-1))) to center around 1.0
+    gate_value = 1 / (1 + np.exp(-2 * (uncertainty_score - 1.0)))
+    # Clamp gate value to [0, 1] to ensure proper interpolation
+    gate_value = np.clip(gate_value, 0, 1)
+    
+    # Determine strategy weights based on the gate value
+    # When gate_value is high (high uncertainty), lean towards Best Fit
+    # When gate_value is low (low uncertainty), lean towards adaptive strategy
+    best_fit_blend_factor = gate_value
+    adaptive_blend_factor = 1 - gate_value
+=======
+    # Compute sigmoidal gate value based on uncertainty indicators
+    # Higher uncertainty leads to more Best-Fit influence
+    # Scale the uncertainty indicators to be more meaningful
+    normalized_cv = np.clip(cv_remainders, 0, 2.0)  # Cap coefficient of variation
+    normalized_z_score = np.clip(item_z_score, 0, 2.0)  # Cap z-score
+    uncertainty_score = 0.5 * normalized_cv + 0.5 * normalized_z_score
+    
+    # Sigmoid to get gate value between 0 and 1
+    # Using a standard sigmoid: gate_value = 1 / (1 + exp(-k*(x-threshold)))
+    # Where k controls steepness and threshold centers the transition
+    gate_value = 1 / (1 + np.exp(-4 * (uncertainty_score - 0.8)))  # Steeper curve, centered at 0.8
+    # Clamp gate value to [0, 1] to ensure proper interpolation
+    gate_value = np.clip(gate_value, 0, 1)
+    
+    # Determine strategy weights based on the gate value
+    # When gate_value is high (high uncertainty), lean towards Best Fit
+    # When gate_value is low (low uncertainty), lean towards adaptive strategy
+    best_fit_blend_factor = gate_value
+    adaptive_blend_factor = 1 - gate_value
+>>>>>>> REPLACE

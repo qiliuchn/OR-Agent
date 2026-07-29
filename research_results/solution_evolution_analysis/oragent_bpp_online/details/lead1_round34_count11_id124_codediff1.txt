@@ -1,0 +1,32 @@
+<<<<<<< SEARCH
+    # Calculate recyclability metric based on distribution entropy
+    # For simplicity, we'll estimate recyclability by looking at how close remainders are to common small item sizes
+    # In a real implementation, we'd track historical item sizes in a sliding window
+    recyclability_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Estimate empirical modes of historical small items by using quantiles of the current distribution
+    # This is a proxy for the recyclability of remainders
+    if len(feasible_post_caps) > 0:
+        # Use quantiles of the current remainder distribution as proxy for common small items
+        small_item_modes = np.array([np.quantile(feasible_post_caps, q) for q in [0.1, 0.2, 0.3]])
+        small_item_modes = small_item_modes[small_item_modes > 1e-9]  # Filter out tiny values
+        
+        if len(small_item_modes) > 0:
+            # Calculate distance to closest small item mode for each remainder
+            min_distances = np.full_like(feasible_post_caps, np.inf)
+            for mode in small_item_modes:
+                distances = np.abs(feasible_post_caps - mode)
+                min_distances = np.minimum(min_distances, distances)
+            
+            # Higher recyclability score for remainders closer to common small item sizes
+            recyclability_score = 1.0 / (1.0 + min_distances)
+=======
+    # Calculate recyclability metric based on distribution entropy
+    # Since we cannot maintain historical item data in the online setting,
+    # we simplify by removing this component which was incorrectly implemented
+    recyclability_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Remove the problematic recyclability calculation and instead focus
+    # on a more stable multiple-fit and best-fit combination
+    # The previous implementation incorrectly used remainders as proxies for historical item sizes
+>>>>>>> REPLACE

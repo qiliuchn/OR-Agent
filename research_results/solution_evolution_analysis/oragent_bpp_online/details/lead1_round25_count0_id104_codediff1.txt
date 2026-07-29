@@ -1,0 +1,59 @@
+<<<<<<< SEARCH
+    # Calculate dynamic thresholds based on current bin capacity distribution
+    if len(bins_remain_cap) > 1:
+        # Use the distribution of remaining bin capacities to inform thresholds
+        cap_variance = np.var(bins_remain_cap)
+        cap_mean = np.mean(bins_remain_cap)
+        
+        # Normalize variance to inform threshold adjustment
+        if cap_mean > 0:
+            cv = np.sqrt(cap_variance) / cap_mean  # Coefficient of variation
+        else:
+            cv = 0
+            
+        # Adjust thresholds based on coefficient of variation
+        # Higher CV suggests more varied remaining capacities, expand medium range
+        base_threshold_low = 0.25
+        base_threshold_high = 0.75
+        
+        # Adjust based on coefficient of variation
+        adjustment_factor = min(cv * 0.2, 0.2)  # Limit adjustment to ±20%
+        low_threshold = max(0.1, base_threshold_low - adjustment_factor)
+        high_threshold = min(0.9, base_threshold_high + adjustment_factor)
+    else:
+        # Default thresholds when insufficient data
+        low_threshold = 0.25
+        high_threshold = 0.75
+=======
+    # Calculate dynamic thresholds based on current bin capacity distribution
+    if len(bins_remain_cap) > 1:
+        # Use the distribution of remaining bin capacities to inform thresholds
+        cap_variance = np.var(bins_remain_cap)
+        cap_mean = np.mean(bins_remain_cap)
+        
+        # Normalize variance to inform threshold adjustment
+        if cap_mean > 0:
+            cv = np.sqrt(cap_variance) / cap_mean  # Coefficient of variation
+        else:
+            cv = 0
+            
+        # Adjust thresholds based on coefficient of variation
+        # Higher CV suggests more varied remaining capacities, expand medium range
+        base_threshold_low = 0.25
+        base_threshold_high = 0.75
+        
+        # Adjust based on coefficient of variation
+        adjustment_factor = min(cv * 0.2, 0.2)  # Limit adjustment to ±20%
+        low_threshold = max(0.1, base_threshold_low - adjustment_factor)
+        high_threshold = min(0.9, base_threshold_high + adjustment_factor)
+    else:
+        # Default thresholds when insufficient data
+        low_threshold = 0.25
+        high_threshold = 0.75
+    
+    # Also calculate CV to potentially adjust weights based on distribution characteristics
+    if len(bins_remain_cap) > 1 and cap_mean > 0:
+        cv = np.sqrt(cap_variance) / cap_mean
+    else:
+        cv = 0
+>>>>>>> REPLACE

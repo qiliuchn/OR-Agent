@@ -1,0 +1,42 @@
+<<<<<<< SEARCH
+                # Piecewise scoring function
+                # For distances <= tau, use exponential decay: exp(-alpha * distance)
+                # For distances > tau, use linear decay starting from the value at tau boundary
+                small_gap_mask = distances_to_multiples <= tau
+                
+                # Calculate scores for small gaps (exponential decay)
+                small_gap_scores = np.exp(-alpha * distances_to_multiples[small_gap_mask])
+                
+                # Calculate scores for large gaps (linear decay starting from the value at tau boundary)
+                exp_at_tau = np.exp(-alpha * tau)
+                large_gap_scores = exp_at_tau / (1.0 + (distances_to_multiples[~small_gap_mask] - tau) / (tau + 1e-8))
+                
+                # Create full scores array
+                temp_scores = np.zeros_like(distances_to_multiples, dtype=float)
+                temp_scores[small_gap_mask] = small_gap_scores
+                temp_scores[~small_gap_mask] = large_gap_scores
+                
+                # Add to the total score
+                multiple_fit_score += temp_scores
+=======
+                # Piecewise scoring function
+                # For distances <= tau, use exponential decay: exp(-alpha * distance)
+                # For distances > tau, use linear decay starting from the value at tau boundary
+                small_gap_mask = distances_to_multiples <= tau
+                
+                # Calculate scores for small gaps (exponential decay)
+                small_gap_scores = np.exp(-alpha * distances_to_multiples[small_gap_mask])
+                
+                # Calculate scores for large gaps (linear decay starting from the value at tau boundary)
+                # Ensure continuity by starting from the exponential value at the threshold
+                exp_at_tau = np.exp(-alpha * tau)
+                large_gap_scores = exp_at_tau / (1.0 + (distances_to_multiples[~small_gap_mask] - tau))
+                
+                # Create full scores array
+                temp_scores = np.zeros_like(distances_to_multiples, dtype=float)
+                temp_scores[small_gap_mask] = small_gap_scores
+                temp_scores[~small_gap_mask] = large_gap_scores
+                
+                # Add to the total score
+                multiple_fit_score += temp_scores
+>>>>>>> REPLACE

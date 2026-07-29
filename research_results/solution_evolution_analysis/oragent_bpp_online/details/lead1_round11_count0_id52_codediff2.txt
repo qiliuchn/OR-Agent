@@ -1,0 +1,24 @@
+<<<<<<< SEARCH
+    # Determine when to add randomness based on how many bins are in play
+    # Use a similar approach to Parent #2 but with refined parameters
+    total_bins_estimate = len(bins_remain_cap) + int(initial_capacity * 0.3)  # Adjusted estimate of total bins initially created
+    randomness_threshold = 0.25  # Adjusted threshold for adding randomness
+    
+    should_add_randomness = (
+        len(bins_remain_cap) > 1 and  # Only add randomness if there are multiple bins to choose from
+        packing_density > 0.2  # Only when we're reasonably into the packing process
+    )
+=======
+    # Determine when to add randomness based on how many bins are in play
+    # Use a similar approach to Parent #2 but with refined parameters
+    total_bins_estimate = len(bins_remain_cap) + int(initial_capacity * 0.5)  # Adjusted estimate of total bins initially created (back to Parent #2's approach)
+    randomness_threshold = 0.3  # Adjusted threshold for adding randomness (back to Parent #2's approach)
+    
+    # Calculate ratio of active bins to total estimated bins
+    active_bins_ratio = len(bins_remain_cap) / total_bins_estimate if total_bins_estimate > 0 else 0
+    
+    should_add_randomness = (
+        active_bins_ratio > randomness_threshold and  # Use the same condition as Parent #2
+        len(bins_remain_cap) > 1  # Only add randomness if there are multiple bins to choose from
+    )
+>>>>>>> REPLACE

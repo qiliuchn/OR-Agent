@@ -1,0 +1,45 @@
+<<<<<<< SEARCH
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+=======
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Limit the number of common sizes to process for efficiency
+    if len(dynamic_common_sizes) > 50:  # Limit to first 50 common sizes
+        dynamic_common_sizes = dynamic_common_sizes[:50]
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit (max 10 to prevent timeout)
+            max_multiplier = min(int(np.max(feasible_post_caps) // common_size) + 2, 10)
+            if max_multiplier > 0:
+                # Create array of all possible multiples efficiently
+                multipliers = np.arange(0, max_multiplier).reshape(-1, 1)  # Shape: (n_multipliers, 1)
+                multiples = multipliers * common_size  # Shape: (n_multipliers, 1)
+                
+                # Calculate distances to all multiples at once
+                distances_to_multiples = np.abs(feasible_post_caps - multiples)  # Broadcasting
+                
+                # Find minimum distance for each post-capacity value
+                min_distances = np.min(distances_to_multiples, axis=0)  # Shape: (len(feasible_post_caps),)
+                
+                # Add to the score (higher score for closer matches)
+                multiple_fit_score += 1.0 / (1.0 + min_distances)
+>>>>>>> REPLACE

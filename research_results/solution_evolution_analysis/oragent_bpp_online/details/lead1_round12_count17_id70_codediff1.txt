@@ -1,0 +1,37 @@
+<<<<<<< SEARCH
+    # Determine the size category based on percentile
+    if item_percentile > 0.75:  # Large item
+        estimated_common_sizes = learned_embeddings['large']
+        best_fit_weight, multiple_fit_weight = learned_weights['large']
+    elif item_percentile < 0.25:  # Small item
+        estimated_common_sizes = learned_embeddings['small']
+        best_fit_weight, multiple_fit_weight = learned_weights['small']
+    else:  # Medium item
+        estimated_common_sizes = learned_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = learned_weights['medium']
+=======
+    # Determine the size category based on percentile with refined thresholds
+    if item_percentile > 0.80:  # Very large item
+        estimated_common_sizes = learned_embeddings['large']
+        best_fit_weight, multiple_fit_weight = learned_weights['large']
+        # Slightly increase best-fit weight for very large items to ensure they fit
+        best_fit_weight *= 1.05
+    elif item_percentile < 0.20:  # Very small item
+        estimated_common_sizes = learned_embeddings['small']
+        best_fit_weight, multiple_fit_weight = learned_weights['small']
+        # Further reduce best-fit weight for very small items
+        best_fit_weight *= 0.95
+    elif item_percentile > 0.60:  # Large-medium item
+        # Interpolate between medium and large strategies
+        estimated_common_sizes = learned_embeddings['medium']
+        # Adjust weights to be between medium and large values
+        best_fit_weight, multiple_fit_weight = 0.13, 0.87  # Between medium and large
+    elif item_percentile < 0.40:  # Small-medium item
+        # Interpolate between medium and small strategies
+        estimated_common_sizes = learned_embeddings['small']  # Use small's rich multiplier set
+        # Adjust weights to be between medium and small values
+        best_fit_weight, multiple_fit_weight = 0.03, 1.05  # Between medium and small
+    else:  # True medium item
+        estimated_common_sizes = learned_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = learned_weights['medium']
+>>>>>>> REPLACE

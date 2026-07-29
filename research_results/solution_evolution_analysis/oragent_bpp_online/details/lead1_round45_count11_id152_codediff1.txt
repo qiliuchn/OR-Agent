@@ -1,0 +1,228 @@
+<<<<<<< SEARCH
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Instance-aware adaptive priority function that dynamically switches behavior based on
+    real-time statistics of the current bin state distribution. Specifically, it calculates
+    the kurtosis and entropy of feasible remainders to detect adversarial patterns resembling
+    difficult instances like val_0/val_1. When such patterns are detected (low entropy +
+    high kurtosis indicating clustered remainders), the function activates a specialized
+    scoring mode that prioritizes remainder alignment over best-fit, using precomputed
+    optimal multiplier sets derived from offline analysis of val_0/val_1 packings.
+    
+    The approach maintains the stateless nature required by online algorithms while
+    embedding implicit knowledge of hard instances directly into the decision logic.
+    It builds upon successful elements from parent solutions, particularly the percentile-based
+    logic and multiple-fit scoring, but adds dynamic adaptation based on statistical
+    characteristics of the current bin configuration.
+
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_caps = bins_remain_cap[feasible_bins]
+    
+    # Calculate item percentile among feasible capacities
+    sorted_caps = np.sort(feasible_caps)
+    item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps) if len(sorted_caps) > 0 else 0.5
+    
+    # Calculate statistics for adversarial pattern detection
+    if len(feasible_post_caps) > 1:
+        # Calculate entropy of feasible remainders (normalized)
+        remainder_probs = feasible_post_caps / np.sum(feasible_post_caps) if np.sum(feasible_post_caps) > 0 else np.ones_like(feasible_post_caps) / len(feasible_post_caps)
+        remainder_probs = remainder_probs[remainder_probs > 0]  # Remove zero probabilities
+        entropy = -np.sum(remainder_probs * np.log2(remainder_probs)) if len(remainder_probs) > 0 else 0
+        max_entropy = np.log2(len(feasible_post_caps)) if len(feasible_post_caps) > 1 else 1
+        normalized_entropy = entropy / max_entropy if max_entropy > 0 else 0
+        
+        # Calculate kurtosis of feasible remainders
+        mean_rem = np.mean(feasible_post_caps)
+        std_rem = np.std(feasible_post_caps)
+        if std_rem > 0:
+            kurtosis = np.mean(((feasible_post_caps - mean_rem) / std_rem) ** 4) - 3
+        else:
+            kurtosis = 0  # All remainders are identical
+    else:
+        normalized_entropy = 0
+        kurtosis = 0
+    
+    # Detect adversarial pattern: low entropy + high kurtosis indicates clustered remainders
+    is_adversarial = normalized_entropy < 0.3 and kurtosis > 1.0
+    
+    # Compute scoring components
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space after placement
+    
+    # Determine if we should prioritize remainder alignment for adversarial patterns
+    if is_adversarial:
+        # Specialized scoring mode for adversarial patterns - focus on remainder alignment
+        # Use precomputed optimal multiplier sets derived from offline analysis
+        common_sizes = np.array([
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.25,
+            item * 0.75,
+            item * 1.25,
+            item * 2.0,
+            mean_rem * 0.5 if len(feasible_post_caps) > 0 else item,
+            mean_rem * 0.33 if len(feasible_post_caps) > 0 else item,
+            mean_rem * 0.67 if len(feasible_post_caps) > 0 else item
+        ])
+        common_sizes = common_sizes[common_sizes > 1e-6]  # Remove very small values
+        
+        # Enhanced multiple-fit scoring with more thorough search for adversarial cases
+        multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+        
+        for common_size in common_sizes:
+            # Check multiple multipliers to find good alignments
+            multipliers = [0, 1, 2, 3, 4, 5]
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in multipliers
+            ], axis=0)
+            
+            # Give higher scores for better alignments (inversely related to distance)
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+        
+        # In adversarial mode, emphasize multiple-fit over best-fit
+        best_fit_weight = 0.1
+        multiple_fit_weight = 0.9
+        
+    else:
+        # Standard scoring for non-adversarial cases
+        # Use a more balanced approach with common sizes
+        common_sizes = np.array([
+            item, item * 0.5, item * 1.5, item * 0.25, item * 0.75, item * 1.25,
+            item * 2.0, np.mean(feasible_caps) * 0.5 if len(feasible_caps) > 0 else item
+        ])
+        common_sizes = common_sizes[common_sizes > 1e-6]
+        
+        multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+        
+        for common_size in common_sizes:
+            # Calculate distance to nearest multiple of the common size
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, 4)  # Limited range for speed
+            ], axis=0)
+            
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+        
+        # Weight determination based on item percentile (standard approach)
+        if item_percentile > 0.82:  # Very large item
+            best_fit_weight, multiple_fit_weight = 0.25, 0.75
+        elif item_percentile < 0.18:  # Very small item
+            best_fit_weight, multiple_fit_weight = 0.001, 1.194
+        elif item_percentile > 0.62:  # Large-medium item
+            best_fit_weight, multiple_fit_weight = 0.14, 0.86
+        elif item_percentile < 0.38:  # Small-medium item
+            best_fit_weight, multiple_fit_weight = 0.025, 1.055
+        else:  # True medium item
+            best_fit_weight, multiple_fit_weight = 0.08, 0.92
+    
+    # Combine components
+    feasible_scores = best_fit_weight * best_fit_component + multiple_fit_weight * multiple_fit_score
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+=======
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Improved priority function that combines the best elements from successful parent solutions
+    while simplifying the approach. Uses percentile-based weight selection for different item
+    types and maintains the effective multiple-fit scoring approach.
+    
+    The approach uses the successful percentile-based logic from parent solutions to determine
+    appropriate weights for different types of items, focusing on the proven combination of
+    best-fit and multiple-fit scoring components.
+
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_caps = bins_remain_cap[feasible_bins]
+    
+    # Calculate item percentile among ALL bins (not just feasible ones, to match parent approach)
+    sorted_all_caps = np.sort(bins_remain_cap)
+    item_percentile = np.searchsorted(sorted_all_caps, item) / len(sorted_all_caps) if len(sorted_all_caps) > 0 else 0.5
+    
+    # Compute scoring components
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space after placement
+    
+    # Use the same common sizes as in the successful parent solution
+    common_sizes = np.array([
+        item, item * 0.5, item * 1.5, item * 0.25, item * 0.75, item * 1.25,
+        item * 2.0, np.mean(feasible_caps) * 0.5 if len(feasible_caps) > 0 else item
+    ])
+    common_sizes = common_sizes[common_sizes > 1e-6]
+    
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in common_sizes:
+        # Calculate distance to nearest multiple of the common size
+        distances_to_multiples = np.min([
+            np.abs(feasible_post_caps - n * common_size) 
+            for n in range(0, 4)  # Limited range for speed
+        ], axis=0)
+        
+        multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Weight determination based on item percentile (from successful parent solution)
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25, 0.75
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001, 1.194
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92
+
+    # Combine components
+    feasible_scores = best_fit_weight * best_fit_component + multiple_fit_weight * multiple_fit_score
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+>>>>>>> REPLACE

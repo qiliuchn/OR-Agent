@@ -1,0 +1,71 @@
+<<<<<<< SEARCH
+    # Estimate common item sizes based on the current item
+    current_item = item
+    estimated_common_sizes = [
+        current_item, 
+        current_item * 0.5,   # half
+        current_item * 0.75,  # three quarters
+        current_item * 0.9,   # 90%
+        current_item * 1.1,   # 110%
+        current_item * 1.25,  # 1.25 times
+        current_item * 1.5,   # 1.5 times
+        current_item * 2.0    # double
+    ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+    
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        max_multiple = max(1, int(np.max(feasible_post_caps) // common_size) + 2)
+        
+        # Compute distances to nearest multiples efficiently
+        distances_to_multiples = np.full_like(feasible_post_caps, np.inf)
+        
+        for n in range(0, max_multiple):
+            candidate_distances = np.abs(feasible_post_caps - n * common_size)
+            distances_to_multiples = np.minimum(distances_to_multiples, candidate_distances)
+        
+        # Add to the score (higher score for closer matches)
+        # Use a sigmoid-like function to make scores meaningful
+        feasible_scores += 1.0 / (1.0 + distances_to_multiples)
+=======
+    # Estimate common item sizes based on the current item
+    current_item = item
+    # Try focusing more on near-multiple sizes that are likely to be useful for packing
+    estimated_common_sizes = [
+        current_item,          # exact match
+        current_item * 0.9,    # 90% - just under full size
+        current_item * 1.1,    # 110% - just over full size
+        current_item * 0.8,    # 80% - useful for medium items
+        current_item * 1.2,    # 120% - useful for medium items
+        current_item * 0.5,    # half
+        current_item * 1.5,    # 1.5 times - good for combining with another
+        current_item * 0.75,   # three quarters
+        current_item * 1.25,   # 1.25 times
+        current_item * 0.667,  # two thirds - good for triple fits
+        current_item * 1.333,  # four thirds
+        current_item * 2.0     # double - good for pairing small items
+    ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+    
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        max_multiple = max(1, int(np.max(feasible_post_caps) // common_size) + 2)
+        
+        # Compute distances to nearest multiples efficiently
+        distances_to_multiples = np.full_like(feasible_post_caps, np.inf)
+        
+        for n in range(0, max_multiple):
+            candidate_distances = np.abs(feasible_post_caps - n * common_size)
+            distances_to_multiples = np.minimum(distances_to_multiples, candidate_distances)
+        
+        # Add to the score (higher score for closer matches)
+        # Use a sigmoid-like function to make scores meaningful
+        # Using a slight modification to make the scoring more sensitive to very close matches
+        feasible_scores += 1.0 / (0.5 + distances_to_multiples)  # Changed from 1.0 to 0.5 in denominator
+>>>>>>> REPLACE

@@ -1,0 +1,31 @@
+<<<<<<< SEARCH
+    # Combine all components with category-specific weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component +
+        recyclability_weight * recyclability_score
+    )
+=======
+    # Adjust weights based on entropy of remainder distribution
+    if len(feasible_post_caps) > 1:
+        # Calculate entropy-like measure of the distribution
+        remainder_probs = feasible_post_caps / np.sum(feasible_post_caps)
+        remainder_probs = remainder_probs[remainder_probs > 0]  # Remove zeros
+        if len(remainder_probs) > 0:
+            entropy = -np.sum(remainder_probs * np.log(remainder_probs + 1e-9))
+            # Normalize entropy by max possible entropy for this number of bins
+            max_entropy = np.log(len(remainder_probs)) if len(remainder_probs) > 1 else 1.0
+            normalized_entropy = entropy / max_entropy if max_entropy > 0 else 0.5
+            
+            # Adjust weights based on entropy
+            # Higher entropy (more uniform distribution) may benefit from more recyclability consideration
+            recyclability_weight *= (0.5 + 0.5 * normalized_entropy)
+            multiple_fit_weight *= (1.0 - 0.2 * normalized_entropy)  # Slightly reduce if highly entropic
+
+    # Combine all components with category-specific weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component +
+        recyclability_weight * recyclability_score
+    )
+>>>>>>> REPLACE

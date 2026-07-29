@@ -1,0 +1,60 @@
+<<<<<<< SEARCH
+    # Hybrid classification: both absolute size and percentile must agree on 'small'
+    is_absolutely_small = item_relative_size < 0.3
+    is_percentile_small = item_percentile < 0.18
+    
+    # Determine the size category based on hybrid classification
+    if is_absolutely_small and is_percentile_small:  # Truly small in both contexts
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduce best-fit weight for truly small items, since Farey sequence handles multiple fits well
+        best_fit_weight *= 0.80
+        multiple_fit_weight *= 1.08
+    elif item_percentile > 0.82:  # Very large item (by percentile)
+        selected_common_sizes = enhanced_embeddings['large']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['large']
+        # Slightly increase best-fit weight for very large items to ensure they fit
+        best_fit_weight *= 1.10
+        multiple_fit_weight *= 0.97
+    elif item_percentile > 0.62:  # Large-medium item
+        # Interpolate between medium and large strategies
+        selected_common_sizes = enhanced_embeddings['medium']
+        # Adjust weights to be between medium and large values
+        best_fit_weight, multiple_fit_weight = 0.16, 0.84  # Between medium and large, slight shift towards best fit for large-medium
+    elif item_percentile < 0.38:  # Small-medium item (but not truly small by both criteria)
+        # Use medium strategy but slightly biased toward multiple fit
+        selected_common_sizes = enhanced_embeddings['medium']  # Use medium's rich multiplier set
+        # Adjust weights to be between medium and small values, favoring multiple fit
+        best_fit_weight, multiple_fit_weight = 0.01, 1.09  # Between medium and small, slight boost to multiple fit
+    else:  # True medium item
+        selected_common_sizes = enhanced_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['medium']
+=======
+    # Determine the size category based on refined percentile thresholds
+    # Following the successful approach from Parent #2
+    if item_percentile > 0.82:  # Very large item
+        selected_common_sizes = enhanced_embeddings['large']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['large']
+        # Slightly increased best-fit weight for large items to ensure they fit
+        best_fit_weight *= 1.10
+        multiple_fit_weight *= 0.97
+    elif item_percentile < 0.18:  # Very small item
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduced best-fit weight for very small items, since Farey sequence handles multiple fits well
+        best_fit_weight *= 0.80
+        multiple_fit_weight *= 1.08
+    elif item_percentile > 0.62:  # Large-medium item
+        # Interpolate between medium and large strategies
+        selected_common_sizes = enhanced_embeddings['medium']
+        # Adjust weights to be between medium and large values
+        best_fit_weight, multiple_fit_weight = 0.16, 0.84  # Between medium and large, slight shift towards best fit for large-medium
+    elif item_percentile < 0.38:  # Small-medium item
+        # Interpolate between medium and small strategies
+        selected_common_sizes = enhanced_embeddings['small']  # Use small's rich multiplier set
+        # Adjust weights to be between medium and small values, favoring multiple fit with Farey sequence
+        best_fit_weight, multiple_fit_weight = 0.01, 1.09  # Between medium and small, slight boost to multiple fit
+    else:  # True medium item
+        selected_common_sizes = enhanced_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['medium']
+>>>>>>> REPLACE

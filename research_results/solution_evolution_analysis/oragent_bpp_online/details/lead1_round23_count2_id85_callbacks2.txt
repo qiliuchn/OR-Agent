@@ -1,0 +1,5 @@
+penalty_factor = np.where(
+    in_dead_zone,
+    np.exp(-((dist_to_dead_zone - dead_zone_center + dead_zone_center) / (dead_zone_width / 3))**2),
+    0.0
+)

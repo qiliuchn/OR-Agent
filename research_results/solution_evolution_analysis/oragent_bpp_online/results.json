@@ -1,0 +1,226 @@
+[
+    {
+        "iteration": 0,
+        "total_responses": 0,
+        "total_function_evals": 1,
+        "total_valid_responses": 0,
+        "best_obj_overall": 2080.0,
+        "metrics": {
+            "val_0": 2087.0,
+            "val_1": 2083.0,
+            "val_2": 2077.0,
+            "val_3": 2065.0,
+            "val_4": 2088.0
+        },
+        "code_filepath": "details/lead1_round0_count0_id0_solution.py",
+        "output_filepath": "details/lead1_round0_count0_id0_stdout.txt"
+    },
+    {
+        "iteration": 0,
+        "total_responses": 25,
+        "total_function_evals": 25,
+        "total_valid_responses": 21,
+        "best_obj_overall": 2078.2,
+        "metrics": {
+            "val_0": 2083.0,
+            "val_1": 2083.0,
+            "val_2": 2077.0,
+            "val_3": 2062.0,
+            "val_4": 2086.0
+        },
+        "code_filepath": "details/lead1_round0_count14_id14_solution.py",
+        "output_filepath": "details/lead1_round0_count14_id14_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 48,
+        "total_function_evals": 42,
+        "total_valid_responses": 42,
+        "best_obj_overall": 2077.8,
+        "metrics": {
+            "val_0": 2084.0,
+            "val_1": 2079.0,
+            "val_2": 2077.0,
+            "val_3": 2062.0,
+            "val_4": 2087.0
+        },
+        "code_filepath": "details/lead1_round1_count0_id21_solution.py",
+        "output_filepath": "details/lead1_round1_count0_id21_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 59,
+        "total_function_evals": 50,
+        "total_valid_responses": 53,
+        "best_obj_overall": 2077.0,
+        "metrics": {
+            "val_0": 2081.0,
+            "val_1": 2081.0,
+            "val_2": 2076.0,
+            "val_3": 2062.0,
+            "val_4": 2085.0
+        },
+        "code_filepath": "details/lead1_round1_count5_id26_solution.py",
+        "output_filepath": "details/lead1_round1_count5_id26_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 70,
+        "total_function_evals": 58,
+        "total_valid_responses": 64,
+        "best_obj_overall": 2069.0,
+        "metrics": {
+            "val_0": 2072.0,
+            "val_1": 2076.0,
+            "val_2": 2070.0,
+            "val_3": 2056.0,
+            "val_4": 2071.0
+        },
+        "code_filepath": "details/lead1_round1_count6_id27_solution.py",
+        "output_filepath": "details/lead1_round1_count6_id27_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 82,
+        "total_function_evals": 67,
+        "total_valid_responses": 75,
+        "best_obj_overall": 2068.8,
+        "metrics": {
+            "val_0": 2078.0,
+            "val_1": 2076.0,
+            "val_2": 2065.0,
+            "val_3": 2053.0,
+            "val_4": 2072.0
+        },
+        "code_filepath": "details/lead1_round1_count9_id30_solution.py",
+        "output_filepath": "details/lead1_round1_count9_id30_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 116,
+        "total_function_evals": 91,
+        "total_valid_responses": 107,
+        "best_obj_overall": 2068.0,
+        "metrics": {
+            "val_0": 2075.0,
+            "val_1": 2077.0,
+            "val_2": 2068.0,
+            "val_3": 2051.0,
+            "val_4": 2069.0
+        },
+        "code_filepath": "details/lead1_round1_count14_id35_solution.py",
+        "output_filepath": "details/lead1_round1_count14_id35_stdout.txt"
+    },
+    {
+        "iteration": 1,
+        "total_responses": 127,
+        "total_function_evals": 99,
+        "total_valid_responses": 118,
+        "best_obj_overall": 2029.0,
+        "metrics": {
+            "val_0": 2034.0,
+            "val_1": 2032.0,
+            "val_2": 2036.0,
+            "val_3": 2013.0,
+            "val_4": 2030.0
+        },
+        "code_filepath": "details/lead1_round1_count16_id37_solution.py",
+        "output_filepath": "details/lead1_round1_count16_id37_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 232,
+        "total_function_evals": 165,
+        "total_valid_responses": 220,
+        "best_obj_overall": 2023.6,
+        "metrics": {
+            "val_0": 2027.0,
+            "val_1": 2030.0,
+            "val_2": 2032.0,
+            "val_3": 2008.0,
+            "val_4": 2021.0
+        },
+        "code_filepath": "details/lead1_round12_count1_id54_solution.py",
+        "output_filepath": "details/lead1_round12_count1_id54_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 277,
+        "total_function_evals": 195,
+        "total_valid_responses": 263,
+        "best_obj_overall": 2022.6,
+        "metrics": {
+            "val_0": 2026.0,
+            "val_1": 2029.0,
+            "val_2": 2026.0,
+            "val_3": 2007.0,
+            "val_4": 2025.0
+        },
+        "code_filepath": "details/lead1_round12_count10_id63_solution.py",
+        "output_filepath": "details/lead1_round12_count10_id63_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 310,
+        "total_function_evals": 217,
+        "total_valid_responses": 296,
+        "best_obj_overall": 2021.4,
+        "metrics": {
+            "val_0": 2027.0,
+            "val_1": 2025.0,
+            "val_2": 2025.0,
+            "val_3": 2010.0,
+            "val_4": 2020.0
+        },
+        "code_filepath": "details/lead1_round12_count17_id70_solution.py",
+        "output_filepath": "details/lead1_round12_count17_id70_stdout.txt"
+    },
+    {
+        "iteration": 12,
+        "total_responses": 322,
+        "total_function_evals": 226,
+        "total_valid_responses": 307,
+        "best_obj_overall": 2019.4,
+        "metrics": {
+            "val_0": 2027.0,
+            "val_1": 2023.0,
+            "val_2": 2021.0,
+            "val_3": 2006.0,
+            "val_4": 2020.0
+        },
+        "code_filepath": "details/lead1_round12_count18_id71_solution.py",
+        "output_filepath": "details/lead1_round12_count18_id71_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 417,
+        "total_function_evals": 290,
+        "total_valid_responses": 400,
+        "best_obj_overall": 2018.8,
+        "metrics": {
+            "val_0": 2025.0,
+            "val_1": 2025.0,
+            "val_2": 2020.0,
+            "val_3": 2005.0,
+            "val_4": 2019.0
+        },
+        "code_filepath": "details/lead1_round23_count4_id87_solution.py",
+        "output_filepath": "details/lead1_round23_count4_id87_stdout.txt"
+    },
+    {
+        "iteration": 23,
+        "total_responses": 439,
+        "total_function_evals": 305,
+        "total_valid_responses": 422,
+        "best_obj_overall": 2014.6,
+        "metrics": {
+            "val_0": 2017.0,
+            "val_1": 2020.0,
+            "val_2": 2018.0,
+            "val_3": 2000.0,
+            "val_4": 2018.0
+        },
+        "code_filepath": "details/lead1_round23_count9_id92_solution.py",
+        "output_filepath": "details/lead1_round23_count9_id92_stdout.txt"
+    }
+]

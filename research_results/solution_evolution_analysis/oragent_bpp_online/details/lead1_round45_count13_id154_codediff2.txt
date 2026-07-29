@@ -1,0 +1,9 @@
+<<<<<<< SEARCH
+    # Determine if we should use the slow path (micro-lookahead) based on leverage criteria
+    # High leverage occurs when item is large (>0.4 of bin capacity) or few feasible bins (<3)
+    high_leverage_condition = item > 0.4 or np.sum(feasible_bins) < 3
+=======
+    # Determine if we should use the slow path (micro-lookahead) based on leverage criteria
+    # High leverage occurs when we have few feasible bins (<3) which requires careful selection
+    high_leverage_condition = np.sum(feasible_bins) < 3
+>>>>>>> REPLACE

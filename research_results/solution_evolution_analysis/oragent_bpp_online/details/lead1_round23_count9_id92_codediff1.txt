@@ -1,0 +1,70 @@
+<<<<<<< SEARCH
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75
+            ])
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                quantile_values,
+                item_ratios,
+                remainder_fractions
+            ])
+=======
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25, 
+                                   item * 0.33, item * 0.67, item * 0.25, item * 0.125, 
+                                   item * 0.167, item * 0.833, item * 0.1, item * 0.9])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75,
+                unique_caps * 0.125,
+                unique_caps * 0.167,
+                unique_caps * 0.833,
+                unique_caps * 0.111,  # 1/9
+                unique_caps * 0.222,  # 2/9
+                unique_caps * 0.444,  # 4/9
+                unique_caps * 0.556,  # 5/9
+                unique_caps * 0.778,  # 7/9
+                unique_caps * 0.889,  # 8/9
+                unique_caps * 0.143,  # 1/7
+                unique_caps * 0.286,  # 2/7
+                unique_caps * 0.429,  # 3/7
+                unique_caps * 0.571,  # 4/7
+                unique_caps * 0.714,  # 5/7
+                unique_caps * 0.857   # 6/7
+            ])
+            
+            # Include cross-ratios between item and current remainders
+            cross_ratios = []
+            for cap in unique_caps[:5]:  # Limit to first few to avoid too many combinations
+                if cap > 1e-9:
+                    cross_ratios.extend([
+                        item / cap if cap > item else item,  # Safe ratio
+                        cap / item if item > 1e-9 and item < cap else cap,
+                        item + cap,  # Combined size
+                        abs(item - cap) if cap != item else item  # Difference
+                    ])
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                quantile_values,
+                item_ratios,
+                remainder_fractions
+            ])
+            
+            if len(cross_ratios) > 0:
+                dynamic_common_sizes = np.concatenate([dynamic_common_sizes, np.array(cross_ratios)])
+>>>>>>> REPLACE

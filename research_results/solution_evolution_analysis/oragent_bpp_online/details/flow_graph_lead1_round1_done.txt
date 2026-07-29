@@ -1,0 +1,26 @@
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [14 (2078.20)]
+    ├── ⊕ Node 21 (2077.80)
+    │       └── ⊕ Node 26 (2077.00)
+    │               ├── ✓ Node 27 (2069.00)
+    │               └── ✓ Node 28 (2076.40)
+    ├── ⊕ Node 22 (2078.20)
+    │       ├── ⊕ Node 29 (2074.20)
+    │       │       └── ✓ Node 34 (2072.60)
+    │       └── ✓ Node 30 (2068.80)
+    ├── ✓ Node 23 (2080.00)
+    └── ⊕ Node 24 (2078.20)
+            ├── ⊕ Node 35 (2068.00)
+            │       ├── ✓ Node 37 (2029.00)
+            │       └── ✓ Node 38 (2066.40)
+            └── ⊕ Node 36 (2072.60)
+                    ├── ✓ Node 39 (2068.60)
+                    └── ✓ Node 40 (2033.80)
+========================================
+Total nodes: 17 | Total expanded solutions: 8 | Total pending leaves: 0 | Total terminal leaves: 9

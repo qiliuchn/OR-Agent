@@ -1,0 +1,28 @@
+<<<<<<< SEARCH
+    # Dynamically adjust percentile thresholds based on packing density
+    # In low density (sparse packing), allow wider thresholds for more flexibility
+    # In high density (dense packing), use narrower thresholds for precision
+    base_lower_threshold = 0.25
+    base_upper_threshold = 0.75
+    
+    # Adjust thresholds based on density
+    # As density increases, thresholds get closer together (more focused)
+    density_adjustment = 0.15 * packing_density  # Adjustment factor based on density
+    lower_threshold = max(0.1, base_lower_threshold - density_adjustment)
+    upper_threshold = min(0.9, base_upper_threshold + density_adjustment)
+=======
+    # Use fixed percentile thresholds based on successful Parent #2 approach
+    lower_threshold = 0.25
+    upper_threshold = 0.75
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        # Balanced weights, adjusted based on density
+        # In high density, slightly increase best-fit to fill bins efficiently
+        density_factor = 1.0 + (0.5 * packing_density)  # Increase slightly in high density
+        best_fit_weight = 0.06 * density_factor
+        multiple_fit_weight = 0.94 * (2.0 - density_factor)  # Adjust to maintain balance
+=======
+        # Balanced weights (same as Parent #2 for consistency)
+        best_fit_weight = 0.06
+        multiple_fit_weight = 0.94
+>>>>>>> REPLACE

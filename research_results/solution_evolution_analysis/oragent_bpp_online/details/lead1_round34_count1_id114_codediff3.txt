@@ -1,0 +1,20 @@
+<<<<<<< SEARCH
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate the percentile of the current item in the context of remaining capacities
+        sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])  # Only consider positive capacities
+        if len(sorted_caps) > 0:
+            item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+        else:
+            item_percentile = 0.5  # Default if no positive capacities exist
+    else:
+        item_percentile = 0.5  # Default if no bins exist
+=======
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate the percentile of the current item in the context of remaining capacities
+        sorted_caps = np.sort(bins_remain_cap)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+    else:
+        item_percentile = 0.5  # Default if no bins exist
+>>>>>>> REPLACE

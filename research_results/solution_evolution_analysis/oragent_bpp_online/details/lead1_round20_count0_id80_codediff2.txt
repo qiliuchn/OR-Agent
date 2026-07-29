@@ -1,0 +1,235 @@
+<<<<<<< SEARCH
+import numpy as np
+from collections import deque
+from typing import Deque
+
+# Global variables to maintain state within an instance (reset at start of each instance)
+_instance_state = {
+    'recent_items': deque(maxlen=50),  # Sliding window of last 50 items
+    'instance_start': True
+}
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Dynamic multiplier set priority heuristic that adapts within an instance by tracking 
+    recently placed item sizes using a sliding window to estimate emerging common sizes.
+    This generates fractional/multiplicative relationships from this empirical distribution
+    rather than solely from the current item, maintaining statelessness across instances
+    while capturing intra-instance patterns. Combines Gaussian scoring with adaptive feature generation.
+    
+    The approach combines:
+    1. Maintaining a sliding window of recent item sizes within the instance
+    2. Estimating common sizes from the empirical distribution of recent items
+    3. Generating fractional/multiplicative relationships from these common sizes
+    4. Using Gaussian scoring to prioritize bins that result in remaining capacities 
+       matching these common sizes
+    5. Adding Best Fit as a secondary criterion to avoid wasting space
+    
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    global _instance_state
+    
+    # Detect instance start by checking if all bins have the same capacity initially
+    # This happens when all remaining capacities equal the original bin capacity
+    unique_capacities = len(np.unique(bins_remain_cap))
+    if unique_capacities == 1:
+        # Likely start of new instance - reset the recent items window
+        _instance_state['recent_items'] = deque(maxlen=50)
+        _instance_state['recent_items'].append(item)
+    else:
+        # Add current item to the recent items window
+        _instance_state['recent_items'].append(item)
+    
+    # Get recent items from the sliding window
+    recent_items_list = list(_instance_state['recent_items'])
+    
+    # Estimate common item sizes based on the empirical distribution of recent items
+    # Start with the current item and recent items
+    estimated_common_sizes = [item]  # Always include current item
+    
+    # Add sizes from recent items and their common fractions/multiples
+    for recent_item in recent_items_list:
+        estimated_common_sizes.extend([
+            recent_item, 
+            recent_item * 0.5,   # half size
+            recent_item * 0.75,  # three quarters
+            recent_item * 0.9,   # 90% size
+            recent_item * 1.1,   # 110% size
+            recent_item * 1.25,  # 1.25x size
+            recent_item * 1.5,   # 1.5x size
+            recent_item * 0.25,  # quarter size
+            recent_item * 2.0,   # double size
+            recent_item * 0.33,  # one third
+            recent_item * 0.66,  # two thirds
+            recent_item * 1.33,  # four thirds
+            recent_item * 0.2,   # fifth
+            recent_item * 0.4,   # two fifths
+            recent_item * 0.6,   # three fifths
+            recent_item * 0.8,   # four fifths
+            recent_item * 1.2,   # six fifths
+            recent_item * 1.4,   # seven fifths
+            recent_item * 1.6,   # eight fifths
+            recent_item * 1.8    # nine fifths
+        ])
+    
+    # Remove duplicates and filter out non-positive sizes
+    estimated_common_sizes = list(set(size for size in estimated_common_sizes if size > 0))
+    
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    # For feasible bins, calculate priority based on how close the remaining capacity is to common sizes
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Consider multiples: 0, 1x, 2x, 3x, etc. of the common size
+        max_multiple = int(np.max(feasible_post_caps) // common_size) + 2
+        # Cap the maximum number of multiples to prevent computational explosion
+        max_considered_multiples = min(max_multiple, 10)  # Limit to first 10 multiples
+        if max_considered_multiples > 0:
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_considered_multiples)
+            ], axis=0)
+            
+            # Use a Gaussian-like function for scoring to give higher importance to very close matches
+            # sigma controls the width of the function - smaller sigma gives sharper decay
+            # Using a smaller sigma for tighter focus on very close matches
+            sigma = max(common_size * 0.05, 0.01)  # 5% of the common size as the standard deviation (tighter focus)
+            gaussian_scores = np.exp(-0.5 * (distances_to_multiples / sigma) ** 2)
+            
+            # Add to the score (higher score for closer matches to multiples)
+            feasible_scores += gaussian_scores
+    
+    # Also add Best Fit component: prefer bins with less remaining space after placement
+    # This prevents overfilling bins unnecessarily while still allowing for good fits
+    best_fit_component = -post_placement_caps  # Higher score for less remaining space after placement
+    
+    # Combine both components with appropriate weights
+    # Give more weight to the common size matching since it was the key insight from parent solution
+    combined_scores = feasible_scores + 0.05 * best_fit_component  # Optimal weight found in previous experiment
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+    
+    return scores
+=======
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic that assigns higher priority to bins that, after placement, 
+    result in a remaining capacity that is close to common item sizes.
+    This implementation estimates common item sizes based on the current item and 
+    prioritizes bins that leave "useful" remaining capacities.
+    
+    The approach combines:
+    1. Estimation of common item sizes based on the current item
+    2. Scoring bins based on how well their post-placement capacity matches these sizes
+    3. Best Fit principle as a secondary criterion to avoid wasting space
+    
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Estimate common item sizes based on the current item
+    # Consider the current item size and its common fractions/multiples
+    current_item = item
+    estimated_common_sizes = [
+        current_item, 
+        current_item * 0.5,   # half size
+        current_item * 0.75,  # three quarters
+        current_item * 0.9,   # 90% size
+        current_item * 1.1,   # 110% size
+        current_item * 1.25,  # 1.25x size
+        current_item * 1.5,   # 1.5x size
+        current_item * 0.25,  # quarter size
+        current_item * 2.0,   # double size
+        current_item * 0.33,  # one third
+        current_item * 0.66,  # two thirds
+        current_item * 1.33,  # four thirds
+        current_item * 0.2,   # fifth
+        current_item * 0.4,   # two fifths
+        current_item * 0.6,   # three fifths
+        current_item * 0.8,   # four fifths
+        current_item * 1.2,   # six fifths
+        current_item * 1.4,   # seven fifths
+        current_item * 1.6,   # eight fifths
+        current_item * 1.8    # nine fifths
+    ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+    
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    # For feasible bins, calculate priority based on how close the remaining capacity is to common sizes
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Consider multiples: 0, 1x, 2x, 3x, etc. of the common size
+        max_multiple = int(np.max(feasible_post_caps) // common_size) + 2
+        # Cap the maximum number of multiples to prevent computational explosion
+        max_considered_multiples = min(max_multiple, 10)  # Limit to first 10 multiples
+        if max_considered_multiples > 0:
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_considered_multiples)
+            ], axis=0)
+            
+            # Use a Gaussian-like function for scoring to give higher importance to very close matches
+            # sigma controls the width of the function - smaller sigma gives sharper decay
+            # Using a smaller sigma for tighter focus on very close matches
+            sigma = max(common_size * 0.05, 0.01)  # 5% of the common size as the standard deviation (tighter focus)
+            gaussian_scores = np.exp(-0.5 * (distances_to_multiples / sigma) ** 2)
+            
+            # Add to the score (higher score for closer matches to multiples)
+            feasible_scores += gaussian_scores
+    
+    # Also add Best Fit component: prefer bins with less remaining space after placement
+    # This prevents overfilling bins unnecessarily while still allowing for good fits
+    best_fit_component = -post_placement_caps  # Higher score for less remaining space after placement
+    
+    # Combine both components with appropriate weights
+    # Give more weight to the common size matching since it was the key insight from parent solution
+    combined_scores = feasible_scores + 0.05 * best_fit_component  # Optimal weight found in previous experiment
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+    
+    return scores
+>>>>>>> REPLACE

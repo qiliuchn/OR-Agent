@@ -1,0 +1,56 @@
+<<<<<<< SEARCH
+    # 3. Simplified multiple matching: favor useful leftover capacities
+    # Instead of multiple nested loops, use vectorized operations
+    current_item = item
+    # Consider key ratios that might be useful for future items
+    target_caps = np.array([
+        current_item, 
+        current_item * 0.9, 
+        current_item * 1.1, 
+        current_item * 0.5, 
+        current_item * 1.5, 
+        current_item * 0.75, 
+        current_item * 1.25
+    ])
+    
+    # Filter positive targets
+    target_caps = target_caps[target_caps > 0]
+    
+    multiple_matching_scores = np.zeros(n_feasible)
+    if len(target_caps) > 0:
+        # Vectorized distance calculation to all targets
+        # Shape: (n_feasible, n_targets)
+        distances_to_targets = np.abs(feasible_post_caps[:, np.newaxis] - target_caps[np.newaxis, :])
+        # Take minimum distance to any target
+        min_distances = np.min(distances_to_targets, axis=1)
+        # Convert to scores (higher for closer matches)
+        multiple_matching_scores = 1.0 / (1.0 + min_distances)
+=======
+    # 3. Multiple matching: favor useful leftover capacities
+    # Find closest multiples of common sizes to the remaining capacities
+    current_item = item
+    # Consider common item sizes based on the current item
+    common_sizes = [current_item, current_item * 0.9, current_item * 1.1, 
+                    current_item * 0.5, current_item * 1.5, current_item * 0.75, current_item * 1.25]
+    
+    # Filter positive sizes
+    common_sizes = [size for size in common_sizes if size > 0]
+    
+    multiple_matching_scores = np.zeros(n_feasible)
+    if len(common_sizes) > 0 and n_feasible > 0:
+        for common_size in common_sizes:
+            # Calculate distances to all possible multiples of this common size
+            # Find max multiplier needed
+            max_mult = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_mult > 0:
+                # Generate multiples: 0*size, 1*size, 2*size, ..., max_mult*size
+                multiples = np.arange(max_mult) * common_size
+                # Calculate distances from each feasible capacity to all multiples
+                # Shape: (n_feasible, n_multiples)
+                dist_to_multiples = np.abs(feasible_post_caps[:, np.newaxis] - multiples[np.newaxis, :])
+                # Find minimum distance for each feasible bin to any multiple of this size
+                min_dist_for_size = np.min(dist_to_multiples, axis=1)
+                # Add contribution to scores (higher for closer matches)
+                # Use cumulative addition for all common sizes
+                multiple_matching_scores += 1.0 / (1.0 + min_dist_for_size)
+>>>>>>> REPLACE

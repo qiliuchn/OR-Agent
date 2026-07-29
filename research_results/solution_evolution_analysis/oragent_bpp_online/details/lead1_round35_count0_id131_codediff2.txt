@@ -1,0 +1,61 @@
+<<<<<<< SEARCH
+    # Determine the size category based on refined percentile thresholds
+    # Using pure percentile-based classification like in the successful parent solution
+    if item_percentile > 0.82:  # Very large item
+        selected_common_sizes = enhanced_embeddings['large']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['large']
+        # Slightly increase best-fit weight for very large items to ensure they fit
+        best_fit_weight *= 1.10
+        multiple_fit_weight *= 0.97
+    elif item_percentile < 0.18:  # Very small item
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduce best-fit weight for very small items, since Farey sequence handles multiple fits well
+        best_fit_weight *= 0.80
+        multiple_fit_weight *= 1.08
+    elif item_percentile > 0.62:  # Large-medium item
+        # Interpolate between medium and large strategies
+        selected_common_sizes = enhanced_embeddings['medium']
+        # Adjust weights to be between medium and large values
+        best_fit_weight, multiple_fit_weight = 0.16, 0.84  # Between medium and large, slight shift towards best fit for large-medium
+    elif item_percentile < 0.38:  # Small-medium item
+        # Interpolate between medium and small strategies
+        selected_common_sizes = enhanced_embeddings['small']  # Use small's rich multiplier set
+        # Adjust weights to be between medium and small values, favoring multiple fit with Farey sequence
+        best_fit_weight, multiple_fit_weight = 0.01, 1.09  # Between medium and small, slight boost to multiple fit
+    else:  # True medium item
+        selected_common_sizes = enhanced_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['medium']
+=======
+    # Determine the size category based on refined percentile thresholds
+    # Using pure percentile-based classification like in the successful parent solution
+    # Slightly adjust weights to try to improve performance on difficult instances
+    if item_percentile > 0.82:  # Very large item
+        selected_common_sizes = enhanced_embeddings['large']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['large']
+        # Slightly increase best-fit weight for very large items to ensure they fit
+        best_fit_weight *= 1.10
+        multiple_fit_weight *= 0.97
+    elif item_percentile < 0.18:  # Very small item
+        selected_common_sizes = enhanced_embeddings['small']
+        # Try slightly different weights for small items to improve performance on difficult instances
+        # Reduce best-fit weight even further and increase multiple-fit weight
+        base_best_fit_weight, base_multiple_fit_weight = enhanced_weights['small']
+        best_fit_weight = base_best_fit_weight * 0.7  # Further reduce best-fit weight
+        multiple_fit_weight = base_multiple_fit_weight * 1.05  # Slight increase in multiple-fit weight
+    elif item_percentile > 0.62:  # Large-medium item
+        # Interpolate between medium and large strategies
+        selected_common_sizes = enhanced_embeddings['medium']
+        # Adjust weights to be between medium and large values
+        best_fit_weight, multiple_fit_weight = 0.16, 0.84  # Between medium and large, slight shift towards best fit for large-medium
+    elif item_percentile < 0.38:  # Small-medium item
+        # Interpolate between medium and small strategies
+        selected_common_sizes = enhanced_embeddings['small']  # Use small's rich multiplier set
+        # Adjust weights to be between medium and small values, favoring multiple fit with Farey sequence
+        # Try to balance better for these intermediate cases
+        best_fit_weight = 0.005  # Slightly higher than before but still low
+        multiple_fit_weight = 1.095  # Slightly higher than before
+    else:  # True medium item
+        selected_common_sizes = enhanced_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['medium']
+>>>>>>> REPLACE

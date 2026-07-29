@@ -1,0 +1,32 @@
+<<<<<<< SEARCH
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+=======
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Vectorized calculation of distances to multiples for efficiency
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate the closest multiple index for each post-capacity value
+            closest_multipliers = np.round(feasible_post_caps / common_size)
+            # Calculate distances to the closest multiples
+            distances_to_multiples = np.abs(feasible_post_caps - closest_multipliers * common_size)
+            # Add to the score (higher score for closer matches)
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

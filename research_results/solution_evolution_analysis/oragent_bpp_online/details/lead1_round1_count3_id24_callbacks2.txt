@@ -1,0 +1,2 @@
+# Combine both components
+combined_scores = feasible_scores + 0.1 * best_fit_component  # Weight the best fit less heavily

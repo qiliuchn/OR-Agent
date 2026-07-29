@@ -1,0 +1,147 @@
+<<<<<<< SEARCH
+    # Based on the percentile, choose different strategies
+    if item_percentile > 0.8:  # Item is relatively large compared to remaining capacities
+        # Focus on best-fit strategy with emphasis on avoiding fragmentation
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 2.0,
+            item * 0.25  # Add smaller fraction for better utilization
+        ]
+        
+        # Weight for best-fit component should be higher for large items
+        best_fit_weight = 0.15
+        # Reduce emphasis on multiple fitting since we prioritize filling bins
+        multiple_fit_weight = 0.85
+        
+    elif item_percentile < 0.2:  # Item is relatively small compared to remaining capacities
+        # Focus on fine-grained fractional multipliers to optimize space usage
+        estimated_common_sizes = [
+            item, 
+            item * 0.5, 
+            item * 0.25, 
+            item * 0.75, 
+            item * 0.33, 
+            item * 0.67,
+            item * 1.5,
+            item * 0.125,  # Very fine granularity for small items
+            item * 0.875,   
+            item * 0.167,   # 1/6 fraction
+            item * 0.833,   # 5/6 fraction
+            item * 0.2,     # 1/5 fraction
+            item * 0.4,     # 2/5 fraction
+            item * 0.6,     # 3/5 fraction
+            item * 0.8,     # 4/5 fraction
+            item * 0.1,     # Even finer granularity
+            item * 0.9      # 9/10 fraction
+        ]
+        
+        # For small items, reduce best-fit emphasis and increase multiple fitting
+        best_fit_weight = 0.01
+        multiple_fit_weight = 1.1
+        
+    else:  # Item is medium-sized relative to remaining capacities
+        # Balanced approach with moderate granularity
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 0.25,
+            item * 0.1,   
+            item * 1.75,   
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 1.1     # Slightly over 1x for near-full bins
+        ]
+        
+        # Balanced weights
+        best_fit_weight = 0.08
+        multiple_fit_weight = 0.95
+=======
+    # Based on the percentile, choose different strategies
+    if item_percentile > 0.75:  # Item is relatively large compared to remaining capacities
+        # Focus on best-fit strategy with emphasis on avoiding fragmentation
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 2.0,
+            item * 0.25,  # Add smaller fraction for better utilization
+            item * 0.125  # Even finer granularity for better utilization
+        ]
+        
+        # Weight for best-fit component should be higher for large items
+        best_fit_weight = 0.18
+        # Reduce emphasis on multiple fitting since we prioritize filling bins
+        multiple_fit_weight = 0.82
+        
+    elif item_percentile < 0.25:  # Item is relatively small compared to remaining capacities
+        # Focus on fine-grained fractional multipliers to optimize space usage
+        estimated_common_sizes = [
+            item, 
+            item * 0.5, 
+            item * 0.25, 
+            item * 0.75, 
+            item * 0.33, 
+            item * 0.67,
+            item * 1.5,
+            item * 0.125,  # Very fine granularity for small items
+            item * 0.875,   
+            item * 0.167,   # 1/6 fraction
+            item * 0.833,   # 5/6 fraction
+            item * 0.2,     # 1/5 fraction
+            item * 0.4,     # 2/5 fraction
+            item * 0.6,     # 3/5 fraction
+            item * 0.8,     # 4/5 fraction
+            item * 0.1,     # Even finer granularity
+            item * 0.9,     # 9/10 fraction
+            item * 0.0625,  # 1/16 fraction for extremely fine granularity
+            item * 0.16,    # 1/6.25 fraction
+            item * 0.375    # 3/8 fraction
+        ]
+        
+        # For small items, reduce best-fit emphasis and increase multiple fitting
+        best_fit_weight = 0.005
+        multiple_fit_weight = 1.15
+        
+    else:  # Item is medium-sized relative to remaining capacities
+        # Balanced approach with moderate granularity
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 0.25,
+            item * 0.1,   
+            item * 1.75,   
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 1.1,    # Slightly over 1x for near-full bins
+            item * 0.9,    # Close to 1x
+            item * 1.2     # Slightly over 1x
+        ]
+        
+        # Balanced weights
+        best_fit_weight = 0.07
+        multiple_fit_weight = 0.93
+>>>>>>> REPLACE

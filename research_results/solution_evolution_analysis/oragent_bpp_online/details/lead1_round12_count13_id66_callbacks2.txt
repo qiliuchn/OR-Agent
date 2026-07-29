@@ -1,0 +1,2 @@
+positive_caps_mask = feasible_post_caps > 0
+   relevant_caps = feasible_post_caps[positive_caps_mask]

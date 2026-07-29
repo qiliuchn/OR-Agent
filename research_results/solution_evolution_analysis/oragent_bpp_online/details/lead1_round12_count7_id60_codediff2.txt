@@ -1,0 +1,178 @@
+<<<<<<< SEARCH
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+        if len(sorted_caps) > 0:
+            # Find where the item would fit in the sorted array
+            item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+        else:
+            item_percentile = 0.5  # Default if no non-empty bins exist
+    else:
+        item_percentile = 0.5  # Default if no bins exist
+=======
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+        if len(sorted_caps) > 0:
+            # Find where the item would fit in the sorted array
+            item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+        else:
+            item_percentile = 0.5  # Default if no non-empty bins exist
+    else:
+        item_percentile = 0.5  # Default if no bins exist
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    else:
+        # Use geometric progression-based strategies based on item percentile
+        if item_percentile < 0.1:  # Very small items
+            # For very small items, use dense rational fractions for fine control
+            # Keep the same as before since this worked well for small items
+            estimated_common_sizes = [
+                item, 
+                item * 0.5, 
+                item * 0.25, 
+                item * 0.75, 
+                item * 0.33, 
+                item * 0.67,
+                item * 1.5,
+                item * 0.125,  # Very fine granularity for small items
+                item * 0.875,   
+                item * 0.167,   # 1/6 fraction
+                item * 0.833,   # 5/6 fraction
+                item * 0.2,     # 1/5 fraction
+                item * 0.4,     # 2/5 fraction
+                item * 0.6,     # 3/5 fraction
+                item * 0.8,     # 4/5 fraction
+                item * 0.1,     # Even finer granularity
+                item * 0.9,     # 9/10 fraction
+                item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                item * 0.375    # 3/8 fraction
+            ]
+            
+            # For small items, reduce best-fit emphasis and increase multiple fitting
+            best_fit_weight = 0.003
+            multiple_fit_weight = 1.17
+=======
+    else:
+        # Use strategies based on item percentile, borrowing from parent solution structure but with some geometric elements
+        if item_percentile < 0.25:  # Small items relative to remaining capacities
+            # Focus on fine-grained fractional multipliers to optimize space usage
+            # Use rational fractions as in parent, but add a few geometric elements
+            estimated_common_sizes = [
+                item, 
+                item * 0.5, 
+                item * 0.25, 
+                item * 0.75, 
+                item * 0.33, 
+                item * 0.67,
+                item * 1.5,
+                item * 0.125,  # Very fine granularity for small items
+                item * 0.875,   
+                item * 0.167,   # 1/6 fraction
+                item * 0.833,   # 5/6 fraction
+                item * 0.2,     # 1/5 fraction
+                item * 0.4,     # 2/5 fraction
+                item * 0.6,     # 3/5 fraction
+                item * 0.8,     # 4/5 fraction
+                item * 0.1,     # Even finer granularity
+                item * 0.9,     # 9/10 fraction
+                item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                item * 0.375,   # 3/8 fraction
+                item * (phi ** -1),  # Add geometric element: inverse of golden ratio
+                item * (phi ** 1)    # Add geometric element: golden ratio
+            ]
+            
+            # For small items, reduce best-fit emphasis and increase multiple fitting
+            best_fit_weight = 0.003
+            multiple_fit_weight = 1.17
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        elif item_percentile >= 0.1 and item_percentile <= 0.75:  # Medium to large items
+            # Use geometric progressions based on φ and √2, but reduce complexity
+            estimated_common_sizes = [item]
+            # Add φ-based geometric progression
+            for k in range(-1, 2):  # k from -1 to 1, reducing from -2 to 2
+                estimated_common_sizes.append(item * (phi ** k))
+            # Add √2-based geometric progression  
+            for k in range(-2, 2):  # k from -2 to 1, reducing from -3 to 1
+                estimated_common_sizes.append(item * (sqrt2 ** k))
+            
+            # Balanced approach for medium items, slightly adjusted weights
+            best_fit_weight = 0.05  # Slightly reduced
+            multiple_fit_weight = 0.95  # Slightly increased
+=======
+        elif item_percentile > 0.75:  # Large items relative to remaining capacities
+            # Focus on best-fit strategy with emphasis on avoiding fragmentation
+            # Use geometric progressions for large items
+            estimated_common_sizes = [item]
+            # Add φ-based geometric progression
+            for k in range(-1, 2):  # k from -1 to 1
+                estimated_common_sizes.append(item * (phi ** k))
+            # Add some essential rational fractions for completeness
+            estimated_common_sizes.extend([
+                item,
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25,
+                item * 0.33,
+                item * 0.67,
+                item * 2.0,
+                item * 0.25   # Add smaller fraction for better utilization
+            ])
+            
+            # Weight for best-fit component should be higher for large items
+            best_fit_weight = 0.18  # Higher emphasis on immediate fit, adjusted from parent's 0.20
+            # Reduce emphasis on multiple fitting since we prioritize filling bins
+            multiple_fit_weight = 0.82  # Reduced emphasis on multiple fitting, adjusted from parent's 0.80
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        else:  # Large items (>75th percentile)
+            # Focus on best-fit strategy with emphasis on avoiding fragmentation
+            # Use only φ-based geometric progression to reduce complexity
+            estimated_common_sizes = [item]
+            # Add φ-based geometric progression
+            for k in range(-1, 2):  # k from -1 to 1 to reduce complexity
+                estimated_common_sizes.append(item * (phi ** k))
+            # Add some essential rational fractions for completeness
+            estimated_common_sizes.extend([
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25
+            ])
+            
+            # Weight for best-fit component should be higher for large items
+            best_fit_weight = 0.18  # Slightly reduced from 0.20
+            # Reduce emphasis on multiple fitting since we prioritize filling bins
+            multiple_fit_weight = 0.82  # Slightly increased from 0.80
+=======
+        else:  # Medium items (0.25 to 0.75 percentile) - use parent-inspired approach but with geometric elements
+            # Balanced approach with moderate granularity
+            estimated_common_sizes = [
+                item,
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25,
+                item * 0.33,
+                item * 0.67,
+                item * 0.25,
+                item * 0.1,   
+                item * 1.75,   
+                item * 0.2,
+                item * 0.4,
+                item * 0.6,
+                item * 0.8,
+                item * 1.1     # Slightly over 1x for near-full bins
+            ]
+            # Add geometric elements to enhance the parent's approach
+            for k in range(-1, 2):
+                estimated_common_sizes.append(item * (phi ** k))
+            for k in range(-1, 1):
+                estimated_common_sizes.append(item * (sqrt2 ** k))
+            
+            # Balanced weights from parent solution, slightly adjusted
+            best_fit_weight = 0.06
+            multiple_fit_weight = 0.94
+>>>>>>> REPLACE

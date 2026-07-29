@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    # Learned weights based on size category (optimized through offline analysis)
+    learned_weights = {
+        'large': (0.20, 0.80),   # High best-fit weight, high multiple fit weight for large items
+        'small': (0.003, 1.17),  # Low best-fit weight, very high multiple fit for small items
+        'medium': (0.06, 0.94)   # Balanced weights for medium items
+    }
+=======
+    # Learned weights based on size category (optimized through offline analysis)
+    learned_weights = {
+        'large': (0.22, 0.78),   # High best-fit weight, high multiple fit weight for large items
+        'small': (0.002, 1.18),  # Low best-fit weight, very high multiple fit for small items
+        'medium': (0.07, 0.93)   # Balanced weights for medium items
+    }
+>>>>>>> REPLACE

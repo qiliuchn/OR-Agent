@@ -1,0 +1,50 @@
+<<<<<<< SEARCH
+    # Adjust weights based on entropy - increase the sensitivity to entropy
+    if normalized_entropy < 0.25:  # Very low entropy - highly clustered remainders
+        # Strongly emphasize best-fit to avoid creating more fragmented bins
+        best_fit_emphasis = 2.0
+        multiple_fit_emphasis = 0.5
+    elif normalized_entropy > 0.75:  # Very high entropy - very diverse remainders
+        # Strongly emphasize multiple-fit to take advantage of different opportunities
+        best_fit_emphasis = 0.5
+        multiple_fit_emphasis = 1.5
+    else:  # Medium entropy - balanced approach with slight adaptation
+        # Linear interpolation between low and high entropy behavior
+        mid_point = 0.25
+        high_point = 0.75
+        if normalized_entropy <= mid_point:
+            # Interpolate between neutral and low entropy
+            ratio = (normalized_entropy) / mid_point
+            best_fit_emphasis = 1.0 + 1.0 * (1 - ratio)  # From 2.0 to 1.0
+            multiple_fit_emphasis = 1.0 - 0.5 * (1 - ratio)  # From 0.5 to 1.0
+        else:
+            # Interpolate between medium and high entropy
+            ratio = (normalized_entropy - mid_point) / (high_point - mid_point)
+            best_fit_emphasis = 1.0 - 0.5 * ratio  # From 1.0 to 0.5
+            multiple_fit_emphasis = 1.0 + 0.5 * ratio  # From 1.0 to 1.5
+=======
+    # Adjust weights based on entropy - increase the sensitivity to entropy
+    # Make the switching more aggressive to better adapt to different scenarios
+    if normalized_entropy < 0.20:  # Very low entropy - highly clustered remainders
+        # Strongly emphasize best-fit to avoid creating more fragmented bins
+        best_fit_emphasis = 2.5  # Increased emphasis
+        multiple_fit_emphasis = 0.4  # Reduced emphasis
+    elif normalized_entropy > 0.80:  # Very high entropy - very diverse remainders
+        # Strongly emphasize multiple-fit to take advantage of different opportunities
+        best_fit_emphasis = 0.3  # Reduced emphasis
+        multiple_fit_emphasis = 2.0  # Increased emphasis
+    else:  # Medium entropy - balanced approach with adaptation
+        # Linear interpolation between low and high entropy behavior
+        low_point = 0.20
+        high_point = 0.80
+        if normalized_entropy <= low_point:
+            # Interpolate between neutral and low entropy
+            ratio = (normalized_entropy) / low_point
+            best_fit_emphasis = 1.0 + 1.5 * (1 - ratio)  # From 2.5 to 1.0
+            multiple_fit_emphasis = 1.0 - 0.6 * (1 - ratio)  # From 0.4 to 1.0
+        else:
+            # Interpolate between medium and high entropy
+            ratio = (normalized_entropy - low_point) / (high_point - low_point)
+            best_fit_emphasis = 1.0 - 0.7 * ratio  # From 1.0 to 0.3
+            multiple_fit_emphasis = 1.0 + 1.0 * ratio  # From 1.0 to 2.0
+>>>>>>> REPLACE

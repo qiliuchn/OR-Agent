@@ -1,0 +1,9 @@
+<<<<<<< SEARCH
+    # Combine both components
+    # Use smaller weight for best fit component to balance between multiple-based scoring and best fit
+    feasible_scores = multiple_fit_score + 0.05 * best_fit_component
+=======
+    # Combine both components
+    # Use smaller weight for best fit component to balance between multiple-based scoring and best fit
+    feasible_scores = multiple_fit_score + 0.07 * best_fit_component
+>>>>>>> REPLACE

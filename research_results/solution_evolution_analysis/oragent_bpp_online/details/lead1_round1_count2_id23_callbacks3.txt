@@ -1,0 +1,4 @@
+distances_to_multiples = np.min([
+    np.abs(feasible_post_caps - n * common_size) 
+    for n in range(0, int(np.max(feasible_post_caps) // common_size) + 2)
+], axis=0)

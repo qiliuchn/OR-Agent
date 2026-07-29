@@ -1,0 +1,162 @@
+import os
+import sys
+import time
+import random
+import math
+import json
+import numpy as np
+import pandas as pd
+import scipy
+import traci
+import torch
+
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic implementing dual-path architecture with dynamic common-size generation
+    and micro-lookahead for high-leverage decisions.
+    
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_caps = bins_remain_cap[feasible_bins]
+    
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(feasible_caps) > 0:
+        sorted_caps = np.sort(feasible_caps)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps) if len(sorted_caps) > 0 else 0.5
+    else:
+        item_percentile = 0.5  # Default if no feasible bins exist
+    
+    # Determine if we should use the slow path (micro-lookahead) based on leverage criteria
+    # High leverage occurs when we have few feasible bins (<3) which requires careful selection
+    high_leverage_condition = np.sum(feasible_bins) < 3
+    
+    if high_leverage_condition:
+        # Slow path: micro-lookahead
+        # For each feasible bin, simulate the placement and evaluate the resulting configuration
+        lookahead_scores = np.zeros_like(feasible_post_caps, dtype=float)
+        
+        for i, post_cap in enumerate(feasible_post_caps):
+            # Create a temporary updated capacity array as if we placed the item in this bin
+            temp_caps = feasible_caps.copy()
+            temp_caps[i] -= item
+            
+            # Calculate entropy of the new remainder distribution
+            # Low entropy means more uniform/similar remainders which can be easier to pack later
+            non_zero_caps = temp_caps[temp_caps > 1e-6]  # Filter out very small remainders
+            
+            if len(non_zero_caps) > 1:
+                # Calculate entropy as measure of diversity in remainders
+                probs = non_zero_caps / np.sum(non_zero_caps)
+                entropy = -np.sum(probs * np.log2(probs + 1e-10))  # Add small value to avoid log(0)
+                
+                # Lower entropy gets higher score (more structured remainder distribution)
+                entropy_score = -entropy
+            else:
+                entropy_score = 0  # If only one or no non-zero remainders, entropy doesn't apply well
+            
+            # Also consider the immediate fit quality
+            immediate_fit_score = -post_cap  # Better fit (smaller remainder) gets higher score
+            
+            # Combine lookahead and immediate fit considerations
+            lookahead_scores[i] = immediate_fit_score + 0.1 * entropy_score
+        
+        scores[feasible_bins] = lookahead_scores
+    else:
+        # Fast path: use simplified percentile-weighted dynamic common-size logic from Node 149
+        
+        # Define category-specific weights based on refined percentile thresholds
+        if item_percentile > 0.82:  # Very large item
+            best_fit_weight, multiple_fit_weight = 0.30 * 1.07, 0.70 * 0.99  # Enhanced best-fit for large items
+        elif item_percentile < 0.18:  # Very small item
+            best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.25 * 1.01  # Reduced best-fit for small items
+        elif item_percentile > 0.62:  # Large-medium item
+            best_fit_weight, multiple_fit_weight = 0.16, 0.84  # Between medium and large
+        elif item_percentile < 0.38:  # Small-medium item
+            best_fit_weight, multiple_fit_weight = 0.03, 1.10  # Between medium and small
+        else:  # True medium item
+            best_fit_weight, multiple_fit_weight = 0.10, 0.90  # Medium weights
+        
+        # Compute features that capture learned patterns
+        # Feature 1: How well the item fits in each bin (best fit preference)
+        best_fit_component = -feasible_post_caps  # Higher score for less remaining space after placement
+        
+        # Feature 2: Multiple-fit scoring with dynamic common sizes
+        multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+        
+        # Generate dynamic common sizes that represent current state patterns
+        dynamic_common_sizes = np.concatenate([
+            # Item-based common sizes
+            np.array([item]),                    # Item itself
+            item * np.array([0.5, 1.5, 0.25, 0.75, 1.25, 2.0, 0.33, 0.67, 0.125, 0.875]),  # Fractional items
+            # Remainder-based common sizes
+            feasible_post_caps,  # Current remainders
+            feasible_post_caps / 2,  # Halves of remainders
+            feasible_post_caps / 3,  # Thirds of remainders
+            feasible_post_caps * 2,  # Doubles of remainders (if within reason)
+            # Common bin capacity fractions
+            np.array([1.0, 2.0, 5.0, 10.0, 25.0, 50.0, 75.0])  # Common values
+        ])
+        
+        # Filter out very small values to avoid numerical issues
+        dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-6]
+        
+        # Remove duplicates
+        dynamic_common_sizes = np.unique(dynamic_common_sizes)
+        
+        # Calculate multiple fit score based on dynamic common sizes
+        if len(dynamic_common_sizes) > 0:
+            for common_size in dynamic_common_sizes[:50]:  # Limit to prevent excessive computation
+                # Calculate distance to nearest multiple of the common size
+                max_multiplier = int(np.max(feasible_post_caps) // common_size) + 3 if common_size > 0 else 0
+                max_multiplier = min(max_multiplier, 10)  # Limit to prevent excessive computation
+                
+                if max_multiplier > 0:
+                    # Calculate distances to all possible multiples
+                    distances_to_multiples = np.min([
+                        np.abs(feasible_post_caps - n * common_size) 
+                        for n in range(0, max_multiplier + 1)
+                    ], axis=0)
+                    
+                    # Add to the score (higher score for closer matches)
+                    multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+        
+        # Feature 3: Remainder efficiency (to address val_0/val_1 bottlenecks)
+        remainder_efficiency = np.zeros_like(feasible_post_caps, dtype=float)
+        
+        # Look for remainders that match common item sizes or their multiples
+        common_item_proportions = np.array([0.1, 0.2, 0.25, 0.33, 0.5, 0.67, 0.75, 0.8, 0.9])
+        for prop in common_item_proportions:
+            distances_to_useful_remainders = np.abs(feasible_post_caps - prop * item)
+            remainder_efficiency += 1.0 / (1.0 + distances_to_useful_remainders)
+        
+        # Combine all components with learned weights
+        feasible_scores = (
+            best_fit_weight * best_fit_component +
+            multiple_fit_weight * multiple_fit_score +
+            0.1 * remainder_efficiency  # Additional term for future efficiency
+        )
+        
+        scores[feasible_bins] = feasible_scores
+    
+    return scores

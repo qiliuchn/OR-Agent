@@ -1,0 +1,61 @@
+<<<<<<< SEARCH
+    # Kernel-based compatibility scoring
+    # Use Gaussian kernels centered at each common size
+    kernel_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Define bandwidth for Gaussian kernels - adjust based on item size for scaling
+    bandwidth = max(item * 0.1, 0.1)  # Minimum bandwidth to prevent too-sharp peaks
+    
+    for common_size in estimated_common_sizes:
+        # Calculate Gaussian kernel value for each post-placement capacity
+        # Using exp(-0.5 * ((x - mu) / sigma)^2) where sigma = bandwidth
+        kernel_values = np.exp(-0.5 * ((feasible_post_caps - common_size) / bandwidth) ** 2)
+        kernel_scores += kernel_values
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Adaptive weight for best fit based on context
+    # In scenarios with high variance in remaining capacities, 
+    # best fit might be more important
+    if std_remaining > 0.12 * max_remaining:
+        best_fit_weight = 0.06
+    else:
+        best_fit_weight = 0.03
+    
+    # Combine both components
+    feasible_scores = kernel_scores + best_fit_weight * best_fit_component
+=======
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiplier > 0:
+            # Calculate distances to all possible multiples
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_multiplier)
+            ], axis=0)
+            
+            # Add to the score (higher score for closer matches)
+            # Use a small epsilon to avoid division by zero
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Adaptive weight for best fit based on context
+    # In scenarios with high variance in remaining capacities, 
+    # best fit might be more important
+    if std_remaining > 0.12 * max_remaining:
+        best_fit_weight = 0.06
+    else:
+        best_fit_weight = 0.03
+    
+    # Combine both components
+    feasible_scores = multiple_fit_score + best_fit_weight * best_fit_component
+>>>>>>> REPLACE

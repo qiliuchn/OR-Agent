@@ -1,0 +1,37 @@
+<<<<<<< SEARCH
+    # Calculate distance from normalized caps to the center of dead zone
+    dist_to_dead_zone = np.abs(normalized_caps - dead_zone_center)
+    
+    # Only apply penalty if within dead zone
+    in_dead_zone = (normalized_caps >= lower_dead_zone) & (normalized_caps <= upper_dead_zone)
+    
+    # Apply Gaussian-like penalty within the dead zone
+    # Using exp(-x^2) to create a smooth peak at the center of the dead zone
+    penalty_factor = np.where(
+        in_dead_zone,
+        np.exp(-((dist_to_dead_zone - dead_zone_center + dead_zone_center) / (dead_zone_width / 3))**2),
+        0.0
+    )
+    
+    # Scale the penalty appropriately (negative because we want to reduce priority)
+    utilization_penalty = -0.5 * penalty_factor  # Adjust the factor as needed
+=======
+    # Calculate distance from normalized caps to the center of dead zone
+    dist_to_dead_zone = np.abs(normalized_caps - dead_zone_center)
+    
+    # Only apply penalty if within dead zone
+    in_dead_zone = (normalized_caps >= lower_dead_zone) & (normalized_caps <= upper_dead_zone)
+    
+    # Apply Gaussian-like penalty within the dead zone
+    # Using exp(-x^2) to create a smooth peak at the center of the dead zone
+    # Simplified and corrected the formula
+    penalty_factor = np.where(
+        in_dead_zone,
+        np.exp(-((dist_to_dead_zone) / (dead_zone_width / 3))**2),
+        0.0
+    )
+    
+    # Scale the penalty appropriately (negative because we want to reduce priority)
+    # Reduce the penalty strength since the current implementation might be too aggressive
+    utilization_penalty = -0.2 * penalty_factor  # Reduced from 0.5 to 0.2
+>>>>>>> REPLACE

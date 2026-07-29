@@ -1,0 +1,4 @@
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/oragent/bpp_online/standard_mode14/details/lead1_round0_count5_id5_file_
+mode: val
+Command '['/share/home/u23310103/.conda/envs/sumo/bin/python', '-u', 'outputs/oragent/bpp_online/standard_mode14/details/lead1_round0_count5_id5_eval.py', '--root_dir', PosixPath('/share/home/u23310103/apps/or_agent'), '--file_output_prefix', 'outputs/oragent/bpp_online/standard_mode14/details/lead1_round0_count5_id5_file_']' timed out after 299.999946395983 seconds

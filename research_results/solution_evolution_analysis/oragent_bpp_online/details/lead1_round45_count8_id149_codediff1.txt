@@ -1,0 +1,272 @@
+<<<<<<< SEARCH
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic implementing dynamic common-size generation with instance-type classification.
+    
+    Implementation idea: Reimplement the core dynamic common-size generation mechanism from Node 92
+    as the foundation, but enhance it with a lightweight, within-call instance-type classifier that
+    uses real-time statistics (e.g., entropy of feasible remainders, item-to-median ratio, and 
+    sparsity of feasible bins) to select between two specialized scoring modes: one optimized for 
+    val_0/val_1-like adversarial patterns (emphasizing precise rational fits and future remainder 
+    utility) and another for general instances (prioritizing speed and best-fit). This combines 
+    the proven success of Node 92 with adaptive behavior without cross-call state.
+    
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_caps = bins_remain_cap[feasible_bins]
+    
+    # Calculate instance-type classifier statistics
+    num_feasible_bins = np.sum(feasible_bins)
+    total_bins = len(bins_remain_cap)
+    feasible_ratio = num_feasible_bins / total_bins
+    
+    # Calculate entropy of feasible remainders (normalized)
+    if len(feasible_post_caps) > 1:
+        # Normalize remainders to avoid scale effects
+        normalized_remainders = feasible_post_caps / (np.max(feasible_post_caps) + 1e-9)
+        remainder_probs = normalized_remainders / (np.sum(normalized_remainders) + 1e-9)
+        remainder_entropy = -np.sum(remainder_probs * np.log(remainder_probs + 1e-9))
+        # Normalize entropy by log of number of feasible bins
+        remainder_entropy = remainder_entropy / (np.log(len(feasible_post_caps)) + 1e-9)
+    else:
+        remainder_entropy = 0.0
+    
+    # Calculate item-to-median ratio
+    if len(feasible_caps) > 0:
+        median_cap = np.median(feasible_caps)
+        item_to_median_ratio = item / (median_cap + 1e-9)
+    else:
+        item_to_median_ratio = 1.0
+    
+    # Instance classifier: detect adversarial patterns like val_0/val_1
+    # These tend to have low feasible ratio and high remainder entropy
+    is_adversarial = (feasible_ratio < 0.3) or (remainder_entropy > 0.7) or (item_to_median_ratio > 2.0)
+    
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(feasible_caps) > 0:
+        sorted_caps = np.sort(feasible_caps)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps) if len(sorted_caps) > 0 else 0.5
+    else:
+        item_percentile = 0.5  # Default if no feasible bins exist
+    
+    # Define category-specific weights based on percentile thresholds
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 1.0, 0.0  # Best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.0, 1.0  # Multiple-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.7, 0.3  # More best-fit for larger items
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.3, 0.7  # More multiple-fit for smaller items
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.5, 0.5  # Balanced for medium items
+    
+    # Compute features
+    # Feature 1: How well the item fits in each bin (best fit preference)
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space after placement
+    
+    # Feature 2: Multiple-fit scoring with dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Dynamic common sizes based on current state
+    dynamic_common_sizes = np.concatenate([
+        feasible_post_caps,  # Current remainders
+        np.array([item]),   # Current item
+        feasible_post_caps / 2,  # Halves of remainders
+        feasible_post_caps / 3,  # Thirds of remainders
+        feasible_post_caps * 2,  # Doubles of remainders (if within reason)
+        np.array([1.0, 2.0, 5.0, 10.0, 25.0, 50.0])  # Common values
+    ])
+    
+    # Filter out very small values to avoid numerical issues
+    dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-6]
+    
+    # For adversarial instances, add more detailed common sizes
+    if is_adversarial:
+        dynamic_common_sizes = np.concatenate([
+            dynamic_common_sizes,
+            item * np.array([0.25, 0.33, 0.5, 0.67, 0.75, 1.0, 1.25, 1.33, 1.5, 1.67, 2.0])
+        ])
+    
+    # Remove duplicates and sort
+    dynamic_common_sizes = np.unique(dynamic_common_sizes)
+    dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-6]
+    
+    # Calculate multiple fit score based on dynamic common sizes
+    if len(dynamic_common_sizes) > 0:
+        for common_size in dynamic_common_sizes[:50]:  # Limit to prevent excessive computation
+            # Calculate distance to nearest multiple of the common size
+            distances_to_multiples = np.abs(feasible_post_caps - common_size)
+            # Add to the score (higher score for closer matches)
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # For adversarial instances, also calculate future remainder utility
+    remainder_utility = np.zeros_like(feasible_post_caps, dtype=float)
+    if is_adversarial:
+        # Look for remainders that match common item sizes or their multiples
+        # This helps with future packing efficiency
+        common_proportions = np.array([0.1, 0.2, 0.25, 0.33, 0.5, 0.67, 0.75, 0.8, 0.9])
+        for prop in common_proportions:
+            distances_to_useful_remainders = np.abs(feasible_post_caps - prop * item)
+            remainder_utility += 1.0 / (1.0 + distances_to_useful_remainders)
+    
+    # Combine components based on instance type
+    if is_adversarial:
+        # For adversarial instances, emphasize multiple-fit and remainder utility
+        feasible_scores = (
+            0.2 * best_fit_component +
+            0.6 * multiple_fit_score +
+            0.2 * remainder_utility
+        )
+    else:
+        # For general instances, balance best-fit and multiple-fit
+        feasible_scores = (
+            best_fit_weight * best_fit_component +
+            multiple_fit_weight * multiple_fit_score
+        )
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+=======
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic implementing dynamic common-size generation.
+    This function implements the core concepts from the successful parent solution
+    with dynamic common-size generation and proper weight adjustments based on item percentile.
+    
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_caps = bins_remain_cap[feasible_bins]
+    
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    # Using only feasible bins for more accurate context
+    if len(feasible_caps) > 0:
+        # Calculate the percentile of the current item in the context of feasible capacities
+        sorted_caps = np.sort(feasible_caps)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps) if len(sorted_caps) > 0 else 0.5
+    else:
+        item_percentile = 0.5  # Default if no feasible bins exist
+    
+    # Define category-specific weights based on refined percentile thresholds
+    # These weights are adapted from the successful parent solution
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+    
+    # Compute features that capture learned patterns (symbolic neural proxy)
+    # Feature 1: How well the item fits in each bin (best fit preference)
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space after placement
+    
+    # Feature 2: Multiple-fit scoring with dynamic common sizes
+    # This mimics the learned pattern recognition of neural networks
+    # Using a dynamic set of common sizes based on current state
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Generate dynamic common sizes that represent current state patterns
+    dynamic_common_sizes = np.concatenate([
+        feasible_post_caps,  # Current remainders
+        np.array([item]),   # Current item
+        feasible_post_caps / 2,  # Halves of remainders
+        feasible_post_caps / 3,  # Thirds of remainders
+        feasible_post_caps * 2,  # Doubles of remainders (if within reason)
+        np.array([1.0, 2.0, 5.0, 10.0, 25.0, 50.0])  # Common values
+    ])
+    
+    # Filter out very small values to avoid numerical issues
+    dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-6]
+    
+    # Remove duplicates
+    dynamic_common_sizes = np.unique(dynamic_common_sizes)
+    
+    # Calculate multiple fit score based on dynamic common sizes
+    if len(dynamic_common_sizes) > 0:
+        for common_size in dynamic_common_sizes[:50]:  # Limit to prevent excessive computation
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 3 if common_size > 0 else 0
+            max_multiplier = min(max_multiplier, 10)  # Limit to prevent excessive computation
+            
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier + 1)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Feature 3: Remainder efficiency (to address val_0/val_1 bottlenecks)
+    # Prefer configurations that leave remainders that are useful for future items
+    remainder_efficiency = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Look for remainders that match common item sizes or their multiples
+    # This helps with future packing efficiency
+    common_item_proportions = np.array([0.1, 0.2, 0.25, 0.33, 0.5, 0.67, 0.75, 0.8, 0.9])
+    for prop in common_item_proportions:
+        distances_to_useful_remainders = np.abs(feasible_post_caps - prop * item)
+        remainder_efficiency += 1.0 / (1.0 + distances_to_useful_remainders)
+    
+    # Combine all components with learned weights
+    feasible_scores = (
+        best_fit_weight * best_fit_component +
+        multiple_fit_weight * multiple_fit_score +
+        0.1 * remainder_efficiency  # Additional term for future efficiency
+    )
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+>>>>>>> REPLACE

@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    # Simple adaptive weighting: increase best-fit weight for larger items
+    best_fit_weight = 0.1 * (1.0 + 0.5 * min(item_relative_size, 1.0))  # 0.1 to 0.15 range
+    multiple_weight = 1.0  # Keep multiple-based scoring at baseline
+    
+    # Combine both components with adaptive balance
+    combined_scores = multiple_weight * feasible_scores + best_fit_weight * best_fit_component
+=======
+    # Use fixed best-fit weight based on parent solution analysis
+    best_fit_weight = 0.08  # Slightly below parent's optimal of 0.1
+    multiple_weight = 1.0  # Keep multiple-based scoring at baseline
+    
+    # Combine both components with fixed balance
+    combined_scores = multiple_weight * feasible_scores + best_fit_weight * best_fit_component
+>>>>>>> REPLACE

@@ -1,0 +1,203 @@
+<<<<<<< SEARCH
+    # Calculate relevant state features
+    if len(bins_remain_cap) > 0:
+        max_capacity = np.max(bins_remain_cap) if np.any(bins_remain_cap > 0) else item * 2
+    else:
+        max_capacity = item * 2
+    
+    # Feature: Item size relative to bin capacity (detects large vs small items)
+    item_capacity_ratio = item / max_capacity
+    
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Identify feasible bins (those that can accommodate the item)
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    # Extract feasible capacities
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    
+    # Calculate entropy of the CURRENT remaining capacity distribution to measure system-wide fragmentation risk
+    # This considers ALL bins with remaining capacity, not just those feasible for this item
+    all_positive_caps = bins_remain_cap[bins_remain_cap > 0]  # Consider all bins with remaining capacity
+    if len(all_positive_caps) > 0:
+        # Create a normalized distribution by dividing by sum
+        cap_sum = np.sum(all_positive_caps)
+        if cap_sum > 0:
+            prob_dist = all_positive_caps / cap_sum
+            # Calculate entropy H = -sum(p * log(p)) where p > 0
+            non_zero_probs = prob_dist[prob_dist > 0]
+            entropy = -np.sum(non_zero_probs * np.log(non_zero_probs + 1e-10))  # Add small epsilon to prevent log(0)
+            # Normalize entropy by max possible entropy (log(n)) to keep in [0, 1] range
+            max_possible_entropy = np.log(len(all_positive_caps)) if len(all_positive_caps) > 1 else 1e-10
+            normalized_system_entropy = entropy / max_possible_entropy if max_possible_entropy > 0 else 0
+        else:
+            normalized_system_entropy = 0
+    else:
+        # When all bins are completely filled
+        normalized_system_entropy = 0
+    
+    # Calculate post-placement remaining capacities for the feasible bins
+    feasible_post_caps_original = post_placement_caps[feasible_bins]
+    
+    # Component 1: Best-fit scoring (higher score for less remaining space after placement)
+    best_fit_scores = -feasible_post_caps_original  # Higher score for less remaining space
+    
+    # Component 2: Multiple-based scoring (enhanced version)
+    # Use a broader range of estimated common sizes based on the parent solution approach
+    estimated_common_sizes = [item, item * 0.9, item * 1.1, item * 0.5, item * 1.5, item * 0.75, item * 1.25]
+    multiple_scores = np.zeros_like(feasible_post_caps_original, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        if common_size > 0:
+            # Calculate distance to nearest multiple
+            quotients = feasible_post_caps_original / common_size
+            rounded_quotients = np.round(quotients)
+            distances_to_multiples = np.abs(feasible_post_caps_original - rounded_quotients * common_size)
+            # Add to the score (higher score for closer matches)
+            multiple_scores += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Calculate a diversity score to encourage selecting bins that contribute to varied remaining capacities
+    # This promotes heterogeneity in the system to reduce fragmentation
+    if len(all_positive_caps) > 1:
+        # Calculate how much this bin's resulting capacity would differ from others
+        # Bins that result in capacities far from the mean get higher diversity scores
+        mean_cap = np.mean(feasible_post_caps_original)
+        diversity_scores = np.abs(feasible_post_caps_original - mean_cap)
+    else:
+        # If there are few bins with capacity, diversity is less critical
+        diversity_scores = np.zeros_like(feasible_post_caps_original)
+    
+    # Dynamic weight calculation based on both item characteristics and system entropy
+    # Base weights determined by item-to-capacity ratio
+    if item_capacity_ratio > 0.5:
+        base_w_bestfit = 0.7
+        base_w_multiple = 0.2
+        base_w_diversity = 0.1
+    elif item_capacity_ratio > 0.2:
+        base_w_bestfit = 0.5
+        base_w_multiple = 0.3
+        base_w_diversity = 0.2
+    else:
+        base_w_bestfit = 0.3
+        base_w_multiple = 0.4
+        base_w_diversity = 0.3
+    
+    # Adjust weights based on system entropy to control fragmentation
+    # High entropy means good diversity in remaining capacities, can afford to focus on best-fit
+    # Low entropy means high fragmentation risk, need to emphasize multiple-based and diversity
+    entropy_influence = 1.0 - normalized_system_entropy  # Higher influence when entropy is low (high fragmentation risk)
+    entropy_adjustment = 0.3 * entropy_influence  # Adjustment factor for weights
+    
+    # Adjust weights: when fragmentation risk is high (low entropy), increase multiple and diversity weights
+    adjusted_w_bestfit = max(0.1, base_w_bestfit - entropy_adjustment * 0.5)
+    adjusted_w_multiple = min(0.8, base_w_multiple + entropy_adjustment * 0.3)
+    adjusted_w_diversity = min(0.6, base_w_diversity + entropy_adjustment * 0.2)
+    
+    # Ensure weights sum to 1.0
+    total_weight = adjusted_w_bestfit + adjusted_w_multiple + adjusted_w_diversity
+    if total_weight > 0:
+        adjusted_w_bestfit /= total_weight
+        adjusted_w_multiple /= total_weight
+        adjusted_w_diversity /= total_weight
+    
+    # Normalize components to similar scales before combining
+    def safe_normalize(arr):
+        std_val = np.std(arr)
+        if std_val > 0:
+            mean_val = np.mean(arr)
+            return (arr - mean_val) / (std_val + 1e-8)
+        return arr - np.mean(arr)
+    
+    best_fit_scores_norm = safe_normalize(best_fit_scores)
+    multiple_scores_norm = safe_normalize(multiple_scores)
+    diversity_scores_norm = safe_normalize(diversity_scores)
+    
+    # Combine components with adaptive weights adjusted by system entropy
+    combined_scores = (adjusted_w_bestfit * best_fit_scores_norm + 
+                       adjusted_w_multiple * multiple_scores_norm + 
+                       adjusted_w_diversity * diversity_scores_norm)
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+    
+    return scores
+=======
+    # Calculate relevant state features
+    if len(bins_remain_cap) > 0:
+        max_capacity = np.max(bins_remain_cap) if np.any(bins_remain_cap > 0) else item * 2
+    else:
+        max_capacity = item * 2
+    
+    # Feature: Item size relative to bin capacity (detects large vs small items)
+    item_capacity_ratio = item / max_capacity
+    
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Identify feasible bins (those that can accommodate the item)
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    # Calculate post-placement remaining capacities for the feasible bins
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    
+    # Component 1: Best-fit scoring (higher score for less remaining space after placement)
+    best_fit_scores = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Component 2: Multiple-based scoring (enhanced version)
+    # Use a broader range of estimated common sizes based on the parent solution approach
+    estimated_common_sizes = [item, item * 0.9, item * 1.1, item * 0.5, item * 1.5, item * 0.75, item * 1.25]
+    multiple_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        if common_size > 0:
+            # Calculate distance to nearest multiple
+            quotients = feasible_post_caps / common_size
+            rounded_quotients = np.round(quotients)
+            distances_to_multiples = np.abs(feasible_post_caps - rounded_quotients * common_size)
+            # Add to the score (higher score for closer matches)
+            multiple_scores += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Dynamic weight calculation based on item characteristics only (going back to parent approach)
+    # Base weights determined by item-to-capacity ratio
+    if item_capacity_ratio > 0.5:
+        w_bestfit = 0.8
+        w_multiple = 0.2
+    elif item_capacity_ratio > 0.2:
+        w_bestfit = 0.6
+        w_multiple = 0.4
+    else:
+        w_bestfit = 0.3
+        w_multiple = 0.7
+    
+    # Normalize components to similar scales before combining
+    def safe_normalize(arr):
+        std_val = np.std(arr)
+        if std_val > 0:
+            mean_val = np.mean(arr)
+            return (arr - mean_val) / (std_val + 1e-8)
+        return arr - np.mean(arr)
+    
+    best_fit_scores_norm = safe_normalize(best_fit_scores)
+    multiple_scores_norm = safe_normalize(multiple_scores)
+    
+    # Combine components with adaptive weights based on item size (like parent solution)
+    combined_scores = w_bestfit * best_fit_scores_norm + w_multiple * multiple_scores_norm
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+    
+    return scores
+>>>>>>> REPLACE

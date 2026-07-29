@@ -1,0 +1,102 @@
+<<<<<<< SEARCH
+    # Generate dynamic common sizes using context-aware sampling
+    # Use a kernel density-based approach to identify important remainder values
+    if len(feasible_post_caps) > 0:
+        # Identify important scales from the current remainder distribution
+        # Use a simplified approach: sample quantiles and key ratios from the distribution
+        unique_caps = np.unique(feasible_post_caps)
+        if len(unique_caps) > 0:
+            # Sample key values from the current distribution as common sizes
+            # Quantiles provide good coverage of the distribution
+            quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+            quantile_values = np.quantile(unique_caps, quantiles)
+            
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75
+            ])
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                quantile_values,
+                item_ratios,
+                remainder_fractions
+            ])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+=======
+    # Generate dynamic common sizes using context-aware sampling
+    # Use a kernel density-based approach to identify important remainder values
+    if len(feasible_post_caps) > 0:
+        # Identify important scales from the current remainder distribution
+        # Use a simplified approach: sample quantiles and key ratios from the distribution
+        unique_caps = np.unique(feasible_post_caps)
+        if len(unique_caps) > 0:
+            # Sample key values from the current distribution as common sizes
+            # Quantiles provide good coverage of the distribution
+            quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+            quantile_values = np.quantile(unique_caps, quantiles)
+            
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            # Limit the number of remainder fractions to avoid computational explosion
+            remainder_fractions = np.array([])
+            if len(unique_caps) <= 10:  # Only use remainder fractions if not too many unique caps
+                remainder_fractions = np.concatenate([
+                    unique_caps * 0.5,
+                    unique_caps * 0.33,
+                    unique_caps * 0.67,
+                    unique_caps * 0.25,
+                    unique_caps * 0.75
+                ])
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                quantile_values,
+                item_ratios
+            ])
+            
+            # Only add remainder fractions if they don't make the array too large
+            if len(remainder_fractions) > 0 and len(dynamic_common_sizes) + len(remainder_fractions) <= 50:
+                dynamic_common_sizes = np.concatenate([dynamic_common_sizes, remainder_fractions])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+            
+            # Final cap on total number of common sizes to ensure computational feasibility
+            if len(dynamic_common_sizes) > 30:
+                # Keep the most important ones: quantiles and item ratios, subsample remainder fractions
+                essential_sizes = np.concatenate([quantile_values, item_ratios])
+                remaining_slots = 30 - len(essential_sizes)
+                if remaining_slots > 0 and len(remainder_fractions) > 0:
+                    # Take a subset of remainder fractions
+                    if len(remainder_fractions) > remaining_slots:
+                        remainder_fractions = remainder_fractions[:remaining_slots]
+                    dynamic_common_sizes = np.concatenate([essential_sizes, remainder_fractions])
+                    dynamic_common_sizes = np.unique(dynamic_common_sizes)
+                    dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+                else:
+                    dynamic_common_sizes = essential_sizes
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+>>>>>>> REPLACE

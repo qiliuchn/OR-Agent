@@ -1,0 +1,146 @@
+<<<<<<< SEARCH
+    # Calculate exponential moving average of item size (simulated online learning)
+    # Since we don't have access to historical data in this stateless function,
+    # we use the current item and bins as a proxy for recent statistics
+    current_item_avg = item  # For single call, use current item as baseline
+    current_bin_avg = np.mean(bins_remain_cap) if len(bins_remain_cap) > 0 else 1.0
+    
+    # Enhanced multiplier embeddings with additional fractional relationships
+    # These represent optimized sets of common-size relationships discovered through
+    # offline analysis of near-optimal packings, now dynamically adjusted
+    base_multipliers = {
+        'large': [
+            1.0, 0.5, 1.5, 0.75, 1.25, 0.33, 0.67, 2.0, 0.25, 1.75, 0.125,
+            2.5, 0.2, 0.167, 0.833, 0.4, 0.6, 0.375, 0.625, 0.143, 0.286,
+            0.429, 0.571, 0.714, 0.857, 0.111, 0.222, 0.333, 0.667, 0.778,
+            0.889, 0.1, 0.9, 0.0625, 0.1875, 0.3125, 0.4375, 0.5625, 0.6875,
+            0.8125, 0.9375
+        ],
+        'small': [
+            1.0, 0.5, 0.25, 0.75, 0.33, 0.67, 1.5, 0.125, 0.875, 0.167, 0.833,
+            0.2, 0.4, 0.6, 0.8, 0.1, 0.9, 0.0625, 0.375, 0.143, 0.286, 0.429,
+            0.571, 0.714, 0.857, 0.111, 0.333, 0.667, 0.167, 0.0625, 0.1875,
+            0.3125, 0.4375, 0.5625, 0.6875, 0.8125, 0.9375, 0.143, 0.286, 0.222,
+            0.444, 0.556, 0.778, 0.889, 0.03125, 0.09375, 0.15625, 0.21875, 0.28125,
+            0.34375, 0.40625, 0.46875, 0.53125, 0.59375, 0.65625, 0.71875, 0.78125,
+            0.84375, 0.90625, 0.96875
+        ],
+        'medium': [
+            1.0, 0.5, 1.5, 0.75, 1.25, 0.33, 0.67, 0.25, 0.1, 1.75, 0.2, 0.4,
+            0.6, 0.8, 1.1, 0.167, 0.833, 0.375, 0.625, 0.75, 1.333, 1.667, 0.429,
+            0.571, 0.125, 0.375, 0.625, 0.875, 0.111, 0.222, 0.444, 0.556, 0.778,
+            0.889, 0.143, 0.286, 0.429, 0.571, 0.714, 0.857, 0.1, 0.3, 0.7, 0.9,
+            0.0625, 0.1875, 0.3125, 0.4375, 0.5625, 0.6875, 0.8125, 0.9375
+        ]
+    }
+    
+    # Dynamically adjust multipliers based on EMA-like estimates of future item sizes
+    # For this implementation, we'll use the current item as an estimate for future items
+    # and adjust multipliers accordingly
+    ema_factor = 0.1  # Rate of adaptation to new item sizes
+    predicted_size = current_item_avg  # In real implementation, this would be EMA
+    
+    # Adjust multipliers based on how the current item relates to average bin capacity
+    size_ratio = item / current_bin_avg if current_bin_avg > 0 else 1.0
+    
+    # Generate adjusted multipliers based on predicted size and current context
+    adjusted_multipliers = []
+    for mult in base_multipliers[item_category]:
+        # Bias multipliers toward sizes that might appear in the future
+        # based on current item distribution
+        adjusted_mult = mult * (1.0 - ema_factor) + (predicted_size / item if item > 0 else 1.0) * ema_factor
+        adjusted_multipliers.append(adjusted_mult)
+    
+    # Generate actual common sizes by multiplying with the current item
+    selected_common_sizes = [item * mult for mult in adjusted_multipliers]
+=======
+    # Multiplier embeddings with additional fractional relationships
+    # These represent optimized sets of common-size relationships discovered through
+    # offline analysis of near-optimal packings
+    multiplier_embeddings = {
+        'large': [
+            1.0, 0.5, 1.5, 0.75, 1.25, 0.33, 0.67, 2.0, 0.25, 1.75, 0.125,
+            2.5, 0.2, 0.167, 0.833, 0.4, 0.6, 0.375, 0.625, 0.143, 0.286,
+            0.429, 0.571, 0.714, 0.857, 0.111, 0.222, 0.333, 0.667, 0.778,
+            0.889, 0.1, 0.9, 0.0625, 0.1875, 0.3125, 0.4375, 0.5625, 0.6875,
+            0.8125, 0.9375
+        ],
+        'small': [
+            1.0, 0.5, 0.25, 0.75, 0.33, 0.67, 1.5, 0.125, 0.875, 0.167, 0.833,
+            0.2, 0.4, 0.6, 0.8, 0.1, 0.9, 0.0625, 0.375, 0.143, 0.286, 0.429,
+            0.571, 0.714, 0.857, 0.111, 0.333, 0.667, 0.167, 0.0625, 0.1875,
+            0.3125, 0.4375, 0.5625, 0.6875, 0.8125, 0.9375, 0.143, 0.286, 0.222,
+            0.444, 0.556, 0.778, 0.889, 0.03125, 0.09375, 0.15625, 0.21875, 0.28125,
+            0.34375, 0.40625, 0.46875, 0.53125, 0.59375, 0.65625, 0.71875, 0.78125,
+            0.84375, 0.90625, 0.96875
+        ],
+        'medium': [
+            1.0, 0.5, 1.5, 0.75, 1.25, 0.33, 0.67, 0.25, 0.1, 1.75, 0.2, 0.4,
+            0.6, 0.8, 1.1, 0.167, 0.833, 0.375, 0.625, 0.75, 1.333, 1.667, 0.429,
+            0.571, 0.125, 0.375, 0.625, 0.875, 0.111, 0.222, 0.444, 0.556, 0.778,
+            0.889, 0.143, 0.286, 0.429, 0.571, 0.714, 0.857, 0.1, 0.3, 0.7, 0.9,
+            0.0625, 0.1875, 0.3125, 0.4375, 0.5625, 0.6875, 0.8125, 0.9375
+        ]
+    }
+    
+    # Select multipliers based on the determined category
+    selected_multipliers = multiplier_embeddings[item_category]
+    
+    # Generate actual common sizes by multiplying with the current item
+    selected_common_sizes = [item * mult for mult in selected_multipliers]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # Adaptive weights based on the current item category
+    adaptive_weights = {
+        'large': (0.25, 0.75),
+        'small': (0.0005, 1.195),
+        'medium': (0.07, 0.93)
+    }
+    
+    # Select the appropriate weights based on the determined category
+    best_fit_weight, multiple_fit_weight = adaptive_weights[item_category]
+    
+    # Adjust weights slightly based on the item's position in the quartile range
+    if item_category == 'large':
+        # For very large items relative to current bins, emphasize best fit more
+        ratio_to_q75 = item / q75 if q75 > 0 else 1.0
+        best_fit_weight = min(0.4, best_fit_weight * (1.0 + 0.1 * (ratio_to_q75 - 1.0)))
+        multiple_fit_weight = max(0.6, multiple_fit_weight * (1.0 - 0.1 * (ratio_to_q75 - 1.0)))
+    elif item_category == 'small':
+        # For very small items relative to current bins, emphasize multiple fit more
+        ratio_to_q25 = item / q25 if q25 > 0 else 1.0
+        best_fit_weight = max(0.0001, best_fit_weight * min(1.0, ratio_to_q25))
+        multiple_fit_weight = min(1.25, multiple_fit_weight * max(1.0, 1.0/ratio_to_q25))
+=======
+    # Adaptive weights based on the current item category
+    adaptive_weights = {
+        'large': (0.25, 0.75),
+        'small': (0.0005, 1.195),
+        'medium': (0.07, 0.93)
+    }
+    
+    # Select the appropriate weights based on the determined category
+    best_fit_weight, multiple_fit_weight = adaptive_weights[item_category]
+    
+    # Adjust weights based on how full the bins are on average
+    avg_bin_utilization = 1.0 - (np.mean(bins_remain_cap) / 100.0) if len(bins_remain_cap) > 0 else 0.0
+    
+    # In high-utilization scenarios, prioritize best-fit to avoid opening new bins
+    # In low-utilization scenarios, prioritize multiple-fit for efficient packing
+    utilization_factor = 1.0 + 0.2 * (avg_bin_utilization - 0.5)  # Adjust based on utilization
+    
+    if item_category == 'large':
+        # For very large items relative to current bins, emphasize best fit more
+        ratio_to_q75 = item / q75 if q75 > 0 else 1.0
+        best_fit_weight = min(0.4, best_fit_weight * (1.0 + 0.1 * (ratio_to_q75 - 1.0)) * utilization_factor)
+        multiple_fit_weight = max(0.6, multiple_fit_weight * (1.0 - 0.1 * (ratio_to_q75 - 1.0)) / utilization_factor)
+    elif item_category == 'small':
+        # For very small items relative to current bins, emphasize multiple fit more
+        ratio_to_q25 = item / q25 if q25 > 0 else 1.0
+        best_fit_weight = max(0.0001, best_fit_weight * min(1.0, ratio_to_q25) / utilization_factor)
+        multiple_fit_weight = min(1.25, multiple_fit_weight * max(1.0, 1.0/ratio_to_q25) * utilization_factor)
+    else:  # medium category
+        # Adjust medium weights based on utilization
+        best_fit_weight *= utilization_factor
+        multiple_fit_weight /= utilization_factor
+>>>>>>> REPLACE

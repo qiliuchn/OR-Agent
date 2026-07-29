@@ -1,0 +1,141 @@
+<<<<<<< SEARCH
+    # Determine multiplier granularity based on item size
+    # Adjusted thresholds based on typical item size distributions in bin packing problems
+    if current_item < 0.25:  # Very small items - use finest granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.1,   # tenth size
+            current_item * 0.125, # eighth size  
+            current_item * 0.167, # sixth size
+            current_item * 0.2,   # fifth size
+            current_item * 0.25,  # quarter size
+            current_item * 0.33,  # one third
+            current_item * 0.4,   # two fifths
+            current_item * 0.5,   # half size
+            current_item * 0.6,   # three fifths
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.4,   # seven fifths
+            current_item * 1.5,   # 1.5x size
+            current_item * 1.6,   # eight fifths
+            current_item * 1.8,   # nine fifths
+            current_item * 2.0,   # double size
+            current_item * 2.5,   # 2.5x size
+            current_item * 3.0,   # triple size
+        ]
+    elif current_item < 0.6:  # Small to medium items - use moderate granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.2,   # fifth size
+            current_item * 0.25,  # quarter size
+            current_item * 0.33,  # one third
+            current_item * 0.4,   # two fifths
+            current_item * 0.5,   # half size
+            current_item * 0.6,   # three fifths
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.4,   # seven fifths
+            current_item * 1.5,   # 1.5x size
+            current_item * 1.6,   # eight fifths
+            current_item * 1.8,   # nine fifths
+            current_item * 2.0,   # double size
+        ]
+    else:  # Larger items - use coarser granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.33,  # one third
+            current_item * 0.5,   # half size
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.5,   # 1.5x size
+            current_item * 2.0,   # double size
+        ]
+=======
+    # Determine multiplier granularity based on item size
+    # Adjusted thresholds based on typical item size distributions in bin packing problems
+    if current_item < 0.3:  # Small items - use finest granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.1,   # tenth size
+            current_item * 0.125, # eighth size  
+            current_item * 0.167, # sixth size
+            current_item * 0.2,   # fifth size
+            current_item * 0.25,  # quarter size
+            current_item * 0.33,  # one third
+            current_item * 0.4,   # two fifths
+            current_item * 0.5,   # half size
+            current_item * 0.6,   # three fifths
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.4,   # seven fifths
+            current_item * 1.5,   # 1.5x size
+            current_item * 1.6,   # eight fifths
+            current_item * 1.8,   # nine fifths
+            current_item * 2.0,   # double size
+            current_item * 2.5,   # 2.5x size
+            current_item * 3.0,   # triple size
+        ]
+    elif current_item < 0.7:  # Small to medium items - use moderate granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.2,   # fifth size
+            current_item * 0.25,  # quarter size
+            current_item * 0.33,  # one third
+            current_item * 0.4,   # two fifths
+            current_item * 0.5,   # half size
+            current_item * 0.6,   # three fifths
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.4,   # seven fifths
+            current_item * 1.5,   # 1.5x size
+            current_item * 1.6,   # eight fifths
+            current_item * 1.8,   # nine fifths
+            current_item * 2.0,   # double size
+        ]
+    else:  # Larger items - use coarser granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.33,  # one third
+            current_item * 0.5,   # half size
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.5,   # 1.5x size
+            current_item * 2.0,   # double size
+        ]
+>>>>>>> REPLACE

@@ -1,0 +1,10 @@
+<<<<<<< SEARCH
+            # Add to the score (higher score for closer matches)
+            # Use exponential decay for smoother scoring
+            multiple_fit_score += np.exp(-distances_to_multiples * 0.5)
+=======
+            # Add to the score (higher score for closer matches)
+            # Use exponential decay for smoother scoring
+            # Increase the decay rate to make the scoring more selective
+            multiple_fit_score += np.exp(-distances_to_multiples * 0.7)
+>>>>>>> REPLACE

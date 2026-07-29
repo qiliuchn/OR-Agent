@@ -1,0 +1,95 @@
+<<<<<<< SEARCH
+    # Compute adaptive thresholds based on ECDF of current bin remainders
+    if len(bins_remain_cap) > 0:
+        # Sort the remaining capacities to build ECDF
+        sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+        
+        if len(sorted_caps) > 0:
+            # Determine dynamic thresholds based on the distribution of remainders
+            # Calculate where the current item fits in the ECDF of current remainders
+            item_position = np.searchsorted(sorted_caps, item)
+            item_percentile = item_position / len(sorted_caps) if len(sorted_caps) > 0 else 0.5
+            
+            # Calculate adaptive thresholds based on the current distribution
+            # We'll use quantiles of the current remainder distribution
+            if len(sorted_caps) >= 4:  # Need enough samples for meaningful quantiles
+                # Calculate adaptive thresholds based on the current remainder distribution
+                q25_idx = max(1, int(0.25 * len(sorted_caps))) - 1
+                q75_idx = max(1, int(0.75 * len(sorted_caps))) - 1
+                low_threshold = sorted_caps[q25_idx]
+                high_threshold = sorted_caps[q75_idx]
+                
+                # Use these thresholds to classify the current item
+                if item > high_threshold:
+                    item_category = "large"
+                elif item < low_threshold:
+                    item_category = "small"
+                else:
+                    item_category = "medium"
+            else:
+                # Fallback to simple percentile if not enough samples
+                if item_percentile > 0.75:
+                    item_category = "large"
+                elif item_percentile < 0.25:
+                    item_category = "small"
+                else:
+                    item_category = "medium"
+        else:
+            item_category = "medium"  # Default if no bins with capacity
+    else:
+        item_category = "medium"  # Default if no bins exist
+=======
+    # Compute adaptive thresholds based on ECDF of current bin remainders
+    if len(bins_remain_cap) > 0:
+        # Sort the remaining capacities to build ECDF
+        sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+        
+        if len(sorted_caps) > 0:
+            # Determine dynamic thresholds based on the distribution of remainders
+            # Calculate where the current item fits in the ECDF of current remainders
+            item_position = np.searchsorted(sorted_caps, item)
+            item_percentile = item_position / len(sorted_caps) if len(sorted_caps) > 0 else 0.5
+            
+            # Calculate adaptive thresholds based on the entropy or spread of the current distribution
+            # For a more adaptive approach, we can adjust thresholds based on how spread out the remainders are
+            if len(sorted_caps) >= 4:  # Need enough samples for meaningful statistics
+                # Measure the spread of the distribution using interquartile range or standard deviation
+                cap_std = np.std(sorted_caps)
+                cap_range = np.max(sorted_caps) - np.min(sorted_caps) if len(sorted_caps) > 1 else 0
+                
+                # Adjust thresholds based on the fragmentation level
+                # When bins are very fragmented (high std/range), we might want different thresholds
+                fragmentation_level = cap_std / (np.mean(sorted_caps) + 1e-8)  # Normalize by mean to get coefficient of variation
+                
+                # Adjust thresholds based on fragmentation level
+                # In highly fragmented states, we might want to be more aggressive about using nearly full bins
+                if fragmentation_level > 0.5:  # High fragmentation
+                    low_threshold = 0.2  # More sensitive to "small" items
+                    high_threshold = 0.8  # Less sensitive to "large" items
+                elif fragmentation_level < 0.2:  # Low fragmentation
+                    low_threshold = 0.25  # More conservative
+                    high_threshold = 0.75  # More conservative
+                else:  # Medium fragmentation
+                    low_threshold = 0.25
+                    high_threshold = 0.75
+                
+                # Use these adaptive thresholds to classify the current item
+                if item_percentile > high_threshold:
+                    item_category = "large"
+                elif item_percentile < low_threshold:
+                    item_category = "small"
+                else:
+                    item_category = "medium"
+            else:
+                # Fallback to simple percentile if not enough samples
+                if item_percentile > 0.75:
+                    item_category = "large"
+                elif item_percentile < 0.25:
+                    item_category = "small"
+                else:
+                    item_category = "medium"
+        else:
+            item_category = "medium"  # Default if no bins with capacity
+    else:
+        item_category = "medium"  # Default if no bins exist
+>>>>>>> REPLACE

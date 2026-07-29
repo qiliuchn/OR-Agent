@@ -1,0 +1,30 @@
+<<<<<<< SEARCH
+    # Calculate dispersion metric of feasible post-placement remainders
+    if len(feasible_post_caps) > 1:
+        # Coefficient of variation as dispersion metric
+        mean_remainder = np.mean(feasible_post_caps)
+        std_remainder = np.std(feasible_post_caps)
+        if mean_remainder > 1e-9:  # Avoid division by zero
+            cv_remainder = std_remainder / mean_remainder
+        else:
+            cv_remainder = 0.0
+    else:
+        cv_remainder = 0.0  # No variation with single feasible bin
+    
+    # Adaptive Farey order selection based on dispersion metric
+    # Low CV -> homogeneous distribution -> low order Farey sequence
+    # High CV -> heterogeneous distribution -> high order Farey sequence
+    # Map CV to Farey order in range [8, 32]
+    farey_order = int(8 + (cv_remainder / (cv_remainder + 0.5)) * 24)  # Range from 8 to 32
+    farey_order = max(8, min(32, farey_order))  # Clamp to valid range
+    
+    # Generate Farey sequence of adaptive order
+    farey_adaptive = farey_sequence(farey_order)
+=======
+    # Use fixed Farey sequence order based on parent solution success
+    # Fixed order 16 as per successful parent solution
+    farey_16 = farey_sequence(16)
+    
+    # Generate Farey sequence of fixed order
+    farey_adaptive = farey_16
+>>>>>>> REPLACE

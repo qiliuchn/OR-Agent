@@ -1,0 +1,46 @@
+<<<<<<< SEARCH
+    # Determine the size category based on adaptive thresholds
+    if item > large_threshold:  # Large item based on distribution
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced weights for large items
+    elif item < small_threshold:  # Small item based on distribution
+        best_fit_weight, multiple_fit_weight = 0.0005 * 0.93, 1.195 * 1.01  # Reduced best-fit for small items
+    else:  # Medium item based on distribution
+        best_fit_weight, multiple_fit_weight = 0.07, 0.93  # Balanced weights for medium items
+    
+    # Calculate how close the remaining capacity is to being a multiple of dynamic ratios
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Generate potential capacities based on dynamic ratios
+    for ratio in dynamic_ratios:
+        if ratio > 1e-9:  # Avoid division by zero
+            # Calculate expected capacity based on ratio
+            if ratio >= 1:
+                # Capacity is larger than item
+                expected_capacity = item * ratio
+            else:
+                # Item is larger than capacity - compute accordingly
+                expected_capacity = item * ratio
+                
+            # Calculate distance to this expected capacity
+            distances_to_expected = np.abs(feasible_post_caps - expected_capacity)
+            # Add to the score (higher score for closer matches)
+            multiple_fit_score += 1.0 / (1.0 + distances_to_expected)
+=======
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in selected_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                # Use a small epsilon to avoid division by zero
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

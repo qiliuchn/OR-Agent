@@ -1,0 +1,17 @@
+<<<<<<< SEARCH
+                # Dynamic threshold: adjust based on fragmentation level
+                # When fragmentation is high, increase threshold to allow more bins to benefit from exponential scoring
+                # When fragmentation is low, decrease threshold to sharpen discrimination
+                tau_base = 0.05 * common_size
+                tau = tau_base * (0.5 + fragmentation_level)  # Range: 0.5*tau_base to 1.5*tau_base
+                
+                # Adjust alpha based on fragmentation too - more fragmented needs gentler slopes
+                alpha = alpha_base * (1.0 - fragmentation_level * 0.3)  # Range: 0.7*alpha_base to alpha_base
+=======
+                # Use fixed threshold as determined to be optimal in parent solution
+                # Fixed 5% threshold proved optimal according to parent solution analysis
+                tau = 0.05 * common_size
+                
+                # Use fixed alpha based on item category
+                alpha = alpha_base
+>>>>>>> REPLACE

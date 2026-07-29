@@ -1,0 +1,2 @@
+# Analyze current bin distribution to infer likely item patterns
+sorted_remaining = np.sort(bins_remain_cap[bins_remain_cap > 0])

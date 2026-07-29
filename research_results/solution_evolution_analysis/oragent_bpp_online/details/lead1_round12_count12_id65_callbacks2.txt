@@ -1,0 +1,1 @@
+large_gap_scores = exp_at_tau / (1.0 + (distances_to_multiples[~small_gap_mask] - tau) / (tau + 1e-8))

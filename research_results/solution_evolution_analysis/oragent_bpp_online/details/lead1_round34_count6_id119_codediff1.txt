@@ -1,0 +1,48 @@
+<<<<<<< SEARCH
+    # Determine context-sensitive adjustment
+    # When entropy is low (clustered remainders), emphasize best-fit to avoid fragmentation
+    # When entropy is high (diverse remainders), emphasize multiple-fit to exploit opportunities
+    entropy_factor = 2.0 * normalized_entropy - 1.0  # Maps [0,1] to [-1,1]
+    
+    # Adjust weights based on entropy
+    if normalized_entropy < 0.3:  # Low entropy - cluster of similar remainders
+        # Emphasize best-fit to avoid creating more fragmented bins
+        best_fit_emphasis = 1.5
+        multiple_fit_emphasis = 0.7
+    elif normalized_entropy > 0.7:  # High entropy - diverse remainders
+        # Emphasize multiple-fit to take advantage of different opportunities
+        best_fit_emphasis = 0.7
+        multiple_fit_emphasis = 1.3
+    else:  # Medium entropy - balanced approach
+        best_fit_emphasis = 1.0
+        multiple_fit_emphasis = 1.0
+=======
+    # Determine context-sensitive adjustment
+    # When entropy is low (clustered remainders), emphasize best-fit to avoid fragmentation
+    # When entropy is high (diverse remainders), emphasize multiple-fit to exploit opportunities
+    entropy_factor = 2.0 * normalized_entropy - 1.0  # Maps [0,1] to [-1,1]
+    
+    # Adjust weights based on entropy - increase the sensitivity to entropy
+    if normalized_entropy < 0.25:  # Very low entropy - highly clustered remainders
+        # Strongly emphasize best-fit to avoid creating more fragmented bins
+        best_fit_emphasis = 2.0
+        multiple_fit_emphasis = 0.5
+    elif normalized_entropy > 0.75:  # Very high entropy - very diverse remainders
+        # Strongly emphasize multiple-fit to take advantage of different opportunities
+        best_fit_emphasis = 0.5
+        multiple_fit_emphasis = 1.5
+    else:  # Medium entropy - balanced approach with slight adaptation
+        # Linear interpolation between low and high entropy behavior
+        mid_point = 0.25
+        high_point = 0.75
+        if normalized_entropy <= mid_point:
+            # Interpolate between neutral and low entropy
+            ratio = (normalized_entropy) / mid_point
+            best_fit_emphasis = 1.0 + 1.0 * (1 - ratio)  # From 2.0 to 1.0
+            multiple_fit_emphasis = 1.0 - 0.5 * (1 - ratio)  # From 0.5 to 1.0
+        else:
+            # Interpolate between medium and high entropy
+            ratio = (normalized_entropy - mid_point) / (high_point - mid_point)
+            best_fit_emphasis = 1.0 - 0.5 * ratio  # From 1.0 to 0.5
+            multiple_fit_emphasis = 1.0 + 0.5 * ratio  # From 1.0 to 1.5
+>>>>>>> REPLACE

@@ -1,0 +1,147 @@
+<<<<<<< SEARCH
+    # Adjust strategy based on uncertainty conditions and item percentile
+    if high_fragmentation or item_outlier:
+        # High uncertainty: fall back to more conservative Best Fit
+        best_fit_weight = 0.25
+        multiple_fit_weight = 0.75
+    else:
+        # Use strategies based on item percentile with enhanced geometric progressions
+        if item_percentile < 0.25:  # Small items relative to remaining capacities
+            # Focus on fine-grained fractional multipliers to optimize space usage
+            estimated_common_sizes = [item]
+            
+            # Add geometric progressions based on detected modes
+            for mode in estimated_common_modes[:3]:  # Limit to first 3 modes to prevent explosion
+                # Add geometric progressions around detected modes
+                for k in range(-1, 2):
+                    estimated_common_sizes.append(mode * (phi ** k))
+                for k in range(-1, 1):
+                    estimated_common_sizes.append(mode * (sqrt2 ** k))
+            
+            # Add rational fractions for fine control
+            estimated_common_sizes.extend([
+                item * 0.5, item * 0.25, item * 0.75, item * 0.33, item * 0.67,
+                item * 1.5, item * 0.125, item * 0.875, item * 0.167, item * 0.833,
+                item * 0.2, item * 0.4, item * 0.6, item * 0.8, item * 0.1, item * 0.9
+            ])
+            
+            best_fit_weight = 0.003
+            multiple_fit_weight = 1.17
+            
+        elif item_percentile > 0.75:  # Large items relative to remaining capacities
+            # Focus on best-fit strategy with emphasis on avoiding fragmentation
+            estimated_common_sizes = [item]
+            
+            # Add geometric progressions around detected modes for large items
+            for mode in estimated_common_modes[:3]:  # Limit to first 3 modes
+                for k in range(-1, 2):
+                    estimated_common_sizes.append(mode * (phi ** k))
+                for k in range(-1, 1):
+                    estimated_common_sizes.append(mode * (sqrt2 ** k))
+            
+            # Add some essential rational fractions for completeness
+            estimated_common_sizes.extend([
+                item, item * 0.5, item * 1.5, item * 0.75, item * 1.25,
+                item * 0.33, item * 0.67, item * 2.0, item * 0.25
+            ])
+            
+            best_fit_weight = 0.18
+            multiple_fit_weight = 0.82
+            
+        else:  # Medium items (0.25 to 0.75 percentile) - balanced approach
+            estimated_common_sizes = [item]
+            
+            # Enhance with geometric progressions based on detected modes
+            for mode in estimated_common_modes[:3]:  # Limit to first 3 modes
+                for k in range(-1, 2):
+                    estimated_common_sizes.append(mode * (phi ** k))
+                for k in range(-1, 1):
+                    estimated_common_sizes.append(mode * (sqrt2 ** k))
+            
+            # Add parent-inspired rational fractions
+            estimated_common_sizes.extend([
+                item * 0.5, item * 1.5, item * 0.75, item * 1.25, item * 0.33,
+                item * 0.67, item * 0.25, item * 0.1, item * 1.75, item * 0.2,
+                item * 0.4, item * 0.6, item * 0.8, item * 1.1
+            ])
+            
+            best_fit_weight = 0.06
+            multiple_fit_weight = 0.94
+=======
+    # Adjust strategy based on uncertainty conditions and item percentile
+    if high_fragmentation or item_outlier:
+        # High uncertainty: fall back to more conservative Best Fit
+        # But still initialize estimated_common_sizes with basic values
+        estimated_common_sizes = [item]
+        # Add simplified geometric progressions to avoid too many options
+        for k in range(-1, 2):  # Reduced range
+            estimated_common_sizes.append(item * (phi ** k))
+        for k in range(-1, 2):  # Reduced range
+            estimated_common_sizes.append(item * (sqrt2 ** k))
+        
+        best_fit_weight = 0.25
+        multiple_fit_weight = 0.75
+    else:
+        # Use strategies based on item percentile with enhanced geometric progressions
+        if item_percentile < 0.25:  # Small items relative to remaining capacities
+            # Focus on fine-grained fractional multipliers to optimize space usage
+            estimated_common_sizes = [item]
+            
+            # Add geometric progressions based on detected modes
+            for mode in estimated_common_modes[:3]:  # Limit to first 3 modes to prevent explosion
+                # Add geometric progressions around detected modes
+                for k in range(-1, 2):
+                    estimated_common_sizes.append(mode * (phi ** k))
+                for k in range(-1, 1):
+                    estimated_common_sizes.append(mode * (sqrt2 ** k))
+            
+            # Add rational fractions for fine control
+            estimated_common_sizes.extend([
+                item * 0.5, item * 0.25, item * 0.75, item * 0.33, item * 0.67,
+                item * 1.5, item * 0.125, item * 0.875, item * 0.167, item * 0.833,
+                item * 0.2, item * 0.4, item * 0.6, item * 0.8, item * 0.1, item * 0.9
+            ])
+            
+            best_fit_weight = 0.003
+            multiple_fit_weight = 1.17
+            
+        elif item_percentile > 0.75:  # Large items relative to remaining capacities
+            # Focus on best-fit strategy with emphasis on avoiding fragmentation
+            estimated_common_sizes = [item]
+            
+            # Add geometric progressions around detected modes for large items
+            for mode in estimated_common_modes[:3]:  # Limit to first 3 modes
+                for k in range(-1, 2):
+                    estimated_common_sizes.append(mode * (phi ** k))
+                for k in range(-1, 1):
+                    estimated_common_sizes.append(mode * (sqrt2 ** k))
+            
+            # Add some essential rational fractions for completeness
+            estimated_common_sizes.extend([
+                item, item * 0.5, item * 1.5, item * 0.75, item * 1.25,
+                item * 0.33, item * 0.67, item * 2.0, item * 0.25
+            ])
+            
+            best_fit_weight = 0.18
+            multiple_fit_weight = 0.82
+            
+        else:  # Medium items (0.25 to 0.75 percentile) - balanced approach
+            estimated_common_sizes = [item]
+            
+            # Enhance with geometric progressions based on detected modes
+            for mode in estimated_common_modes[:3]:  # Limit to first 3 modes
+                for k in range(-1, 2):
+                    estimated_common_sizes.append(mode * (phi ** k))
+                for k in range(-1, 1):
+                    estimated_common_sizes.append(mode * (sqrt2 ** k))
+            
+            # Add parent-inspired rational fractions
+            estimated_common_sizes.extend([
+                item * 0.5, item * 1.5, item * 0.75, item * 1.25, item * 0.33,
+                item * 0.67, item * 0.25, item * 0.1, item * 1.75, item * 0.2,
+                item * 0.4, item * 0.6, item * 0.8, item * 1.1
+            ])
+            
+            best_fit_weight = 0.06
+            multiple_fit_weight = 0.94
+>>>>>>> REPLACE

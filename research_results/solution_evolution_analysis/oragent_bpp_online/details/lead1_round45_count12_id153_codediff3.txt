@@ -1,0 +1,18 @@
+<<<<<<< SEARCH
+    # Combine all components with learned weights
+    # Adding the rational approximation component with a moderate weight
+    feasible_scores = (
+        best_fit_weight * best_fit_component +
+        multiple_fit_weight * multiple_fit_score +
+        0.05 * rational_approx_score +  # New rational approximation component
+        0.1 * remainder_efficiency  # Additional term for future efficiency
+    )
+=======
+    # Combine all components with learned weights
+    # Removing the rational approximation component as it didn't improve performance
+    feasible_scores = (
+        best_fit_weight * best_fit_component +
+        multiple_fit_weight * multiple_fit_score +
+        0.1 * remainder_efficiency  # Additional term for future efficiency
+    )
+>>>>>>> REPLACE

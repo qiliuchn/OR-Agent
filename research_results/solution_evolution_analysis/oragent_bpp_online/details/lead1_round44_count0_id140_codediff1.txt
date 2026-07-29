@@ -1,0 +1,87 @@
+<<<<<<< SEARCH
+    # Normalize scores to prevent dominance by one heuristic
+    def normalize_scores(scores):
+        if len(scores) == 0 or np.all(scores == -np.inf):
+            return scores
+        # Avoid division by zero
+        std = np.std(scores)
+        if std > 1e-9:
+            return (scores - np.mean(scores)) / std
+        else:
+            return scores - np.mean(scores)
+    
+    best_fit_score_norm = normalize_scores(best_fit_score)
+    multiple_fit_score_norm = normalize_scores(multiple_fit_score)
+    harmonic_fit_score_norm = normalize_scores(harmonic_fit_score)
+    worst_fit_score_norm = normalize_scores(worst_fit_score)
+    
+    # Determine adaptive weights based on item characteristics
+    # This simulates the "meta-learner" concept by adjusting weights based on item size and context
+    if item_percentile > 0.82:  # Large item
+        weights = [0.25, 0.75, 0.05, 0.05]  # Emphasize best-fit and multiple-fit
+    elif item_percentile < 0.18:  # Small item
+        weights = [0.001, 1.194, 0.8, 0.05]  # Emphasize multiple-fit and harmonic-fit
+    else:  # Medium item
+        weights = [0.08, 0.92, 0.1, 0.05]  # Balance best-fit and multiple-fit
+    
+    # Combine heuristics with determined weights
+    combined_score = (
+        weights[0] * best_fit_score_norm +
+        weights[1] * multiple_fit_score_norm +
+        weights[2] * harmonic_fit_score_norm +
+        weights[3] * worst_fit_score_norm
+    )
+=======
+    # Calculate advanced packing state metrics for dynamic adaptation
+    # 1. Fragmentation index based on coefficient of variation of remaining capacities
+    if len(bins_remain_cap) > 1 and np.mean(bins_remain_cap) > 1e-9:
+        cv = np.std(bins_remain_cap) / (np.mean(bins_remain_cap) + 1e-9)
+        fragmentation_index = 1 - np.exp(-cv)  # Compress higher values
+    else:
+        fragmentation_index = 0.0
+
+    # 2. Average utilization of bins that can fit the current item
+    if len(bins_remain_cap) > 0:
+        avg_capacity = np.mean(bins_remain_cap)
+        avg_utilization = 1 - (np.mean(bins_remain_cap) / avg_capacity) if avg_capacity > 1e-9 else 0.0
+    else:
+        avg_utilization = 0.0
+
+    # 3. Density of available space - ratio of space that can fit current item to total space
+    if np.sum(bins_remain_cap) > 1e-9:
+        space_density = np.sum(bins_remain_cap[bins_remain_cap >= item]) / np.sum(bins_remain_cap)
+    else:
+        space_density = 0.0
+
+    # Determine base weights based on item characteristics
+    if item_percentile > 0.82:  # Large item
+        base_weights = [0.25, 0.75, 0.05, 0.05]  # Emphasize best-fit and multiple-fit
+    elif item_percentile < 0.18:  # Small item
+        base_weights = [0.001, 1.194, 0.8, 0.05]  # Emphasize multiple-fit and harmonic-fit
+    else:  # Medium item
+        base_weights = [0.08, 0.92, 0.1, 0.05]  # Balance best-fit and multiple-fit
+
+    # Dynamic weight adjustment based on multiple packing state factors
+    # When fragmentation is high, prioritize best-fit to consolidate space
+    # When utilization is low, allow more multiple-fit opportunities
+    best_fit_boost = fragmentation_index * 0.3 + (1 - avg_utilization) * 0.1 + (1 - space_density) * 0.1
+    multiple_fit_boost = (1 - fragmentation_index) * 0.1 + avg_utilization * 0.1 + space_density * 0.05
+    harmonic_fit_boost = fragmentation_index * 0.05  # Slight boost when fragmentation is high
+    worst_fit_boost = (1 - space_density) * 0.05  # Slight boost when space is sparse
+
+    # Apply dynamic adjustments to weights
+    adjusted_weights = [
+        base_weights[0] * (1 + best_fit_boost),
+        base_weights[1] * (1 + multiple_fit_boost),
+        base_weights[2] * (1 + harmonic_fit_boost),
+        base_weights[3] * (1 + worst_fit_boost)
+    ]
+
+    # Combine heuristics with determined weights
+    combined_score = (
+        adjusted_weights[0] * best_fit_score +
+        adjusted_weights[1] * multiple_fit_score +
+        adjusted_weights[2] * harmonic_fit_score +
+        adjusted_weights[3] * worst_fit_score
+    )
+>>>>>>> REPLACE

@@ -1,0 +1,1 @@
+diversity_scores = -np.abs(feasible_post_caps - mean_cap)

@@ -1,0 +1,84 @@
+<<<<<<< SEARCH
+    # Use online clustering approach to categorize the current item
+    # Collect all relevant values for clustering: current item and available bin capacities
+    all_values = np.concatenate(([item], bins_remain_cap[bins_remain_cap > 0]))
+    
+    if len(all_values) == 0:
+        item_category = 'medium'  # Default if no context available
+    elif len(all_values) == 1:
+        item_category = 'medium'  # Default if only current item exists
+    else:
+        # Use adaptive histogram binning to identify clusters
+        # Sort the values to find natural partitions
+        sorted_vals = np.sort(all_values)
+        
+        # Find optimal split points using variance minimization approach
+        if len(sorted_vals) < 3:
+            # If not enough values, use simple median-based splits
+            median_val = np.median(sorted_vals)
+            if item <= median_val:
+                item_category = 'small'
+            else:
+                item_category = 'large'
+        else:
+            # Use dynamic programming or simple approach to find best split points
+            # For efficiency, we'll use adaptive percentiles based on distribution shape
+            
+            # Try to find natural clusters by looking at gaps in the sorted values
+            gaps = np.diff(sorted_vals)
+            
+            # Find the largest gap to identify potential cluster boundary
+            if len(gaps) >= 2:
+                # Identify potential split points based on top gaps
+                # Sort gaps in descending order to find major separation points
+                sorted_gap_indices = np.argsort(gaps)[::-1]
+                
+                # Look for the largest meaningful gap
+                largest_gap_idx = sorted_gap_indices[0]
+                
+                # Calculate thresholds based on the identified gap
+                mid_point = (sorted_vals[largest_gap_idx] + sorted_vals[largest_gap_idx + 1]) / 2
+                
+                # Use the middle point as one threshold and calculate another based on distribution
+                low_threshold = np.percentile(sorted_vals, 33)  # Lower third
+                high_threshold = np.percentile(sorted_vals, 67)  # Upper third
+                
+                # Determine category based on thresholds
+                if item <= low_threshold:
+                    item_category = 'small'
+                elif item >= high_threshold:
+                    item_category = 'large'
+                else:
+                    item_category = 'medium'
+            else:
+                # Fallback to simple quantile-based approach
+                q33 = np.percentile(sorted_vals, 33)
+                q67 = np.percentile(sorted_vals, 67)
+                
+                if item <= q33:
+                    item_category = 'small'
+                elif item <= q67:
+                    item_category = 'medium'
+                else:
+                    item_category = 'large'
+=======
+    # Use adaptive thresholding based on current bin state and item
+    # Use quartiles of current bin capacities to determine thresholds
+    # This is similar to the parent solution but keeping the online clustering concept
+    sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+    if len(sorted_caps) > 0:
+        q25 = np.percentile(sorted_caps, 25)
+        q50 = np.percentile(sorted_caps, 50)
+        q75 = np.percentile(sorted_caps, 75)
+        
+        # Determine where the current item fits relative to these quartiles
+        if item <= q25:
+            item_category = 'small'
+        elif item <= q75:
+            item_category = 'medium'
+        else:
+            item_category = 'large'
+    else:
+        # If all bins are empty, use the item size relative to itself as reference
+        item_category = 'medium'  # Default to medium if no context available
+>>>>>>> REPLACE

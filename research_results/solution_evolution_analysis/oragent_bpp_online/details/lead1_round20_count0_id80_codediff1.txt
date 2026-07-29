@@ -1,0 +1,43 @@
+<<<<<<< SEARCH
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Consider multiples: 0, 1x, 2x, 3x, etc. of the common size
+        max_multiple = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiple > 0:
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_multiple)
+            ], axis=0)
+            
+            # Use a Gaussian-like function for scoring to give higher importance to very close matches
+            # sigma controls the width of the function - smaller sigma gives sharper decay
+            # Using a smaller sigma for tighter focus on very close matches
+            sigma = max(common_size * 0.05, 0.01)  # 5% of the common size as the standard deviation (tighter focus)
+            gaussian_scores = np.exp(-0.5 * (distances_to_multiples / sigma) ** 2)
+            
+            # Add to the score (higher score for closer matches to multiples)
+            feasible_scores += gaussian_scores
+=======
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to being a multiple of the common size
+        # Consider multiples: 0, 1x, 2x, 3x, etc. of the common size
+        max_multiple = int(np.max(feasible_post_caps) // common_size) + 2
+        # Cap the maximum number of multiples to prevent computational explosion
+        max_considered_multiples = min(max_multiple, 10)  # Limit to first 10 multiples
+        if max_considered_multiples > 0:
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_considered_multiples)
+            ], axis=0)
+            
+            # Use a Gaussian-like function for scoring to give higher importance to very close matches
+            # sigma controls the width of the function - smaller sigma gives sharper decay
+            # Using a smaller sigma for tighter focus on very close matches
+            sigma = max(common_size * 0.05, 0.01)  # 5% of the common size as the standard deviation (tighter focus)
+            gaussian_scores = np.exp(-0.5 * (distances_to_multiples / sigma) ** 2)
+            
+            # Add to the score (higher score for closer matches to multiples)
+            feasible_scores += gaussian_scores
+>>>>>>> REPLACE

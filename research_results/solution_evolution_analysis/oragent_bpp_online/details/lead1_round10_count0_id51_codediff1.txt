@@ -1,0 +1,102 @@
+<<<<<<< SEARCH
+import numpy as np
+from collections import deque
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Context-aware priority function that dynamically switches between Best Fit and Worst Fit heuristics
+    based on real-time item size distribution statistics. Maintains a sliding window of recent item sizes
+    to estimate the current phase of the input stream and adapt the scoring strategy accordingly.
+    
+    Implementation idea: The function maintains a global sliding window of recent item sizes to determine
+    whether we're currently seeing mostly small or large items. When recent items tend to be small, 
+    we use Worst Fit (preserve large bins for potential large items later). When recent items tend to 
+    be large, we use Best Fit (minimize fragmentation by tightly packing large items).
+    
+    Args:
+        item: Size of the item to be placed
+        bins_remain_cap: Array of remaining capacities for available bins
+        
+    Returns:
+        Array of priority scores for each bin (higher score means higher priority)
+    """
+    # Use a global variable to maintain the sliding window across function calls
+    if not hasattr(priority, 'recent_items'):
+        priority.recent_items = deque(maxlen=50)  # Sliding window of last 50 items
+    
+    # Add the current item to the sliding window
+    priority.recent_items.append(item)
+    
+    # Calculate statistics about recent items
+    if len(priority.recent_items) > 0:
+        recent_avg = np.mean(priority.recent_items)
+        recent_max = np.max(priority.recent_items)
+        recent_min = np.min(priority.recent_items)
+    else:
+        recent_avg = item
+        recent_max = item
+        recent_min = item
+    
+    # Determine if recent items are generally small relative to the current item
+    # Using the average of recent items as reference
+    if recent_avg > 0:
+        relative_size = item / recent_avg
+    else:
+        relative_size = 1.0
+    
+    # Decide strategy based on recent item size trends
+    # If recent items have been relatively small, use Worst Fit to preserve large bins
+    # If recent items have been relatively large, use Best Fit to minimize fragmentation
+    if recent_avg < item * 0.7:  # Recent items are smaller than current item on average
+        # Use Worst Fit: prioritize bins with more remaining capacity
+        # This preserves tight-fitting bins for future large items
+        scores = np.where(bins_remain_cap >= item, bins_remain_cap, -np.inf)
+    else:
+        # Use Best Fit: prioritize bins with less remaining capacity after placement
+        # This minimizes fragmentation when dealing with similar-sized items
+        scores = np.where(bins_remain_cap >= item, -bins_remain_cap, -np.inf)
+    
+    # Add small random perturbation to break ties and avoid cycling
+    # Only apply when there are multiple viable bins
+    feasible_bins = bins_remain_cap >= item
+    if np.sum(feasible_bins) > 1:
+        noise_scale = 0.001 * max(np.max(bins_remain_cap), item)
+        random_noise = np.random.uniform(-noise_scale, noise_scale, size=bins_remain_cap.shape)
+        scores = scores + np.where(feasible_bins, random_noise, 0.0)
+    
+    return scores
+=======
+import numpy as np
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Adaptive priority function based on the successful Best Fit approach with 
+    controlled randomness to escape local optima. Uses Best Fit as the base heuristic 
+    with small random perturbations added strategically to explore alternatives when 
+    sufficient bins are active and packing is reasonably dense.
+    
+    This approach focuses on the proven effectiveness of Best Fit heuristic with 
+    strategic randomness control to achieve better global packing efficiency.
+    
+    Args:
+        item: Size of the item to be placed
+        bins_remain_cap: Array of remaining capacities for available bins
+        
+    Returns:
+        Array of priority scores for each bin (higher score means higher priority)
+    """
+    # Calculate initial statistics
+    initial_capacity = np.max(bins_remain_cap) if len(bins_remain_cap) > 0 else item
+    
+    # Apply Best Fit as base heuristic (higher priority to bins with less remaining space after placement)
+    # This means bins with smallest remaining capacity get highest priority
+    base_scores = np.where(bins_remain_cap >= item, -bins_remain_cap, -np.inf)
+    
+    # Add small random perturbation to break ties and explore alternatives
+    # Following Parent #2 approach with refined parameters
+    noise_scale = 0.01 * initial_capacity  # Standard noise scale from Parent #2
+    random_noise = np.random.uniform(-noise_scale, noise_scale, size=bins_remain_cap.shape)
+    scores = base_scores + np.where(bins_remain_cap >= item, random_noise, 0.0)
+    
+    return scores
+>>>>>>> REPLACE

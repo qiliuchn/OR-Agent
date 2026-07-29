@@ -1,0 +1,43 @@
+<<<<<<< SEARCH
+    # Calculate bin utilization penalty term to discourage mid-sized gaps
+    # Normalize the post-placement capacities to [0, 1] range
+    normalized_caps = feasible_post_caps / estimated_capacity if estimated_capacity > 0 else feasible_post_caps
+    
+    # Define the dead zone (0.2 to 0.7 of capacity)
+    lower_dead_zone = 0.2
+    upper_dead_zone = 0.7
+    
+    # Calculate penalty for bins falling in the dead zone
+    # Use a smooth bump function that peaks at the center of the dead zone
+    dead_zone_center = (lower_dead_zone + upper_dead_zone) / 2
+    dead_zone_width = (upper_dead_zone - lower_dead_zone) / 2
+    
+    # Calculate distance from normalized caps to the center of dead zone
+    dist_to_dead_zone = np.abs(normalized_caps - dead_zone_center)
+    
+    # Only apply penalty if within dead zone
+    in_dead_zone = (normalized_caps >= lower_dead_zone) & (normalized_caps <= upper_dead_zone)
+    
+    # Apply Gaussian-like penalty within the dead zone
+    penalty_factor = np.where(
+        in_dead_zone,
+        np.exp(-((dist_to_dead_zone) / (dead_zone_width / 3))**2),
+        0.0
+    )
+    
+    # Scale the penalty appropriately (negative because we want to reduce priority)
+    utilization_penalty = -0.2 * penalty_factor  # Reduced penalty strength
+    
+    # Combine all components with enhanced weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component + 
+        utilization_penalty  # Add the utilization penalty term
+    )
+=======
+    # Combine all components with enhanced weights (without penalty term)
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component
+    )
+>>>>>>> REPLACE

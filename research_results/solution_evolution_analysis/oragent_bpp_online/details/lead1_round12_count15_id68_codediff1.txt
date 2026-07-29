@@ -1,0 +1,1020 @@
+<<<<<<< SEARCH
+        # Calculate entropy of the distribution of remaining capacities
+        # Discretize the capacities into bins to create a probability distribution
+        if len(remaining_caps) > 1:
+            # Create histogram of remaining capacities
+            hist, bin_edges = np.histogram(remaining_caps, bins=min(len(remaining_caps), 20))
+            # Calculate probabilities
+            probs = hist / np.sum(hist)
+            # Filter out zero probabilities to avoid log(0)
+            probs = probs[probs > 0]
+            # Calculate Shannon entropy
+            entropy = -np.sum(probs * np.log2(probs)) if len(probs) > 0 else 0
+        else:
+            entropy = 0
+    else:
+        skewness = 0
+        kurtosis = 0
+        entropy = 0
+    
+    # Normalize entropy based on the maximum possible entropy for this number of bins
+    if len(remaining_caps) > 1:
+        max_possible_entropy = np.log2(min(len(remaining_caps), 20))  # Max entropy for the number of bins used
+        if max_possible_entropy > 0:
+            normalized_entropy = entropy / max_possible_entropy
+        else:
+            normalized_entropy = 0
+    else:
+        normalized_entropy = 0
+=======
+        # Calculate entropy of the distribution of remaining capacities
+        # Discretize the capacities into bins to create a probability distribution
+        if len(remaining_caps) > 1:
+            # Use fewer bins for histogram to avoid sparse distributions
+            num_bins = min(len(remaining_caps), max(5, len(remaining_caps) // 10))  # At least 5 bins, but no more than 1/10 of the data
+            # Create histogram of remaining capacities
+            hist, bin_edges = np.histogram(remaining_caps, bins=num_bins)
+            # Calculate probabilities
+            probs = hist / np.sum(hist)
+            # Filter out zero probabilities to avoid log(0)
+            probs = probs[probs > 0]
+            # Calculate Shannon entropy
+            entropy = -np.sum(probs * np.log2(probs)) if len(probs) > 0 else 0
+        else:
+            entropy = 0
+    else:
+        skewness = 0
+        kurtosis = 0
+        entropy = 0
+    
+    # Normalize entropy based on the maximum possible entropy for this number of bins
+    if len(remaining_caps) > 1:
+        num_bins = min(len(remaining_caps), max(5, len(remaining_caps) // 10))  # Same number of bins as used above
+        max_possible_entropy = np.log2(num_bins)  # Max entropy for the number of bins used
+        if max_possible_entropy > 0:
+            normalized_entropy = entropy / max_possible_entropy
+        else:
+            normalized_entropy = 0
+    else:
+        normalized_entropy = 0
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        # Focus on fine-grained fractional multipliers to optimize space usage
+        if skewness < -0.45:  # Left-skewed: many bins with large remaining capacity
+            # Preserve small bins for future small items by using larger remainders
+            if kurtosis > 0.9:  # Heavy tails - more extreme values
+                # In left-skewed, high-kurtosis situation, be more selective
+                if normalized_entropy > 0.6:  # High entropy with high variance
+                    # Conservative placement to reduce future waste
+                    estimated_common_sizes = [
+                        item, 
+                        item * 0.5, 
+                        item * 0.25, 
+                        item * 0.75, 
+                        item * 0.33, 
+                        item * 0.67,
+                        item * 1.5,
+                        item * 0.125,  # Very fine granularity for small items
+                        item * 0.875,   
+                        item * 0.167,   # 1/6 fraction
+                        item * 0.833,   # 5/6 fraction
+                        item * 0.2,     # 1/5 fraction
+                        item * 0.4,     # 2/5 fraction
+                        item * 0.6,     # 3/5 fraction
+                        item * 0.8,     # 4/5 fraction
+                        item * 0.1,     # Even finer granularity
+                        item * 0.9,     # 9/10 fraction
+                        item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                        item * 0.375    # 3/8 fraction
+                    ]
+                    
+                    # For small items in left-skewed, high-kurtosis, high-entropy distribution, be very careful
+                    best_fit_weight = 0.0005
+                    multiple_fit_weight = 1.1995
+                else:  # Left-skewed, high-kurtosis but low entropy
+                    # More confident about placement since distribution is less diverse
+                    estimated_common_sizes = [
+                        item, 
+                        item * 0.5, 
+                        item * 0.25, 
+                        item * 0.75, 
+                        item * 0.33, 
+                        item * 0.67,
+                        item * 1.5,
+                        item * 0.125,  # Very fine granularity for small items
+                        item * 0.875,   
+                        item * 0.167,   # 1/6 fraction
+                        item * 0.833,   # 5/6 fraction
+                        item * 0.2,     # 1/5 fraction
+                        item * 0.4,     # 2/5 fraction
+                        item * 0.6,     # 3/5 fraction
+                        item * 0.8,     # 4/5 fraction
+                        item * 0.1,     # Even finer granularity
+                        item * 0.9,     # 9/10 fraction
+                        item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                        item * 0.375    # 3/8 fraction
+                    ]
+                    
+                    # For small items in left-skewed, high-kurtosis distribution, be very careful
+                    best_fit_weight = 0.001
+                    multiple_fit_weight = 1.189
+            else:
+                if normalized_entropy > 0.6:  # High entropy with low variance
+                    # Robust packing state - but still cautious with small items
+                    estimated_common_sizes = [
+                        item, 
+                        item * 0.5, 
+                        item * 0.25, 
+                        item * 0.75, 
+                        item * 0.33, 
+                        item * 0.67,
+                        item * 1.5,
+                        item * 0.125,  # Very fine granularity for small items
+                        item * 0.875,   
+                        item * 0.167,   # 1/6 fraction
+                        item * 0.833,   # 5/6 fraction
+                        item * 0.2,     # 1/5 fraction
+                        item * 0.4,     # 2/5 fraction
+                        item * 0.6,     # 3/5 fraction
+                        item * 0.8,     # 4/5 fraction
+                        item * 0.1,     # Even finer granularity
+                        item * 0.9,     # 9/10 fraction
+                        item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                        item * 0.375    # 3/8 fraction
+                    ]
+                    
+                    # For small items in high-entropy scenario, be more conservative
+                    best_fit_weight = 0.0012
+                    multiple_fit_weight = 1.1788
+                else:  # Left-skewed but low kurtosis and low entropy
+                    # For small items in left-skewed distribution, still reduce best-fit emphasis
+                    # but focus on utilizing large remainders
+                    estimated_common_sizes = [
+                        item, 
+                        item * 0.5, 
+                        item * 0.25, 
+                        item * 0.75, 
+                        item * 0.33, 
+                        item * 0.67,
+                        item * 1.5,
+                        item * 0.125,  # Very fine granularity for small items
+                        item * 0.875,   
+                        item * 0.167,   # 1/6 fraction
+                        item * 0.833,   # 5/6 fraction
+                        item * 0.2,     # 1/5 fraction
+                        item * 0.4,     # 2/5 fraction
+                        item * 0.6,     # 3/5 fraction
+                        item * 0.8,     # 4/5 fraction
+                        item * 0.1,     # Even finer granularity
+                        item * 0.9,     # 9/10 fraction
+                        item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                        item * 0.375    # 3/8 fraction
+                    ]
+                    
+                    # For small items in left-skewed distribution, still reduce best-fit emphasis
+                    # but focus on utilizing large remainders
+                    best_fit_weight = 0.002
+                    multiple_fit_weight = 1.178
+=======
+        # Focus on fine-grained fractional multipliers to optimize space usage
+        if skewness < -0.45:  # Left-skewed: many bins with large remaining capacity
+            # Preserve small bins for future small items by using larger remainders
+            if kurtosis > 0.9:  # Heavy tails - more extreme values
+                # In left-skewed, high-kurtosis situation, be more selective
+                if normalized_entropy > 0.5:  # Adjusted threshold for entropy
+                    # Conservative placement to reduce future waste
+                    estimated_common_sizes = [
+                        item, 
+                        item * 0.5, 
+                        item * 0.25, 
+                        item * 0.75, 
+                        item * 0.33, 
+                        item * 0.67,
+                        item * 1.5,
+                        item * 0.125,  # Very fine granularity for small items
+                        item * 0.875,   
+                        item * 0.167,   # 1/6 fraction
+                        item * 0.833,   # 5/6 fraction
+                        item * 0.2,     # 1/5 fraction
+                        item * 0.4,     # 2/5 fraction
+                        item * 0.6,     # 3/5 fraction
+                        item * 0.8,     # 4/5 fraction
+                        item * 0.1,     # Even finer granularity
+                        item * 0.9,     # 9/10 fraction
+                        item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                        item * 0.375    # 3/8 fraction
+                    ]
+                    
+                    # For small items in left-skewed, high-kurtosis, high-entropy distribution, be very careful
+                    best_fit_weight = 0.0005
+                    multiple_fit_weight = 1.1995
+                else:  # Left-skewed, high-kurtosis but low entropy
+                    # More confident about placement since distribution is less diverse
+                    estimated_common_sizes = [
+                        item, 
+                        item * 0.5, 
+                        item * 0.25, 
+                        item * 0.75, 
+                        item * 0.33, 
+                        item * 0.67,
+                        item * 1.5,
+                        item * 0.125,  # Very fine granularity for small items
+                        item * 0.875,   
+                        item * 0.167,   # 1/6 fraction
+                        item * 0.833,   # 5/6 fraction
+                        item * 0.2,     # 1/5 fraction
+                        item * 0.4,     # 2/5 fraction
+                        item * 0.6,     # 3/5 fraction
+                        item * 0.8,     # 4/5 fraction
+                        item * 0.1,     # Even finer granularity
+                        item * 0.9,     # 9/10 fraction
+                        item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                        item * 0.375    # 3/8 fraction
+                    ]
+                    
+                    # For small items in left-skewed, high-kurtosis distribution, be very careful
+                    best_fit_weight = 0.001
+                    multiple_fit_weight = 1.189
+            else:
+                if normalized_entropy > 0.5:  # Adjusted threshold for entropy
+                    # Robust packing state - but still cautious with small items
+                    estimated_common_sizes = [
+                        item, 
+                        item * 0.5, 
+                        item * 0.25, 
+                        item * 0.75, 
+                        item * 0.33, 
+                        item * 0.67,
+                        item * 1.5,
+                        item * 0.125,  # Very fine granularity for small items
+                        item * 0.875,   
+                        item * 0.167,   # 1/6 fraction
+                        item * 0.833,   # 5/6 fraction
+                        item * 0.2,     # 1/5 fraction
+                        item * 0.4,     # 2/5 fraction
+                        item * 0.6,     # 3/5 fraction
+                        item * 0.8,     # 4/5 fraction
+                        item * 0.1,     # Even finer granularity
+                        item * 0.9,     # 9/10 fraction
+                        item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                        item * 0.375    # 3/8 fraction
+                    ]
+                    
+                    # For small items in high-entropy scenario, be more conservative
+                    best_fit_weight = 0.0012
+                    multiple_fit_weight = 1.1788
+                else:  # Left-skewed but low kurtosis and low entropy
+                    # For small items in left-skewed distribution, still reduce best-fit emphasis
+                    # but focus on utilizing large remainders
+                    estimated_common_sizes = [
+                        item, 
+                        item * 0.5, 
+                        item * 0.25, 
+                        item * 0.75, 
+                        item * 0.33, 
+                        item * 0.67,
+                        item * 1.5,
+                        item * 0.125,  # Very fine granularity for small items
+                        item * 0.875,   
+                        item * 0.167,   # 1/6 fraction
+                        item * 0.833,   # 5/6 fraction
+                        item * 0.2,     # 1/5 fraction
+                        item * 0.4,     # 2/5 fraction
+                        item * 0.6,     # 3/5 fraction
+                        item * 0.8,     # 4/5 fraction
+                        item * 0.1,     # Even finer granularity
+                        item * 0.9,     # 9/10 fraction
+                        item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                        item * 0.375    # 3/8 fraction
+                    ]
+                    
+                    # For small items in left-skewed distribution, still reduce best-fit emphasis
+                    # but focus on utilizing large remainders
+                    best_fit_weight = 0.002
+                    multiple_fit_weight = 1.178
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        else:
+            # Standard approach for large items with moderate skewness
+            if normalized_entropy > 0.6:  # High entropy with moderate skewness
+                # Conservative approach due to high diversity
+                estimated_common_sizes = [
+                    item,
+                    item * 0.5,
+                    item * 1.5,
+                    item * 0.75,
+                    item * 1.25,
+                    item * 0.33,
+                    item * 0.67,
+                    item * 2.0,
+                    item * 0.25   # Add smaller fraction for better utilization
+                ]
+                best_fit_weight = 0.08  # Lower best-fit weight in high entropy scenario
+                multiple_fit_weight = 0.92
+            else:  # Moderate skewness and low entropy
+                estimated_common_sizes = [
+                    item,
+                    item * 0.5,
+                    item * 1.5,
+                    item * 0.75,
+                    item * 1.25,
+                    item * 0.33,
+                    item * 0.67,
+                    item * 2.0,
+                    item * 0.25   # Add smaller fraction for better utilization
+                ]
+                best_fit_weight = 0.20
+                multiple_fit_weight = 0.80
+=======
+        else:
+            # Standard approach for large items with moderate skewness
+            if normalized_entropy > 0.5:  # Adjusted threshold for entropy
+                # Conservative approach due to high diversity
+                estimated_common_sizes = [
+                    item,
+                    item * 0.5,
+                    item * 1.5,
+                    item * 0.75,
+                    item * 1.25,
+                    item * 0.33,
+                    item * 0.67,
+                    item * 2.0,
+                    item * 0.25   # Add smaller fraction for better utilization
+                ]
+                best_fit_weight = 0.10  # Lower best-fit weight in high entropy scenario
+                multiple_fit_weight = 0.90
+            else:  # Moderate skewness and low entropy
+                estimated_common_sizes = [
+                    item,
+                    item * 0.5,
+                    item * 1.5,
+                    item * 0.75,
+                    item * 1.25,
+                    item * 0.33,
+                    item * 0.67,
+                    item * 2.0,
+                    item * 0.25   # Add smaller fraction for better utilization
+                ]
+                best_fit_weight = 0.20
+                multiple_fit_weight = 0.80
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        else:
+            # Standard approach for small items with moderate skewness
+            if normalized_entropy > 0.6:  # High entropy with moderate skewness
+                # Conservative approach due to high diversity
+                estimated_common_sizes = [
+                    item, 
+                    item * 0.5, 
+                    item * 0.25, 
+                    item * 0.75, 
+                    item * 0.33, 
+                    item * 0.67,
+                    item * 1.5,
+                    item * 0.125,  # Very fine granularity for small items
+                    item * 0.875,   
+                    item * 0.167,   # 1/6 fraction
+                    item * 0.833,   # 5/6 fraction
+                    item * 0.2,     # 1/5 fraction
+                    item * 0.4,     # 2/5 fraction
+                    item * 0.6,     # 3/5 fraction
+                    item * 0.8,     # 4/5 fraction
+                    item * 0.1,     # Even finer granularity
+                    item * 0.9,     # 9/10 fraction
+                    item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                    item * 0.375    # 3/8 fraction
+                ]
+                
+                best_fit_weight = 0.0018
+                multiple_fit_weight = 1.1682
+            else:  # Moderate skewness and low entropy
+                estimated_common_sizes = [
+                    item, 
+                    item * 0.5, 
+                    item * 0.25, 
+                    item * 0.75, 
+                    item * 0.33, 
+                    item * 0.67,
+                    item * 1.5,
+                    item * 0.125,  # Very fine granularity for small items
+                    item * 0.875,   
+                    item * 0.167,   # 1/6 fraction
+                    item * 0.833,   # 5/6 fraction
+                    item * 0.2,     # 1/5 fraction
+                    item * 0.4,     # 2/5 fraction
+                    item * 0.6,     # 3/5 fraction
+                    item * 0.8,     # 4/5 fraction
+                    item * 0.1,     # Even finer granularity
+                    item * 0.9,     # 9/10 fraction
+                    item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                    item * 0.375    # 3/8 fraction
+                ]
+                
+                best_fit_weight = 0.0028
+                multiple_fit_weight = 1.1672
+=======
+        else:
+            # Standard approach for small items with moderate skewness
+            if normalized_entropy > 0.5:  # Adjusted threshold for entropy
+                # Conservative approach due to high diversity
+                estimated_common_sizes = [
+                    item, 
+                    item * 0.5, 
+                    item * 0.25, 
+                    item * 0.75, 
+                    item * 0.33, 
+                    item * 0.67,
+                    item * 1.5,
+                    item * 0.125,  # Very fine granularity for small items
+                    item * 0.875,   
+                    item * 0.167,   # 1/6 fraction
+                    item * 0.833,   # 5/6 fraction
+                    item * 0.2,     # 1/5 fraction
+                    item * 0.4,     # 2/5 fraction
+                    item * 0.6,     # 3/5 fraction
+                    item * 0.8,     # 4/5 fraction
+                    item * 0.1,     # Even finer granularity
+                    item * 0.9,     # 9/10 fraction
+                    item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                    item * 0.375    # 3/8 fraction
+                ]
+                
+                best_fit_weight = 0.0018
+                multiple_fit_weight = 1.1682
+            else:  # Moderate skewness and low entropy
+                estimated_common_sizes = [
+                    item, 
+                    item * 0.5, 
+                    item * 0.25, 
+                    item * 0.75, 
+                    item * 0.33, 
+                    item * 0.67,
+                    item * 1.5,
+                    item * 0.125,  # Very fine granularity for small items
+                    item * 0.875,   
+                    item * 0.167,   # 1/6 fraction
+                    item * 0.833,   # 5/6 fraction
+                    item * 0.2,     # 1/5 fraction
+                    item * 0.4,     # 2/5 fraction
+                    item * 0.6,     # 3/5 fraction
+                    item * 0.8,     # 4/5 fraction
+                    item * 0.1,     # Even finer granularity
+                    item * 0.9,     # 9/10 fraction
+                    item * 0.0625,  # 1/16 fraction for extremely fine granularity
+                    item * 0.375    # 3/8 fraction
+                ]
+                
+                best_fit_weight = 0.0028
+                multiple_fit_weight = 1.1672
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        if abs(skewness) > 0.45 or abs(kurtosis) > 0.9:  # Significant skewness or kurtosis detected
+            # Adjust strategy based on skewness, kurtosis, and entropy
+            if normalized_entropy > 0.6:  # High entropy
+                # Conservative approach due to high diversity
+                if skewness > 0 and kurtosis > 0.9:  # Right-skewed with heavy tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 2.0     # Include larger multiples for right-skewed case
+                    ]
+                    
+                    best_fit_weight = 0.02  # Very low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.98
+                elif skewness > 0:  # Right-skewed with normal tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 2.0     # Include larger multiples for right-skewed case
+                    ]
+                    
+                    best_fit_weight = 0.03  # Low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.97
+                elif skewness < 0 and kurtosis > 0.9:  # Left-skewed with heavy tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 0.125,  # Include smaller fractions for left-skewed case
+                        item * 0.875
+                    ]
+                    
+                    best_fit_weight = 0.01  # Very low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.99
+                elif skewness < 0:  # Left-skewed with normal tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 0.125,  # Include smaller fractions for left-skewed case
+                        item * 0.875
+                    ]
+                    
+                    best_fit_weight = 0.02  # Low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.98
+                else:  # Normal skewness but high kurtosis
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1     # Slightly over 1x for near-full bins
+                    ]
+                    
+                    best_fit_weight = 0.025  # Low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.975
+            else:  # Low entropy
+                # More confident approach since distribution is less diverse
+                if skewness > 0 and kurtosis > 0.9:  # Right-skewed with heavy tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 2.0     # Include larger multiples for right-skewed case
+                    ]
+                    
+                    best_fit_weight = 0.085  # Slightly increase best-fit weight
+                    multiple_fit_weight = 0.915
+                elif skewness > 0:  # Right-skewed with normal tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 2.0     # Include larger multiples for right-skewed case
+                    ]
+                    
+                    best_fit_weight = 0.075  # Slightly increase best-fit weight
+                    multiple_fit_weight = 0.925
+                elif skewness < 0 and kurtosis > 0.9:  # Left-skewed with heavy tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 0.125,  # Include smaller fractions for left-skewed case
+                        item * 0.875
+                    ]
+                    
+                    best_fit_weight = 0.035  # Slightly decrease best-fit weight
+                    multiple_fit_weight = 0.965
+                elif skewness < 0:  # Left-skewed with normal tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 0.125,  # Include smaller fractions for left-skewed case
+                        item * 0.875
+                    ]
+                    
+                    best_fit_weight = 0.045  # Slightly decrease best-fit weight
+                    multiple_fit_weight = 0.955
+                else:  # Normal skewness but high kurtosis
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1     # Slightly over 1x for near-full bins
+                    ]
+                    
+                    best_fit_weight = 0.055
+                    multiple_fit_weight = 0.945
+        else:
+            # Standard balanced approach for medium items with normal distribution
+            if normalized_entropy > 0.6:  # High entropy
+                # Conservative approach due to high diversity
+                estimated_common_sizes = [
+                    item,
+                    item * 0.5,
+                    item * 1.5,
+                    item * 0.75,
+                    item * 1.25,
+                    item * 0.33,
+                    item * 0.67,
+                    item * 0.25,
+                    item * 0.1,   
+                    item * 1.75,   
+                    item * 0.2,
+                    item * 0.4,
+                    item * 0.6,
+                    item * 0.8,
+                    item * 1.1     # Slightly over 1x for near-full bins
+                ]
+                
+                best_fit_weight = 0.03  # Lower best-fit weight in high entropy scenario
+                multiple_fit_weight = 0.97
+            else:  # Low entropy
+                # More confident approach since distribution is less diverse
+                estimated_common_sizes = [
+                    item,
+                    item * 0.5,
+                    item * 1.5,
+                    item * 0.75,
+                    item * 1.25,
+                    item * 0.33,
+                    item * 0.67,
+                    item * 0.25,
+                    item * 0.1,   
+                    item * 1.75,   
+                    item * 0.2,
+                    item * 0.4,
+                    item * 0.6,
+                    item * 0.8,
+                    item * 1.1     # Slightly over 1x for near-full bins
+                ]
+                
+                best_fit_weight = 0.06
+                multiple_fit_weight = 0.94
+=======
+        if abs(skewness) > 0.45 or abs(kurtosis) > 0.9:  # Significant skewness or kurtosis detected
+            # Adjust strategy based on skewness, kurtosis, and entropy
+            if normalized_entropy > 0.5:  # Adjusted threshold for entropy
+                # Conservative approach due to high diversity
+                if skewness > 0 and kurtosis > 0.9:  # Right-skewed with heavy tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 2.0     # Include larger multiples for right-skewed case
+                    ]
+                    
+                    best_fit_weight = 0.03  # Low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.97
+                elif skewness > 0:  # Right-skewed with normal tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 2.0     # Include larger multiples for right-skewed case
+                    ]
+                    
+                    best_fit_weight = 0.04  # Low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.96
+                elif skewness < 0 and kurtosis > 0.9:  # Left-skewed with heavy tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 0.125,  # Include smaller fractions for left-skewed case
+                        item * 0.875
+                    ]
+                    
+                    best_fit_weight = 0.02  # Low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.98
+                elif skewness < 0:  # Left-skewed with normal tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 0.125,  # Include smaller fractions for left-skewed case
+                        item * 0.875
+                    ]
+                    
+                    best_fit_weight = 0.03  # Low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.97
+                else:  # Normal skewness but high kurtosis
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1     # Slightly over 1x for near-full bins
+                    ]
+                    
+                    best_fit_weight = 0.035  # Low best-fit weight in high entropy scenario
+                    multiple_fit_weight = 0.965
+            else:  # Low entropy
+                # More confident approach since distribution is less diverse
+                if skewness > 0 and kurtosis > 0.9:  # Right-skewed with heavy tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 2.0     # Include larger multiples for right-skewed case
+                    ]
+                    
+                    best_fit_weight = 0.085  # Slightly increase best-fit weight
+                    multiple_fit_weight = 0.915
+                elif skewness > 0:  # Right-skewed with normal tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 2.0     # Include larger multiples for right-skewed case
+                    ]
+                    
+                    best_fit_weight = 0.075  # Slightly increase best-fit weight
+                    multiple_fit_weight = 0.925
+                elif skewness < 0 and kurtosis > 0.9:  # Left-skewed with heavy tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 0.125,  # Include smaller fractions for left-skewed case
+                        item * 0.875
+                    ]
+                    
+                    best_fit_weight = 0.035  # Slightly decrease best-fit weight
+                    multiple_fit_weight = 0.965
+                elif skewness < 0:  # Left-skewed with normal tails
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1,
+                        item * 0.125,  # Include smaller fractions for left-skewed case
+                        item * 0.875
+                    ]
+                    
+                    best_fit_weight = 0.045  # Slightly decrease best-fit weight
+                    multiple_fit_weight = 0.955
+                else:  # Normal skewness but high kurtosis
+                    estimated_common_sizes = [
+                        item,
+                        item * 0.5,
+                        item * 1.5,
+                        item * 0.75,
+                        item * 1.25,
+                        item * 0.33,
+                        item * 0.67,
+                        item * 0.25,
+                        item * 0.1,   
+                        item * 1.75,   
+                        item * 0.2,
+                        item * 0.4,
+                        item * 0.6,
+                        item * 0.8,
+                        item * 1.1     # Slightly over 1x for near-full bins
+                    ]
+                    
+                    best_fit_weight = 0.055
+                    multiple_fit_weight = 0.945
+        else:
+            # Standard balanced approach for medium items with normal distribution
+            if normalized_entropy > 0.5:  # Adjusted threshold for entropy
+                # Conservative approach due to high diversity
+                estimated_common_sizes = [
+                    item,
+                    item * 0.5,
+                    item * 1.5,
+                    item * 0.75,
+                    item * 1.25,
+                    item * 0.33,
+                    item * 0.67,
+                    item * 0.25,
+                    item * 0.1,   
+                    item * 1.75,   
+                    item * 0.2,
+                    item * 0.4,
+                    item * 0.6,
+                    item * 0.8,
+                    item * 1.1     # Slightly over 1x for near-full bins
+                ]
+                
+                best_fit_weight = 0.04  # Lower best-fit weight in high entropy scenario
+                multiple_fit_weight = 0.96
+            else:  # Low entropy
+                # More confident approach since distribution is less diverse
+                estimated_common_sizes = [
+                    item,
+                    item * 0.5,
+                    item * 1.5,
+                    item * 0.75,
+                    item * 1.25,
+                    item * 0.33,
+                    item * 0.67,
+                    item * 0.25,
+                    item * 0.1,   
+                    item * 1.75,   
+                    item * 0.2,
+                    item * 0.4,
+                    item * 0.6,
+                    item * 0.8,
+                    item * 1.1     # Slightly over 1x for near-full bins
+                ]
+                
+                best_fit_weight = 0.06
+                multiple_fit_weight = 0.94
+>>>>>>> REPLACE

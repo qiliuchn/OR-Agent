@@ -1,0 +1,54 @@
+<<<<<<< SEARCH
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Precompute unique common sizes to avoid redundant calculations
+    unique_common_sizes = []
+    seen = set()
+    for common_size in selected_common_sizes:
+        if common_size > 1e-9 and common_size not in seen:
+            unique_common_sizes.append(common_size)
+            seen.add(common_size)
+    
+    for common_size in unique_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiplier > 0:
+            # Vectorized computation of distances to all possible multiples
+            # Create a 2D array where rows represent multiples and columns represent bins
+            multiples_grid = np.outer(np.arange(max_multiplier), np.ones_like(feasible_post_caps)) * common_size
+            # Calculate distances from each post-placement capacity to each multiple
+            distances_to_multiples = np.abs(feasible_post_caps - multiples_grid)
+            # Find the minimum distance for each bin across all multiples
+            min_distances = np.min(distances_to_multiples, axis=0)
+            
+            # Add to the score (higher score for closer matches)
+            # Use a small epsilon to avoid division by zero
+            multiple_fit_score += 1.0 / (1.0 + min_distances)
+=======
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Precompute unique common sizes to avoid redundant calculations
+    unique_common_sizes = []
+    seen = set()
+    for common_size in selected_common_sizes:
+        if common_size > 1e-9 and common_size not in seen:
+            unique_common_sizes.append(common_size)
+            seen.add(common_size)
+    
+    for common_size in unique_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                # Use a small epsilon to avoid division by zero
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

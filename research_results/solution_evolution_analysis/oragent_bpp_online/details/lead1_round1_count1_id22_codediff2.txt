@@ -1,0 +1,7 @@
+<<<<<<< SEARCH
+    # Combine both components with adjusted weights
+    combined_scores = feasible_scores + 0.5 * best_fit_component  # Increased weight for best fit
+=======
+    # Combine both components with adjusted weights
+    combined_scores = feasible_scores + 0.1 * best_fit_component  # Weight the best fit less heavily like parent solution
+>>>>>>> REPLACE

@@ -1,0 +1,5 @@
+# Balanced weights, adjusted based on density
+# In high density, slightly increase best-fit to fill bins efficiently
+density_factor = 1.0 + (0.5 * packing_density)  # Increase slightly in high density
+best_fit_weight = 0.06 * density_factor
+multiple_fit_weight = 0.94 * (2.0 - density_factor)  # Adjust to maintain balance

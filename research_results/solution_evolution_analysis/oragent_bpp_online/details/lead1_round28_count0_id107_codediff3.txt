@@ -1,0 +1,91 @@
+<<<<<<< SEARCH
+    # Compute adaptive thresholds based on current available bin capacities
+    # Use quartiles of currently available bins (those that can fit the item) to determine thresholds
+    available_bins = bins_remain_cap[bins_remain_cap >= item]  # Only consider bins that can fit the item
+    if len(available_bins) > 0:
+        # Calculate quartiles of available bin capacities
+        sorted_available = np.sort(available_bins)
+        q25 = np.percentile(sorted_available, 25)
+        q50 = np.percentile(sorted_available, 50)
+        q75 = np.percentile(sorted_available, 75)
+        
+        # Determine where the current item fits relative to these quartiles of available bins
+        if item <= q25:
+            item_category = 'small'
+        elif item <= q75:
+            item_category = 'medium'
+        else:
+            item_category = 'large'
+    else:
+        # If no bins can accommodate the item, create a new bin (this case won't happen since we check feasible_bins)
+        # Fallback: use overall bin capacity statistics
+        non_empty_bins = bins_remain_cap[bins_remain_cap > 0]
+        if len(non_empty_bins) > 0:
+            sorted_caps = np.sort(non_empty_bins)
+            if len(sorted_caps) > 0:
+                q25 = np.percentile(sorted_caps, 25)
+                q75 = np.percentile(sorted_caps, 75)
+                
+                if item <= q25:
+                    item_category = 'small'
+                elif item <= q75:
+                    item_category = 'medium'
+                else:
+                    item_category = 'large'
+            else:
+                item_category = 'medium'  # Default if no bins exist
+        else:
+            item_category = 'medium'  # Default if no bins exist
+
+    # Enhanced multiplier embeddings with additional fractional relationships
+    # These represent optimized sets of common-size relationships discovered through
+    # offline analysis of near-optimal packings
+    enhanced_embeddings = {
+=======
+    # Initialize variables to ensure they exist in scope
+    item_category = 'medium'  # Default category
+    q25, q50, q75 = 0.0, 0.0, 0.0  # Default quartile values
+    
+    # Compute adaptive thresholds based on current available bin capacities
+    # Use quartiles of currently available bins (those that can fit the item) to determine thresholds
+    available_bins = bins_remain_cap[bins_remain_cap >= item]  # Only consider bins that can fit the item
+    if len(available_bins) > 0:
+        # Calculate quartiles of available bin capacities
+        sorted_available = np.sort(available_bins)
+        q25 = np.percentile(sorted_available, 25)
+        q50 = np.percentile(sorted_available, 50)
+        q75 = np.percentile(sorted_available, 75)
+        
+        # Determine where the current item fits relative to these quartiles of available bins
+        if item <= q25:
+            item_category = 'small'
+        elif item <= q75:
+            item_category = 'medium'
+        else:
+            item_category = 'large'
+    else:
+        # If no bins can accommodate the item, create a new bin (this case won't happen since we check feasible_bins)
+        # Fallback: use overall bin capacity statistics
+        non_empty_bins = bins_remain_cap[bins_remain_cap > 0]
+        if len(non_empty_bins) > 0:
+            sorted_caps = np.sort(non_empty_bins)
+            if len(sorted_caps) > 0:
+                q25 = np.percentile(sorted_caps, 25)
+                q75 = np.percentile(sorted_caps, 75)
+                
+                if item <= q25:
+                    item_category = 'small'
+                elif item <= q75:
+                    item_category = 'medium'
+                else:
+                    item_category = 'large'
+            else:
+                item_category = 'medium'  # Default if no bins exist
+        else:
+            item_category = 'medium'  # Default if no bins exist
+
+    # Enhanced multiplier embeddings with additional fractional relationships
+    # These represent optimized sets of common-size relationships discovered through
+    # offline analysis of near-optimal packings
+    enhanced_embeddings = {
+>>>>>>> REPLACE

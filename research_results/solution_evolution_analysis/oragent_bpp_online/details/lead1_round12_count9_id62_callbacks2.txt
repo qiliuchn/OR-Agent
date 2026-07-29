@@ -1,0 +1,2 @@
+residual_space_utility = np.exp(-((feasible_post_caps + 1e-9) / weibull_scale) ** weibull_shape)
+multiple_fit_score += (residual_space_utility * 1.0) / (1.0 + distances_to_multiples)

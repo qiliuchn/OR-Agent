@@ -1,0 +1,139 @@
+<<<<<<< SEARCH
+    # Determine if we're in a sparse regime (few feasible bins)
+    num_feasible_bins = np.sum(feasible_bins)
+    is_sparse_regime = num_feasible_bins < 5
+    
+    # Define category-specific weights based on refined percentile thresholds
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+    
+    # Adjust weights based on sparsity and dispersion of remainders
+    if len(feasible_post_caps) > 1:
+        remainder_dispersion = np.std(feasible_post_caps) / (np.mean(feasible_post_caps) + 1e-9)
+        
+        # In low dispersion scenarios (remainders are similar), emphasize multiple-fit
+        if remainder_dispersion < 0.1:
+            multiple_fit_weight *= 1.2
+            best_fit_weight *= 0.8
+            
+        # In sparse regimes, also emphasize precise fitting
+        if is_sparse_regime:
+            multiple_fit_weight *= 1.1
+            best_fit_weight *= 0.9
+    
+    # Generate dynamic common sizes with adaptive resolution based on sparsity
+    if len(feasible_post_caps) > 0:
+        unique_caps = np.unique(feasible_post_caps[feasible_post_caps > 1e-9])
+        
+        if len(unique_caps) > 0:
+            if is_sparse_regime:
+                # In sparse regime: use high-resolution common sizes with Farey sequence-like approach
+                # Include more precise ratios and nearby values
+                base_values = [item, item * 0.5, item * 1.5, item * 0.75, item * 1.25, item * 0.25, item * 0.33, item * 0.67]
+                
+                # Add values from current unique capacities
+                additional_values = []
+                for cap in unique_caps:
+                    # Add various fractions of the current capacity
+                    for frac in [0.25, 0.33, 0.5, 0.67, 0.75, 1.0, 1.5]:
+                        additional_values.append(cap * frac)
+                
+                # Include values around unique caps for fine-tuning
+                for cap in unique_caps:
+                    additional_values.extend([cap * 0.9, cap * 1.1, cap * 0.8, cap * 1.2])
+                
+                dynamic_common_sizes = np.array(base_values + additional_values)
+            else:
+                # In dense regime: use coarser sampling to avoid overfitting
+                # Use quantiles to get representative values
+                quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+                quantile_values = np.quantile(unique_caps, quantiles)
+                
+                # Also include some ratios of the current item size
+                item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+                
+                # Include some simple fractions of the current remainders
+                remainder_fractions = np.concatenate([
+                    unique_caps * 0.5,
+                    unique_caps * 0.33,
+                    unique_caps * 0.67,
+                    unique_caps * 0.25,
+                    unique_caps * 0.75
+                ])
+                
+                # Combine all dynamically generated common sizes
+                dynamic_common_sizes = np.concatenate([
+                    quantile_values,
+                    item_ratios,
+                    remainder_fractions
+                ])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+=======
+    # Define category-specific weights based on refined percentile thresholds
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+    
+    # Generate dynamic common sizes using context-aware sampling
+    # Use a kernel density-based approach to identify important remainder values
+    if len(feasible_post_caps) > 0:
+        # Identify important scales from the current remainder distribution
+        # Use a simplified approach: sample quantiles and key ratios from the distribution
+        unique_caps = np.unique(feasible_post_caps)
+        if len(unique_caps) > 0:
+            # Sample key values from the current distribution as common sizes
+            # Quantiles provide good coverage of the distribution
+            quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+            quantile_values = np.quantile(unique_caps, quantiles)
+            
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75
+            ])
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                quantile_values,
+                item_ratios,
+                remainder_fractions
+            ])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+>>>>>>> REPLACE

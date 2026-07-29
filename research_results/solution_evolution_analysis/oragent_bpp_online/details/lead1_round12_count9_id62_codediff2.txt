@@ -1,0 +1,48 @@
+<<<<<<< SEARCH
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiplier > 0:
+            # Calculate distances to all possible multiples
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_multiplier)
+            ], axis=0)
+            
+            # Calculate the utility of each residual space using a Weibull survival function
+            # The utility should be based on the actual remaining capacity after placement
+            # We'll assume typical Weibull parameters based on common item distributions
+            # Shape parameter k and scale parameter λ need to be estimated
+            # For this implementation, we'll use representative values
+            weibull_shape = 1.5  # Typical shape parameter for item sizes
+            weibull_scale = np.mean(bins_remain_cap[bins_remain_cap > 0]) if len(bins_remain_cap[bins_remain_cap > 0]) > 0 else 50.0
+            
+            # Survival function: P(X > x) = exp(-(x/λ)^k)
+            # This gives the probability that a space of size x can accommodate a typical item
+            # Apply this to the actual post-placement capacities to get their utility
+            residual_space_utility = np.exp(-((feasible_post_caps + 1e-9) / weibull_scale) ** weibull_shape)
+            
+            # Now apply this utility to the multiple-fit scoring
+            # The score for being close to multiples is weighted by the utility of the remaining space
+            multiple_fit_score += (residual_space_utility * 1.0) / (1.0 + distances_to_multiples)
+=======
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in estimated_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+        if max_multiplier > 0:
+            # Calculate distances to all possible multiples
+            distances_to_multiples = np.min([
+                np.abs(feasible_post_caps - n * common_size) 
+                for n in range(0, max_multiplier)
+            ], axis=0)
+            
+            # Add to the score (higher score for closer matches)
+            # Use a small epsilon to avoid division by zero
+            multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

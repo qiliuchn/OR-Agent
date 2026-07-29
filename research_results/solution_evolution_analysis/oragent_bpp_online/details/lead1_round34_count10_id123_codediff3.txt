@@ -1,0 +1,43 @@
+<<<<<<< SEARCH
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+
+    # Assign the final multiple fit score
+    multiple_fit_scores = multiple_fit_score
+=======
+    # Calculate multiple fit scores for all feasible bins at once
+    multiple_fit_scores = np.zeros_like(feasible_post_caps)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size <= 1e-9:
+            continue
+        
+        # Vectorized calculation of distances to nearest multiples
+        # Only consider closest few multiples to avoid computational explosion
+        multipliers = np.floor(feasible_post_caps / common_size).astype(int)
+        dist_to_multiple0 = np.abs(feasible_post_caps - multipliers * common_size)
+        dist_to_multiple1 = np.abs(feasible_post_caps - (multipliers + 1) * common_size)
+        dist_to_multiple2 = np.abs(feasible_post_caps - (multipliers + 2) * common_size) if np.any(multipliers + 2 > 0) else np.full_like(feasible_post_caps, np.inf)
+        
+        # Take the minimum distance among the considered multiples
+        dist_to_multiple = np.minimum(dist_to_multiple0, dist_to_multiple1)
+        if dist_to_multiple2.size > 0:
+            dist_to_multiple = np.minimum(dist_to_multiple, dist_to_multiple2)
+        
+        multiple_fit_scores += 1.0 / (1.0 + dist_to_multiple)
+>>>>>>> REPLACE

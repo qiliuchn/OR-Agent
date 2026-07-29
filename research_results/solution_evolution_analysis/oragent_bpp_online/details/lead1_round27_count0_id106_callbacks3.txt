@@ -1,0 +1,9 @@
+# Calculate packing density to adjust thresholds dynamically
+# We'll use a reference capacity based on the maximum capacity seen
+if len(bins_remain_cap) > 0:
+    ref_capacity = np.max(bins_remain_cap) if np.max(bins_remain_cap) > 0 else 100.0
+    total_possible_capacity = len(bins_remain_cap) * ref_capacity
+    total_used_capacity = total_possible_capacity - np.sum(bins_remain_cap)
+    packing_density = total_used_capacity / total_possible_capacity if total_possible_capacity > 0 else 0.0
+else:
+    packing_density = 0.5  # Default if no bins exist

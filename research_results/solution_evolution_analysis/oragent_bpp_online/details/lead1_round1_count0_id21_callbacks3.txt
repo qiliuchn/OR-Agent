@@ -1,0 +1,2 @@
+estimated_common_sizes = [current_item, current_item * 0.9, current_item * 1.1, 
+                          current_item * 0.5, current_item * 1.5, current_item * 0.75, current_item * 1.25]

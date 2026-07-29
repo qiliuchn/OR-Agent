@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    # Combine both components with appropriate weights
+    # Give more weight to the common size matching since it was the key insight from parent solution
+    combined_scores = feasible_scores + 0.04 * best_fit_component  # Slightly reduced weight to emphasize common size matching
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+=======
+    # Combine both components with appropriate weights
+    # Give more weight to the common size matching since it was the key insight from parent solution
+    combined_scores = feasible_scores + 0.035 * best_fit_component  # Further reduced weight to emphasize common size matching
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+>>>>>>> REPLACE

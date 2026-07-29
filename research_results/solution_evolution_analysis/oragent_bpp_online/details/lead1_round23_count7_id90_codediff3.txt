@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    # Enhanced weights based on size category with fine-tuned parameters
+    enhanced_weights = {
+        'large': (0.25, 0.75),   # Slightly increased best-fit weight for large items
+        'small': (0.001, 1.195),  # Slightly increased best-fit weight for small items (was 0.0005)
+        'medium': (0.07, 0.93)   # Slightly adjusted balanced weights for medium items
+    }
+=======
+    # Enhanced weights based on size category with fine-tuned parameters
+    enhanced_weights = {
+        'large': (0.25, 0.75),   # Slightly increased best-fit weight for large items
+        'small': (0.0005, 1.195),  # Further reduced best-fit weight for small items
+        'medium': (0.07, 0.93)   # Slightly adjusted balanced weights for medium items
+    }
+>>>>>>> REPLACE

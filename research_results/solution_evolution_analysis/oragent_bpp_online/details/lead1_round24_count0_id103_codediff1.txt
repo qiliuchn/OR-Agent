@@ -1,0 +1,108 @@
+<<<<<<< SEARCH
+    # Compute adaptive thresholds based on current bin state and item
+    # Use quartiles of current bin capacities to determine thresholds
+    if len(bins_remain_cap) > 0:
+        # Calculate quartiles of current bin capacities to adaptively determine thresholds
+        sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+        if len(sorted_caps) > 0:
+            q25 = np.percentile(sorted_caps, 25)
+            q50 = np.percentile(sorted_caps, 50)
+            q75 = np.percentile(sorted_caps, 75)
+            
+            # Determine where the current item fits relative to these quartiles
+            if item <= q25:
+                item_category = 'small'
+            elif item <= q75:
+                item_category = 'medium'
+            else:
+                item_category = 'large'
+        else:
+            # If all bins are empty, use the item size relative to itself as reference
+            item_category = 'medium'  # Default to medium if no context available
+    else:
+        item_category = 'medium'  # Default if no bins exist
+=======
+    # Compute adaptive thresholds based on current bin state and item
+    # Consider the item size relative to the distribution of available bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate quartiles of current available bin capacities to adaptively determine thresholds
+        available_caps = bins_remain_cap[bins_remain_cap >= item]  # Only consider bins that can fit the item
+        if len(available_caps) > 0:
+            # Sort the available bin capacities
+            sorted_available_caps = np.sort(available_caps)
+            q25 = np.percentile(sorted_available_caps, 25)
+            q50 = np.percentile(sorted_available_caps, 50)
+            q75 = np.percentile(sorted_available_caps, 75)
+            
+            # Determine item category based on how the item size relates to available bin capacities
+            # This is more context-aware than just looking at all bin capacities
+            if item <= q25:
+                item_category = 'small'
+            elif item <= q75:
+                item_category = 'medium'
+            else:
+                item_category = 'large'
+        else:
+            # If no bins can fit the item (shouldn't happen since we check feasible_bins earlier),
+            # or if there are no available bins, use the item size relative to all bin capacities
+            sorted_all_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])
+            if len(sorted_all_caps) > 0:
+                q25 = np.percentile(sorted_all_caps, 25)
+                q50 = np.percentile(sorted_all_caps, 50)
+                q75 = np.percentile(sorted_all_caps, 75)
+                
+                if item <= q25:
+                    item_category = 'small'
+                elif item <= q75:
+                    item_category = 'medium'
+                else:
+                    item_category = 'large'
+            else:
+                item_category = 'medium'  # Default if no context available
+    else:
+        item_category = 'medium'  # Default if no bins exist
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # Adjust weights slightly based on the item's position in the quartile range
+    if item_category == 'large':
+        # For very large items relative to current bins, emphasize best fit more
+        ratio_to_q75 = item / q75 if q75 > 0 else 1.0
+        best_fit_weight = min(0.4, best_fit_weight * (1.0 + 0.1 * (ratio_to_q75 - 1.0)))
+        multiple_fit_weight = max(0.6, multiple_fit_weight * (1.0 - 0.1 * (ratio_to_q75 - 1.0)))
+    elif item_category == 'small':
+        # For very small items relative to current bins, emphasize multiple fit more
+        ratio_to_q25 = item / q25 if q25 > 0 else 1.0
+        best_fit_weight = max(0.0001, best_fit_weight * min(1.0, ratio_to_q25))
+        multiple_fit_weight = min(1.25, multiple_fit_weight * max(1.0, 1.0/ratio_to_q25))
+=======
+    # Adjust weights based on how well the item fits in the available bins
+    # Calculate utilization ratio to inform weight adjustment
+    if len(available_caps) > 0:
+        mean_available_cap = np.mean(available_caps)
+        utilization_ratio = item / mean_available_cap
+        
+        if item_category == 'large':
+            # For very large items relative to available bins, emphasize best fit more
+            # to ensure the item fits without leaving too much space
+            ratio_to_q75 = item / q75 if q75 > 0 else 1.0
+            best_fit_weight = min(0.45, best_fit_weight * (1.0 + 0.2 * (ratio_to_q75 - 1.0)))
+            multiple_fit_weight = max(0.55, multiple_fit_weight * (1.0 - 0.15 * (ratio_to_q75 - 1.0)))
+        elif item_category == 'small':
+            # For very small items relative to available bins, emphasize multiple fit more
+            # to leave room for future items of similar size
+            ratio_to_q25 = item / q25 if q25 > 0 else 1.0
+            best_fit_weight = max(0.0001, best_fit_weight * min(0.8, 0.8 * ratio_to_q25))
+            multiple_fit_weight = min(1.3, multiple_fit_weight * max(1.15, 1.15/ratio_to_q25))
+        else:  # medium
+            # For medium items, adjust based on how efficiently they fill available space
+            if utilization_ratio > 0.8:  # Item fills bin well
+                best_fit_weight *= 1.1
+                multiple_fit_weight *= 0.9
+            elif utilization_ratio < 0.3:  # Item leaves lot of space
+                best_fit_weight *= 0.7
+                multiple_fit_weight *= 1.3
+            # Otherwise, keep original weights
+    else:
+        # If no bins can accommodate the item, this shouldn't happen due to feasibility check
+        pass
+>>>>>>> REPLACE

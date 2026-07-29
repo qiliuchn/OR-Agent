@@ -1,0 +1,174 @@
+<<<<<<< SEARCH
+    # Determine multiplier granularity based on item size
+    if current_item < 0.3:  # Small items - use finer granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.1,   # tenth size
+            current_item * 0.2,   # fifth size
+            current_item * 0.25,  # quarter size
+            current_item * 0.33,  # one third
+            current_item * 0.4,   # two fifths
+            current_item * 0.5,   # half size
+            current_item * 0.6,   # three fifths
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.4,   # seven fifths
+            current_item * 1.5,   # 1.5x size
+            current_item * 1.6,   # eight fifths
+            current_item * 1.8,   # nine fifths
+            current_item * 2.0,   # double size
+            current_item * 2.5,   # 2.5x size
+            current_item * 3.0,   # triple size
+            current_item * 0.125, # eighth size
+            current_item * 0.167, # sixth size
+        ]
+    elif current_item < 0.7:  # Medium items - use moderate granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.25,  # quarter size
+            current_item * 0.33,  # one third
+            current_item * 0.4,   # two fifths
+            current_item * 0.5,   # half size
+            current_item * 0.6,   # three fifths
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.4,   # seven fifths
+            current_item * 1.5,   # 1.5x size
+            current_item * 1.6,   # eight fifths
+            current_item * 1.8,   # nine fifths
+            current_item * 2.0,   # double size
+        ]
+    else:  # Large items - use coarser granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.5,   # half size
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.5,   # 1.5x size
+            current_item * 2.0,   # double size
+        ]
+=======
+    # Determine multiplier granularity based on item size
+    # Adjusted thresholds based on typical item size distributions in bin packing problems
+    if current_item < 0.25:  # Very small items - use finest granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.1,   # tenth size
+            current_item * 0.125, # eighth size  
+            current_item * 0.167, # sixth size
+            current_item * 0.2,   # fifth size
+            current_item * 0.25,  # quarter size
+            current_item * 0.33,  # one third
+            current_item * 0.4,   # two fifths
+            current_item * 0.5,   # half size
+            current_item * 0.6,   # three fifths
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.4,   # seven fifths
+            current_item * 1.5,   # 1.5x size
+            current_item * 1.6,   # eight fifths
+            current_item * 1.8,   # nine fifths
+            current_item * 2.0,   # double size
+            current_item * 2.5,   # 2.5x size
+            current_item * 3.0,   # triple size
+        ]
+    elif current_item < 0.6:  # Small to medium items - use moderate granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.2,   # fifth size
+            current_item * 0.25,  # quarter size
+            current_item * 0.33,  # one third
+            current_item * 0.4,   # two fifths
+            current_item * 0.5,   # half size
+            current_item * 0.6,   # three fifths
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.4,   # seven fifths
+            current_item * 1.5,   # 1.5x size
+            current_item * 1.6,   # eight fifths
+            current_item * 1.8,   # nine fifths
+            current_item * 2.0,   # double size
+        ]
+    else:  # Larger items - use coarser granularity
+        estimated_common_sizes = [
+            current_item, 
+            current_item * 0.33,  # one third
+            current_item * 0.5,   # half size
+            current_item * 0.66,  # two thirds
+            current_item * 0.75,  # three quarters
+            current_item * 0.8,   # four fifths
+            current_item * 0.9,   # 90% size
+            current_item * 1.1,   # 110% size
+            current_item * 1.2,   # six fifths
+            current_item * 1.25,  # 1.25x size
+            current_item * 1.33,  # four thirds
+            current_item * 1.5,   # 1.5x size
+            current_item * 2.0,   # double size
+        ]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            # Use a Gaussian-like function for scoring to give higher importance to very close matches
+            # sigma controls the width of the function - smaller sigma gives sharper decay
+            # Using a smaller sigma for tighter focus on very close matches
+            sigma = max(common_size * 0.05, 0.01)  # 5% of the common size as the standard deviation (tighter focus)
+            gaussian_scores = np.exp(-0.5 * (distances_to_multiples / sigma) ** 2)
+            
+            # Add to the score (higher score for closer matches to multiples)
+            feasible_scores += gaussian_scores
+    
+    # Also add Best Fit component: prefer bins with less remaining space after placement
+    # This prevents overfilling bins unnecessarily while still allowing for good fits
+    best_fit_component = -post_placement_caps  # Higher score for less remaining space after placement
+    
+    # Combine both components with appropriate weights
+    # Give more weight to the common size matching since it was the key insight from parent solution
+    combined_scores = feasible_scores + 0.02 * best_fit_component  # Reduced weight to focus more on common size matching
+=======
+            # Use a Gaussian-like function for scoring to give higher importance to very close matches
+            # sigma controls the width of the function - smaller sigma gives sharper decay
+            # Using a smaller sigma for tighter focus on very close matches
+            # Adjusted sigma to be more adaptive to the common_size
+            sigma = max(common_size * 0.03, 0.008)  # Reduced from 5% to 3% for even tighter focus
+            gaussian_scores = np.exp(-0.5 * (distances_to_multiples / sigma) ** 2)
+            
+            # Add to the score (higher score for closer matches to multiples)
+            feasible_scores += gaussian_scores
+    
+    # Also add Best Fit component: prefer bins with less remaining space after placement
+    # This prevents overfilling bins unnecessarily while still allowing for good fits
+    best_fit_component = -post_placement_caps  # Higher score for less remaining space after placement
+    
+    # Combine both components with appropriate weights
+    # Give more weight to the common size matching since it was the key insight from parent solution
+    combined_scores = feasible_scores + 0.015 * best_fit_component  # Further reduced weight to focus more on common size matching
+>>>>>>> REPLACE

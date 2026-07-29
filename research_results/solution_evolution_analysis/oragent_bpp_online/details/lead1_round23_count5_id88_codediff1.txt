@@ -1,0 +1,65 @@
+<<<<<<< SEARCH
+    # Fragmentation penalty: discourage mid-sized gaps that cause future inefficiencies
+    # Calculate normalized post-placement capacity (relative to original capacity)
+    # We'll assume the original capacity is the maximum capacity of any bin
+    if len(bins_remain_cap) > 0:
+        original_capacity = np.max(bins_remain_cap)  # Assuming uniform capacity
+    else:
+        original_capacity = 100.0  # Default capacity if no bins exist
+    
+    # Normalize the post-placement capacities to [0, 1] relative to full capacity
+    if original_capacity > 0:
+        normalized_caps = feasible_post_caps / original_capacity
+    else:
+        normalized_caps = np.zeros_like(feasible_post_caps)
+    
+    # Define a bump function to penalize mid-range remainders [0.2, 0.7]
+    # Use a smooth function that peaks at 0.45 (midpoint of [0.2, 0.7])
+    # The bump function is based on a bell-shaped curve centered in [0.2, 0.7]
+    center = 0.45  # Midpoint of [0.2, 0.7]
+    width = 0.25   # Half-width of the interval [0.2, 0.7]
+    
+    # Calculate distance from center, capped to the interval [0.2, 0.7]
+    dist_from_center = np.abs(normalized_caps - center)
+    # Only apply penalty if within the dead zone [0.2, 0.7]
+    in_dead_zone = (normalized_caps >= 0.2) & (normalized_caps <= 0.7)
+    
+    # Apply a quadratic bump function for smooth penalty
+    # Penalty is 1 at center (0.45), decreases to 0 at edges (0.2, 0.7)
+    normalized_dist = np.where(
+        in_dead_zone,
+        np.minimum(dist_from_center / width, 1.0),
+        1.0  # Outside the interval, no penalty
+    )
+    
+    # Calculate bump function value: 1 - normalized_dist^2 (peaks at center)
+    bump_penalty = np.where(
+        in_dead_zone,
+        1.0 - normalized_dist**2,
+        0.0  # No penalty outside the dead zone
+    )
+    
+    # Scale the penalty based on item size category to make it adaptive
+    # Larger penalties for items that are more likely to cause fragmentation
+    if item_percentile > 0.82:
+        penalty_scale = 0.1  # Less penalty for large items
+    elif item_percentile < 0.18:
+        penalty_scale = 0.3  # More penalty for small items
+    else:
+        penalty_scale = 0.2  # Medium penalty for medium items
+    
+    fragmentation_penalty = penalty_scale * bump_penalty
+    
+    # Combine all components with enhanced weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component - 
+        fragmentation_penalty  # Subtract penalty as it reduces desirability
+    )
+=======
+    # Combine all components with enhanced weights (without fragmentation penalty)
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component
+    )
+>>>>>>> REPLACE

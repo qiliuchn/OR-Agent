@@ -1,0 +1,107 @@
+<<<<<<< SEARCH
+    # Compute adaptive thresholds based on current distribution of remaining capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate quartiles to determine IQR
+        q1 = np.percentile(bins_remain_cap, 25)
+        q3 = np.percentile(bins_remain_cap, 75)
+        iqr = q3 - q1
+        median_val = np.median(bins_remain_cap)
+        
+        # Define adaptive thresholds based on IQR
+        # Large items: those larger than median + 0.5*IQR
+        # Small items: those smaller than median - 0.5*IQR
+        large_threshold = median_val + 0.5 * iqr
+        small_threshold = median_val - 0.5 * iqr
+        
+        # Calculate normalized position of the current item relative to the distribution
+        if q3 != q1:  # Avoid division by zero
+            item_position = (item - median_val) / iqr if iqr > 1e-9 else 0.0
+        else:
+            item_position = 0.0
+            
+    else:
+        # Default thresholds if no bins exist
+        large_threshold = 0.5
+        small_threshold = 0.5
+        item_position = 0.0
+=======
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    # This gives us a measure of how large the current item is relative to current context
+    if len(bins_remain_cap) > 0:
+        # Calculate the percentile of the current item in the context of remaining capacities
+        sorted_caps = np.sort(bins_remain_cap)
+        # Find where the item would fit in the sorted array
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+        
+        # Calculate quartiles to determine IQR of the capacity distribution
+        q1 = np.percentile(bins_remain_cap, 25)
+        q3 = np.percentile(bins_remain_cap, 75)
+        iqr = q3 - q1
+        
+        # Define adaptive thresholds based on the spread of the capacity distribution
+        # When IQR is large (high variance in remaining capacities), use wider percentile bands
+        # When IQR is small (low variance in remaining capacities), use narrower bands
+        base_small_thresh = 0.18
+        base_large_thresh = 0.82
+        
+        # Normalize IQR by the range of capacities to get a relative measure of spread
+        cap_range = np.max(bins_remain_cap) - np.min(bins_remain_cap) if len(bins_remain_cap) > 1 else 1.0
+        rel_iqr = iqr / (cap_range + 1e-9)  # Add small epsilon to avoid division by zero
+        
+        # Adjust thresholds based on relative IQR
+        # Higher variance allows for more flexible categorization
+        adaptive_factor = 1.0 + 0.3 * rel_iqr  # Up to 30% adjustment based on variance
+        
+        small_threshold = max(0.05, min(0.3, base_small_thresh / adaptive_factor))  # Clamp between 0.05 and 0.3
+        large_threshold = min(0.95, max(0.7, base_large_thresh * adaptive_factor))  # Clamp between 0.7 and 0.95
+    else:
+        # Default values if no bins exist
+        item_percentile = 0.5
+        small_threshold = 0.18
+        large_threshold = 0.82
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # Determine the size category based on adaptive thresholds
+    if item > large_threshold:  # Large item based on distribution
+        selected_common_sizes = enhanced_embeddings['large']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['large']
+        # Slightly increase best-fit weight for large items to ensure they fit
+        best_fit_weight *= 1.07
+        multiple_fit_weight *= 0.99
+    elif item < small_threshold:  # Small item based on distribution
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduce best-fit weight for small items
+        best_fit_weight *= 0.93
+        multiple_fit_weight *= 1.01
+    else:  # Medium item based on distribution
+        selected_common_sizes = enhanced_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['medium']
+=======
+    # Determine the size category based on adaptive percentile thresholds
+    if item_percentile > large_threshold:  # Large item based on adaptive threshold
+        selected_common_sizes = enhanced_embeddings['large']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['large']
+        # Slightly increase best-fit weight for large items to ensure they fit
+        best_fit_weight *= 1.07
+        multiple_fit_weight *= 0.99
+    elif item_percentile < small_threshold:  # Small item based on adaptive threshold
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduce best-fit weight for small items
+        best_fit_weight *= 0.93
+        multiple_fit_weight *= 1.01
+    elif item_percentile > 0.62:  # Large-medium item based on original threshold
+        # Interpolate between medium and large strategies
+        selected_common_sizes = enhanced_embeddings['medium']
+        # Adjust weights to be between medium and large values
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item based on original threshold
+        # Interpolate between medium and small strategies
+        selected_common_sizes = enhanced_embeddings['small']  # Use small's rich multiplier set
+        # Adjust weights to be between medium and small values
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item based on original threshold
+        selected_common_sizes = enhanced_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['medium']
+>>>>>>> REPLACE

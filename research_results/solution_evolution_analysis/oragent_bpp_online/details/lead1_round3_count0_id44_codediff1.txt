@@ -1,0 +1,184 @@
+<<<<<<< SEARCH
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Adaptive priority function that maintains a running histogram of item sizes
+    and uses it to score bins based on how well their post-placement remaining
+    capacity matches high-frequency item sizes.
+    
+    The approach:
+    1. Maintains a global history of item sizes to build a histogram
+    2. Uses this histogram to identify high-frequency item sizes
+    3. Prioritizes bins whose post-placement capacity aligns with these frequent sizes
+    4. Combines this with best-fit principles to avoid wasting space
+    
+    Implementation considerations:
+    - Uses exponential moving average to maintain item size frequencies
+    - Updates the histogram each time this function is called
+    - Balances between matching frequent sizes and following best-fit principle
+    - Handles edge cases where no bins can accommodate the item
+    
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Use module-level variables to maintain state across calls
+    if not hasattr(priority, 'item_histogram'):
+        # Initialize histogram parameters
+        priority.bin_edges = np.linspace(0, 100, 21)  # Assuming max item size around 100
+        priority.bin_centers = (priority.bin_edges[:-1] + priority.bin_edges[1:]) / 2
+        priority.item_counts = np.zeros(len(priority.bin_centers))  # Exponential moving average weights
+        priority.total_items = 0
+        priority.decay_factor = 0.995  # How quickly old items are forgotten
+        
+    # Update the histogram with the current item
+    priority.total_items += 1
+    # Decay previous counts
+    priority.item_counts *= priority.decay_factor
+    # Find which bin the current item belongs to
+    item_bin_idx = np.digitize(item, priority.bin_edges) - 1
+    # Make sure index is within bounds
+    item_bin_idx = np.clip(item_bin_idx, 0, len(priority.bin_centers) - 1)
+    # Increment count for this bin
+    priority.item_counts[item_bin_idx] += 1
+    
+    # Identify high-frequency item sizes (top percentile)
+    threshold = np.percentile(priority.item_counts, 75)  # Top 25% of frequencies
+    frequent_sizes = priority.bin_centers[priority.item_counts >= threshold]
+    
+    # Filter out non-positive sizes
+    frequent_sizes = frequent_sizes[frequent_sizes > 0]
+    
+    # If no frequent sizes found, fall back to a reasonable default
+    if len(frequent_sizes) == 0:
+        frequent_sizes = [item, item * 0.5, item * 0.75, item * 1.25, item * 1.5]
+        frequent_sizes = [size for size in frequent_sizes if size > 0]
+    
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    # For feasible bins, calculate priority based on how close the remaining capacity is to frequent sizes
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # For each frequent size, calculate how well the remaining capacity matches
+    for freq_size in frequent_sizes:
+        # Calculate how close the remaining capacity is to this frequent size
+        distances = np.abs(feasible_post_caps - freq_size)
+        
+        # Add to the score (higher score for closer matches)
+        # Use a normalized score to prevent dominance by one factor
+        feasible_scores += 1.0 / (1.0 + distances)
+    
+    # Also add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -post_placement_caps  # Higher score for less remaining space
+    
+    # Normalize the best fit component to be comparable to frequency scores
+    if len(post_placement_caps) > 0:
+        best_fit_range = np.max(post_placement_caps) - np.min(post_placement_caps)
+        if best_fit_range > 0:
+            best_fit_component = -(post_placement_caps - np.min(post_placement_caps)) / best_fit_range
+        else:
+            best_fit_component = np.zeros_like(post_placement_caps)
+    
+    # Combine both components with balanced weights
+    combined_scores = feasible_scores + 0.2 * best_fit_component  # Weight best fit moderately
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+    
+    return scores
+=======
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic that assigns higher priority to bins that, after placement, 
+    result in a remaining capacity that is close to common item sizes.
+    This implementation estimates common item sizes based on the current item and 
+    prioritizes bins that leave "useful" remaining capacities.
+    
+    The approach combines:
+    1. Estimation of common item sizes based on the current item
+    2. Scoring bins based on how well their post-placement capacity matches these sizes
+    3. Best Fit principle as a secondary criterion to avoid wasting space
+    
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Estimate common item sizes based on the current item
+    # Consider the current item size and its common fractions/multiples
+    current_item = item
+    estimated_common_sizes = [
+        current_item, 
+        current_item * 0.5,   # half size
+        current_item * 0.75,  # three quarters
+        current_item * 0.9,   # 90% size
+        current_item * 1.1,   # 110% size
+        current_item * 1.25,  # 1.25x size
+        current_item * 1.5,   # 1.5x size
+        current_item * 0.25,  # quarter size
+        current_item * 2.0    # double size
+    ]
+    
+    # Filter out non-positive sizes
+    estimated_common_sizes = [size for size in estimated_common_sizes if size > 0]
+    
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    # For feasible bins, calculate priority based on how close the remaining capacity is to common sizes
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # For each estimated common size, calculate how well the remaining capacity matches
+    for common_size in estimated_common_sizes:
+        # Calculate how close the remaining capacity is to this common size
+        distances_to_size = np.abs(feasible_post_caps - common_size)
+        
+        # Add to the score (higher score for closer matches)
+        # Use a function that gives significant scores only for close matches
+        feasible_scores += 1.0 / (1.0 + distances_to_size)
+    
+    # Also add Best Fit component: prefer bins with less remaining space after placement
+    # This prevents overfilling bins unnecessarily while still allowing for good fits
+    best_fit_component = -post_placement_caps  # Higher score for less remaining space after placement
+    
+    # Combine both components with appropriate weights
+    # Give more weight to the common size matching since it was the key insight from parent solution
+    combined_scores = feasible_scores + 0.1 * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = combined_scores
+    
+    return scores
+>>>>>>> REPLACE

@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    elif item_percentile < 0.18:  # Very small item
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduce best-fit weight for very small items, since Farey sequence handles multiple fits well
+        best_fit_weight *= 0.85
+        multiple_fit_weight *= 1.05
+=======
+    elif item_percentile < 0.18:  # Very small item
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduce best-fit weight for very small items, since Farey sequence handles multiple fits well
+        best_fit_weight *= 0.80
+        multiple_fit_weight *= 1.08
+>>>>>>> REPLACE

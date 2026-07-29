@@ -1,0 +1,16 @@
+def farey_sequence(n):
+    """Generate the Farey sequence F_n of order n."""
+    fractions = [(0, 1), (1, 1)]  # Start with 0/1 and 1/1
+    if n == 1:
+        return fractions
+    
+    # Generate all fractions in the range (0, 1) with denominator <= n
+    frac_list = []
+    for denom in range(1, n + 1):
+        for numer in range(1, denom):
+            # Check if numerator and denominator are coprime
+            a, b = numer, denom
+            while b:
+                a, b = a % b, a  # This is wrong!
+            if a == 1:  # Coprime check
+                frac_list.append((numer, denom))

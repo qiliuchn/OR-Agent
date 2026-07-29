@@ -1,0 +1,6 @@
+# Use inverse-linear kernel (more numerically stable than inverse-square)
+# Add a small epsilon to avoid division by zero
+inverse_linear_distances = 1.0 / (1.0 + distances_to_multiples)
+
+# Add to the score (higher score for closer matches)
+multiple_fit_score += inverse_linear_distances

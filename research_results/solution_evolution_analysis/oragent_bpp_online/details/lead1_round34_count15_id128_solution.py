@@ -1,0 +1,121 @@
+import os
+import sys
+import time
+import random
+import math
+import json
+import numpy as np
+import pandas as pd
+import scipy
+import traci
+import torch
+
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic that implements a clean, efficient multiple-fit approach
+    combined with percentile-based item categorization. This approach focuses
+    on computationally efficient operations with carefully calibrated static
+    multiplier sets to achieve high performance while maintaining the effective 
+    percentile-based categorization scheme.
+    
+    The strategy uses fixed, pre-tuned fractional multipliers to identify remainders
+    that would be useful for future items, implementing both best-fit and multiple-fit strategies.
+
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate the percentile of the current item in the context of remaining capacities
+        sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 1e-9])  # Only consider non-empty bins
+        if len(sorted_caps) > 0:
+            item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+        else:
+            item_percentile = 0.5  # Default if no bins have capacity
+    else:
+        item_percentile = 0.5  # Default if no bins exist
+    
+    # Define category-specific weights based on refined percentile thresholds
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+    
+    # Calculate multiple fit score efficiently
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Multiple-fit strategy: look for remainders that would be good for future items
+    # This looks for remainders that are close to common item sizes (including the current item)
+    
+    # Common sizes based on the current item (future items might be similar sizes)
+    common_item_sizes = np.array([item, item * 0.5, item * 1.5, item * 0.25, item * 0.75, item * 2.0])
+    
+    # For each common size, find remainders that are close to integer multiples of that size
+    # This helps identify remainders that would work well for future items of common sizes
+    for common_size in common_item_sizes:
+        if common_size > 1e-9:
+            # For each remainder, find how close it is to being a multiple of common_size
+            # Calculate distance to the nearest multiple
+            quotients = feasible_post_caps / common_size
+            rounded_quotients = np.round(quotients)
+            closest_multiples = rounded_quotients * common_size
+            distances = np.abs(feasible_post_caps - closest_multiples)
+            
+            # Add to score (higher score for closer matches to multiples)
+            # Use exponential decay for better differentiation
+            multiple_fit_score += np.exp(-distances / (common_size + 1e-9))
+    
+    # Additional multiple-fit: look for remainders that are close to common fractional parts of bin capacity
+    # This captures the idea that certain remainder values might be useful more generally
+    max_capacity = np.max(bins_remain_cap) if len(bins_remain_cap) > 0 else 1.0
+    if max_capacity > 1e-9:
+        common_fractions = np.array([max_capacity * 0.5, max_capacity * 0.25, max_capacity * 0.75, 
+                                    max_capacity * 0.333, max_capacity * 0.667, max_capacity * 0.125])
+        
+        for frac in common_fractions:
+            if frac > 1e-9:
+                distances = np.abs(feasible_post_caps - frac)
+                multiple_fit_score += np.exp(-distances / (frac * 0.1 + 1e-9))  # Normalize by fraction size
+    
+    # Best Fit component: prefer bins with less remaining space after placement
+    # This minimizes waste and is a classic bin packing heuristic
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space (negative because we want to minimize)
+    
+    # Combine all components with category-specific weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component
+    )
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores

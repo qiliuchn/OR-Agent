@@ -1,0 +1,17 @@
+root_dir: /share/home/u23310103/apps/or_agent
+file_output_prefix: outputs/oragent/bpp_online/standard_mode14/details/lead1_round40_count0_id136_file_
+mode: val
+__SANDBOX_ERROR__:
+Error type: NameError
+Error message: name 'refined_weights' is not defined
+Full traceback:
+Traceback (most recent call last):
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round40_count0_id136_eval.py", line 156, in <module>
+    avg_num_bins, metrics = evaluate(dataset)
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round40_count0_id136_eval.py", line 96, in evaluate
+    _, bins_packed = online_binpack(items.astype(float), bins)
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round40_count0_id136_eval.py", line 53, in online_binpack
+    priorities = priority(item, bins[valid_bin_indices])
+  File "/share/home/u23310103/apps/or_agent/outputs/oragent/bpp_online/standard_mode14/details/lead1_round40_count0_id136_solution.py", line 241, in priority
+    best_fit_weight, multiple_fit_weight = refined_weights[item_category]
+NameError: name 'refined_weights' is not defined

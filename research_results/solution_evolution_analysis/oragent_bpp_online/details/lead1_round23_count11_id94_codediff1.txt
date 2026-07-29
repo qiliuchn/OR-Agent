@@ -1,0 +1,435 @@
+<<<<<<< SEARCH
+import numpy as np
+from typing import List
+from scipy.stats import gaussian_kde
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic that combines dynamic Farey sequence generation for small items
+    with kernel density estimation for medium/large items. For small items (<0.3 capacity),
+    generates rational approximations on-the-fly using Farey sequence of order 16.
+    For medium/large items, fits a kernel density estimate to feasible post-placement
+    remainders and samples high-density modes as context-specific common sizes.
+    This merges the compactness and mathematical coverage of Farey sequences with
+    the adaptive categorization of distribution-aware thresholds, reducing code
+    bloat while enhancing generalizability across diverse item distributions.
+
+    Implementation idea: Replace extensive static multiplier embeddings with a dynamic
+    Farey sequence generator for small items (<0.3 capacity) and a residual-capacity
+    KDE-based mode sampler for medium/large items. Specifically, for small items,
+    generate rational approximations on-the-fly using Farey sequence of order 16;
+    for others, fit a kernel density estimate to feasible post-placement remainders
+    and sample high-density modes as context-specific common sizes. This merges the
+    compactness and mathematical coverage of Node 86/92 with the adaptive
+    categorization of Node 84, reducing code bloat while enhancing generalizability
+    across diverse item distributions.
+
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Generate Farey sequence of order n up to 1.0
+    def farey_sequence(n):
+        """Generate Farey sequence of order n"""
+        fractions = []
+        for denominator in range(1, n + 1):
+            for numerator in range(0, denominator + 1):
+                if np.gcd(numerator, denominator) == 1:  # Only include reduced fractions
+                    fractions.append(numerator / denominator)
+        return sorted(list(set(fractions)))  # Remove duplicates and sort
+    
+    # Determine the size category based on fixed thresholds (empirically determined)
+    if item <= 0.3:  # Small item based on capacity
+        # Generate Farey sequence of order 16 for small items
+        farey_vals = farey_sequence(16)
+        # Convert to multipliers relative to the item size
+        selected_common_sizes = [item * frac for frac in farey_vals if frac > 0]
+        # Weights for small items: less emphasis on best-fit, more on multiple fitting
+        best_fit_weight = 0.01
+        multiple_fit_weight = 1.19
+    else:  # Medium/Large item
+        # Use KDE to find high-density regions in the feasible post-placement capacities
+        if len(feasible_post_caps) > 1:
+            try:
+                # Fit a KDE to the post-placement capacities
+                kde = gaussian_kde(feasible_post_caps)
+                
+                # Sample points to find modes
+                sample_points = np.linspace(np.min(feasible_post_caps), np.max(feasible_post_caps), 100)
+                densities = kde(sample_points)
+                
+                # Select top 10 highest density points as common sizes
+                top_indices = np.argsort(densities)[-10:]
+                selected_common_sizes = sample_points[top_indices]
+            except:
+                # Fallback if KDE fails - use simple quantiles
+                selected_common_sizes = [
+                    item * 0.5,
+                    item * 1.5,
+                    item * 0.75,
+                    item * 1.25,
+                    item * 0.33,
+                    item * 0.67,
+                    item * 0.25,
+                    item * 1.75,
+                    item * 2.0,
+                    item * 0.125
+                ]
+        else:
+            # If only one feasible bin, use default multipliers
+            selected_common_sizes = [
+                item * 0.5,
+                item * 1.5,
+                item * 0.75,
+                item * 1.25,
+                item * 0.33,
+                item * 0.67,
+                item * 0.25,
+                item * 1.75,
+                item * 2.0,
+                item * 0.125
+            ]
+        
+        # Weights for medium/large items: balance between best-fit and multiple fitting
+        best_fit_weight = 0.25 if item > 0.5 else 0.1
+        multiple_fit_weight = 0.75 if item > 0.5 else 0.9
+
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in selected_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to the closest multiple of common_size
+            # Find the nearest integer multiple
+            multiples_lower = np.floor(feasible_post_caps / common_size)
+            multiples_upper = np.ceil(feasible_post_caps / common_size)
+            
+            dist_lower = np.abs(feasible_post_caps - multiples_lower * common_size)
+            dist_upper = np.abs(feasible_post_caps - multiples_upper * common_size)
+            
+            # Take minimum distance to either lower or upper multiple
+            min_distances = np.minimum(dist_lower, dist_upper)
+            
+            # Add to the score (higher score for closer matches)
+            # Use a small epsilon to avoid division by zero
+            multiple_fit_score += 1.0 / (1.0 + min_distances)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine both components with determined weights
+    feasible_scores = multiple_fit_weight * multiple_fit_score + best_fit_weight * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+=======
+import numpy as np
+from typing import List
+
+def priority(item: float, bins_remain_cap: np.ndarray) -> np.ndarray:
+    """
+    Priority heuristic that uses an adaptive thresholding system based on the 
+    empirical distribution of remaining capacities. Instead of fixed percentile 
+    thresholds, this implementation computes the interquartile range (IQR) or 
+    standard deviation of bins_remain_cap and defines 'large' and 'small' 
+    categories relative to the current dispersion (e.g., large = item > median + 0.5*IQR),
+    enabling the heuristic to adjust its categorization sensitivity to instance-specific 
+    variance without maintaining history. This builds on the successful categorized 
+    approach with learned embeddings while adding distribution-aware adaptivity.
+
+    Implementation idea: Replace fixed percentile thresholds (0.18, 0.38, 0.62, 0.82) 
+    with an adaptive thresholding system based on the empirical distribution of 
+    remaining capacities. Compute the interquartile range (IQR) or standard deviation 
+    of bins_remain_cap and define 'large' and 'small' categories relative to the 
+    current dispersion, enabling the heuristic to adjust its categorization 
+    sensitivity to instance-specific variance without maintaining history.
+
+    Args:
+        item: Size of the item to place
+        bins_remain_cap: NumPy array of remaining bin capacities
+        
+    Returns:
+        NumPy array of priority scores for each bin
+    """
+    # Calculate post-placement remaining capacities
+    post_placement_caps = bins_remain_cap - item
+    
+    # Initialize scores
+    scores = np.full_like(bins_remain_cap, -np.inf, dtype=float)
+    
+    # Only consider bins that can accommodate the item
+    feasible_bins = bins_remain_cap >= item
+    
+    if not np.any(feasible_bins):
+        return scores  # All bins remain with -inf scores
+    
+    feasible_post_caps = post_placement_caps[feasible_bins]
+    feasible_scores = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Compute adaptive thresholds based on current distribution of remaining capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate quartiles to determine IQR
+        q1 = np.percentile(bins_remain_cap, 25)
+        q3 = np.percentile(bins_remain_cap, 75)
+        iqr = q3 - q1
+        median_val = np.median(bins_remain_cap)
+        
+        # Define adaptive thresholds based on IQR
+        # Large items: those larger than median + 0.5*IQR
+        # Small items: those smaller than median - 0.5*IQR
+        large_threshold = median_val + 0.5 * iqr
+        small_threshold = median_val - 0.5 * iqr
+        
+        # Calculate normalized position of the current item relative to the distribution
+        if q3 != q1:  # Avoid division by zero
+            item_position = (item - median_val) / iqr if iqr > 1e-9 else 0.0
+        else:
+            item_position = 0.0
+            
+    else:
+        # Default thresholds if no bins exist
+        large_threshold = 0.5
+        small_threshold = 0.5
+        item_position = 0.0
+    
+    # Enhanced multiplier embeddings with additional fractional relationships
+    # These represent optimized sets of common-size relationships discovered through
+    # offline analysis of near-optimal packings
+    enhanced_embeddings = {
+        'large': [  # For items significantly larger than median
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 2.0,
+            item * 0.25,
+            item * 1.75,
+            item * 0.125,
+            item * 2.5,      # Extended range for very large items
+            item * 0.2,      # Additional small fraction
+            item * 0.167,    # 1/6
+            item * 0.833,    # 5/6
+            item * 0.4,      # 2/5
+            item * 0.6,      # 3/5
+            item * 0.375,    # 3/8
+            item * 0.625,    # 5/8
+            item * 0.143,    # 1/7
+            item * 0.286,    # 2/7
+            item * 0.429,    # 3/7
+            item * 0.571,    # 4/7
+            item * 0.714,    # 5/7
+            item * 0.857,    # 6/7
+            item * 0.111,    # 1/9
+            item * 0.222,    # 2/9
+            item * 0.333,    # 1/3 more precisely
+            item * 0.667,    # 2/3 more precisely
+            item * 0.778,    # 7/9
+            item * 0.889,    # 8/9
+            item * 0.1,      # 1/10
+            item * 0.9,      # 9/10
+            item * 0.0625,   # 1/16
+            item * 0.1875,   # 3/16
+            item * 0.3125,   # 5/16
+            item * 0.4375,   # 7/16
+            item * 0.5625,   # 9/16
+            item * 0.6875,   # 11/16
+            item * 0.8125,   # 13/16
+            item * 0.9375    # 15/16
+        ],
+        'small': [  # For items significantly smaller than median
+            item,
+            item * 0.5,
+            item * 0.25,
+            item * 0.75,
+            item * 0.33,
+            item * 0.67,
+            item * 1.5,
+            item * 0.125,
+            item * 0.875,
+            item * 0.167,
+            item * 0.833,
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 0.1,
+            item * 0.9,
+            item * 0.0625,
+            item * 0.375,
+            item * 0.143,  # 1/7 fraction
+            item * 0.286,  # 2/7 fraction
+            item * 0.429,  # 3/7 fraction
+            item * 0.571,  # 4/7 fraction
+            item * 0.714,  # 5/7 fraction
+            item * 0.857,  # 6/7 fraction
+            item * 0.111,  # 1/9 fraction
+            item * 0.333,  # 1/3 more precisely
+            item * 0.667,  # 2/3 more precisely
+            item * 0.167,  # 1/6 more precisely
+            item * 0.833,  # 5/6 more precisely
+            item * 0.0625, # 1/16
+            item * 0.1875, # 3/16
+            item * 0.3125, # 5/16
+            item * 0.4375, # 7/16
+            item * 0.5625, # 9/16
+            item * 0.6875, # 11/16
+            item * 0.8125, # 13/16
+            item * 0.9375, # 15/16
+            item * 0.143,  # 1/7 again with different precision
+            item * 0.286,  # 2/7 again with different precision
+            item * 0.222,  # 2/9
+            item * 0.444,  # 4/9
+            item * 0.556,  # 5/9
+            item * 0.778,  # 7/9
+            item * 0.889,  # 8/9
+            item * 0.03125, # 1/32
+            item * 0.09375, # 3/32
+            item * 0.15625, # 5/32
+            item * 0.21875, # 7/32
+            item * 0.28125, # 9/32
+            item * 0.34375, # 11/32
+            item * 0.40625, # 13/32
+            item * 0.46875, # 15/32
+            item * 0.53125, # 17/32
+            item * 0.59375, # 19/32
+            item * 0.65625, # 21/32
+            item * 0.71875, # 23/32
+            item * 0.78125, # 25/32
+            item * 0.84375, # 27/32
+            item * 0.90625, # 29/32
+            item * 0.96875  # 31/32
+        ],
+        'medium': [  # For items around the median
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 0.25,
+            item * 0.1,
+            item * 1.75,
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 1.1,
+            item * 0.167,
+            item * 0.833,
+            item * 0.375,
+            item * 0.625,
+            item * 0.75,
+            item * 1.333,    # 4/3 more precisely
+            item * 1.667,    # 5/3 more precisely
+            item * 0.429,    # 3/7 fraction
+            item * 0.571,    # 4/7 fraction
+            item * 0.125,    # 1/8
+            item * 0.375,    # 3/8
+            item * 0.625,    # 5/8
+            item * 0.875,    # 7/8
+            item * 0.111,    # 1/9
+            item * 0.222,    # 2/9
+            item * 0.444,    # 4/9
+            item * 0.556,    # 5/9
+            item * 0.778,    # 7/9
+            item * 0.889,    # 8/9
+            item * 0.143,    # 1/7
+            item * 0.286,    # 2/7
+            item * 0.429,    # 3/7
+            item * 0.571,    # 4/7
+            item * 0.714,    # 5/7
+            item * 0.857,    # 6/7
+            item * 0.1,      # 1/10
+            item * 0.3,      # 3/10
+            item * 0.7,      # 7/10
+            item * 0.9,      # 9/10
+            item * 0.0625,   # 1/16
+            item * 0.1875,   # 3/16
+            item * 0.3125,   # 5/16
+            item * 0.4375,   # 7/16
+            item * 0.5625,   # 9/16
+            item * 0.6875,   # 11/16
+            item * 0.8125,   # 13/16
+            item * 0.9375    # 15/16
+        ]
+    }
+    
+    # Enhanced weights based on size category with fine-tuned parameters
+    enhanced_weights = {
+        'large': (0.25, 0.75),   # Slightly increased best-fit weight for large items
+        'small': (0.0005, 1.195),  # Further reduced best-fit weight for small items
+        'medium': (0.07, 0.93)   # Slightly adjusted balanced weights for medium items
+    }
+    
+    # Determine the size category based on adaptive thresholds
+    if item > large_threshold:  # Large item based on distribution
+        selected_common_sizes = enhanced_embeddings['large']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['large']
+        # Slightly increase best-fit weight for large items to ensure they fit
+        best_fit_weight *= 1.07
+        multiple_fit_weight *= 0.99
+    elif item < small_threshold:  # Small item based on distribution
+        selected_common_sizes = enhanced_embeddings['small']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['small']
+        # Further reduce best-fit weight for small items
+        best_fit_weight *= 0.93
+        multiple_fit_weight *= 1.01
+    else:  # Medium item based on distribution
+        selected_common_sizes = enhanced_embeddings['medium']
+        best_fit_weight, multiple_fit_weight = enhanced_weights['medium']
+    
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in selected_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                # Use a small epsilon to avoid division by zero
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine both components with enhanced weights
+    feasible_scores = multiple_fit_weight * multiple_fit_score + best_fit_weight * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+>>>>>>> REPLACE

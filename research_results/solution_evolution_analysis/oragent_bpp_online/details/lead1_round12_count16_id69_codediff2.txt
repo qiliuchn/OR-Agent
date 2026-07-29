@@ -1,0 +1,189 @@
+<<<<<<< SEARCH
+    # Define multiplier sets and weights based on the adaptive categorization
+    if item_category == "large":
+        # Focus on best-fit strategy with emphasis on avoiding fragmentation
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 2.0,
+            item * 0.25   # Add smaller fraction for better utilization
+        ]
+        
+        # Weight for best-fit component should be higher for large items
+        best_fit_weight = 0.20
+        # Reduce emphasis on multiple fitting since we prioritize filling bins
+        multiple_fit_weight = 0.80
+        
+    elif item_category == "small":
+        # Focus on fine-grained fractional multipliers to optimize space usage
+        estimated_common_sizes = [
+            item, 
+            item * 0.5, 
+            item * 0.25, 
+            item * 0.75, 
+            item * 0.33, 
+            item * 0.67,
+            item * 1.5,
+            item * 0.125,  # Very fine granularity for small items
+            item * 0.875,   
+            item * 0.167,   # 1/6 fraction
+            item * 0.833,   # 5/6 fraction
+            item * 0.2,     # 1/5 fraction
+            item * 0.4,     # 2/5 fraction
+            item * 0.6,     # 3/5 fraction
+            item * 0.8,     # 4/5 fraction
+            item * 0.1,     # Even finer granularity
+            item * 0.9,     # 9/10 fraction
+            item * 0.0625,  # 1/16 fraction for extremely fine granularity
+            item * 0.375    # 3/8 fraction
+        ]
+        
+        # For small items, reduce best-fit emphasis and increase multiple fitting
+        best_fit_weight = 0.003
+        multiple_fit_weight = 1.17
+        
+    else:  # item_category == "medium"
+        # Balanced approach with moderate granularity
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 0.25,
+            item * 0.1,   
+            item * 1.75,   
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 1.1     # Slightly over 1x for near-full bins
+        ]
+        
+        # Balanced weights
+        best_fit_weight = 0.06
+        multiple_fit_weight = 0.94
+=======
+    # Define multiplier sets based on the adaptive categorization
+    if item_category == "large":
+        # Focus on fine-grained fractional multipliers to optimize space usage for large items
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 2.0,
+            item * 0.25   # Add smaller fraction for better utilization
+        ]
+        
+    elif item_category == "small":
+        # Focus on fine-grained fractional multipliers to optimize space usage
+        estimated_common_sizes = [
+            item, 
+            item * 0.5, 
+            item * 0.25, 
+            item * 0.75, 
+            item * 0.33, 
+            item * 0.67,
+            item * 1.5,
+            item * 0.125,  # Very fine granularity for small items
+            item * 0.875,   
+            item * 0.167,   # 1/6 fraction
+            item * 0.833,   # 5/6 fraction
+            item * 0.2,     # 1/5 fraction
+            item * 0.4,     # 2/5 fraction
+            item * 0.6,     # 3/5 fraction
+            item * 0.8,     # 4/5 fraction
+            item * 0.1,     # Even finer granularity
+            item * 0.9,     # 9/10 fraction
+            item * 0.0625,  # 1/16 fraction for extremely fine granularity
+            item * 0.375    # 3/8 fraction
+        ]
+        
+    else:  # item_category == "medium"
+        # Balanced approach with moderate granularity
+        estimated_common_sizes = [
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 0.25,
+            item * 0.1,   
+            item * 1.75,   
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 1.1     # Slightly over 1x for near-full bins
+        ]
+
+    # Now calculate adaptive weights based on the current fragmentation state
+    if len(bins_remain_cap) > 0 and np.any(feasible_bins):
+        # Calculate fragmentation metrics based on the current state
+        feasible_caps = bins_remain_cap[feasible_bins]
+        if len(feasible_caps) > 1:
+            cap_std = np.std(feasible_caps)
+            cap_mean = np.mean(feasible_caps)
+            fragmentation_level = cap_std / (cap_mean + 1e-8)
+            
+            # Adjust weights based on fragmentation level and item category
+            if item_category == "large":
+                # For large items in fragmented bins, emphasize best-fit to consolidate
+                if fragmentation_level > 0.5:  # High fragmentation
+                    best_fit_weight = 0.25  # Slightly higher than before
+                    multiple_fit_weight = 0.75  # Slightly lower than before
+                else:  # Low fragmentation
+                    best_fit_weight = 0.20
+                    multiple_fit_weight = 0.80
+            elif item_category == "small":
+                # For small items, adjust based on fragmentation
+                if fragmentation_level > 0.5:  # High fragmentation
+                    best_fit_weight = 0.005  # Slightly higher than before to fill gaps
+                    multiple_fit_weight = 1.15  # Slightly lower than before
+                else:  # Low fragmentation
+                    best_fit_weight = 0.003
+                    multiple_fit_weight = 1.17
+            else:  # medium
+                # Balanced adjustment for medium items
+                if fragmentation_level > 0.5:  # High fragmentation
+                    best_fit_weight = 0.08  # Slightly higher to consolidate
+                    multiple_fit_weight = 0.92  # Slightly lower
+                else:  # Low fragmentation
+                    best_fit_weight = 0.06
+                    multiple_fit_weight = 0.94
+        else:
+            # Fallback to original weights if insufficient data
+            if item_category == "large":
+                best_fit_weight = 0.20
+                multiple_fit_weight = 0.80
+            elif item_category == "small":
+                best_fit_weight = 0.003
+                multiple_fit_weight = 1.17
+            else:  # medium
+                best_fit_weight = 0.06
+                multiple_fit_weight = 0.94
+    else:
+        # Fallback to original weights
+        if item_category == "large":
+            best_fit_weight = 0.20
+            multiple_fit_weight = 0.80
+        elif item_category == "small":
+            best_fit_weight = 0.003
+            multiple_fit_weight = 1.17
+        else:  # medium
+            best_fit_weight = 0.06
+            multiple_fit_weight = 0.94
+>>>>>>> REPLACE

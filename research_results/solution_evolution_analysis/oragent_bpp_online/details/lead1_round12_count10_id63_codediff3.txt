@@ -1,0 +1,48 @@
+<<<<<<< SEARCH
+                # Define threshold as 3% of the common size for better sensitivity
+                tau = 0.03 * common_size
+=======
+                # Define threshold as 5% of the common size
+                tau = 0.05 * common_size
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        # Weight for best-fit component should be higher for large items
+        best_fit_weight = 0.18
+        # Reduce emphasis on multiple fitting since we prioritize filling bins
+        multiple_fit_weight = 0.82
+        # Exponential decay parameter for small gaps
+        alpha = 0.6
+=======
+        # Weight for best-fit component should be higher for large items
+        best_fit_weight = 0.20
+        # Reduce emphasis on multiple fitting since we prioritize filling bins
+        multiple_fit_weight = 0.80
+        # Exponential decay parameter for small gaps
+        alpha = 0.5
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        # For small items, reduce best-fit emphasis and increase multiple fitting
+        best_fit_weight = 0.002
+        multiple_fit_weight = 1.18
+        # Exponential decay parameter for small gaps
+        alpha = 0.08  # Less aggressive for small items
+=======
+        # For small items, reduce best-fit emphasis and increase multiple fitting
+        best_fit_weight = 0.003
+        multiple_fit_weight = 1.17
+        # Exponential decay parameter for small gaps
+        alpha = 0.1  # Less aggressive for small items
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        # Balanced weights
+        best_fit_weight = 0.055
+        multiple_fit_weight = 0.945
+        # Exponential decay parameter for small gaps
+        alpha = 0.28  # Medium aggressiveness
+=======
+        # Balanced weights
+        best_fit_weight = 0.06
+        multiple_fit_weight = 0.94
+        # Exponential decay parameter for small gaps
+        alpha = 0.3  # Medium aggressiveness
+>>>>>>> REPLACE

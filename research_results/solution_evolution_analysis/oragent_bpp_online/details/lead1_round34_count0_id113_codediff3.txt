@@ -1,0 +1,25 @@
+<<<<<<< SEARCH
+    # Define category-specific weights based on refined percentile thresholds using feasible remainders
+    if item_feasible_percentile > 0.82:  # Very large item relative to feasible bins
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_feasible_percentile < 0.18:  # Very small item relative to feasible bins
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items, extreme multiple-fit emphasis
+    elif item_feasible_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_feasible_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+=======
+    # Define category-specific weights based on refined percentile thresholds using feasible remainders
+    if item_feasible_percentile > 0.82:  # Very large item relative to feasible bins
+        best_fit_weight, multiple_fit_weight = 0.30, 0.70  # Enhanced best-fit for large items
+    elif item_feasible_percentile < 0.18:  # Very small item relative to feasible bins
+        best_fit_weight, multiple_fit_weight = 0.002, 1.190  # Reduced best-fit for small items, high multiple-fit emphasis
+    elif item_feasible_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.12, 0.88  # Between medium and large
+    elif item_feasible_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.030, 1.050  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.06, 0.94  # Medium weights
+>>>>>>> REPLACE

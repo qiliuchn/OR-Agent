@@ -1,0 +1,130 @@
+<<<<<<< SEARCH
+    # Generate dynamic common sizes using context-aware sampling
+    if len(feasible_post_caps) > 0:
+        # Identify important scales from the current remainder distribution
+        unique_caps = np.unique(feasible_post_caps[feasible_post_caps > 1e-9])  # Only positive remainders
+        if len(unique_caps) > 0:
+            # Sample quantiles from the current distribution as common sizes
+            quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+            # Cap the number of quantiles to avoid too many computations
+            quantile_count = min(len(quantiles), len(unique_caps))
+            if quantile_count > 0:
+                selected_quantiles = quantiles[:quantile_count]
+                quantile_values = np.quantile(unique_caps, selected_quantiles)
+            else:
+                quantile_values = unique_caps
+            
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75
+            ])
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                quantile_values,
+                item_ratios,
+                remainder_fractions
+            ])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in dynamic_common_sizes:
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            # Calculate distance to nearest multiple of the common size
+            # Consider multiples up to a reasonable limit
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Limit max_multiplier to prevent excessive computation
+                max_multiplier = min(max_multiplier, 20)
+                
+                if max_multiplier > 0:
+                    # Calculate distances to all possible multiples
+                    multipliers = np.arange(0, max_multiplier)
+                    distance_matrix = np.abs(feasible_post_caps[:, np.newaxis] - multipliers[np.newaxis, :] * common_size)
+                    distances_to_multiples = np.min(distance_matrix, axis=1)
+                    
+                    # Add to the score (higher score for closer matches)
+                    multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+=======
+    # Generate dynamic common sizes using context-aware sampling
+    # Use a simplified approach that matches the parent more closely
+    if len(feasible_post_caps) > 0:
+        # Identify important scales from the current remainder distribution
+        unique_caps = np.unique(feasible_post_caps)
+        if len(unique_caps) > 0:
+            # Sample key values from the current distribution as common sizes
+            # Quantiles provide good coverage of the distribution
+            quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+            quantile_values = np.quantile(unique_caps, quantiles)
+            
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75
+            ])
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                quantile_values,
+                item_ratios,
+                remainder_fractions
+            ])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    
+    # Calculate multiple fit score based on dynamic common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    # Process common sizes in chunks to reduce computational load
+    chunk_size = 10
+    for i in range(0, len(dynamic_common_sizes), chunk_size):
+        chunk = dynamic_common_sizes[i:i+chunk_size]
+        
+        for common_size in chunk:
+            if common_size > 1e-9:  # Avoid division by very small numbers
+                # Calculate distance to nearest multiple of the common size
+                # Consider multiples up to a reasonable limit
+                max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+                if max_multiplier > 0:
+                    # Limit max_multiplier to prevent excessive computation
+                    max_multiplier = min(max_multiplier, 20)
+                    
+                    if max_multiplier > 0:
+                        # Calculate distances to all possible multiples
+                        multipliers = np.arange(0, max_multiplier)
+                        distance_matrix = np.abs(feasible_post_caps[:, np.newaxis] - multipliers[np.newaxis, :] * common_size)
+                        distances_to_multiples = np.min(distance_matrix, axis=1)
+                        
+                        # Add to the score (higher score for closer matches)
+                        multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+>>>>>>> REPLACE

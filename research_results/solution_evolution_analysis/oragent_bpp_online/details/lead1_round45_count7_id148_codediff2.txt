@@ -1,0 +1,74 @@
+<<<<<<< SEARCH
+    # Calculate entropy of feasible post-capacities
+    if len(feasible_post_caps) > 0:
+        # Normalize to avoid numerical issues
+        feasible_caps_positive = feasible_post_caps[feasible_post_caps > 1e-9]
+        if len(feasible_caps_positive) > 0:
+            # Create probability distribution from normalized values
+            caps_sum = np.sum(feasible_caps_positive)
+            if caps_sum > 0:
+                probs = feasible_caps_positive / caps_sum
+                # Avoid log(0) by filtering out zero probabilities
+                probs = probs[probs > 0]
+                entropy = -np.sum(probs * np.log(probs + 1e-10))  # Add small epsilon to avoid log(0)
+            else:
+                entropy = 0
+        else:
+            entropy = 0
+    else:
+        entropy = 0
+    
+    # Determine if we're in a critical state
+    # Adjusted thresholds to make critical state detection more responsive
+    is_critical_state = (feasibility_ratio < 0.3) and (entropy < 0.7)
+    
+    # Define category-specific weights based on refined percentile thresholds
+    if is_critical_state:
+        # In critical state, heavily favor best-fit to avoid fragmentation
+        best_fit_weight, multiple_fit_weight = 0.95, 0.05  # Even more aggressive best-fit in critical state
+    elif item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+=======
+    # Calculate alternative measures of capacity constraint
+    if len(feasible_post_caps) > 0:
+        # Count how many bins have very little remaining capacity (near full)
+        # Assuming original bin capacity is around the max of initial bins_remain_cap
+        original_capacity = np.max(bins_remain_cap) if len(bins_remain_cap) > 0 else 1.0
+        # Count bins that are nearly full (>90% used)
+        near_full_threshold = 0.1 * original_capacity
+        near_full_bins = np.sum(feasible_post_caps < near_full_threshold)
+        near_full_ratio = near_full_bins / len(feasible_post_caps) if len(feasible_post_caps) > 0 else 0
+        
+        # Calculate variance of feasible post-capacities as another measure
+        capacity_variance = np.var(feasible_post_caps)
+    else:
+        near_full_ratio = 0
+        capacity_variance = 0
+    
+    # Determine if we're in a critical state
+    # Now using near-full ratio and variance instead of entropy
+    is_critical_state = (feasibility_ratio < 0.25) and (near_full_ratio > 0.15)
+    
+    # Define category-specific weights based on refined percentile thresholds
+    if is_critical_state:
+        # In critical state, heavily favor best-fit to avoid fragmentation
+        best_fit_weight, multiple_fit_weight = 0.9, 0.1  # Strong best-fit in critical state
+    elif item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+>>>>>>> REPLACE

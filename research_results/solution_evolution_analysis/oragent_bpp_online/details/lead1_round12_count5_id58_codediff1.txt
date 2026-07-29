@@ -1,0 +1,29 @@
+<<<<<<< SEARCH
+    # Estimate distribution parameter based on current context
+    # Use the mean and std of remaining capacities as a proxy for the distribution
+    positive_caps = bins_remain_cap[bins_remain_cap > 0]
+    if len(positive_caps) > 1:
+        cap_mean = np.mean(positive_caps)
+        cap_std = np.std(positive_caps)
+        # Estimate a shape parameter proxy based on coefficient of variation
+        if cap_mean > 0:
+            cv = cap_std / cap_mean
+            # Transform to get a reasonable range for k
+            k_proxy = max(0.1, min(5.0, 2.0 / (cv + 0.1)))  # Prevent division by zero
+        else:
+            k_proxy = 1.0
+    else:
+        k_proxy = 1.0
+    
+    # Golden ratio constant
+    phi = (1 + np.sqrt(5)) / 2  # Approximately 1.618
+    
+    # Dynamic geometric base based on estimated distribution parameter
+    geom_base = np.exp(1.0 / k_proxy) if k_proxy > 0 else 2.0  # Use e^(1/k) as base
+=======
+    # Golden ratio constant
+    phi = (1 + np.sqrt(5)) / 2  # Approximately 1.618
+    
+    # Fixed geometric base as in parent solution for comparison
+    geom_base = np.sqrt(2)  # Use fixed geometric base instead of dynamic one
+>>>>>>> REPLACE

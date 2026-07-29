@@ -1,0 +1,41 @@
+<<<<<<< SEARCH
+    # Use a smooth penalty function instead of hard cut-offs
+    # Apply quadratic penalty within the [0.2, 0.7] range, peaking at 0.45 (middle of range)
+    mid_point = 0.45
+    width = 0.25  # Half-width of the interval [0.2, 0.7]
+    
+    # Calculate how far each remainder is from the midpoint of the problematic range
+    dist_from_mid = np.abs(normalized_remainders - mid_point)
+    # Only apply penalty if within the problematic range
+    penalty_mask = dist_from_mid <= width
+    # Quadratic penalty function: peaks at the center of the bad range
+    # Reduce the penalty strength to be less disruptive to the main scoring components
+    frag_penalty[penalty_mask] = -((width**2 - dist_from_mid[penalty_mask]**2) / width**2) * 0.1
+    
+    # Combine all components with enhanced weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component +
+        frag_penalty  # Add fragmentation penalty
+    )
+=======
+    # Use a smooth penalty function instead of hard cut-offs
+    # Apply quadratic penalty within the [0.2, 0.7] range, peaking at 0.45 (middle of range)
+    mid_point = 0.45
+    width = 0.25  # Half-width of the interval [0.2, 0.7]
+    
+    # Calculate how far each remainder is from the midpoint of the problematic range
+    dist_from_mid = np.abs(normalized_remainders - mid_point)
+    # Only apply penalty if within the problematic range
+    penalty_mask = dist_from_mid <= width
+    # Quadratic penalty function: peaks at the center of the bad range
+    # Use a moderate penalty strength to balance between avoiding fragmentation and preserving other scoring benefits
+    frag_penalty[penalty_mask] = -((width**2 - dist_from_mid[penalty_mask]**2) / width**2) * 0.25
+    
+    # Combine all components with enhanced weights
+    feasible_scores = (
+        multiple_fit_weight * multiple_fit_score + 
+        best_fit_weight * best_fit_component +
+        frag_penalty  # Add fragmentation penalty
+    )
+>>>>>>> REPLACE

@@ -1,0 +1,16 @@
+Format: Node <ID> (<score>): "<idea>"
+Legend:
+  ⊕ = solution expanded with improved children solution(s)
+  ○ = solution pending expansion
+  ✓ = terminal solution (local optimum, no improvement found)
+PS: Only root node may contain more than one solutions.
+========================================
+⊕ Node [71 (2019.40)]
+    ├── ⊕ Node 83 (2019.40)
+    │       ├── ○ Node 87 (2018.80)
+    │       └── ○ Node 88 (2019.00)
+    ├── ○ Node 84 (2019.40)
+    ├── ○ Node 85 (2020.40)
+    └── ○ Node 86 (2019.40)
+========================================
+Total nodes: 7 | Total expanded solutions: 2 | Total pending leaves: 5 | Total terminal leaves: 0

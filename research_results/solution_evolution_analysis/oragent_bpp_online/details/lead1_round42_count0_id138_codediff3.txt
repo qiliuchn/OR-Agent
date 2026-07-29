@@ -1,0 +1,27 @@
+<<<<<<< SEARCH
+    # Calculate utilization statistics for adaptive weighting
+    # We'll simulate what the utilization would be after placing the item
+    bin_capacity_before = bins_remain_cap[feasible_bins]
+    bin_capacity_after = feasible_post_caps
+    bin_utilization = 1.0 - (bin_capacity_after / bin_capacity_before)
+    
+    # Calculate average utilization across feasible bins
+    avg_utilization = np.mean(bin_utilization) if len(bin_utilization) > 0 else 0.0
+    
+    # Adaptive weight adjustment based on utilization
+    # High utilization suggests good packing, maintain current strategy
+    # Low utilization suggests over-fragmentation, favor best-fit
+    utilization_factor = 1.0 - avg_utilization  # Higher when utilization is low
+    
+    # Apply the percentile-based weights calculated earlier, with slight adjustment based on utilization
+    # This combines both approaches: item-relative sizing and utilization feedback
+    if avg_utilization < 0.5:  # Low utilization indicates fragmentation
+        best_fit_weight = best_fit_weight * (1.0 + utilization_factor * 0.2)  # Boost best-fit slightly
+        multiple_fit_weight = multiple_fit_weight * (1.0 - utilization_factor * 0.1)  # Reduce multiple-fit slightly
+    else:  # Higher utilization, maintain percentile-based weights
+        # Keep the weights as determined by percentile classification
+        pass
+=======
+    # Keep the weights as determined by percentile classification
+    # The utilization-based adjustment was found to degrade performance compared to the parent solution
+>>>>>>> REPLACE

@@ -1,0 +1,10 @@
+<<<<<<< SEARCH
+                # Calculate scores for large gaps (linear decay starting from the value at tau boundary)
+                exp_at_tau = np.exp(-alpha * tau)
+                large_gap_scores = exp_at_tau / (1.0 + (distances_to_multiples[~small_gap_mask] - tau) / (tau + 1e-8))
+=======
+                # Calculate scores for large gaps (linear decay starting from the value at tau boundary)
+                # Ensure continuity by starting from the exponential value at the threshold
+                exp_at_tau = np.exp(-alpha * tau)
+                large_gap_scores = exp_at_tau / (1.0 + (distances_to_multiples[~small_gap_mask] - tau))
+>>>>>>> REPLACE

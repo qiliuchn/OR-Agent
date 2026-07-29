@@ -1,0 +1,63 @@
+<<<<<<< SEARCH
+    # Find the position of the current item in the context distribution
+    item_position = np.searchsorted(sorted_context, item)
+    item_percentile = item_position / len(sorted_context)
+    
+    # Use k-means style clustering concept to define dynamic categories
+    # We'll use 5 clusters to represent: very small, small, medium, large, very large
+    # The boundaries will be estimated from the context data
+    
+    # Estimate category boundaries based on quantiles of context data
+    if len(context_data) >= 5:
+        # Use quantiles to determine category boundaries
+        q10 = np.percentile(context_data, 10)
+        q30 = np.percentile(context_data, 30)
+        q50 = np.percentile(context_data, 50)
+        q70 = np.percentile(context_data, 70)
+        q90 = np.percentile(context_data, 90)
+        
+        # Categorize the current item based on its size relative to quantiles
+        if item <= q10:  # Very small
+            best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01
+        elif item <= q30:  # Small
+            best_fit_weight, multiple_fit_weight = 0.025, 1.055
+        elif item <= q70:  # Medium
+            best_fit_weight, multiple_fit_weight = 0.08, 0.92
+        elif item <= q90:  # Large
+            best_fit_weight, multiple_fit_weight = 0.14, 0.86
+        else:  # Very large
+            best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99
+    else:
+        # Fallback to percentile-based approach if insufficient data
+        if item_percentile > 0.82:  # Very large item
+            best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+        elif item_percentile < 0.18:  # Very small item
+            best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+        elif item_percentile > 0.62:  # Large-medium item
+            best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+        elif item_percentile < 0.38:  # Small-medium item
+            best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+        else:  # True medium item
+            best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+=======
+    # Calculate the percentile rank of the current item among remaining bin capacities
+    # Use only the available bin capacities (not including the item itself in the percentile calculation)
+    available_caps = bins_remain_cap[bins_remain_cap > 0] if np.any(bins_remain_cap > 0) else bins_remain_cap
+    if len(available_caps) > 0:
+        sorted_caps = np.sort(available_caps)
+        item_percentile = np.searchsorted(sorted_caps, item) / len(sorted_caps)
+    else:
+        item_percentile = 0.5  # Default if no bins exist
+    
+    # Define category-specific weights based on refined percentile thresholds from parent solution
+    if item_percentile > 0.82:  # Very large item
+        best_fit_weight, multiple_fit_weight = 0.25 * 1.07, 0.75 * 0.99  # Enhanced best-fit for large items
+    elif item_percentile < 0.18:  # Very small item
+        best_fit_weight, multiple_fit_weight = 0.001 * 0.93, 1.194 * 1.01  # Reduced best-fit for small items
+    elif item_percentile > 0.62:  # Large-medium item
+        best_fit_weight, multiple_fit_weight = 0.14, 0.86  # Between medium and large
+    elif item_percentile < 0.38:  # Small-medium item
+        best_fit_weight, multiple_fit_weight = 0.025, 1.055  # Between medium and small
+    else:  # True medium item
+        best_fit_weight, multiple_fit_weight = 0.08, 0.92  # Medium weights
+>>>>>>> REPLACE

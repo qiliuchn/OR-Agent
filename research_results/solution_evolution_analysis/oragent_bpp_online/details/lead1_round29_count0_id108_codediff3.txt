@@ -1,0 +1,70 @@
+<<<<<<< SEARCH
+    # Compute adaptive thresholds based on current bin state and item
+    # Use quartiles of current bin capacities to determine thresholds
+    if len(bins_remain_cap) > 0:
+        # Calculate quartiles of current bin capacities to adaptively determine thresholds
+        sorted_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])  # Only consider non-empty bins
+        if len(sorted_caps) > 0:
+            q25 = np.percentile(sorted_caps, 25)
+            q50 = np.percentile(sorted_caps, 50)
+            q75 = np.percentile(sorted_caps, 75)
+            
+            # Determine where the current item fits relative to these quartiles
+            if item <= q25:
+                item_category = 'small'
+            elif item <= q75:
+                item_category = 'medium'
+            else:
+                item_category = 'large'
+        else:
+            # If all bins are empty, use the item size relative to itself as reference
+            item_category = 'medium'  # Default to medium if no context available
+    else:
+        item_category = 'medium'  # Default if no bins exist
+=======
+    # Compute adaptive thresholds based on current bin state and item
+    # Use quartiles of current available bin capacities to determine thresholds
+    # Also calculate the percentile rank of the current item among all bin capacities
+    if len(bins_remain_cap) > 0:
+        # Calculate quartiles of current available bin capacities to adaptively determine thresholds
+        available_caps = bins_remain_cap[bins_remain_cap >= item]  # Only consider bins that can accommodate the item
+        if len(available_caps) > 0:
+            sorted_available_caps = np.sort(available_caps)
+            q25 = np.percentile(sorted_available_caps, 25)
+            q50 = np.percentile(sorted_available_caps, 50)
+            q75 = np.percentile(sorted_available_caps, 75)
+            
+            # Determine where the current item fits relative to these quartiles
+            if item <= q25:
+                item_category = 'small'
+            elif item <= q75:
+                item_category = 'medium'
+            else:
+                item_category = 'large'
+        else:
+            # If no bins can accommodate the item, use all bin capacities for context
+            sorted_all_caps = np.sort(bins_remain_cap[bins_remain_cap > 0])
+            if len(sorted_all_caps) > 0:
+                q25 = np.percentile(sorted_all_caps, 25)
+                q50 = np.percentile(sorted_all_caps, 50)
+                q75 = np.percentile(sorted_all_caps, 75)
+                
+                # Determine where the current item fits relative to these quartiles
+                if item <= q25:
+                    item_category = 'small'
+                elif item <= q75:
+                    item_category = 'medium'
+                else:
+                    item_category = 'large'
+            else:
+                # If all bins are empty, use the item size relative to itself as reference
+                item_category = 'medium'  # Default to medium if no context available
+                
+        # Calculate the percentile rank of the current item among all remaining bin capacities
+        # This provides additional context about how large the item is relative to the overall bin state
+        sorted_all_caps = np.sort(bins_remain_cap)
+        item_percentile_rank = np.searchsorted(sorted_all_caps, item) / len(sorted_all_caps) if len(sorted_all_caps) > 0 else 0.5
+    else:
+        item_category = 'medium'  # Default if no bins exist
+        item_percentile_rank = 0.5
+>>>>>>> REPLACE

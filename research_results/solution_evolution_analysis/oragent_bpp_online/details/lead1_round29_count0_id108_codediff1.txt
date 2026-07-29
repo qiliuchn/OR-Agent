@@ -1,0 +1,219 @@
+<<<<<<< SEARCH
+    # Estimate typical item size using an exponential moving average concept
+    # Since we can't store state across calls, we'll derive an estimate from current context
+    # Using the mean of available bin capacities as a proxy for typical item size
+    if len(bins_remain_cap) > 0:
+        # Estimate based on average of available capacities (a proxy for typical item size)
+        typical_item_estimate = np.mean(bins_remain_cap[bins_remain_cap > 0]) if np.any(bins_remain_cap > 0) else item
+    else:
+        typical_item_estimate = item
+    
+    # Define base multipliers based on category
+    base_multipliers = {
+        'large': [1.0, 0.5, 1.5, 0.75, 1.25, 0.33, 0.67, 2.0, 0.25, 1.75, 0.125, 2.5],
+        'small': [1.0, 0.5, 0.25, 0.75, 0.33, 0.67, 1.5, 0.125, 0.875, 0.167, 0.833],
+        'medium': [1.0, 0.5, 1.5, 0.75, 1.25, 0.33, 0.67, 0.25, 0.1, 1.75, 0.2, 0.4, 0.6, 0.8]
+    }
+    
+    # Enhance base multipliers with additional fractional relationships
+    enhanced_multipliers = {}
+    for cat in ['large', 'small', 'medium']:
+        base_mults = base_multipliers[cat]
+        # Add more fractions for better coverage
+        extra_fractions = [0.2, 0.167, 0.833, 0.4, 0.6, 0.375, 0.625, 0.143, 0.286, 
+                           0.429, 0.571, 0.714, 0.857, 0.111, 0.222, 0.333, 0.667, 
+                           0.778, 0.889, 0.1, 0.9, 0.0625, 0.1875, 0.3125, 0.4375, 
+                           0.5625, 0.6875, 0.8125, 0.9375]
+        enhanced_multipliers[cat] = base_mults + extra_fractions
+    
+    # Dynamic adjustment of multipliers based on estimated typical size
+    # This creates custom sizes that are more relevant to the current instance
+    dynamic_multipliers = []
+    if item_category == 'small':
+        # For small items, consider more multiples and combinations with typical size
+        dynamic_multipliers.extend([item, typical_item_estimate, item + typical_item_estimate/2, 
+                                    typical_item_estimate/3, typical_item_estimate/4])
+    elif item_category == 'large':
+        # For large items, consider more combinations with typical size
+        dynamic_multipliers.extend([item, typical_item_estimate, item/2, typical_item_estimate*2,
+                                    item - typical_item_estimate/2 if item > typical_item_estimate/2 else item/2])
+    else:  # medium
+        # For medium items, balance between item and typical size
+        dynamic_multipliers.extend([item, typical_item_estimate, item/2, item/3, 
+                                    typical_item_estimate/2, typical_item_estimate/3])
+    
+    # Create the final common sizes list combining enhanced and dynamic multipliers
+    selected_common_sizes = []
+    for mult in enhanced_multipliers[item_category]:
+        selected_common_sizes.append(item * mult)
+    selected_common_sizes.extend(dynamic_multipliers)
+=======
+    # Enhanced multiplier embeddings with additional fractional relationships
+    # These represent optimized sets of common-size relationships discovered through
+    # offline analysis of near-optimal packings, based on the successful parent solution
+    enhanced_embeddings = {
+        'large': [  # For large items
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 2.0,
+            item * 0.25,
+            item * 1.75,
+            item * 0.125,
+            item * 2.5,      # Extended range for very large items
+            item * 0.2,      # Additional small fraction
+            item * 0.167,    # 1/6
+            item * 0.833,    # 5/6
+            item * 0.4,      # 2/5
+            item * 0.6,      # 3/5
+            item * 0.375,    # 3/8
+            item * 0.625,    # 5/8
+            item * 0.143,    # 1/7
+            item * 0.286,    # 2/7
+            item * 0.429,    # 3/7
+            item * 0.571,    # 4/7
+            item * 0.714,    # 5/7
+            item * 0.857,    # 6/7
+            item * 0.111,    # 1/9
+            item * 0.222,    # 2/9
+            item * 0.333,    # 1/3 more precisely
+            item * 0.667,    # 2/3 more precisely
+            item * 0.778,    # 7/9
+            item * 0.889,    # 8/9
+            item * 0.1,      # 1/10
+            item * 0.9,      # 9/10
+            item * 0.0625,   # 1/16
+            item * 0.1875,   # 3/16
+            item * 0.3125,   # 5/16
+            item * 0.4375,   # 7/16
+            item * 0.5625,   # 9/16
+            item * 0.6875,   # 11/16
+            item * 0.8125,   # 13/16
+            item * 0.9375    # 15/16
+        ],
+        'small': [  # For small items
+            item,
+            item * 0.5,
+            item * 0.25,
+            item * 0.75,
+            item * 0.33,
+            item * 0.67,
+            item * 1.5,
+            item * 0.125,
+            item * 0.875,
+            item * 0.167,
+            item * 0.833,
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 0.1,
+            item * 0.9,
+            item * 0.0625,
+            item * 0.375,
+            item * 0.143,  # 1/7 fraction
+            item * 0.286,  # 2/7 fraction
+            item * 0.429,  # 3/7 fraction
+            item * 0.571,  # 4/7 fraction
+            item * 0.714,  # 5/7 fraction
+            item * 0.857,  # 6/7 fraction
+            item * 0.111,  # 1/9 fraction
+            item * 0.333,  # 1/3 more precisely
+            item * 0.667,  # 2/3 more precisely
+            item * 0.167,  # 1/6 more precisely
+            item * 0.833,  # 5/6 more precisely
+            item * 0.0625, # 1/16
+            item * 0.1875, # 3/16
+            item * 0.3125, # 5/16
+            item * 0.4375, # 7/16
+            item * 0.5625, # 9/16
+            item * 0.6875, # 11/16
+            item * 0.8125, # 13/16
+            item * 0.9375, # 15/16
+            item * 0.143,  # 1/7 again with different precision
+            item * 0.286,  # 2/7 again with different precision
+            item * 0.222,  # 2/9
+            item * 0.444,  # 4/9
+            item * 0.556,  # 5/9
+            item * 0.778,  # 7/9
+            item * 0.889,  # 8/9
+            item * 0.03125, # 1/32
+            item * 0.09375, # 3/32
+            item * 0.15625, # 5/32
+            item * 0.21875, # 7/32
+            item * 0.28125, # 9/32
+            item * 0.34375, # 11/32
+            item * 0.40625, # 13/32
+            item * 0.46875, # 15/32
+            item * 0.53125, # 17/32
+            item * 0.59375, # 19/32
+            item * 0.65625, # 21/32
+            item * 0.71875, # 23/32
+            item * 0.78125, # 25/32
+            item * 0.84375, # 27/32
+            item * 0.90625, # 29/32
+            item * 0.96875  # 31/32
+        ],
+        'medium': [  # For medium items
+            item,
+            item * 0.5,
+            item * 1.5,
+            item * 0.75,
+            item * 1.25,
+            item * 0.33,
+            item * 0.67,
+            item * 0.25,
+            item * 0.1,
+            item * 1.75,
+            item * 0.2,
+            item * 0.4,
+            item * 0.6,
+            item * 0.8,
+            item * 1.1,
+            item * 0.167,
+            item * 0.833,
+            item * 0.375,
+            item * 0.625,
+            item * 0.75,
+            item * 1.333,    # 4/3 more precisely
+            item * 1.667,    # 5/3 more precisely
+            item * 0.429,    # 3/7 fraction
+            item * 0.571,    # 4/7 fraction
+            item * 0.125,    # 1/8
+            item * 0.375,    # 3/8
+            item * 0.625,    # 5/8
+            item * 0.875,    # 7/8
+            item * 0.111,    # 1/9
+            item * 0.222,    # 2/9
+            item * 0.444,    # 4/9
+            item * 0.556,    # 5/9
+            item * 0.778,    # 7/9
+            item * 0.889,    # 8/9
+            item * 0.143,    # 1/7
+            item * 0.286,    # 2/7
+            item * 0.429,    # 3/7
+            item * 0.571,    # 4/7
+            item * 0.714,    # 5/7
+            item * 0.857,    # 6/7
+            item * 0.1,      # 1/10
+            item * 0.3,      # 3/10
+            item * 0.7,      # 7/10
+            item * 0.9,      # 9/10
+            item * 0.0625,   # 1/16
+            item * 0.1875,   # 3/16
+            item * 0.3125,   # 5/16
+            item * 0.4375,   # 7/16
+            item * 0.5625,   # 9/16
+            item * 0.6875,   # 11/16
+            item * 0.8125,   # 13/16
+            item * 0.9375    # 15/16
+        ]
+    }
+    
+    # Select the appropriate multipliers based on the determined category
+    selected_common_sizes = enhanced_embeddings[item_category]
+>>>>>>> REPLACE

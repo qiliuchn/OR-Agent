@@ -1,0 +1,104 @@
+<<<<<<< SEARCH
+    # Adjust weights based on the current state of bins and item characteristics
+    # If there are many available bins with large capacity, favor multiple-fit for better utilization
+    if len(available_bins) > 0:
+        available_mean = np.mean(available_bins)
+        capacity_ratio = item / available_mean if available_mean > 0 else 1.0
+        
+        # If the item is small relative to available capacity, emphasize multiple-fit more
+        if capacity_ratio < 0.3:
+            multiple_fit_weight = min(1.25, multiple_fit_weight * 1.15)
+            best_fit_weight = max(0.0001, best_fit_weight * 0.85)
+        # If the item is large relative to available capacity, emphasize best-fit more
+        elif capacity_ratio > 0.7:
+            best_fit_weight = min(0.4, best_fit_weight * 1.15)
+            multiple_fit_weight = max(0.6, multiple_fit_weight * 0.85)
+    
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in selected_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                # Use a small epsilon to avoid division by zero
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine both components with adaptive weights
+    feasible_scores = multiple_fit_weight * multiple_fit_score + best_fit_weight * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+=======
+    # Adjust weights based on the current state of bins and item characteristics
+    # If there are many available bins with large capacity, favor multiple-fit for better utilization
+    if len(available_bins) > 0:
+        available_mean = np.mean(available_bins)
+        capacity_ratio = item / available_mean if available_mean > 0 else 1.0
+        
+        # If the item is small relative to available capacity, emphasize multiple-fit more
+        if capacity_ratio < 0.3:
+            multiple_fit_weight = min(1.25, multiple_fit_weight * 1.15)
+            best_fit_weight = max(0.0001, best_fit_weight * 0.85)
+        # If the item is large relative to available capacity, emphasize best-fit more
+        elif capacity_ratio > 0.7:
+            best_fit_weight = min(0.4, best_fit_weight * 1.15)
+            multiple_fit_weight = max(0.6, multiple_fit_weight * 0.85)
+    
+    # Adjust weights slightly based on the item's position in the quartile range
+    # Use the quartiles calculated earlier based on available bins
+    if item_category == 'large':
+        # For very large items relative to current bins, emphasize best fit more
+        ratio_to_q75 = item / q75 if q75 > 0 else 1.0
+        best_fit_weight = min(0.4, best_fit_weight * (1.0 + 0.1 * max(0, ratio_to_q75 - 1.0)))
+        multiple_fit_weight = max(0.6, multiple_fit_weight * (1.0 - 0.1 * max(0, ratio_to_q75 - 1.0)))
+    elif item_category == 'small':
+        # For very small items relative to current bins, emphasize multiple fit more
+        ratio_to_q25 = item / q25 if q25 > 0 else 1.0
+        best_fit_weight = max(0.0001, best_fit_weight * min(1.0, ratio_to_q25))
+        multiple_fit_weight = min(1.25, multiple_fit_weight * max(1.0, 1.0/(ratio_to_q25 + 1e-9)))
+    
+    # Calculate how close the remaining capacity is to being a multiple of common sizes
+    multiple_fit_score = np.zeros_like(feasible_post_caps, dtype=float)
+    
+    for common_size in selected_common_sizes:
+        # Calculate how many multiples of common_size fit in the remaining capacity
+        if common_size > 1e-9:  # Avoid division by very small numbers
+            max_multiplier = int(np.max(feasible_post_caps) // common_size) + 2
+            if max_multiplier > 0:
+                # Calculate distances to all possible multiples
+                distances_to_multiples = np.min([
+                    np.abs(feasible_post_caps - n * common_size) 
+                    for n in range(0, max_multiplier)
+                ], axis=0)
+                
+                # Add to the score (higher score for closer matches)
+                # Use a small epsilon to avoid division by zero
+                multiple_fit_score += 1.0 / (1.0 + distances_to_multiples)
+    
+    # Add Best Fit component: prefer bins with less remaining space
+    # This prevents overfilling bins unnecessarily
+    best_fit_component = -feasible_post_caps  # Higher score for less remaining space
+    
+    # Combine both components with adaptive weights
+    feasible_scores = multiple_fit_weight * multiple_fit_score + best_fit_weight * best_fit_component
+    
+    # Assign the calculated scores to the correct positions
+    scores[feasible_bins] = feasible_scores
+    
+    return scores
+>>>>>>> REPLACE

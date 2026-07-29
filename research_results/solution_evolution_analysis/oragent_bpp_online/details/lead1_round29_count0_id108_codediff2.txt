@@ -1,0 +1,46 @@
+<<<<<<< SEARCH
+    # Adjust weights slightly based on the item's position in the quartile range
+    if item_category == 'large':
+        # For very large items relative to current bins, emphasize best fit more
+        if q75 > 0:
+            ratio_to_q75 = item / q75
+            best_fit_weight = min(0.4, best_fit_weight * (1.0 + 0.1 * (ratio_to_q75 - 1.0)))
+            multiple_fit_weight = max(0.6, multiple_fit_weight * (1.0 - 0.1 * (ratio_to_q75 - 1.0)))
+    elif item_category == 'small':
+        # For very small items relative to current bins, emphasize multiple fit more
+        if q25 > 0:
+            ratio_to_q25 = item / q25 if q25 > 0 else 1.0
+            best_fit_weight = max(0.0001, best_fit_weight * min(1.0, ratio_to_q25))
+            multiple_fit_weight = min(1.25, multiple_fit_weight * max(1.0, 1.0/ratio_to_q25))
+=======
+    # Adjust weights slightly based on the item's position in the quartile range
+    if item_category == 'large':
+        # For very large items relative to current bins, emphasize best fit more
+        if q75 > 0:
+            ratio_to_q75 = item / q75
+            best_fit_weight = min(0.4, best_fit_weight * (1.0 + 0.1 * (ratio_to_q75 - 1.0)))
+            multiple_fit_weight = max(0.6, multiple_fit_weight * (1.0 - 0.1 * (ratio_to_q75 - 1.0)))
+    elif item_category == 'small':
+        # For very small items relative to current bins, emphasize multiple fit more
+        if q25 > 0:
+            ratio_to_q25 = item / q25 if q25 > 0 else 1.0
+            best_fit_weight = max(0.0001, best_fit_weight * min(1.0, ratio_to_q25))
+            multiple_fit_weight = min(1.25, multiple_fit_weight * max(1.0, 1.0/ratio_to_q25))
+    else:  # medium category
+        # For medium items, adjust weights based on position between Q25 and Q75
+        if q25 > 0 and q75 > 0 and q25 != q75:
+            # Normalize item position within the interquartile range
+            normalized_pos = (item - q25) / (q75 - q25)
+            # If item is closer to Q75 (upper half of medium range), slightly favor best fit
+            # If item is closer to Q25 (lower half of medium range), slightly favor multiple fit
+            if normalized_pos > 0.5:
+                # Item is in upper half of medium range, slightly favor best fit
+                adjustment_factor = 1.0 + 0.05 * (normalized_pos - 0.5)
+                best_fit_weight = min(0.15, best_fit_weight * adjustment_factor)
+                multiple_fit_weight = max(0.85, multiple_fit_weight / adjustment_factor)
+            else:
+                # Item is in lower half of medium range, slightly favor multiple fit
+                adjustment_factor = 1.0 + 0.05 * (0.5 - normalized_pos)
+                best_fit_weight = max(0.01, best_fit_weight / adjustment_factor)
+                multiple_fit_weight = min(1.1, multiple_fit_weight * adjustment_factor)
+>>>>>>> REPLACE

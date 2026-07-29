@@ -1,0 +1,17 @@
+<<<<<<< SEARCH
+    # Multiplicative combination: multiple_fit_score * (1 + alpha * best_fit_component)
+    # Where alpha is scaled by how much the bin will be filled
+    base_alpha = 0.05  # Base weight for best fit component
+    adaptive_alpha = base_alpha * best_fit_scaling_factor
+    
+    # Apply the multiplicative combination
+    feasible_scores = multiple_fit_score * (1 + adaptive_alpha * normalized_best_fit)
+=======
+    # Multiplicative combination: multiple_fit_score * (1 + alpha * best_fit_component)
+    # Where alpha is scaled by how much the bin will be filled
+    base_alpha = 0.04  # Reduced base weight for best fit component to fine-tune balance
+    adaptive_alpha = base_alpha * best_fit_scaling_factor
+    
+    # Apply the multiplicative combination
+    feasible_scores = multiple_fit_score * (1 + adaptive_alpha * normalized_best_fit)
+>>>>>>> REPLACE

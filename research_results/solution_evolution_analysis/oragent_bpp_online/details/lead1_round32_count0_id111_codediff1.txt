@@ -1,0 +1,37 @@
+<<<<<<< SEARCH
+        # Adjust thresholds based on IQR magnitude relative to median
+        if median_val > 0:
+            iqr_ratio = iqr / median_val
+            # Scale the threshold adjustments based on IQR ratio
+            # Higher IQR leads to wider thresholds (less sensitive)
+            # Lower IQR leads to tighter thresholds (more sensitive)
+            threshold_adjustment = 0.15 * iqr_ratio  # Base adjustment factor
+            low_threshold = 0.25 - threshold_adjustment
+            high_threshold = 0.75 + threshold_adjustment
+            
+            # Clamp thresholds to reasonable bounds to prevent extreme values
+            low_threshold = max(0.1, min(0.4, low_threshold))
+            high_threshold = max(0.6, min(0.9, high_threshold))
+        else:
+            # Default thresholds if median is zero
+            low_threshold = 0.25
+            high_threshold = 0.75
+=======
+        # Adjust thresholds based on IQR magnitude relative to median
+        if median_val > 0:
+            iqr_ratio = iqr / median_val
+            # Scale the threshold adjustments based on IQR ratio
+            # Higher IQR leads to wider thresholds (less sensitive)
+            # Lower IQR leads to tighter thresholds (more sensitive)
+            threshold_adjustment = 0.25 * iqr_ratio  # Increased adjustment factor for more responsiveness
+            low_threshold = 0.25 - threshold_adjustment
+            high_threshold = 0.75 + threshold_adjustment
+            
+            # Clamp thresholds to reasonable bounds to prevent extreme values
+            low_threshold = max(0.05, min(0.45, low_threshold))  # Wider range
+            high_threshold = max(0.55, min(0.95, high_threshold))  # Wider range
+        else:
+            # Default thresholds if median is zero
+            low_threshold = 0.25
+            high_threshold = 0.75
+>>>>>>> REPLACE

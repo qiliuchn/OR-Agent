@@ -1,0 +1,41 @@
+<<<<<<< SEARCH
+    # Use a threshold based on the number of available bins to decide when to introduce randomness
+    # When there are fewer bins in play, stick to deterministic Best Fit
+    # When there are many bins in play, add some randomness to escape local optima
+    # Using similar logic to parent solution but adapted
+    total_bins_estimate = len(bins_remain_cap)  # Rough estimate of bins currently available
+    randomness_threshold = 0.3  # Start adding randomness when 30% of feasible bins are present
+    
+    # Determine whether to add randomness based on how many bins are in play
+    should_add_randomness = active_bins_count / max(total_bins_estimate, 1) > randomness_threshold
+    
+    if should_add_randomness and active_bins_count > 1:
+        # Add small random perturbation to break ties and explore alternatives
+        # Use a noise scale relative to the initial bin capacity
+        noise_scale = 0.01 * initial_capacity  # Small noise relative to bin capacity (matching parent)
+        random_noise = np.random.uniform(-noise_scale, noise_scale, size=bins_remain_cap.shape)
+        scores = base_scores + np.where(feasible, random_noise, 0.0)
+    else:
+        # Use pure Best Fit heuristic when few bins are active
+        scores = base_scores
+=======
+    # Use a threshold based on the number of available bins to decide when to introduce randomness
+    # When there are fewer bins in play, stick to deterministic Best Fit
+    # When there are many bins in play, add some randomness to escape local optima
+    # Using similar logic to parent solution but adapted
+    total_bins_estimate = len(bins_remain_cap)  # Rough estimate of bins currently available
+    randomness_threshold = 0.25  # Start adding randomness when 25% of feasible bins are present
+    
+    # Determine whether to add randomness based on how many bins are in play
+    should_add_randomness = active_bins_count / max(total_bins_estimate, 1) > randomness_threshold
+    
+    if should_add_randomness and active_bins_count > 1:
+        # Add small random perturbation to break ties and explore alternatives
+        # Use a noise scale relative to the initial bin capacity
+        noise_scale = 0.01 * initial_capacity  # Small noise relative to bin capacity (matching parent)
+        random_noise = np.random.uniform(-noise_scale, noise_scale, size=bins_remain_cap.shape)
+        scores = base_scores + np.where(feasible, random_noise, 0.0)
+    else:
+        # Use pure Best Fit heuristic when few bins are active
+        scores = base_scores
+>>>>>>> REPLACE

@@ -1,0 +1,131 @@
+<<<<<<< SEARCH
+    # Use context information to adjust the balance between quantile-based and ratio-based common sizes
+    # High entropy or high CV indicates more heterogeneous remainder distribution
+    # Low entropy or low CV indicates more clustered/homogeneous remainder distribution
+    
+    # Generate dynamic common sizes using context-aware sampling
+    # Use a kernel density-based approach to identify important remainder values
+    if len(feasible_post_caps) > 0:
+        # Identify important scales from the current remainder distribution
+        # Use a simplified approach: sample quantiles and key ratios from the distribution
+        unique_caps = np.unique(feasible_post_caps)
+        if len(unique_caps) > 0:
+            # Sample key values from the current distribution as common sizes
+            # Quantiles provide good coverage of the distribution
+            quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+            quantile_values = np.quantile(unique_caps, quantiles)
+            
+            # Adjust the emphasis on quantile vs ratio based on context
+            # When remainder distribution is homogeneous (low entropy/CV), emphasize item ratios
+            # When remainder distribution is heterogeneous (high entropy/CV), emphasize quantiles
+            context_factor = entropy + cv_remain  # Combined measure of heterogeneity
+            
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75
+            ])
+            
+            # Apply context-dependent weighting to different types of common sizes
+            # If the remainder distribution is more homogeneous, give more weight to item ratios
+            # If the remainder distribution is more heterogeneous, give more weight to quantiles
+            if context_factor < 0.5:  # Homogeneous distribution
+                # Emphasize item-ratio-based common sizes to exploit repetitive patterns
+                weighted_quantiles = quantile_values
+                weighted_item_ratios = np.concatenate([item_ratios, item_ratios, item_ratios])  # Triple emphasis
+                weighted_remainder_fractions = remainder_fractions
+            else:  # Heterogeneous distribution
+                # Emphasize quantile-derived common sizes to capture structural scales
+                weighted_quantiles = np.concatenate([quantile_values, quantile_values])  # Double emphasis
+                weighted_item_ratios = item_ratios
+                weighted_remainder_fractions = np.concatenate([remainder_fractions, remainder_fractions])  # Double emphasis
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                weighted_quantiles,
+                weighted_item_ratios,
+                weighted_remainder_fractions
+            ])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+=======
+    # Use context information to adjust the balance between quantile-based and ratio-based common sizes
+    # High entropy or high CV indicates more heterogeneous remainder distribution
+    # Low entropy or low CV indicates more clustered/homogeneous remainder distribution
+    
+    # Generate dynamic common sizes using context-aware sampling
+    # Use a kernel density-based approach to identify important remainder values
+    if len(feasible_post_caps) > 0:
+        # Identify important scales from the current remainder distribution
+        # Use a simplified approach: sample quantiles and key ratios from the distribution
+        unique_caps = np.unique(feasible_post_caps)
+        if len(unique_caps) > 0:
+            # Sample key values from the current distribution as common sizes
+            # Quantiles provide good coverage of the distribution
+            quantiles = np.array([0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9])
+            quantile_values = np.quantile(unique_caps, quantiles)
+            
+            # Adjust the emphasis on quantile vs ratio based on context
+            # When remainder distribution is homogeneous (low entropy/CV), emphasize item ratios
+            # When remainder distribution is heterogeneous (high entropy/CV), emphasize quantiles
+            context_factor = entropy + cv_remain  # Combined measure of heterogeneity
+            
+            # Also include some ratios of the current item size
+            item_ratios = np.array([item, item * 0.5, item * 1.5, item * 0.75, item * 1.25])
+            
+            # Include some simple fractions of the current remainders
+            remainder_fractions = np.concatenate([
+                unique_caps * 0.5,
+                unique_caps * 0.33,
+                unique_caps * 0.67,
+                unique_caps * 0.25,
+                unique_caps * 0.75
+            ])
+            
+            # Apply context-dependent weighting to different types of common sizes
+            # Use a more nuanced approach with three levels of heterogeneity
+            if context_factor < 0.3:  # Very homogeneous distribution
+                # Strongly emphasize item-ratio-based common sizes to exploit repetitive patterns
+                weighted_quantiles = quantile_values
+                weighted_item_ratios = np.concatenate([item_ratios] * 4)  # Quadruple emphasis
+                weighted_remainder_fractions = remainder_fractions
+            elif context_factor < 0.7:  # Moderately heterogeneous distribution
+                # Balanced approach
+                weighted_quantiles = np.concatenate([quantile_values] * 2)  # Double emphasis
+                weighted_item_ratios = np.concatenate([item_ratios] * 2)  # Double emphasis
+                weighted_remainder_fractions = np.concatenate([remainder_fractions] * 2)  # Double emphasis
+            else:  # Highly heterogeneous distribution
+                # Emphasize quantile-derived common sizes to capture structural scales
+                weighted_quantiles = np.concatenate([quantile_values] * 3)  # Triple emphasis
+                weighted_item_ratios = item_ratios
+                weighted_remainder_fractions = np.concatenate([remainder_fractions] * 3)  # Triple emphasis
+            
+            # Combine all dynamically generated common sizes
+            dynamic_common_sizes = np.concatenate([
+                weighted_quantiles,
+                weighted_item_ratios,
+                weighted_remainder_fractions
+            ])
+            
+            # Remove duplicates and very small values
+            dynamic_common_sizes = np.unique(dynamic_common_sizes)
+            dynamic_common_sizes = dynamic_common_sizes[dynamic_common_sizes > 1e-9]
+        else:
+            # Fallback if no unique values exist
+            dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+    else:
+        dynamic_common_sizes = np.array([item, item * 0.5, item * 1.5])
+>>>>>>> REPLACE
