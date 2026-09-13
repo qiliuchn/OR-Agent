@@ -10,7 +10,7 @@
 ![OR-Agent Overview](assets/overview.png)
 
 
-## Contents
+## Content
 
 - [Overview](#overview)
 - [Core Features](#core-features)
