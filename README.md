@@ -910,4 +910,4 @@ To facilitate further development, we have added markers throughout the codebase
 
 
 ## Contact
-For any questions or feedback, please contact us at `liuqi_tj[at]hotmail.com`.
+For any questions or feedback, please contact Qi Liu at `liuqi_tj[at]hotmail.com`.
