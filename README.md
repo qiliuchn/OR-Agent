@@ -10,7 +10,7 @@
 ![OR-Agent Overview](assets/overview.png)
 
 
-## Content
+## Contents
 
 - [Overview](#overview)
 - [Core Features](#core-features)
@@ -47,6 +47,8 @@
   - [Ablations](#ablations)
   - [Experiment Result Analysis Files](#experiment-result-analysis-files)
 - [Open Research Questions and Future Work](#open-research-questions-and-future-work)
+- [Contact](#contact)
+
 
 
 ## Overview
@@ -904,3 +906,8 @@ To facilitate further development, we have added markers throughout the codebase
 - "remedy LLM call response"
 - "how to manage and compress context?"
 - "real-time user feedback"
+
+
+
+## Contact
+For any questions or feedback, please contact us at `liuqi_tj[at]hotmail.com`.
