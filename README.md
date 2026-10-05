@@ -797,7 +797,7 @@ To examine whether this performance transfers beyond the demand configuration us
 
 
 
-Table: Performance under SUMO v1.27.1 for the demand configuration used during optimization and two held-out demand configurations. The best average score for each configuration is shown.
+_Table: Performance under SUMO v1.27.1 for the demand configuration used during optimization and two held-out demand configurations. The best average score for each configuration is shown._
 
 | Configuration | Controller | Collisions | Critical TTC | Teleports | Avg. speed | Speed var. | Avg. score |
 |---|---|---:|---:|---:|---:|---:|---:|
