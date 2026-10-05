@@ -760,7 +760,9 @@ op_aco           : reevo (1.000), ael (0.916), oragent (0.839), funsearch (0.653
 ### Performance on Driving Problem
 
 OR-Agent significantly outperforms all baseline algorithms under constrained running time, achieving a score of 48.00 compared to the highest baseline score of 16.10.
-OR-Agent is the only algorithm can found a solution (score: 90.24) that outperform the SUMO default driving model (score: 85.25) after extended running.
+OR-Agent is the only algorithm can found a solution (score: 90.24) that outperform the SUMO default driving model (score: 85.25) after extended running. SUMO Version is v1.21.0.
+
+Check out `research_results/driving_problem_oragent_final_optimum_solution.py` for the final optimum solution found by OR-Agent.
 
 ```
 SUMO default driving model performance:
@@ -789,6 +791,27 @@ Heavy Traffic: 84.40
 Average score: 90.24
 -----------------------------------------------------------------------------------------------
 ```
+
+We also tested the performance of OR-Agent solution on newer version of SUMO (v1.27.1).
+
+For the demand configuration used during optimization, the controller continues to outperform the SUMO default, achieving an average score of 96.03 compared with 91.52. 
+
+To examine whether this performance transfers beyond the demand configuration used during optimization, we evaluated both controllers on two additional, held-out demand configurations under SUMO v1.27.1. The OR-Agent controller generalizes successfully to held-out test~2, obtaining a score of 99.17 compared with 97.93 for the SUMO default while remaining collision- and teleport-free. However, it performs poorly on held-out test~1, where its score decreases to 50.70 compared with 97.50 for the default controller. These results indicate that the discovered controller is not uniformly robust to changes in traffic demand and exhibits demand-specific overfitting. A promising direction for mitigating this limitation is to randomize or diversify the demand configurations during the OR-Agent search.
+
+
+
+Table: Performance under SUMO v1.27.1 for the demand configuration used during optimization and two held-out demand configurations. The best average score for each configuration is shown.
+
+| Configuration | Controller | Collisions | Critical TTC | Teleports | Avg. speed | Speed var. | Avg. score |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Demand for opt. | SUMO Default | 0.0 | 15.5 | 0.0 | 11.175 | 7.850 | 91.523 |
+|  | OR-Agent | 0.0 | 11.0 | 0.0 | 12.045 | 5.140 | 96.029 |
+| Held-out test 1 | SUMO Default | 0.0 | 4.0 | 0.0 | 11.910 | 5.975 | 97.496 |
+|  | OR-Agent | 0.0 | 86.0 | 0.5 | 7.205 | 10.330 | 50.695 |
+| Held-out test 2 | SUMO Default | 0.0 | 3.0 | 0.0 | 11.920 | 5.660 | 97.929 |
+|  | OR-Agent | 0.0 | 3.0 | 0.0 | 12.440 | 4.170 | 99.168 |
+
+
 
 ![Performance Comparison on Driving Problem](assets/performance_comparision_driving.png)
 
