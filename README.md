@@ -47,6 +47,7 @@
   - [Ablations](#ablations)
   - [Experiment Result Analysis Files](#experiment-result-analysis-files)
 - [Open Research Questions and Future Work](#open-research-questions-and-future-work)
+- [Appendix](#appendix)
 - [Contact](#contact)
 
 
@@ -629,31 +630,7 @@ The increased LLM usage in OR-Agent reflects the additional computational effort
 
 ### Research Tree Size and Computational Scaling
 
-When research tree depth is unconstrained, completing a full research tree may require substantial runtime, as tree expansion continues as long as performance-improving directions can be identified.
-
-The size of the research tree grows exponentially with the branching factor (i.e., the number of children per node).
-
-* Total solutions generated: all solutions produced during the search process, including those later discarded
-* Total tree nodes: all nodes retained in the tree structure, including those superseded by better solutions
-
-As shown below, increasing num_children from 1 to 4 leads to exponential growth in both tree size and computational time.
-
-All measurements were conducted on a system with:
-
-* 4 × Intel(R) Xeon(R) CPU Max 9468 processors
-* 16 GB RAM
-
-
-Table: Effect of branching factor (number of children) on computational requirements for one complete research round.
-
-| num_children | Total solutions generated | Total tree nodes | Returned solutions | Time (h) |
-|--------------|--------------------------|------------------|--------------------|----------|
-| 1            | 5–10                     | 2–4              | 1                  | 0.5–1    |
-| 2            | 10–30                    | 4–8              | 2–4                | 1–4      |
-| 4            | 30–80                    | 8–16             | 4–8                | 4–16     |
-
-
-Figure: Illustration of how research tree sizes vary with branching factor num_children when tree depth is not explicitly constrained
+_Figure: Illustration of how research tree sizes vary with branching factor num_children when tree depth is not explicitly constrained_
 
 ![fig:research tree sizes](assets/research_tree_sizes.png)
 
@@ -679,15 +656,6 @@ To avoid such tuning, this work adopts a simpler strategy:
 
 > Impose a maximum tree depth, applied uniformly across all benchmark problems.
 
-
-
-### Effect of Branching Factor on Computational Cost
-
-| num_children | Total solutions generated | Total tree nodes | Returned solutions | Time (hours) |
-|--------------|--------------------------|------------------|--------------------|--------------|
-| 1            | 5–10                     | 2–4              | 1                  | 0.5–1        |
-| 2            | 10–30                    | 4–8              | 2–4                | 1–4          |
-| 4            | 30–80                    | 8–16             | 4–8                | 4–16         |
 
 
 ### Results on 12 Operations Research Benchmark Problems
@@ -759,7 +727,7 @@ op_aco           : reevo (1.000), ael (0.916), oragent (0.839), funsearch (0.653
 OR-Agent significantly outperforms all baseline algorithms under constrained running time, achieving a score of 48.00 compared to the highest baseline score of 16.10.
 OR-Agent is the only algorithm can found a solution (score: 90.24) that outperform the SUMO default driving model (score: 85.25) after extended running. SUMO Version is v1.21.0.
 
-Check out `research_results/driving_problem_oragent_final_optimum_solution.py` for the final optimum solution found by OR-Agent.
+Check out `research_results/driving_problem_oragent_final_optimal_solution.py` for the final optimum solution found by OR-Agent.
 
 ```
 SUMO default driving model performance:
@@ -927,6 +895,9 @@ To facilitate further development, we have added markers throughout the codebase
 - "how to manage and compress context?"
 - "real-time user feedback"
 
+
+## Appendix
+Check the file [Appendix](research_results/appendix.pdf) for more details.
 
 
 ## Contact
